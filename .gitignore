@@ -4,3 +4,6 @@ HW1/data/
 
 # Ignore all 课件 folders at any level
 课件/
+logs/
+report/
+results/
