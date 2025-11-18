@@ -11,5 +11,3 @@ results/
 
 # 忽略 HW2 下的 LibriSpeech 数据集与相关压缩包
 HW2/LibriSpeech/
-HW2/train-clean-100.tar.gz
-
