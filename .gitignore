@@ -11,6 +11,5 @@ results/
 
 # 忽略 HW2 下的 LibriSpeech 数据集与相关压缩包
 HW2/LibriSpeech/
-HW2/CosyVoice
 HW2/CosyVoice-300M
 HW2/s3_output
