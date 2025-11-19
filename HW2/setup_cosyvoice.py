@@ -6,7 +6,7 @@ import argparse
 import fnmatch
 import zipfile
 
-
+# 这个库手动下载一下：git clone https://github.com/FunAudioLLM/CosyVoice.git
 def check_installation(packages=None):
     """检查必要的包是否已安装"""
     if packages is None:
