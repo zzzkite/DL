@@ -1,4 +1,22 @@
 #!/usr/bin/env python3
+import sys
+import os
+
+# 添加 CosyVoice 到 Python 路径
+current_dir = os.path.dirname(os.path.abspath(__file__))
+cosyvoice_path = os.path.join(current_dir, 'CosyVoice')
+
+# 添加 CosyVoice 主目录
+if cosyvoice_path not in sys.path:
+    sys.path.insert(0, cosyvoice_path)
+
+# 添加 CosyVoice 的第三方依赖路径
+matcha_path = os.path.join(cosyvoice_path, 'third_party', 'Matcha-TTS')
+if os.path.exists(matcha_path) and matcha_path not in sys.path:
+    sys.path.insert(0, matcha_path)
+
+print(f"添加 CosyVoice 路径: {cosyvoice_path}")
+
 import argparse
 import json
 
@@ -6,7 +24,6 @@ import torch
 import torchaudio
 from tqdm import tqdm
 from transformers import AutoProcessor, AutoModelForSpeechSeq2Seq
-from cosyvoice.cli.cosyvoice import CosyVoice
 
 # --- huggingface_hub compatibility patch (for CosyVoice) ---
 try:
@@ -20,6 +37,15 @@ try:
         _hfh.cached_download = cached_download
 except Exception:
     pass
+
+# 尝试导入 CosyVoice
+try:
+    from cosyvoice.cli.cosyvoice import CosyVoice
+    print("✅ CosyVoice 导入成功")
+except ImportError as e:
+    print(f"❌ CosyVoice 导入失败: {e}")
+    print("请确保 CosyVoice 目录存在且包含必要的文件")
+    sys.exit(1)
 
 
 def load_jsonl(path):
@@ -71,11 +97,15 @@ def extract_whisper_encoder_feats(waveform, model, processor, device, max_durati
 
 def main(args):
     # load CosyVoice for text embedding
+    print(f"加载 CosyVoice 模型从: {args.model_dir}")
     cosy = CosyVoice(args.model_dir)
     emb_layer = cosy.model.llm.text_embedding
 
     # load Whisper encoder
     device = "cuda" if torch.cuda.is_available() else "cpu"
+    print(f"使用设备: {device}")
+    
+    print("加载 Whisper 模型...")
     processor = AutoProcessor.from_pretrained("openai/whisper-large-v3")
     whisper_model = AutoModelForSpeechSeq2Seq.from_pretrained(
         "openai/whisper-large-v3"
@@ -88,37 +118,45 @@ def main(args):
     utt2whisper_mid = {}
     utt2whisper_final = {}
 
-    print(f"Loaded {len(data)} items from {args.jsonl}")
+    print(f"从 {args.jsonl} 加载了 {len(data)} 个项目")
 
     for item in tqdm(data):
         audio_path = item["audio_path"]
         text = item["text"]
 
         # ----- CosyVoice text embedding -----
-        text_token, text_token_len = cosy.frontend._extract_text_token(text)  # [1, L], [1]
-        with torch.no_grad():
-            text_token = text_token.to(emb_layer.weight.device).long()
-            text_emb = emb_layer(text_token)  # [1, L, D]
-        utt2text_emb[audio_path] = text_emb.squeeze(0).cpu()  # [L, D]
+        try:
+            text_token, text_token_len = cosy.frontend._extract_text_token(text)  # [1, L], [1]
+            with torch.no_grad():
+                text_token = text_token.to(emb_layer.weight.device).long()
+                text_emb = emb_layer(text_token)  # [1, L, D]
+            utt2text_emb[audio_path] = text_emb.squeeze(0).cpu()  # [L, D]
+        except Exception as e:
+            print(f"文本嵌入提取失败 {audio_path}: {e}")
+            continue
 
         # ----- Whisper encoder features -----
-        waveform, _ = load_audio(audio_path, target_sr=16000)
-        mid_feat, final_feat = extract_whisper_encoder_feats(
-            waveform, whisper_model, processor, device, max_duration=args.max_duration
-        )
-        utt2whisper_mid[audio_path] = mid_feat
-        utt2whisper_final[audio_path] = final_feat
+        try:
+            waveform, _ = load_audio(audio_path, target_sr=16000)
+            mid_feat, final_feat = extract_whisper_encoder_feats(
+                waveform, whisper_model, processor, device, max_duration=args.max_duration
+            )
+            utt2whisper_mid[audio_path] = mid_feat
+            utt2whisper_final[audio_path] = final_feat
+        except Exception as e:
+            print(f"语音特征提取失败 {audio_path}: {e}")
+            continue
 
     # save outputs
     torch.save(utt2text_emb, args.output_text)
-    print(f"Saved CosyVoice text embeddings for {len(utt2text_emb)} items to {args.output_text}")
+    print(f"保存了 {len(utt2text_emb)} 个项目的 CosyVoice 文本嵌入到 {args.output_text}")
 
     whisper_output = {
         "mid": utt2whisper_mid,
         "final": utt2whisper_final,
     }
     torch.save(whisper_output, args.output_whisper)
-    print(f"Saved Whisper features for {len(utt2whisper_mid)} items to {args.output_whisper}")
+    print(f"保存了 {len(utt2whisper_mid)} 个项目的 Whisper 特征到 {args.output_whisper}")
 
 
 if __name__ == "__main__":
