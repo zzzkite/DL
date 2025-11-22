@@ -15,3 +15,5 @@ HW2/LibriSpeech/
 HW2/CosyVoice-300M/
 HW2/s3_output/
 HW2/CosyVoice/
+HW2/train_text_emb.pt
+HW2/train_whisper_feats.pt
