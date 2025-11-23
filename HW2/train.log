@@ -1,0 +1,2253 @@
+nohup: ignoring input
+添加 CosyVoice 路径: /data/zhangzhikui/githubbase/DL/HW2/CosyVoice
+failed to import ttsfrd, use wetext instead
+2025-11-23 19:14:10,308 INFO Note: detected 72 virtual cores but NumExpr set to maximum of 64, check "NUMEXPR_MAX_THREADS" environment variable.
+2025-11-23 19:14:10,308 INFO Note: NumExpr detected 72 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 16.
+2025-11-23 19:14:10,308 INFO NumExpr defaulting to 16 threads.
+✅ CosyVoice 导入成功
+使用设备: cuda
+程序开始 GPU内存: 已分配 0.00GB, 保留 0.00GB
+正在加载数据集...
+正在加载训练集样本数据...
+/data/zhangzhikui/githubbase/DL/HW2/model_code.py:453: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  utt2s3 = torch.load(utt2s3_path, map_location="cpu")
+/data/zhangzhikui/githubbase/DL/HW2/model_code.py:454: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  utt2text = torch.load(utt2text_path, map_location="cpu")
+/data/zhangzhikui/githubbase/DL/HW2/model_code.py:455: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  utt2whisper = torch.load(utt2whisper_path, map_location="cpu")
+✅ 训练集加载完成: 2853 个有效样本, 0 个被跳过
+正在加载测试集样本数据...
+✅ 测试集加载完成: 2611 个有效样本, 9 个被跳过
+数据集: 训练集 2853 样本, 测试集 2611 样本
+✅ 数据集初始化: 2853 个样本
+✅ 数据集初始化: 2611 个样本
+特征维度: text_dim=512, speech_last_dim=1280, speech_mid_dim=1280
+正在加载CosyVoice模型从: CosyVoice-300M
+/home/zhangzhikui/enter/envs/dl/lib/python3.10/site-packages/diffusers/models/lora.py:393: FutureWarning: `LoRACompatibleLinear` is deprecated and will be removed in version 1.0.0. Use of `LoRACompatibleLinear` is deprecated. Please switch to PEFT backend by installing PEFT: `pip install peft`.
+  deprecate("LoRACompatibleLinear", "1.0.0", deprecation_message)
+2025-11-23 19:19:04,140 INFO input frame rate=50
+/home/zhangzhikui/enter/envs/dl/lib/python3.10/site-packages/pyworld/__init__.py:13: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+[0;93m2025-11-23 19:19:06.084935359 [W:onnxruntime:, transformer_memcpy.cc:111 ApplyImpl] 10 Memcpy nodes are added to the graph main_graph for CUDAExecutionProvider. It might have negative impact on performance (including unable to run CUDA graph). Set session_options.log_severity_level=1 to see the detail logs before this message.[m
+[0;93m2025-11-23 19:19:06.086521098 [W:onnxruntime:, session_state.cc:1316 VerifyEachNodeIsAssignedToAnEp] Some nodes were not assigned to the preferred execution providers which may or may not have an negative impact on performance. e.g. ORT explicitly assigns shape related ops to CPU to improve perf.[m
+[0;93m2025-11-23 19:19:06.086543755 [W:onnxruntime:, session_state.cc:1318 VerifyEachNodeIsAssignedToAnEp] Rerunning with verbose output on a non-minimal build will show node assignments.[m
+/data/zhangzhikui/githubbase/DL/HW2/CosyVoice/cosyvoice/cli/model.py:68: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  self.llm.load_state_dict(torch.load(llm_model, map_location=self.device), strict=True)
+/data/zhangzhikui/githubbase/DL/HW2/CosyVoice/cosyvoice/cli/model.py:70: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  self.flow.load_state_dict(torch.load(flow_model, map_location=self.device), strict=True)
+/data/zhangzhikui/githubbase/DL/HW2/CosyVoice/cosyvoice/cli/model.py:73: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  hift_state_dict = {k.replace('generator.', ''): v for k, v in torch.load(hift_model, map_location=self.device).items()}
+✅ CosyVoice LLM加载成功
+✅ 使用预训练嵌入: speech_emb_dim=1024, llm_out_dim=1024
+✅ 预训练语音词表大小: 4096
+✅ 聚合器初始化完成: text_dim=512, speech_last_dim=1280, speech_mid_dim=1280, hidden_dim=512
+✅ LLM及嵌入层参数已冻结
+✅ CosyVoiceS3Model初始化完成
+模型参数: 总计 312,820,225，可训练 112,314,880
+input_proj requires_grad: True
+aggregator requires_grad: True
+
+==================================================
+Epoch 01/10
+==================================================
+开始训练epoch，共714个batch...
+训练Batch 0/714 GPU内存: 已分配 1.24GB, 保留 1.73GB
+  Batch 0/714 | Loss: 8.0605 | Acc: 7.86% | Tokens: 2503
+训练Batch 10/714 GPU内存: 已分配 1.24GB, 保留 10.96GB
+  Batch 10/714 | Loss: 7.6067 | Acc: 5.65% | Tokens: 2775
+训练Batch 20/714 GPU内存: 已分配 1.24GB, 保留 15.60GB
+  Batch 20/714 | Loss: 7.4448 | Acc: 2.16% | Tokens: 2915
+训练Batch 30/714 GPU内存: 已分配 1.24GB, 保留 15.02GB
+  Batch 30/714 | Loss: 7.1991 | Acc: 4.32% | Tokens: 2961
+训练Batch 40/714 GPU内存: 已分配 1.24GB, 保留 16.62GB
+  Batch 40/714 | Loss: 6.7650 | Acc: 2.79% | Tokens: 2829
+训练Batch 50/714 GPU内存: 已分配 1.24GB, 保留 15.69GB
+  Batch 50/714 | Loss: 6.6328 | Acc: 3.17% | Tokens: 1828
+训练Batch 60/714 GPU内存: 已分配 1.24GB, 保留 16.08GB
+  Batch 60/714 | Loss: 6.8331 | Acc: 2.51% | Tokens: 2470
+训练Batch 70/714 GPU内存: 已分配 1.24GB, 保留 16.62GB
+  Batch 70/714 | Loss: 6.5927 | Acc: 1.85% | Tokens: 2050
+训练Batch 80/714 GPU内存: 已分配 1.24GB, 保留 17.00GB
+  Batch 80/714 | Loss: 6.5469 | Acc: 2.97% | Tokens: 2086
+训练Batch 90/714 GPU内存: 已分配 1.24GB, 保留 13.95GB
+  Batch 90/714 | Loss: 6.5929 | Acc: 2.17% | Tokens: 2715
+训练Batch 100/714 GPU内存: 已分配 1.24GB, 保留 13.95GB
+  Batch 100/714 | Loss: 6.7085 | Acc: 2.02% | Tokens: 2960
+训练Batch 110/714 GPU内存: 已分配 1.24GB, 保留 11.02GB
+  Batch 110/714 | Loss: 6.4869 | Acc: 3.42% | Tokens: 2338
+训练Batch 120/714 GPU内存: 已分配 1.24GB, 保留 11.02GB
+  Batch 120/714 | Loss: 6.2924 | Acc: 3.50% | Tokens: 2881
+训练Batch 130/714 GPU内存: 已分配 1.24GB, 保留 16.73GB
+  Batch 130/714 | Loss: 6.5998 | Acc: 3.80% | Tokens: 1972
+训练Batch 140/714 GPU内存: 已分配 1.24GB, 保留 16.73GB
+  Batch 140/714 | Loss: 6.3071 | Acc: 4.94% | Tokens: 2852
+训练Batch 150/714 GPU内存: 已分配 1.24GB, 保留 14.95GB
+  Batch 150/714 | Loss: 5.9698 | Acc: 5.84% | Tokens: 1743
+训练Batch 160/714 GPU内存: 已分配 1.24GB, 保留 15.79GB
+  Batch 160/714 | Loss: 6.3464 | Acc: 2.52% | Tokens: 2181
+训练Batch 170/714 GPU内存: 已分配 1.24GB, 保留 14.58GB
+  Batch 170/714 | Loss: 6.3308 | Acc: 3.61% | Tokens: 2825
+训练Batch 180/714 GPU内存: 已分配 1.24GB, 保留 16.38GB
+  Batch 180/714 | Loss: 6.2656 | Acc: 4.55% | Tokens: 2851
+训练Batch 190/714 GPU内存: 已分配 1.24GB, 保留 14.85GB
+  Batch 190/714 | Loss: 6.4948 | Acc: 4.33% | Tokens: 3020
+训练Batch 200/714 GPU内存: 已分配 1.24GB, 保留 14.85GB
+  Batch 200/714 | Loss: 6.5718 | Acc: 5.08% | Tokens: 2714
+训练Batch 210/714 GPU内存: 已分配 1.24GB, 保留 13.69GB
+  Batch 210/714 | Loss: 6.1942 | Acc: 4.02% | Tokens: 2186
+训练Batch 220/714 GPU内存: 已分配 1.24GB, 保留 13.69GB
+  Batch 220/714 | Loss: 6.5043 | Acc: 3.17% | Tokens: 2455
+训练Batch 230/714 GPU内存: 已分配 1.24GB, 保留 15.46GB
+  Batch 230/714 | Loss: 6.1354 | Acc: 2.66% | Tokens: 1836
+训练Batch 240/714 GPU内存: 已分配 1.24GB, 保留 15.46GB
+  Batch 240/714 | Loss: 6.3140 | Acc: 4.65% | Tokens: 2018
+训练Batch 250/714 GPU内存: 已分配 1.24GB, 保留 15.84GB
+  Batch 250/714 | Loss: 6.2386 | Acc: 5.33% | Tokens: 3055
+训练Batch 260/714 GPU内存: 已分配 1.24GB, 保留 16.70GB
+  Batch 260/714 | Loss: 6.2160 | Acc: 4.74% | Tokens: 2483
+训练Batch 270/714 GPU内存: 已分配 1.24GB, 保留 15.54GB
+  Batch 270/714 | Loss: 6.0353 | Acc: 7.59% | Tokens: 1380
+训练Batch 280/714 GPU内存: 已分配 1.24GB, 保留 15.54GB
+  Batch 280/714 | Loss: 5.9791 | Acc: 3.94% | Tokens: 2152
+训练Batch 290/714 GPU内存: 已分配 1.24GB, 保留 14.31GB
+  Batch 290/714 | Loss: 5.7224 | Acc: 7.48% | Tokens: 2123
+训练Batch 300/714 GPU内存: 已分配 1.24GB, 保留 15.17GB
+  Batch 300/714 | Loss: 5.8816 | Acc: 8.15% | Tokens: 2807
+训练Batch 310/714 GPU内存: 已分配 1.24GB, 保留 14.78GB
+  Batch 310/714 | Loss: 6.2580 | Acc: 4.71% | Tokens: 2967
+训练Batch 320/714 GPU内存: 已分配 1.24GB, 保留 15.35GB
+  Batch 320/714 | Loss: 5.7848 | Acc: 6.66% | Tokens: 1993
+训练Batch 330/714 GPU内存: 已分配 1.24GB, 保留 15.16GB
+  Batch 330/714 | Loss: 6.0992 | Acc: 7.60% | Tokens: 3076
+训练Batch 340/714 GPU内存: 已分配 1.24GB, 保留 15.58GB
+  Batch 340/714 | Loss: 5.4698 | Acc: 8.82% | Tokens: 2421
+训练Batch 350/714 GPU内存: 已分配 1.24GB, 保留 11.01GB
+  Batch 350/714 | Loss: 5.8245 | Acc: 7.01% | Tokens: 2277
+训练Batch 360/714 GPU内存: 已分配 1.24GB, 保留 14.26GB
+  Batch 360/714 | Loss: 6.3371 | Acc: 4.55% | Tokens: 2764
+训练Batch 370/714 GPU内存: 已分配 1.24GB, 保留 11.52GB
+  Batch 370/714 | Loss: 5.9987 | Acc: 4.87% | Tokens: 2647
+训练Batch 380/714 GPU内存: 已分配 1.24GB, 保留 14.88GB
+  Batch 380/714 | Loss: 6.0155 | Acc: 5.67% | Tokens: 2852
+训练Batch 390/714 GPU内存: 已分配 1.24GB, 保留 16.83GB
+  Batch 390/714 | Loss: 5.8789 | Acc: 6.26% | Tokens: 1866
+训练Batch 400/714 GPU内存: 已分配 1.24GB, 保留 16.83GB
+  Batch 400/714 | Loss: 5.0651 | Acc: 13.49% | Tokens: 2509
+训练Batch 410/714 GPU内存: 已分配 1.24GB, 保留 14.23GB
+  Batch 410/714 | Loss: 6.0166 | Acc: 4.37% | Tokens: 2443
+训练Batch 420/714 GPU内存: 已分配 1.24GB, 保留 16.65GB
+  Batch 420/714 | Loss: 6.0228 | Acc: 6.16% | Tokens: 2303
+训练Batch 430/714 GPU内存: 已分配 1.24GB, 保留 15.91GB
+  Batch 430/714 | Loss: 5.5465 | Acc: 8.32% | Tokens: 2738
+训练Batch 440/714 GPU内存: 已分配 1.24GB, 保留 17.57GB
+  Batch 440/714 | Loss: 6.1723 | Acc: 4.97% | Tokens: 2750
+训练Batch 450/714 GPU内存: 已分配 1.24GB, 保留 16.21GB
+  Batch 450/714 | Loss: 5.7732 | Acc: 10.10% | Tokens: 1847
+训练Batch 460/714 GPU内存: 已分配 1.24GB, 保留 17.06GB
+  Batch 460/714 | Loss: 6.0509 | Acc: 6.26% | Tokens: 1944
+训练Batch 470/714 GPU内存: 已分配 1.24GB, 保留 16.05GB
+  Batch 470/714 | Loss: 5.5110 | Acc: 9.42% | Tokens: 3001
+训练Batch 480/714 GPU内存: 已分配 1.24GB, 保留 16.44GB
+  Batch 480/714 | Loss: 5.8232 | Acc: 8.16% | Tokens: 2630
+训练Batch 490/714 GPU内存: 已分配 1.24GB, 保留 12.58GB
+  Batch 490/714 | Loss: 5.8457 | Acc: 7.49% | Tokens: 2879
+训练Batch 500/714 GPU内存: 已分配 1.24GB, 保留 14.29GB
+  Batch 500/714 | Loss: 6.1475 | Acc: 4.23% | Tokens: 2834
+训练Batch 510/714 GPU内存: 已分配 1.24GB, 保留 14.48GB
+  Batch 510/714 | Loss: 5.8476 | Acc: 9.78% | Tokens: 2645
+训练Batch 520/714 GPU内存: 已分配 1.24GB, 保留 14.86GB
+  Batch 520/714 | Loss: 6.7477 | Acc: 5.83% | Tokens: 2948
+训练Batch 530/714 GPU内存: 已分配 1.24GB, 保留 14.76GB
+  Batch 530/714 | Loss: 6.0666 | Acc: 4.74% | Tokens: 3121
+训练Batch 540/714 GPU内存: 已分配 1.24GB, 保留 17.25GB
+  Batch 540/714 | Loss: 5.9412 | Acc: 6.45% | Tokens: 2802
+训练Batch 550/714 GPU内存: 已分配 1.24GB, 保留 14.50GB
+  Batch 550/714 | Loss: 5.9129 | Acc: 7.71% | Tokens: 2384
+训练Batch 560/714 GPU内存: 已分配 1.24GB, 保留 14.50GB
+  Batch 560/714 | Loss: 6.1246 | Acc: 6.75% | Tokens: 3019
+训练Batch 570/714 GPU内存: 已分配 1.24GB, 保留 14.80GB
+  Batch 570/714 | Loss: 5.6192 | Acc: 10.95% | Tokens: 2580
+训练Batch 580/714 GPU内存: 已分配 1.24GB, 保留 17.63GB
+  Batch 580/714 | Loss: 6.0655 | Acc: 5.58% | Tokens: 2576
+训练Batch 590/714 GPU内存: 已分配 1.24GB, 保留 14.21GB
+  Batch 590/714 | Loss: 5.7836 | Acc: 6.81% | Tokens: 2566
+训练Batch 600/714 GPU内存: 已分配 1.24GB, 保留 15.78GB
+  Batch 600/714 | Loss: 5.7262 | Acc: 8.52% | Tokens: 2460
+训练Batch 610/714 GPU内存: 已分配 1.24GB, 保留 15.32GB
+  Batch 610/714 | Loss: 6.0886 | Acc: 5.52% | Tokens: 2639
+训练Batch 620/714 GPU内存: 已分配 1.24GB, 保留 15.32GB
+  Batch 620/714 | Loss: 5.8694 | Acc: 7.89% | Tokens: 2583
+训练Batch 630/714 GPU内存: 已分配 1.24GB, 保留 15.09GB
+  Batch 630/714 | Loss: 6.6654 | Acc: 3.68% | Tokens: 2874
+训练Batch 640/714 GPU内存: 已分配 1.24GB, 保留 15.50GB
+  Batch 640/714 | Loss: 6.4121 | Acc: 5.96% | Tokens: 2832
+训练Batch 650/714 GPU内存: 已分配 1.24GB, 保留 16.32GB
+  Batch 650/714 | Loss: 6.1550 | Acc: 4.58% | Tokens: 3050
+训练Batch 660/714 GPU内存: 已分配 1.24GB, 保留 16.32GB
+  Batch 660/714 | Loss: 6.0051 | Acc: 7.86% | Tokens: 2949
+训练Batch 670/714 GPU内存: 已分配 1.24GB, 保留 14.39GB
+  Batch 670/714 | Loss: 6.1695 | Acc: 4.96% | Tokens: 2675
+训练Batch 680/714 GPU内存: 已分配 1.24GB, 保留 15.59GB
+  Batch 680/714 | Loss: 5.9288 | Acc: 7.00% | Tokens: 2797
+训练Batch 690/714 GPU内存: 已分配 1.24GB, 保留 15.11GB
+  Batch 690/714 | Loss: 5.6860 | Acc: 7.67% | Tokens: 2681
+训练Batch 700/714 GPU内存: 已分配 1.24GB, 保留 15.94GB
+  Batch 700/714 | Loss: 5.7738 | Acc: 8.45% | Tokens: 2469
+训练Batch 710/714 GPU内存: 已分配 1.24GB, 保留 10.84GB
+  Batch 710/714 | Loss: 5.6810 | Acc: 10.59% | Tokens: 2725
+✅ 训练完成: 平均损失/Token = 6.1795, 平均准确率 = 5.51%
+开始评估，共653个batch...
+  评估Batch 0/653 | Loss: 5.2854 | Acc: 11.17%
+  评估Batch 10/653 | Loss: 5.1904 | Acc: 12.46%
+  评估Batch 20/653 | Loss: 5.3985 | Acc: 10.30%
+  评估Batch 30/653 | Loss: 5.0206 | Acc: 20.55%
+  评估Batch 40/653 | Loss: 5.2416 | Acc: 12.51%
+  评估Batch 50/653 | Loss: 4.5619 | Acc: 15.05%
+  评估Batch 60/653 | Loss: 5.3406 | Acc: 9.74%
+  评估Batch 70/653 | Loss: 5.4352 | Acc: 8.28%
+  评估Batch 80/653 | Loss: 5.5196 | Acc: 7.80%
+  评估Batch 90/653 | Loss: 5.3768 | Acc: 9.43%
+  评估Batch 100/653 | Loss: 5.6113 | Acc: 7.51%
+  评估Batch 110/653 | Loss: 5.6825 | Acc: 9.03%
+  评估Batch 120/653 | Loss: 5.8864 | Acc: 6.16%
+  评估Batch 130/653 | Loss: 4.5210 | Acc: 17.08%
+  评估Batch 140/653 | Loss: 5.2429 | Acc: 10.34%
+  评估Batch 150/653 | Loss: 5.2977 | Acc: 11.15%
+  评估Batch 160/653 | Loss: 5.4046 | Acc: 9.56%
+  评估Batch 170/653 | Loss: 5.6424 | Acc: 6.84%
+  评估Batch 180/653 | Loss: 5.2074 | Acc: 10.35%
+  评估Batch 190/653 | Loss: 5.2875 | Acc: 11.20%
+  评估Batch 200/653 | Loss: 5.3784 | Acc: 10.74%
+  评估Batch 210/653 | Loss: 5.5239 | Acc: 9.77%
+  评估Batch 220/653 | Loss: 6.3683 | Acc: 8.25%
+  评估Batch 230/653 | Loss: 5.3594 | Acc: 8.13%
+  评估Batch 240/653 | Loss: 5.6295 | Acc: 7.23%
+  评估Batch 250/653 | Loss: 5.0337 | Acc: 12.77%
+  评估Batch 260/653 | Loss: 5.2444 | Acc: 10.29%
+  评估Batch 270/653 | Loss: 5.6269 | Acc: 8.74%
+  评估Batch 280/653 | Loss: 5.9809 | Acc: 5.70%
+  评估Batch 290/653 | Loss: 5.5685 | Acc: 9.24%
+  评估Batch 300/653 | Loss: 5.6387 | Acc: 8.62%
+  评估Batch 310/653 | Loss: 5.3125 | Acc: 11.15%
+  评估Batch 320/653 | Loss: 5.9412 | Acc: 12.08%
+  评估Batch 330/653 | Loss: 4.9221 | Acc: 16.28%
+  评估Batch 340/653 | Loss: 4.7393 | Acc: 16.35%
+  评估Batch 350/653 | Loss: 5.3268 | Acc: 10.43%
+  评估Batch 360/653 | Loss: 5.1500 | Acc: 12.10%
+  评估Batch 370/653 | Loss: 5.6547 | Acc: 9.53%
+  评估Batch 380/653 | Loss: 5.7107 | Acc: 7.21%
+  评估Batch 390/653 | Loss: 5.0765 | Acc: 13.86%
+  评估Batch 400/653 | Loss: 4.7371 | Acc: 14.70%
+  评估Batch 410/653 | Loss: 5.3068 | Acc: 11.26%
+  评估Batch 420/653 | Loss: 5.4377 | Acc: 9.47%
+  评估Batch 430/653 | Loss: 5.7120 | Acc: 6.17%
+  评估Batch 440/653 | Loss: 4.7510 | Acc: 13.01%
+  评估Batch 450/653 | Loss: 5.2000 | Acc: 12.33%
+  评估Batch 460/653 | Loss: 4.7005 | Acc: 16.74%
+  评估Batch 470/653 | Loss: 5.6319 | Acc: 6.57%
+  评估Batch 480/653 | Loss: 5.8091 | Acc: 6.28%
+  评估Batch 490/653 | Loss: 5.8022 | Acc: 6.10%
+  评估Batch 500/653 | Loss: 5.4147 | Acc: 9.69%
+  评估Batch 510/653 | Loss: 5.3161 | Acc: 13.03%
+  评估Batch 520/653 | Loss: 5.1361 | Acc: 10.81%
+  评估Batch 530/653 | Loss: 5.2211 | Acc: 11.62%
+  评估Batch 540/653 | Loss: 5.5274 | Acc: 9.01%
+  评估Batch 550/653 | Loss: 5.5894 | Acc: 9.53%
+  评估Batch 560/653 | Loss: 5.8828 | Acc: 6.96%
+  评估Batch 570/653 | Loss: 6.2559 | Acc: 8.48%
+  评估Batch 580/653 | Loss: 5.2609 | Acc: 9.18%
+  评估Batch 590/653 | Loss: 5.0389 | Acc: 11.20%
+  评估Batch 600/653 | Loss: 5.2409 | Acc: 12.14%
+  评估Batch 610/653 | Loss: 6.3848 | Acc: 8.00%
+  评估Batch 620/653 | Loss: 5.6910 | Acc: 6.36%
+  评估Batch 630/653 | Loss: 5.5210 | Acc: 9.37%
+  评估Batch 640/653 | Loss: 5.1120 | Acc: 13.19%
+  评估Batch 650/653 | Loss: 4.7592 | Acc: 15.95%
+✅ 评估完成: 平均损失/Token = 5.4266, 平均准确率 = 10.01%
+Epoch 01 | 训练损失: 6.1795 | 训练准确率: 5.51% | 测试损失: 5.4266 | 测试准确率: 10.01%
+
+==================================================
+Epoch 02/10
+==================================================
+开始训练epoch，共714个batch...
+训练Batch 0/714 GPU内存: 已分配 1.24GB, 保留 11.54GB
+  Batch 0/714 | Loss: 6.1240 | Acc: 5.70% | Tokens: 2682
+训练Batch 10/714 GPU内存: 已分配 1.24GB, 保留 16.30GB
+  Batch 10/714 | Loss: 5.6740 | Acc: 7.74% | Tokens: 2322
+训练Batch 20/714 GPU内存: 已分配 1.24GB, 保留 17.93GB
+  Batch 20/714 | Loss: 5.8078 | Acc: 6.01% | Tokens: 2860
+训练Batch 30/714 GPU内存: 已分配 1.24GB, 保留 15.45GB
+  Batch 30/714 | Loss: 5.8007 | Acc: 6.45% | Tokens: 2648
+训练Batch 40/714 GPU内存: 已分配 1.24GB, 保留 15.45GB
+  Batch 40/714 | Loss: 5.4695 | Acc: 8.20% | Tokens: 2887
+训练Batch 50/714 GPU内存: 已分配 1.24GB, 保留 14.20GB
+  Batch 50/714 | Loss: 5.4985 | Acc: 9.63% | Tokens: 2166
+训练Batch 60/714 GPU内存: 已分配 1.24GB, 保留 16.50GB
+  Batch 60/714 | Loss: 6.0956 | Acc: 6.16% | Tokens: 2595
+训练Batch 70/714 GPU内存: 已分配 1.24GB, 保留 14.28GB
+  Batch 70/714 | Loss: 5.8468 | Acc: 7.34% | Tokens: 2856
+训练Batch 80/714 GPU内存: 已分配 1.24GB, 保留 15.25GB
+  Batch 80/714 | Loss: 5.6478 | Acc: 8.74% | Tokens: 1770
+训练Batch 90/714 GPU内存: 已分配 1.24GB, 保留 15.85GB
+  Batch 90/714 | Loss: 5.5861 | Acc: 7.59% | Tokens: 3093
+训练Batch 100/714 GPU内存: 已分配 1.24GB, 保留 17.58GB
+  Batch 100/714 | Loss: 5.4364 | Acc: 9.45% | Tokens: 1997
+训练Batch 110/714 GPU内存: 已分配 1.24GB, 保留 14.33GB
+  Batch 110/714 | Loss: 5.3507 | Acc: 13.44% | Tokens: 2853
+训练Batch 120/714 GPU内存: 已分配 1.24GB, 保留 14.33GB
+  Batch 120/714 | Loss: 5.6736 | Acc: 6.82% | Tokens: 2458
+训练Batch 130/714 GPU内存: 已分配 1.24GB, 保留 16.73GB
+  Batch 130/714 | Loss: 5.7569 | Acc: 7.30% | Tokens: 2749
+训练Batch 140/714 GPU内存: 已分配 1.24GB, 保留 16.73GB
+  Batch 140/714 | Loss: 4.9835 | Acc: 19.09% | Tokens: 2086
+训练Batch 150/714 GPU内存: 已分配 1.24GB, 保留 16.82GB
+  Batch 150/714 | Loss: 5.4662 | Acc: 7.88% | Tokens: 2204
+训练Batch 160/714 GPU内存: 已分配 1.24GB, 保留 17.68GB
+  Batch 160/714 | Loss: 5.5837 | Acc: 7.59% | Tokens: 2748
+训练Batch 170/714 GPU内存: 已分配 1.24GB, 保留 15.50GB
+  Batch 170/714 | Loss: 5.6763 | Acc: 6.31% | Tokens: 2784
+训练Batch 180/714 GPU内存: 已分配 1.24GB, 保留 15.50GB
+  Batch 180/714 | Loss: 4.8215 | Acc: 17.54% | Tokens: 1672
+训练Batch 190/714 GPU内存: 已分配 1.24GB, 保留 13.51GB
+  Batch 190/714 | Loss: 5.7545 | Acc: 6.09% | Tokens: 2917
+训练Batch 200/714 GPU内存: 已分配 1.24GB, 保留 14.75GB
+  Batch 200/714 | Loss: 5.5845 | Acc: 8.05% | Tokens: 2766
+训练Batch 210/714 GPU内存: 已分配 1.24GB, 保留 15.44GB
+  Batch 210/714 | Loss: 5.4724 | Acc: 9.52% | Tokens: 1813
+训练Batch 220/714 GPU内存: 已分配 1.24GB, 保留 15.44GB
+  Batch 220/714 | Loss: 5.7185 | Acc: 6.91% | Tokens: 2875
+训练Batch 230/714 GPU内存: 已分配 1.24GB, 保留 14.39GB
+  Batch 230/714 | Loss: 5.7561 | Acc: 4.61% | Tokens: 2666
+训练Batch 240/714 GPU内存: 已分配 1.24GB, 保留 14.39GB
+  Batch 240/714 | Loss: 5.6364 | Acc: 9.32% | Tokens: 2722
+训练Batch 250/714 GPU内存: 已分配 1.24GB, 保留 13.81GB
+  Batch 250/714 | Loss: 5.3761 | Acc: 8.57% | Tokens: 1617
+训练Batch 260/714 GPU内存: 已分配 1.24GB, 保留 13.81GB
+  Batch 260/714 | Loss: 5.6466 | Acc: 7.49% | Tokens: 2854
+训练Batch 270/714 GPU内存: 已分配 1.24GB, 保留 18.06GB
+  Batch 270/714 | Loss: 5.4532 | Acc: 9.83% | Tokens: 2477
+训练Batch 280/714 GPU内存: 已分配 1.24GB, 保留 18.06GB
+  Batch 280/714 | Loss: 5.5407 | Acc: 8.27% | Tokens: 2741
+训练Batch 290/714 GPU内存: 已分配 1.24GB, 保留 10.84GB
+  Batch 290/714 | Loss: 5.6142 | Acc: 6.28% | Tokens: 2337
+训练Batch 300/714 GPU内存: 已分配 1.24GB, 保留 15.42GB
+  Batch 300/714 | Loss: 5.2757 | Acc: 10.42% | Tokens: 1733
+训练Batch 310/714 GPU内存: 已分配 1.24GB, 保留 10.65GB
+  Batch 310/714 | Loss: 5.7136 | Acc: 7.51% | Tokens: 2554
+训练Batch 320/714 GPU内存: 已分配 1.24GB, 保留 17.67GB
+  Batch 320/714 | Loss: 5.5028 | Acc: 11.36% | Tokens: 2531
+训练Batch 330/714 GPU内存: 已分配 1.24GB, 保留 11.20GB
+  Batch 330/714 | Loss: 5.5034 | Acc: 8.37% | Tokens: 2612
+训练Batch 340/714 GPU内存: 已分配 1.24GB, 保留 15.97GB
+  Batch 340/714 | Loss: 5.4948 | Acc: 8.80% | Tokens: 2394
+训练Batch 350/714 GPU内存: 已分配 1.24GB, 保留 15.48GB
+  Batch 350/714 | Loss: 5.5685 | Acc: 7.54% | Tokens: 2701
+训练Batch 360/714 GPU内存: 已分配 1.24GB, 保留 17.07GB
+  Batch 360/714 | Loss: 5.4002 | Acc: 9.42% | Tokens: 2448
+训练Batch 370/714 GPU内存: 已分配 1.24GB, 保留 14.72GB
+  Batch 370/714 | Loss: 5.6651 | Acc: 6.22% | Tokens: 2439
+训练Batch 380/714 GPU内存: 已分配 1.24GB, 保留 14.72GB
+  Batch 380/714 | Loss: 5.7777 | Acc: 5.79% | Tokens: 2930
+训练Batch 390/714 GPU内存: 已分配 1.24GB, 保留 15.02GB
+  Batch 390/714 | Loss: 5.5384 | Acc: 9.28% | Tokens: 3132
+训练Batch 400/714 GPU内存: 已分配 1.24GB, 保留 17.06GB
+  Batch 400/714 | Loss: 4.7860 | Acc: 13.48% | Tokens: 1428
+训练Batch 410/714 GPU内存: 已分配 1.24GB, 保留 11.45GB
+  Batch 410/714 | Loss: 5.4921 | Acc: 8.03% | Tokens: 2896
+训练Batch 420/714 GPU内存: 已分配 1.24GB, 保留 11.45GB
+  Batch 420/714 | Loss: 5.6392 | Acc: 7.12% | Tokens: 1961
+训练Batch 430/714 GPU内存: 已分配 1.24GB, 保留 10.52GB
+  Batch 430/714 | Loss: 5.7661 | Acc: 4.96% | Tokens: 2819
+训练Batch 440/714 GPU内存: 已分配 1.24GB, 保留 16.95GB
+  Batch 440/714 | Loss: 5.5723 | Acc: 8.53% | Tokens: 2670
+训练Batch 450/714 GPU内存: 已分配 1.24GB, 保留 16.37GB
+  Batch 450/714 | Loss: 5.6764 | Acc: 9.91% | Tokens: 2973
+训练Batch 460/714 GPU内存: 已分配 1.24GB, 保留 17.20GB
+  Batch 460/714 | Loss: 4.6126 | Acc: 13.73% | Tokens: 2399
+训练Batch 470/714 GPU内存: 已分配 1.24GB, 保留 14.69GB
+  Batch 470/714 | Loss: 5.4759 | Acc: 10.05% | Tokens: 3021
+训练Batch 480/714 GPU内存: 已分配 1.24GB, 保留 16.77GB
+  Batch 480/714 | Loss: 5.7832 | Acc: 8.05% | Tokens: 2592
+训练Batch 490/714 GPU内存: 已分配 1.24GB, 保留 14.47GB
+  Batch 490/714 | Loss: 5.6538 | Acc: 6.89% | Tokens: 2623
+训练Batch 500/714 GPU内存: 已分配 1.24GB, 保留 16.17GB
+  Batch 500/714 | Loss: 5.6398 | Acc: 6.42% | Tokens: 2909
+训练Batch 510/714 GPU内存: 已分配 1.24GB, 保留 15.35GB
+  Batch 510/714 | Loss: 5.4909 | Acc: 7.68% | Tokens: 2066
+训练Batch 520/714 GPU内存: 已分配 1.24GB, 保留 17.01GB
+  Batch 520/714 | Loss: 5.3083 | Acc: 13.11% | Tokens: 2498
+训练Batch 530/714 GPU内存: 已分配 1.24GB, 保留 15.47GB
+  Batch 530/714 | Loss: 5.7258 | Acc: 7.18% | Tokens: 3003
+训练Batch 540/714 GPU内存: 已分配 1.24GB, 保留 16.28GB
+  Batch 540/714 | Loss: 5.5680 | Acc: 8.45% | Tokens: 2636
+训练Batch 550/714 GPU内存: 已分配 1.24GB, 保留 12.15GB
+  Batch 550/714 | Loss: 5.7448 | Acc: 5.19% | Tokens: 2730
+训练Batch 560/714 GPU内存: 已分配 1.24GB, 保留 13.77GB
+  Batch 560/714 | Loss: 5.7095 | Acc: 6.04% | Tokens: 2912
+训练Batch 570/714 GPU内存: 已分配 1.24GB, 保留 12.25GB
+  Batch 570/714 | Loss: 4.4755 | Acc: 17.86% | Tokens: 2376
+训练Batch 580/714 GPU内存: 已分配 1.24GB, 保留 15.94GB
+  Batch 580/714 | Loss: 5.3706 | Acc: 9.61% | Tokens: 2026
+训练Batch 590/714 GPU内存: 已分配 1.24GB, 保留 10.96GB
+  Batch 590/714 | Loss: 5.8706 | Acc: 5.80% | Tokens: 2876
+训练Batch 600/714 GPU内存: 已分配 1.24GB, 保留 10.96GB
+  Batch 600/714 | Loss: 5.0573 | Acc: 10.92% | Tokens: 2955
+训练Batch 610/714 GPU内存: 已分配 1.24GB, 保留 14.08GB
+  Batch 610/714 | Loss: 4.5247 | Acc: 13.81% | Tokens: 3031
+训练Batch 620/714 GPU内存: 已分配 1.24GB, 保留 15.73GB
+  Batch 620/714 | Loss: 5.3580 | Acc: 10.73% | Tokens: 2271
+训练Batch 630/714 GPU内存: 已分配 1.24GB, 保留 15.50GB
+  Batch 630/714 | Loss: 5.5864 | Acc: 7.97% | Tokens: 2907
+训练Batch 640/714 GPU内存: 已分配 1.24GB, 保留 15.50GB
+  Batch 640/714 | Loss: 5.5760 | Acc: 8.33% | Tokens: 2612
+训练Batch 650/714 GPU内存: 已分配 1.25GB, 保留 15.56GB
+  Batch 650/714 | Loss: 5.5302 | Acc: 7.99% | Tokens: 2900
+训练Batch 660/714 GPU内存: 已分配 1.24GB, 保留 16.38GB
+  Batch 660/714 | Loss: 5.3963 | Acc: 11.18% | Tokens: 2519
+训练Batch 670/714 GPU内存: 已分配 1.24GB, 保留 13.25GB
+  Batch 670/714 | Loss: 5.5176 | Acc: 9.49% | Tokens: 2735
+训练Batch 680/714 GPU内存: 已分配 1.24GB, 保留 13.25GB
+  Batch 680/714 | Loss: 5.2382 | Acc: 12.02% | Tokens: 2383
+训练Batch 690/714 GPU内存: 已分配 1.24GB, 保留 16.63GB
+  Batch 690/714 | Loss: 5.2768 | Acc: 15.40% | Tokens: 2211
+训练Batch 700/714 GPU内存: 已分配 1.24GB, 保留 16.63GB
+  Batch 700/714 | Loss: 5.6852 | Acc: 7.28% | Tokens: 2769
+训练Batch 710/714 GPU内存: 已分配 1.24GB, 保留 14.96GB
+  Batch 710/714 | Loss: 5.6459 | Acc: 6.24% | Tokens: 2928
+✅ 训练完成: 平均损失/Token = 5.5586, 平均准确率 = 8.43%
+开始评估，共653个batch...
+  评估Batch 0/653 | Loss: 4.9504 | Acc: 12.47%
+  评估Batch 10/653 | Loss: 4.9065 | Acc: 13.44%
+  评估Batch 20/653 | Loss: 5.0659 | Acc: 14.02%
+  评估Batch 30/653 | Loss: 4.8915 | Acc: 20.98%
+  评估Batch 40/653 | Loss: 5.0238 | Acc: 13.77%
+  评估Batch 50/653 | Loss: 4.2317 | Acc: 15.95%
+  评估Batch 60/653 | Loss: 5.0495 | Acc: 9.43%
+  评估Batch 70/653 | Loss: 5.3397 | Acc: 8.01%
+  评估Batch 80/653 | Loss: 5.2556 | Acc: 8.20%
+  评估Batch 90/653 | Loss: 5.1697 | Acc: 10.55%
+  评估Batch 100/653 | Loss: 5.3717 | Acc: 9.03%
+  评估Batch 110/653 | Loss: 5.5360 | Acc: 10.66%
+  评估Batch 120/653 | Loss: 5.7407 | Acc: 6.08%
+  评估Batch 130/653 | Loss: 4.3868 | Acc: 18.20%
+  评估Batch 140/653 | Loss: 5.1624 | Acc: 10.22%
+  评估Batch 150/653 | Loss: 5.1069 | Acc: 11.75%
+  评估Batch 160/653 | Loss: 5.1756 | Acc: 10.38%
+  评估Batch 170/653 | Loss: 5.5590 | Acc: 7.79%
+  评估Batch 180/653 | Loss: 5.0725 | Acc: 11.66%
+  评估Batch 190/653 | Loss: 5.1091 | Acc: 11.70%
+  评估Batch 200/653 | Loss: 5.1871 | Acc: 11.21%
+  评估Batch 210/653 | Loss: 5.3249 | Acc: 10.18%
+  评估Batch 220/653 | Loss: 5.3566 | Acc: 9.68%
+  评估Batch 230/653 | Loss: 5.2445 | Acc: 8.80%
+  评估Batch 240/653 | Loss: 5.5315 | Acc: 7.05%
+  评估Batch 250/653 | Loss: 4.8567 | Acc: 13.53%
+  评估Batch 260/653 | Loss: 5.1272 | Acc: 10.29%
+  评估Batch 270/653 | Loss: 5.4155 | Acc: 8.62%
+  评估Batch 280/653 | Loss: 5.8395 | Acc: 6.16%
+  评估Batch 290/653 | Loss: 5.3554 | Acc: 9.24%
+  评估Batch 300/653 | Loss: 5.3788 | Acc: 9.27%
+  评估Batch 310/653 | Loss: 5.1277 | Acc: 11.01%
+  评估Batch 320/653 | Loss: 5.0489 | Acc: 14.00%
+  评估Batch 330/653 | Loss: 4.8198 | Acc: 14.90%
+  评估Batch 340/653 | Loss: 4.3553 | Acc: 18.07%
+  评估Batch 350/653 | Loss: 5.0904 | Acc: 11.37%
+  评估Batch 360/653 | Loss: 4.9718 | Acc: 12.84%
+  评估Batch 370/653 | Loss: 5.5860 | Acc: 8.68%
+  评估Batch 380/653 | Loss: 5.5762 | Acc: 7.82%
+  评估Batch 390/653 | Loss: 4.8707 | Acc: 14.42%
+  评估Batch 400/653 | Loss: 4.6701 | Acc: 14.70%
+  评估Batch 410/653 | Loss: 5.0830 | Acc: 11.78%
+  评估Batch 420/653 | Loss: 5.4030 | Acc: 9.08%
+  评估Batch 430/653 | Loss: 5.5572 | Acc: 7.10%
+  评估Batch 440/653 | Loss: 4.6113 | Acc: 13.55%
+  评估Batch 450/653 | Loss: 5.0260 | Acc: 13.11%
+  评估Batch 460/653 | Loss: 4.5043 | Acc: 17.51%
+  评估Batch 470/653 | Loss: 5.4910 | Acc: 6.72%
+  评估Batch 480/653 | Loss: 5.5791 | Acc: 6.53%
+  评估Batch 490/653 | Loss: 5.6120 | Acc: 6.46%
+  评估Batch 500/653 | Loss: 5.2253 | Acc: 10.30%
+  评估Batch 510/653 | Loss: 5.0668 | Acc: 14.80%
+  评估Batch 520/653 | Loss: 4.9892 | Acc: 11.87%
+  评估Batch 530/653 | Loss: 4.8503 | Acc: 15.46%
+  评估Batch 540/653 | Loss: 5.3766 | Acc: 8.86%
+  评估Batch 550/653 | Loss: 5.3247 | Acc: 10.66%
+  评估Batch 560/653 | Loss: 5.5636 | Acc: 7.71%
+  评估Batch 570/653 | Loss: 5.5674 | Acc: 9.77%
+  评估Batch 580/653 | Loss: 5.1328 | Acc: 10.86%
+  评估Batch 590/653 | Loss: 4.9829 | Acc: 11.95%
+  评估Batch 600/653 | Loss: 5.0350 | Acc: 12.64%
+  评估Batch 610/653 | Loss: 6.0104 | Acc: 8.18%
+  评估Batch 620/653 | Loss: 5.5508 | Acc: 7.00%
+  评估Batch 630/653 | Loss: 5.4106 | Acc: 9.10%
+  评估Batch 640/653 | Loss: 4.9473 | Acc: 13.14%
+  评估Batch 650/653 | Loss: 4.5174 | Acc: 17.26%
+✅ 评估完成: 平均损失/Token = 5.2267, 平均准确率 = 10.60%
+Epoch 02 | 训练损失: 5.5586 | 训练准确率: 8.43% | 测试损失: 5.2267 | 测试准确率: 10.60%
+
+==================================================
+Epoch 03/10
+==================================================
+开始训练epoch，共714个batch...
+训练Batch 0/714 GPU内存: 已分配 1.24GB, 保留 15.58GB
+  Batch 0/714 | Loss: 5.4797 | Acc: 8.96% | Tokens: 2854
+训练Batch 10/714 GPU内存: 已分配 1.24GB, 保留 13.47GB
+  Batch 10/714 | Loss: 5.6687 | Acc: 7.65% | Tokens: 2962
+训练Batch 20/714 GPU内存: 已分配 1.24GB, 保留 13.47GB
+  Batch 20/714 | Loss: 5.8216 | Acc: 6.72% | Tokens: 2795
+训练Batch 30/714 GPU内存: 已分配 1.24GB, 保留 13.88GB
+  Batch 30/714 | Loss: 4.9972 | Acc: 12.77% | Tokens: 2353
+训练Batch 40/714 GPU内存: 已分配 1.24GB, 保留 13.88GB
+  Batch 40/714 | Loss: 5.6119 | Acc: 7.39% | Tokens: 2824
+训练Batch 50/714 GPU内存: 已分配 1.24GB, 保留 14.16GB
+  Batch 50/714 | Loss: 5.6558 | Acc: 7.92% | Tokens: 2824
+训练Batch 60/714 GPU内存: 已分配 1.24GB, 保留 14.16GB
+  Batch 60/714 | Loss: 5.5982 | Acc: 7.24% | Tokens: 3133
+训练Batch 70/714 GPU内存: 已分配 1.24GB, 保留 15.76GB
+  Batch 70/714 | Loss: 5.3521 | Acc: 9.29% | Tokens: 1621
+训练Batch 80/714 GPU内存: 已分配 1.24GB, 保留 16.14GB
+  Batch 80/714 | Loss: 4.6154 | Acc: 14.63% | Tokens: 2415
+训练Batch 90/714 GPU内存: 已分配 1.24GB, 保留 14.25GB
+  Batch 90/714 | Loss: 5.5439 | Acc: 8.68% | Tokens: 2587
+训练Batch 100/714 GPU内存: 已分配 1.24GB, 保留 15.02GB
+  Batch 100/714 | Loss: 5.3647 | Acc: 8.85% | Tokens: 2132
+训练Batch 110/714 GPU内存: 已分配 1.24GB, 保留 15.09GB
+  Batch 110/714 | Loss: 5.7301 | Acc: 6.97% | Tokens: 2792
+训练Batch 120/714 GPU内存: 已分配 1.24GB, 保留 15.46GB
+  Batch 120/714 | Loss: 5.5742 | Acc: 8.57% | Tokens: 2844
+训练Batch 130/714 GPU内存: 已分配 1.24GB, 保留 10.31GB
+  Batch 130/714 | Loss: 5.3940 | Acc: 10.15% | Tokens: 2184
+训练Batch 140/714 GPU内存: 已分配 1.24GB, 保留 10.31GB
+  Batch 140/714 | Loss: 5.3557 | Acc: 9.28% | Tokens: 2484
+训练Batch 150/714 GPU内存: 已分配 1.24GB, 保留 15.22GB
+  Batch 150/714 | Loss: 5.6575 | Acc: 5.88% | Tokens: 3124
+训练Batch 160/714 GPU内存: 已分配 1.24GB, 保留 15.22GB
+  Batch 160/714 | Loss: 5.5758 | Acc: 7.41% | Tokens: 2506
+训练Batch 170/714 GPU内存: 已分配 1.24GB, 保留 15.12GB
+  Batch 170/714 | Loss: 5.6581 | Acc: 7.17% | Tokens: 2464
+训练Batch 180/714 GPU内存: 已分配 1.24GB, 保留 16.84GB
+  Batch 180/714 | Loss: 5.4963 | Acc: 7.80% | Tokens: 2252
+训练Batch 190/714 GPU内存: 已分配 1.24GB, 保留 10.84GB
+  Batch 190/714 | Loss: 5.5917 | Acc: 6.95% | Tokens: 2573
+训练Batch 200/714 GPU内存: 已分配 1.24GB, 保留 15.63GB
+  Batch 200/714 | Loss: 5.7167 | Acc: 5.60% | Tokens: 2478
+训练Batch 210/714 GPU内存: 已分配 1.24GB, 保留 16.28GB
+  Batch 210/714 | Loss: 5.3790 | Acc: 9.42% | Tokens: 2194
+训练Batch 220/714 GPU内存: 已分配 1.24GB, 保留 16.28GB
+  Batch 220/714 | Loss: 5.2547 | Acc: 10.31% | Tokens: 1586
+训练Batch 230/714 GPU内存: 已分配 1.24GB, 保留 16.21GB
+  Batch 230/714 | Loss: 5.5470 | Acc: 8.40% | Tokens: 2912
+训练Batch 240/714 GPU内存: 已分配 1.24GB, 保留 16.21GB
+  Batch 240/714 | Loss: 5.5147 | Acc: 7.85% | Tokens: 2672
+训练Batch 250/714 GPU内存: 已分配 1.24GB, 保留 16.02GB
+  Batch 250/714 | Loss: 5.4819 | Acc: 8.19% | Tokens: 2510
+训练Batch 260/714 GPU内存: 已分配 1.24GB, 保留 16.43GB
+  Batch 260/714 | Loss: 5.2828 | Acc: 9.10% | Tokens: 2051
+训练Batch 270/714 GPU内存: 已分配 1.24GB, 保留 13.10GB
+  Batch 270/714 | Loss: 5.6873 | Acc: 8.71% | Tokens: 2946
+训练Batch 280/714 GPU内存: 已分配 1.24GB, 保留 14.79GB
+  Batch 280/714 | Loss: 5.3027 | Acc: 11.57% | Tokens: 2079
+训练Batch 290/714 GPU内存: 已分配 1.24GB, 保留 13.96GB
+  Batch 290/714 | Loss: 5.4422 | Acc: 8.83% | Tokens: 2454
+训练Batch 300/714 GPU内存: 已分配 1.24GB, 保留 16.89GB
+  Batch 300/714 | Loss: 5.5882 | Acc: 7.88% | Tokens: 2903
+训练Batch 310/714 GPU内存: 已分配 1.24GB, 保留 15.85GB
+  Batch 310/714 | Loss: 5.6124 | Acc: 7.40% | Tokens: 2768
+训练Batch 320/714 GPU内存: 已分配 1.24GB, 保留 18.71GB
+  Batch 320/714 | Loss: 5.5293 | Acc: 7.58% | Tokens: 2884
+训练Batch 330/714 GPU内存: 已分配 1.24GB, 保留 11.22GB
+  Batch 330/714 | Loss: 5.7031 | Acc: 6.75% | Tokens: 2720
+训练Batch 340/714 GPU内存: 已分配 1.24GB, 保留 15.50GB
+  Batch 340/714 | Loss: 5.4684 | Acc: 10.29% | Tokens: 2504
+训练Batch 350/714 GPU内存: 已分配 1.24GB, 保留 11.02GB
+  Batch 350/714 | Loss: 5.5186 | Acc: 9.71% | Tokens: 2881
+训练Batch 360/714 GPU内存: 已分配 1.24GB, 保留 17.34GB
+  Batch 360/714 | Loss: 5.7279 | Acc: 6.53% | Tokens: 2935
+训练Batch 370/714 GPU内存: 已分配 1.24GB, 保留 15.87GB
+  Batch 370/714 | Loss: 5.5751 | Acc: 7.40% | Tokens: 2617
+训练Batch 380/714 GPU内存: 已分配 1.24GB, 保留 17.93GB
+  Batch 380/714 | Loss: 5.7137 | Acc: 5.76% | Tokens: 2999
+训练Batch 390/714 GPU内存: 已分配 1.24GB, 保留 15.61GB
+  Batch 390/714 | Loss: 5.6594 | Acc: 6.70% | Tokens: 2729
+训练Batch 400/714 GPU内存: 已分配 1.24GB, 保留 17.26GB
+  Batch 400/714 | Loss: 4.8742 | Acc: 12.38% | Tokens: 2814
+训练Batch 410/714 GPU内存: 已分配 1.24GB, 保留 11.13GB
+  Batch 410/714 | Loss: 5.7510 | Acc: 7.72% | Tokens: 2508
+训练Batch 420/714 GPU内存: 已分配 1.24GB, 保留 11.13GB
+  Batch 420/714 | Loss: 5.6638 | Acc: 6.37% | Tokens: 2650
+训练Batch 430/714 GPU内存: 已分配 1.24GB, 保留 14.28GB
+  Batch 430/714 | Loss: 5.5218 | Acc: 8.16% | Tokens: 2669
+训练Batch 440/714 GPU内存: 已分配 1.24GB, 保留 16.40GB
+  Batch 440/714 | Loss: 5.4270 | Acc: 7.87% | Tokens: 2882
+训练Batch 450/714 GPU内存: 已分配 1.24GB, 保留 15.02GB
+  Batch 450/714 | Loss: 4.9748 | Acc: 12.49% | Tokens: 2470
+训练Batch 460/714 GPU内存: 已分配 1.24GB, 保留 15.84GB
+  Batch 460/714 | Loss: 5.4434 | Acc: 7.82% | Tokens: 2322
+训练Batch 470/714 GPU内存: 已分配 1.24GB, 保留 17.30GB
+  Batch 470/714 | Loss: 5.1827 | Acc: 8.98% | Tokens: 3026
+训练Batch 480/714 GPU内存: 已分配 1.24GB, 保留 17.30GB
+  Batch 480/714 | Loss: 5.4312 | Acc: 8.76% | Tokens: 2449
+训练Batch 490/714 GPU内存: 已分配 1.24GB, 保留 16.38GB
+  Batch 490/714 | Loss: 5.5705 | Acc: 8.00% | Tokens: 2672
+训练Batch 500/714 GPU内存: 已分配 1.24GB, 保留 16.38GB
+  Batch 500/714 | Loss: 5.5198 | Acc: 9.93% | Tokens: 2835
+训练Batch 510/714 GPU内存: 已分配 1.24GB, 保留 15.66GB
+  Batch 510/714 | Loss: 5.4161 | Acc: 8.31% | Tokens: 2463
+训练Batch 520/714 GPU内存: 已分配 1.24GB, 保留 16.49GB
+  Batch 520/714 | Loss: 5.6256 | Acc: 7.76% | Tokens: 2868
+训练Batch 530/714 GPU内存: 已分配 1.24GB, 保留 14.25GB
+  Batch 530/714 | Loss: 4.9244 | Acc: 11.30% | Tokens: 2890
+训练Batch 540/714 GPU内存: 已分配 1.24GB, 保留 17.85GB
+  Batch 540/714 | Loss: 5.6109 | Acc: 7.83% | Tokens: 2830
+训练Batch 550/714 GPU内存: 已分配 1.24GB, 保留 11.63GB
+  Batch 550/714 | Loss: 5.4443 | Acc: 10.01% | Tokens: 2684
+训练Batch 560/714 GPU内存: 已分配 1.24GB, 保留 15.54GB
+  Batch 560/714 | Loss: 5.6800 | Acc: 7.81% | Tokens: 2699
+训练Batch 570/714 GPU内存: 已分配 1.24GB, 保留 10.58GB
+  Batch 570/714 | Loss: 5.3883 | Acc: 10.55% | Tokens: 2233
+训练Batch 580/714 GPU内存: 已分配 1.24GB, 保留 14.96GB
+  Batch 580/714 | Loss: 5.5585 | Acc: 8.29% | Tokens: 2770
+训练Batch 590/714 GPU内存: 已分配 1.24GB, 保留 16.03GB
+  Batch 590/714 | Loss: 5.5878 | Acc: 7.69% | Tokens: 2792
+训练Batch 600/714 GPU内存: 已分配 1.24GB, 保留 16.84GB
+  Batch 600/714 | Loss: 5.6208 | Acc: 9.62% | Tokens: 2148
+训练Batch 610/714 GPU内存: 已分配 1.24GB, 保留 11.45GB
+  Batch 610/714 | Loss: 5.3745 | Acc: 8.18% | Tokens: 2196
+训练Batch 620/714 GPU内存: 已分配 1.24GB, 保留 11.45GB
+  Batch 620/714 | Loss: 5.5448 | Acc: 9.32% | Tokens: 2581
+训练Batch 630/714 GPU内存: 已分配 1.24GB, 保留 14.29GB
+  Batch 630/714 | Loss: 5.5652 | Acc: 10.49% | Tokens: 2989
+训练Batch 640/714 GPU内存: 已分配 1.24GB, 保留 14.29GB
+  Batch 640/714 | Loss: 5.5860 | Acc: 8.39% | Tokens: 2572
+训练Batch 650/714 GPU内存: 已分配 1.24GB, 保留 15.25GB
+  Batch 650/714 | Loss: 5.6099 | Acc: 5.65% | Tokens: 2650
+训练Batch 660/714 GPU内存: 已分配 1.24GB, 保留 17.74GB
+  Batch 660/714 | Loss: 5.3280 | Acc: 10.16% | Tokens: 2388
+训练Batch 670/714 GPU内存: 已分配 1.24GB, 保留 14.23GB
+  Batch 670/714 | Loss: 5.4164 | Acc: 7.40% | Tokens: 1902
+训练Batch 680/714 GPU内存: 已分配 1.24GB, 保留 14.23GB
+  Batch 680/714 | Loss: 5.7012 | Acc: 5.77% | Tokens: 2719
+训练Batch 690/714 GPU内存: 已分配 1.24GB, 保留 15.27GB
+  Batch 690/714 | Loss: 5.1766 | Acc: 13.31% | Tokens: 2243
+训练Batch 700/714 GPU内存: 已分配 1.24GB, 保留 16.44GB
+  Batch 700/714 | Loss: 5.3783 | Acc: 11.47% | Tokens: 2933
+训练Batch 710/714 GPU内存: 已分配 1.24GB, 保留 14.88GB
+  Batch 710/714 | Loss: 5.5012 | Acc: 8.66% | Tokens: 2675
+✅ 训练完成: 平均损失/Token = 5.4666, 平均准确率 = 8.71%
+开始评估，共653个batch...
+  评估Batch 0/653 | Loss: 4.9142 | Acc: 12.38%
+  评估Batch 10/653 | Loss: 4.8258 | Acc: 13.61%
+  评估Batch 20/653 | Loss: 5.0056 | Acc: 13.98%
+  评估Batch 30/653 | Loss: 4.8474 | Acc: 19.25%
+  评估Batch 40/653 | Loss: 5.0126 | Acc: 13.17%
+  评估Batch 50/653 | Loss: 4.1893 | Acc: 16.48%
+  评估Batch 60/653 | Loss: 5.0125 | Acc: 9.74%
+  评估Batch 70/653 | Loss: 5.3009 | Acc: 8.10%
+  评估Batch 80/653 | Loss: 5.2112 | Acc: 8.34%
+  评估Batch 90/653 | Loss: 5.0812 | Acc: 10.74%
+  评估Batch 100/653 | Loss: 5.3307 | Acc: 8.40%
+  评估Batch 110/653 | Loss: 5.5575 | Acc: 9.03%
+  评估Batch 120/653 | Loss: 5.7346 | Acc: 6.00%
+  评估Batch 130/653 | Loss: 4.3722 | Acc: 18.65%
+  评估Batch 140/653 | Loss: 4.9959 | Acc: 11.11%
+  评估Batch 150/653 | Loss: 5.0871 | Acc: 12.00%
+  评估Batch 160/653 | Loss: 5.1644 | Acc: 10.38%
+  评估Batch 170/653 | Loss: 5.5596 | Acc: 8.27%
+  评估Batch 180/653 | Loss: 5.0047 | Acc: 11.29%
+  评估Batch 190/653 | Loss: 5.0780 | Acc: 11.64%
+  评估Batch 200/653 | Loss: 5.1536 | Acc: 11.44%
+  评估Batch 210/653 | Loss: 5.2630 | Acc: 10.18%
+  评估Batch 220/653 | Loss: 6.1801 | Acc: 9.27%
+  评估Batch 230/653 | Loss: 5.2225 | Acc: 8.96%
+  评估Batch 240/653 | Loss: 5.4721 | Acc: 7.35%
+  评估Batch 250/653 | Loss: 4.8327 | Acc: 13.46%
+  评估Batch 260/653 | Loss: 5.0962 | Acc: 10.34%
+  评估Batch 270/653 | Loss: 5.3204 | Acc: 9.20%
+  评估Batch 280/653 | Loss: 5.8563 | Acc: 5.59%
+  评估Batch 290/653 | Loss: 5.3046 | Acc: 10.07%
+  评估Batch 300/653 | Loss: 5.2843 | Acc: 9.92%
+  评估Batch 310/653 | Loss: 5.1104 | Acc: 10.38%
+  评估Batch 320/653 | Loss: 6.6615 | Acc: 12.78%
+  评估Batch 330/653 | Loss: 4.6536 | Acc: 16.51%
+  评估Batch 340/653 | Loss: 4.3243 | Acc: 18.65%
+  评估Batch 350/653 | Loss: 5.0146 | Acc: 11.24%
+  评估Batch 360/653 | Loss: 4.8876 | Acc: 12.78%
+  评估Batch 370/653 | Loss: 5.5748 | Acc: 8.68%
+  评估Batch 380/653 | Loss: 5.4998 | Acc: 7.82%
+  评估Batch 390/653 | Loss: 4.8077 | Acc: 14.64%
+  评估Batch 400/653 | Loss: 4.6836 | Acc: 15.77%
+  评估Batch 410/653 | Loss: 5.0479 | Acc: 11.88%
+  评估Batch 420/653 | Loss: 5.3643 | Acc: 9.61%
+  评估Batch 430/653 | Loss: 5.4134 | Acc: 7.77%
+  评估Batch 440/653 | Loss: 4.5515 | Acc: 14.26%
+  评估Batch 450/653 | Loss: 4.9617 | Acc: 12.84%
+  评估Batch 460/653 | Loss: 4.4679 | Acc: 18.04%
+  评估Batch 470/653 | Loss: 5.4164 | Acc: 7.01%
+  评估Batch 480/653 | Loss: 5.5568 | Acc: 7.04%
+  评估Batch 490/653 | Loss: 5.5908 | Acc: 6.66%
+  评估Batch 500/653 | Loss: 5.1886 | Acc: 9.89%
+  评估Batch 510/653 | Loss: 5.0665 | Acc: 13.51%
+  评估Batch 520/653 | Loss: 4.8945 | Acc: 11.82%
+  评估Batch 530/653 | Loss: 4.7995 | Acc: 14.94%
+  评估Batch 540/653 | Loss: 5.3089 | Acc: 9.09%
+  评估Batch 550/653 | Loss: 5.2767 | Acc: 10.75%
+  评估Batch 560/653 | Loss: 5.5046 | Acc: 7.82%
+  评估Batch 570/653 | Loss: 6.7789 | Acc: 10.35%
+  评估Batch 580/653 | Loss: 5.0837 | Acc: 11.36%
+  评估Batch 590/653 | Loss: 4.8395 | Acc: 12.46%
+  评估Batch 600/653 | Loss: 4.9268 | Acc: 13.13%
+  评估Batch 610/653 | Loss: 6.7477 | Acc: 8.46%
+  评估Batch 620/653 | Loss: 5.4716 | Acc: 7.91%
+  评估Batch 630/653 | Loss: 5.3725 | Acc: 9.32%
+  评估Batch 640/653 | Loss: 4.8579 | Acc: 13.04%
+  评估Batch 650/653 | Loss: 4.4492 | Acc: 16.96%
+✅ 评估完成: 平均损失/Token = 5.2100, 平均准确率 = 10.78%
+Epoch 03 | 训练损失: 5.4666 | 训练准确率: 8.71% | 测试损失: 5.2100 | 测试准确率: 10.78%
+Epoch 3 后 GPU内存: 已分配 1.24GB, 保留 1.29GB
+
+==================================================
+Epoch 04/10
+==================================================
+开始训练epoch，共714个batch...
+训练Batch 0/714 GPU内存: 已分配 1.24GB, 保留 1.29GB
+  Batch 0/714 | Loss: 5.5930 | Acc: 7.87% | Tokens: 2625
+训练Batch 10/714 GPU内存: 已分配 1.24GB, 保留 15.35GB
+  Batch 10/714 | Loss: 5.5403 | Acc: 8.57% | Tokens: 2237
+训练Batch 20/714 GPU内存: 已分配 1.24GB, 保留 15.35GB
+  Batch 20/714 | Loss: 5.4055 | Acc: 10.69% | Tokens: 2717
+训练Batch 30/714 GPU内存: 已分配 1.24GB, 保留 15.48GB
+  Batch 30/714 | Loss: 4.9417 | Acc: 13.12% | Tokens: 2809
+训练Batch 40/714 GPU内存: 已分配 1.24GB, 保留 16.70GB
+  Batch 40/714 | Loss: 5.4793 | Acc: 9.14% | Tokens: 2787
+训练Batch 50/714 GPU内存: 已分配 1.24GB, 保留 13.35GB
+  Batch 50/714 | Loss: 5.7559 | Acc: 5.44% | Tokens: 2807
+训练Batch 60/714 GPU内存: 已分配 1.24GB, 保留 14.13GB
+  Batch 60/714 | Loss: 5.7972 | Acc: 8.09% | Tokens: 3038
+训练Batch 70/714 GPU内存: 已分配 1.24GB, 保留 10.87GB
+  Batch 70/714 | Loss: 5.3623 | Acc: 7.49% | Tokens: 1878
+训练Batch 80/714 GPU内存: 已分配 1.24GB, 保留 15.47GB
+  Batch 80/714 | Loss: 5.5368 | Acc: 7.75% | Tokens: 2783
+训练Batch 90/714 GPU内存: 已分配 1.24GB, 保留 14.83GB
+  Batch 90/714 | Loss: 5.6470 | Acc: 7.34% | Tokens: 2449
+训练Batch 100/714 GPU内存: 已分配 1.24GB, 保留 17.41GB
+  Batch 100/714 | Loss: 5.5017 | Acc: 8.36% | Tokens: 2712
+训练Batch 110/714 GPU内存: 已分配 1.24GB, 保留 14.63GB
+  Batch 110/714 | Loss: 5.3487 | Acc: 9.60% | Tokens: 2974
+训练Batch 120/714 GPU内存: 已分配 1.24GB, 保留 15.80GB
+  Batch 120/714 | Loss: 5.6145 | Acc: 6.59% | Tokens: 2847
+训练Batch 130/714 GPU内存: 已分配 1.24GB, 保留 15.00GB
+  Batch 130/714 | Loss: 5.9189 | Acc: 7.34% | Tokens: 2709
+训练Batch 140/714 GPU内存: 已分配 1.24GB, 保留 18.31GB
+  Batch 140/714 | Loss: 5.5713 | Acc: 8.16% | Tokens: 2410
+训练Batch 150/714 GPU内存: 已分配 1.24GB, 保留 15.75GB
+  Batch 150/714 | Loss: 5.5569 | Acc: 9.68% | Tokens: 2620
+训练Batch 160/714 GPU内存: 已分配 1.24GB, 保留 15.96GB
+  Batch 160/714 | Loss: 5.6220 | Acc: 11.43% | Tokens: 2665
+训练Batch 170/714 GPU内存: 已分配 1.24GB, 保留 10.70GB
+  Batch 170/714 | Loss: 5.6574 | Acc: 7.25% | Tokens: 2825
+训练Batch 180/714 GPU内存: 已分配 1.24GB, 保留 16.90GB
+  Batch 180/714 | Loss: 5.4980 | Acc: 7.94% | Tokens: 2704
+训练Batch 190/714 GPU内存: 已分配 1.24GB, 保留 15.43GB
+  Batch 190/714 | Loss: 5.5023 | Acc: 7.09% | Tokens: 2762
+训练Batch 200/714 GPU内存: 已分配 1.24GB, 保留 16.29GB
+  Batch 200/714 | Loss: 5.4635 | Acc: 9.59% | Tokens: 2758
+训练Batch 210/714 GPU内存: 已分配 1.24GB, 保留 14.15GB
+  Batch 210/714 | Loss: 5.7634 | Acc: 4.86% | Tokens: 2447
+训练Batch 220/714 GPU内存: 已分配 1.24GB, 保留 14.15GB
+  Batch 220/714 | Loss: 5.5204 | Acc: 7.69% | Tokens: 2441
+训练Batch 230/714 GPU内存: 已分配 1.24GB, 保留 14.51GB
+  Batch 230/714 | Loss: 5.4114 | Acc: 7.52% | Tokens: 2271
+训练Batch 240/714 GPU内存: 已分配 1.24GB, 保留 14.51GB
+  Batch 240/714 | Loss: 5.4248 | Acc: 8.93% | Tokens: 2213
+训练Batch 250/714 GPU内存: 已分配 1.24GB, 保留 14.12GB
+  Batch 250/714 | Loss: 5.6636 | Acc: 7.66% | Tokens: 2736
+训练Batch 260/714 GPU内存: 已分配 1.24GB, 保留 16.95GB
+  Batch 260/714 | Loss: 5.4852 | Acc: 10.03% | Tokens: 2707
+训练Batch 270/714 GPU内存: 已分配 1.24GB, 保留 15.86GB
+  Batch 270/714 | Loss: 4.9030 | Acc: 12.18% | Tokens: 3033
+训练Batch 280/714 GPU内存: 已分配 1.24GB, 保留 15.86GB
+  Batch 280/714 | Loss: 5.7142 | Acc: 7.70% | Tokens: 3036
+训练Batch 290/714 GPU内存: 已分配 1.24GB, 保留 16.29GB
+  Batch 290/714 | Loss: 5.1705 | Acc: 9.80% | Tokens: 1965
+训练Batch 300/714 GPU内存: 已分配 1.24GB, 保留 16.29GB
+  Batch 300/714 | Loss: 5.5884 | Acc: 7.01% | Tokens: 2964
+训练Batch 310/714 GPU内存: 已分配 1.24GB, 保留 13.66GB
+  Batch 310/714 | Loss: 5.5237 | Acc: 6.98% | Tokens: 2388
+训练Batch 320/714 GPU内存: 已分配 1.24GB, 保留 13.66GB
+  Batch 320/714 | Loss: 5.5259 | Acc: 7.68% | Tokens: 2758
+训练Batch 330/714 GPU内存: 已分配 1.24GB, 保留 13.90GB
+  Batch 330/714 | Loss: 5.5088 | Acc: 8.56% | Tokens: 2472
+训练Batch 340/714 GPU内存: 已分配 1.24GB, 保留 14.27GB
+  Batch 340/714 | Loss: 4.8066 | Acc: 13.76% | Tokens: 2721
+训练Batch 350/714 GPU内存: 已分配 1.24GB, 保留 10.93GB
+  Batch 350/714 | Loss: 5.4969 | Acc: 9.08% | Tokens: 2672
+训练Batch 360/714 GPU内存: 已分配 1.24GB, 保留 15.87GB
+  Batch 360/714 | Loss: 5.2255 | Acc: 10.71% | Tokens: 2106
+训练Batch 370/714 GPU内存: 已分配 1.24GB, 保留 12.66GB
+  Batch 370/714 | Loss: 5.5842 | Acc: 9.40% | Tokens: 2964
+训练Batch 380/714 GPU内存: 已分配 1.24GB, 保留 14.74GB
+  Batch 380/714 | Loss: 5.5749 | Acc: 9.04% | Tokens: 2872
+训练Batch 390/714 GPU内存: 已分配 1.24GB, 保留 14.75GB
+  Batch 390/714 | Loss: 5.3466 | Acc: 9.28% | Tokens: 2690
+训练Batch 400/714 GPU内存: 已分配 1.24GB, 保留 14.95GB
+  Batch 400/714 | Loss: 5.5368 | Acc: 6.92% | Tokens: 2237
+训练Batch 410/714 GPU内存: 已分配 1.24GB, 保留 14.81GB
+  Batch 410/714 | Loss: 5.2669 | Acc: 10.05% | Tokens: 2524
+训练Batch 420/714 GPU内存: 已分配 1.24GB, 保留 15.01GB
+  Batch 420/714 | Loss: 5.5291 | Acc: 8.73% | Tokens: 2815
+训练Batch 430/714 GPU内存: 已分配 1.24GB, 保留 15.68GB
+  Batch 430/714 | Loss: 5.1505 | Acc: 11.50% | Tokens: 2369
+训练Batch 440/714 GPU内存: 已分配 1.24GB, 保留 15.68GB
+  Batch 440/714 | Loss: 5.4356 | Acc: 9.37% | Tokens: 2386
+训练Batch 450/714 GPU内存: 已分配 1.24GB, 保留 15.52GB
+  Batch 450/714 | Loss: 5.4605 | Acc: 7.87% | Tokens: 2538
+训练Batch 460/714 GPU内存: 已分配 1.24GB, 保留 15.52GB
+  Batch 460/714 | Loss: 5.2646 | Acc: 11.26% | Tokens: 2066
+训练Batch 470/714 GPU内存: 已分配 1.24GB, 保留 16.43GB
+  Batch 470/714 | Loss: 5.1915 | Acc: 11.35% | Tokens: 1916
+训练Batch 480/714 GPU内存: 已分配 1.24GB, 保留 17.29GB
+  Batch 480/714 | Loss: 5.5509 | Acc: 8.13% | Tokens: 2420
+训练Batch 490/714 GPU内存: 已分配 1.24GB, 保留 15.04GB
+  Batch 490/714 | Loss: 5.4749 | Acc: 8.57% | Tokens: 2971
+训练Batch 500/714 GPU内存: 已分配 1.24GB, 保留 17.27GB
+  Batch 500/714 | Loss: 5.5116 | Acc: 7.04% | Tokens: 2439
+训练Batch 510/714 GPU内存: 已分配 1.24GB, 保留 13.72GB
+  Batch 510/714 | Loss: 5.5967 | Acc: 6.88% | Tokens: 2960
+训练Batch 520/714 GPU内存: 已分配 1.24GB, 保留 15.35GB
+  Batch 520/714 | Loss: 5.3425 | Acc: 11.20% | Tokens: 2602
+训练Batch 530/714 GPU内存: 已分配 1.24GB, 保留 16.05GB
+  Batch 530/714 | Loss: 5.7339 | Acc: 5.30% | Tokens: 2918
+训练Batch 540/714 GPU内存: 已分配 1.24GB, 保留 16.05GB
+  Batch 540/714 | Loss: 5.4694 | Acc: 8.53% | Tokens: 2564
+训练Batch 550/714 GPU内存: 已分配 1.24GB, 保留 16.28GB
+  Batch 550/714 | Loss: 5.7955 | Acc: 5.86% | Tokens: 2776
+训练Batch 560/714 GPU内存: 已分配 1.24GB, 保留 16.69GB
+  Batch 560/714 | Loss: 5.6019 | Acc: 7.40% | Tokens: 2550
+训练Batch 570/714 GPU内存: 已分配 1.24GB, 保留 16.11GB
+  Batch 570/714 | Loss: 5.2818 | Acc: 8.36% | Tokens: 1957
+训练Batch 580/714 GPU内存: 已分配 1.24GB, 保留 16.97GB
+  Batch 580/714 | Loss: 5.4184 | Acc: 8.62% | Tokens: 2329
+训练Batch 590/714 GPU内存: 已分配 1.24GB, 保留 13.52GB
+  Batch 590/714 | Loss: 5.5397 | Acc: 8.12% | Tokens: 2336
+训练Batch 600/714 GPU内存: 已分配 1.24GB, 保留 13.52GB
+  Batch 600/714 | Loss: 5.2794 | Acc: 9.97% | Tokens: 2362
+训练Batch 610/714 GPU内存: 已分配 1.24GB, 保留 14.61GB
+  Batch 610/714 | Loss: 5.3169 | Acc: 8.71% | Tokens: 2373
+训练Batch 620/714 GPU内存: 已分配 1.24GB, 保留 17.06GB
+  Batch 620/714 | Loss: 5.3118 | Acc: 11.48% | Tokens: 2565
+训练Batch 630/714 GPU内存: 已分配 1.24GB, 保留 15.73GB
+  Batch 630/714 | Loss: 5.5205 | Acc: 7.34% | Tokens: 2381
+训练Batch 640/714 GPU内存: 已分配 1.24GB, 保留 15.92GB
+  Batch 640/714 | Loss: 5.5854 | Acc: 8.11% | Tokens: 2474
+训练Batch 650/714 GPU内存: 已分配 1.24GB, 保留 11.89GB
+  Batch 650/714 | Loss: 5.4525 | Acc: 8.14% | Tokens: 2478
+训练Batch 660/714 GPU内存: 已分配 1.24GB, 保留 11.89GB
+  Batch 660/714 | Loss: 5.5496 | Acc: 6.54% | Tokens: 2563
+训练Batch 670/714 GPU内存: 已分配 1.24GB, 保留 11.26GB
+  Batch 670/714 | Loss: 5.1726 | Acc: 11.32% | Tokens: 2284
+训练Batch 680/714 GPU内存: 已分配 1.24GB, 保留 11.26GB
+  Batch 680/714 | Loss: 5.6468 | Acc: 7.43% | Tokens: 3159
+训练Batch 690/714 GPU内存: 已分配 1.24GB, 保留 14.07GB
+  Batch 690/714 | Loss: 5.5370 | Acc: 7.40% | Tokens: 2347
+训练Batch 700/714 GPU内存: 已分配 1.24GB, 保留 14.45GB
+  Batch 700/714 | Loss: 5.7117 | Acc: 6.55% | Tokens: 2851
+训练Batch 710/714 GPU内存: 已分配 1.24GB, 保留 10.70GB
+  Batch 710/714 | Loss: 5.8043 | Acc: 5.12% | Tokens: 2674
+✅ 训练完成: 平均损失/Token = 5.4521, 平均准确率 = 8.75%
+开始评估，共653个batch...
+  评估Batch 0/653 | Loss: 4.9128 | Acc: 13.25%
+  评估Batch 10/653 | Loss: 4.7914 | Acc: 14.34%
+  评估Batch 20/653 | Loss: 5.0127 | Acc: 15.22%
+  评估Batch 30/653 | Loss: 4.9394 | Acc: 20.69%
+  评估Batch 40/653 | Loss: 5.0665 | Acc: 12.05%
+  评估Batch 50/653 | Loss: 4.1831 | Acc: 16.14%
+  评估Batch 60/653 | Loss: 5.0241 | Acc: 9.93%
+  评估Batch 70/653 | Loss: 5.2445 | Acc: 8.01%
+  评估Batch 80/653 | Loss: 5.2140 | Acc: 8.68%
+  评估Batch 90/653 | Loss: 5.0515 | Acc: 11.02%
+  评估Batch 100/653 | Loss: 5.2990 | Acc: 8.40%
+  评估Batch 110/653 | Loss: 5.4861 | Acc: 9.16%
+  评估Batch 120/653 | Loss: 5.7466 | Acc: 5.84%
+  评估Batch 130/653 | Loss: 4.3498 | Acc: 18.47%
+  评估Batch 140/653 | Loss: 5.0565 | Acc: 10.60%
+  评估Batch 150/653 | Loss: 5.0667 | Acc: 11.34%
+  评估Batch 160/653 | Loss: 5.1239 | Acc: 10.46%
+  评估Batch 170/653 | Loss: 5.3566 | Acc: 7.31%
+  评估Batch 180/653 | Loss: 5.0092 | Acc: 10.35%
+  评估Batch 190/653 | Loss: 5.0714 | Acc: 11.89%
+  评估Batch 200/653 | Loss: 5.2010 | Acc: 10.74%
+  评估Batch 210/653 | Loss: 5.2749 | Acc: 9.90%
+  评估Batch 220/653 | Loss: 5.3518 | Acc: 9.27%
+  评估Batch 230/653 | Loss: 5.2061 | Acc: 8.80%
+  评估Batch 240/653 | Loss: 5.4542 | Acc: 7.52%
+  评估Batch 250/653 | Loss: 4.8134 | Acc: 13.42%
+  评估Batch 260/653 | Loss: 5.0561 | Acc: 11.07%
+  评估Batch 270/653 | Loss: 5.3303 | Acc: 9.20%
+  评估Batch 280/653 | Loss: 5.8364 | Acc: 6.39%
+  评估Batch 290/653 | Loss: 5.2931 | Acc: 9.93%
+  评估Batch 300/653 | Loss: 5.2725 | Acc: 8.75%
+  评估Batch 310/653 | Loss: 5.1005 | Acc: 10.73%
+  评估Batch 320/653 | Loss: 5.1852 | Acc: 12.75%
+  评估Batch 330/653 | Loss: 4.6497 | Acc: 16.69%
+  评估Batch 340/653 | Loss: 4.3161 | Acc: 18.93%
+  评估Batch 350/653 | Loss: 5.0282 | Acc: 11.06%
+  评估Batch 360/653 | Loss: 4.9129 | Acc: 12.16%
+  评估Batch 370/653 | Loss: 5.4967 | Acc: 8.96%
+  评估Batch 380/653 | Loss: 5.5219 | Acc: 7.46%
+  评估Batch 390/653 | Loss: 4.8498 | Acc: 13.57%
+  评估Batch 400/653 | Loss: 4.6465 | Acc: 16.13%
+  评估Batch 410/653 | Loss: 5.0521 | Acc: 11.88%
+  评估Batch 420/653 | Loss: 5.3332 | Acc: 10.00%
+  评估Batch 430/653 | Loss: 5.4475 | Acc: 6.17%
+  评估Batch 440/653 | Loss: 4.5392 | Acc: 15.15%
+  评估Batch 450/653 | Loss: 5.0004 | Acc: 12.33%
+  评估Batch 460/653 | Loss: 4.4617 | Acc: 17.35%
+  评估Batch 470/653 | Loss: 5.4401 | Acc: 6.57%
+  评估Batch 480/653 | Loss: 5.5784 | Acc: 6.19%
+  评估Batch 490/653 | Loss: 5.5766 | Acc: 6.92%
+  评估Batch 500/653 | Loss: 5.1588 | Acc: 9.96%
+  评估Batch 510/653 | Loss: 5.1018 | Acc: 12.28%
+  评估Batch 520/653 | Loss: 4.8957 | Acc: 12.58%
+  评估Batch 530/653 | Loss: 4.7482 | Acc: 14.21%
+  评估Batch 540/653 | Loss: 5.3214 | Acc: 9.01%
+  评估Batch 550/653 | Loss: 5.2867 | Acc: 11.42%
+  评估Batch 560/653 | Loss: 5.5149 | Acc: 8.50%
+  评估Batch 570/653 | Loss: 6.2774 | Acc: 10.09%
+  评估Batch 580/653 | Loss: 5.0687 | Acc: 12.55%
+  评估Batch 590/653 | Loss: 4.8660 | Acc: 11.95%
+  评估Batch 600/653 | Loss: 4.9795 | Acc: 13.30%
+  评估Batch 610/653 | Loss: 6.3648 | Acc: 8.75%
+  评估Batch 620/653 | Loss: 5.4305 | Acc: 7.18%
+  评估Batch 630/653 | Loss: 5.3655 | Acc: 9.59%
+  评估Batch 640/653 | Loss: 4.8584 | Acc: 13.14%
+  评估Batch 650/653 | Loss: 4.4868 | Acc: 17.31%
+✅ 评估完成: 平均损失/Token = 5.1792, 平均准确率 = 10.61%
+Epoch 04 | 训练损失: 5.4521 | 训练准确率: 8.75% | 测试损失: 5.1792 | 测试准确率: 10.61%
+
+==================================================
+Epoch 05/10
+==================================================
+开始训练epoch，共714个batch...
+训练Batch 0/714 GPU内存: 已分配 1.24GB, 保留 11.92GB
+  Batch 0/714 | Loss: 5.6284 | Acc: 6.91% | Tokens: 2932
+训练Batch 10/714 GPU内存: 已分配 1.24GB, 保留 14.69GB
+  Batch 10/714 | Loss: 5.6128 | Acc: 6.99% | Tokens: 2227
+训练Batch 20/714 GPU内存: 已分配 1.24GB, 保留 14.69GB
+  Batch 20/714 | Loss: 4.9902 | Acc: 12.04% | Tokens: 1773
+训练Batch 30/714 GPU内存: 已分配 1.24GB, 保留 14.91GB
+  Batch 30/714 | Loss: 5.7438 | Acc: 6.59% | Tokens: 3015
+训练Batch 40/714 GPU内存: 已分配 1.24GB, 保留 15.33GB
+  Batch 40/714 | Loss: 5.3702 | Acc: 8.30% | Tokens: 2309
+训练Batch 50/714 GPU内存: 已分配 1.24GB, 保留 15.70GB
+  Batch 50/714 | Loss: 5.3539 | Acc: 8.81% | Tokens: 2153
+训练Batch 60/714 GPU内存: 已分配 1.24GB, 保留 16.71GB
+  Batch 60/714 | Loss: 5.3950 | Acc: 10.23% | Tokens: 2557
+训练Batch 70/714 GPU内存: 已分配 1.24GB, 保留 13.41GB
+  Batch 70/714 | Loss: 5.7227 | Acc: 7.46% | Tokens: 2906
+训练Batch 80/714 GPU内存: 已分配 1.24GB, 保留 16.93GB
+  Batch 80/714 | Loss: 5.6313 | Acc: 7.36% | Tokens: 2701
+训练Batch 90/714 GPU内存: 已分配 1.24GB, 保留 12.71GB
+  Batch 90/714 | Loss: 5.5764 | Acc: 7.24% | Tokens: 2703
+训练Batch 100/714 GPU内存: 已分配 1.24GB, 保留 12.71GB
+  Batch 100/714 | Loss: 4.1055 | Acc: 19.25% | Tokens: 2292
+训练Batch 110/714 GPU内存: 已分配 1.24GB, 保留 12.89GB
+  Batch 110/714 | Loss: 5.7714 | Acc: 5.77% | Tokens: 2699
+训练Batch 120/714 GPU内存: 已分配 1.24GB, 保留 15.70GB
+  Batch 120/714 | Loss: 5.3925 | Acc: 11.12% | Tokens: 2487
+训练Batch 130/714 GPU内存: 已分配 1.24GB, 保留 15.24GB
+  Batch 130/714 | Loss: 5.7493 | Acc: 5.59% | Tokens: 2963
+训练Batch 140/714 GPU内存: 已分配 1.24GB, 保留 16.08GB
+  Batch 140/714 | Loss: 5.6754 | Acc: 6.29% | Tokens: 3049
+训练Batch 150/714 GPU内存: 已分配 1.24GB, 保留 14.07GB
+  Batch 150/714 | Loss: 5.5133 | Acc: 8.65% | Tokens: 2771
+训练Batch 160/714 GPU内存: 已分配 1.24GB, 保留 16.47GB
+  Batch 160/714 | Loss: 5.4215 | Acc: 13.68% | Tokens: 2795
+训练Batch 170/714 GPU内存: 已分配 1.24GB, 保留 15.87GB
+  Batch 170/714 | Loss: 5.4097 | Acc: 8.43% | Tokens: 2144
+训练Batch 180/714 GPU内存: 已分配 1.24GB, 保留 16.06GB
+  Batch 180/714 | Loss: 5.4778 | Acc: 7.58% | Tokens: 2359
+训练Batch 190/714 GPU内存: 已分配 1.24GB, 保留 16.14GB
+  Batch 190/714 | Loss: 5.6018 | Acc: 7.05% | Tokens: 3059
+训练Batch 200/714 GPU内存: 已分配 1.24GB, 保留 17.78GB
+  Batch 200/714 | Loss: 5.5962 | Acc: 6.96% | Tokens: 3143
+训练Batch 210/714 GPU内存: 已分配 1.24GB, 保留 13.54GB
+  Batch 210/714 | Loss: 5.4548 | Acc: 10.79% | Tokens: 3073
+训练Batch 220/714 GPU内存: 已分配 1.24GB, 保留 15.22GB
+  Batch 220/714 | Loss: 5.5615 | Acc: 8.36% | Tokens: 2665
+训练Batch 230/714 GPU内存: 已分配 1.24GB, 保留 16.29GB
+  Batch 230/714 | Loss: 5.0630 | Acc: 13.82% | Tokens: 2138
+训练Batch 240/714 GPU内存: 已分配 1.24GB, 保留 17.91GB
+  Batch 240/714 | Loss: 5.4816 | Acc: 11.46% | Tokens: 3137
+训练Batch 250/714 GPU内存: 已分配 1.24GB, 保留 14.27GB
+  Batch 250/714 | Loss: 5.4008 | Acc: 9.31% | Tokens: 2457
+训练Batch 260/714 GPU内存: 已分配 1.24GB, 保留 16.14GB
+  Batch 260/714 | Loss: 5.5401 | Acc: 7.04% | Tokens: 2581
+训练Batch 270/714 GPU内存: 已分配 1.24GB, 保留 10.52GB
+  Batch 270/714 | Loss: 5.5856 | Acc: 7.04% | Tokens: 2878
+训练Batch 280/714 GPU内存: 已分配 1.24GB, 保留 10.52GB
+  Batch 280/714 | Loss: 5.7439 | Acc: 6.85% | Tokens: 2275
+训练Batch 290/714 GPU内存: 已分配 1.24GB, 保留 15.96GB
+  Batch 290/714 | Loss: 5.5957 | Acc: 7.83% | Tokens: 2973
+训练Batch 300/714 GPU内存: 已分配 1.24GB, 保留 15.96GB
+  Batch 300/714 | Loss: 5.0036 | Acc: 11.50% | Tokens: 2213
+训练Batch 310/714 GPU内存: 已分配 1.24GB, 保留 15.12GB
+  Batch 310/714 | Loss: 5.7324 | Acc: 7.27% | Tokens: 2774
+训练Batch 320/714 GPU内存: 已分配 1.24GB, 保留 15.93GB
+  Batch 320/714 | Loss: 5.5668 | Acc: 7.70% | Tokens: 2673
+训练Batch 330/714 GPU内存: 已分配 1.24GB, 保留 14.67GB
+  Batch 330/714 | Loss: 4.9982 | Acc: 12.25% | Tokens: 1922
+训练Batch 340/714 GPU内存: 已分配 1.24GB, 保留 16.38GB
+  Batch 340/714 | Loss: 5.4992 | Acc: 6.94% | Tokens: 2317
+训练Batch 350/714 GPU内存: 已分配 1.24GB, 保留 16.49GB
+  Batch 350/714 | Loss: 5.4016 | Acc: 8.97% | Tokens: 2382
+训练Batch 360/714 GPU内存: 已分配 1.24GB, 保留 16.49GB
+  Batch 360/714 | Loss: 5.3293 | Acc: 12.99% | Tokens: 2699
+训练Batch 370/714 GPU内存: 已分配 1.24GB, 保留 11.30GB
+  Batch 370/714 | Loss: 5.5538 | Acc: 7.83% | Tokens: 2780
+训练Batch 380/714 GPU内存: 已分配 1.24GB, 保留 11.30GB
+  Batch 380/714 | Loss: 5.4412 | Acc: 8.72% | Tokens: 2473
+训练Batch 390/714 GPU内存: 已分配 1.24GB, 保留 14.68GB
+  Batch 390/714 | Loss: 5.2323 | Acc: 11.11% | Tokens: 1571
+训练Batch 400/714 GPU内存: 已分配 1.24GB, 保留 15.55GB
+  Batch 400/714 | Loss: 5.6611 | Acc: 8.32% | Tokens: 2509
+训练Batch 410/714 GPU内存: 已分配 1.25GB, 保留 15.58GB
+  Batch 410/714 | Loss: 5.5850 | Acc: 7.51% | Tokens: 2979
+训练Batch 420/714 GPU内存: 已分配 1.24GB, 保留 15.58GB
+  Batch 420/714 | Loss: 5.6310 | Acc: 6.10% | Tokens: 2831
+训练Batch 430/714 GPU内存: 已分配 1.24GB, 保留 15.93GB
+  Batch 430/714 | Loss: 5.5971 | Acc: 6.92% | Tokens: 2943
+训练Batch 440/714 GPU内存: 已分配 1.24GB, 保留 15.93GB
+  Batch 440/714 | Loss: 5.4339 | Acc: 8.88% | Tokens: 2833
+训练Batch 450/714 GPU内存: 已分配 1.24GB, 保留 11.05GB
+  Batch 450/714 | Loss: 5.5513 | Acc: 7.21% | Tokens: 2784
+训练Batch 460/714 GPU内存: 已分配 1.24GB, 保留 11.05GB
+  Batch 460/714 | Loss: 5.5582 | Acc: 6.97% | Tokens: 2939
+训练Batch 470/714 GPU内存: 已分配 1.24GB, 保留 14.43GB
+  Batch 470/714 | Loss: 5.4720 | Acc: 11.25% | Tokens: 2929
+训练Batch 480/714 GPU内存: 已分配 1.24GB, 保留 15.66GB
+  Batch 480/714 | Loss: 5.7644 | Acc: 6.92% | Tokens: 2929
+训练Batch 490/714 GPU内存: 已分配 1.24GB, 保留 15.97GB
+  Batch 490/714 | Loss: 5.1134 | Acc: 11.55% | Tokens: 2169
+训练Batch 500/714 GPU内存: 已分配 1.24GB, 保留 17.19GB
+  Batch 500/714 | Loss: 5.6152 | Acc: 6.27% | Tokens: 2853
+训练Batch 510/714 GPU内存: 已分配 1.24GB, 保留 14.47GB
+  Batch 510/714 | Loss: 5.5132 | Acc: 9.52% | Tokens: 2464
+训练Batch 520/714 GPU内存: 已分配 1.24GB, 保留 14.86GB
+  Batch 520/714 | Loss: 5.5047 | Acc: 9.42% | Tokens: 2767
+训练Batch 530/714 GPU内存: 已分配 1.24GB, 保留 15.88GB
+  Batch 530/714 | Loss: 5.6008 | Acc: 6.32% | Tokens: 2814
+训练Batch 540/714 GPU内存: 已分配 1.24GB, 保留 16.71GB
+  Batch 540/714 | Loss: 5.5942 | Acc: 7.22% | Tokens: 2172
+训练Batch 550/714 GPU内存: 已分配 1.24GB, 保留 13.62GB
+  Batch 550/714 | Loss: 5.4799 | Acc: 11.07% | Tokens: 2443
+训练Batch 560/714 GPU内存: 已分配 1.24GB, 保留 17.12GB
+  Batch 560/714 | Loss: 5.4618 | Acc: 9.37% | Tokens: 2941
+训练Batch 570/714 GPU内存: 已分配 1.24GB, 保留 13.86GB
+  Batch 570/714 | Loss: 5.5811 | Acc: 8.75% | Tokens: 3060
+训练Batch 580/714 GPU内存: 已分配 1.24GB, 保留 15.50GB
+  Batch 580/714 | Loss: 5.1853 | Acc: 10.26% | Tokens: 1925
+训练Batch 590/714 GPU内存: 已分配 1.24GB, 保留 13.84GB
+  Batch 590/714 | Loss: 5.4556 | Acc: 9.49% | Tokens: 2630
+训练Batch 600/714 GPU内存: 已分配 1.24GB, 保留 13.84GB
+  Batch 600/714 | Loss: 5.4440 | Acc: 7.34% | Tokens: 2095
+训练Batch 610/714 GPU内存: 已分配 1.24GB, 保留 14.96GB
+  Batch 610/714 | Loss: 5.6622 | Acc: 6.04% | Tokens: 2975
+训练Batch 620/714 GPU内存: 已分配 1.24GB, 保留 16.15GB
+  Batch 620/714 | Loss: 5.4574 | Acc: 8.35% | Tokens: 2415
+训练Batch 630/714 GPU内存: 已分配 1.24GB, 保留 15.66GB
+  Batch 630/714 | Loss: 5.5948 | Acc: 7.44% | Tokens: 2497
+训练Batch 640/714 GPU内存: 已分配 1.24GB, 保留 16.90GB
+  Batch 640/714 | Loss: 5.4287 | Acc: 7.81% | Tokens: 2276
+训练Batch 650/714 GPU内存: 已分配 1.24GB, 保留 16.82GB
+  Batch 650/714 | Loss: 5.4952 | Acc: 8.76% | Tokens: 2371
+训练Batch 660/714 GPU内存: 已分配 1.24GB, 保留 18.04GB
+  Batch 660/714 | Loss: 5.7850 | Acc: 6.13% | Tokens: 2833
+训练Batch 670/714 GPU内存: 已分配 1.25GB, 保留 15.19GB
+  Batch 670/714 | Loss: 5.7072 | Acc: 5.98% | Tokens: 2854
+训练Batch 680/714 GPU内存: 已分配 1.24GB, 保留 15.96GB
+  Batch 680/714 | Loss: 5.1408 | Acc: 10.96% | Tokens: 1739
+训练Batch 690/714 GPU内存: 已分配 1.24GB, 保留 11.45GB
+  Batch 690/714 | Loss: 5.4442 | Acc: 8.74% | Tokens: 2776
+训练Batch 700/714 GPU内存: 已分配 1.24GB, 保留 11.45GB
+  Batch 700/714 | Loss: 5.4764 | Acc: 8.97% | Tokens: 2884
+训练Batch 710/714 GPU内存: 已分配 1.24GB, 保留 10.96GB
+  Batch 710/714 | Loss: 5.5496 | Acc: 8.02% | Tokens: 2628
+✅ 训练完成: 平均损失/Token = 5.4516, 平均准确率 = 8.82%
+开始评估，共653个batch...
+  评估Batch 0/653 | Loss: 4.9358 | Acc: 12.47%
+  评估Batch 10/653 | Loss: 4.8240 | Acc: 13.44%
+  评估Batch 20/653 | Loss: 5.0318 | Acc: 13.98%
+  评估Batch 30/653 | Loss: 4.8642 | Acc: 16.79%
+  评估Batch 40/653 | Loss: 5.0259 | Acc: 12.31%
+  评估Batch 50/653 | Loss: 4.1916 | Acc: 16.05%
+  评估Batch 60/653 | Loss: 4.9999 | Acc: 10.11%
+  评估Batch 70/653 | Loss: 5.2661 | Acc: 8.01%
+  评估Batch 80/653 | Loss: 5.2344 | Acc: 8.61%
+  评估Batch 90/653 | Loss: 5.0156 | Acc: 11.67%
+  评估Batch 100/653 | Loss: 5.2800 | Acc: 8.52%
+  评估Batch 110/653 | Loss: 5.4552 | Acc: 9.03%
+  评估Batch 120/653 | Loss: 5.7179 | Acc: 6.08%
+  评估Batch 130/653 | Loss: 4.3416 | Acc: 18.42%
+  评估Batch 140/653 | Loss: 5.0610 | Acc: 10.34%
+  评估Batch 150/653 | Loss: 5.0819 | Acc: 11.75%
+  评估Batch 160/653 | Loss: 5.0874 | Acc: 10.21%
+  评估Batch 170/653 | Loss: 5.3524 | Acc: 8.11%
+  评估Batch 180/653 | Loss: 4.9928 | Acc: 11.66%
+  评估Batch 190/653 | Loss: 5.1189 | Acc: 11.51%
+  评估Batch 200/653 | Loss: 5.1605 | Acc: 10.97%
+  评估Batch 210/653 | Loss: 5.2877 | Acc: 9.36%
+  评估Batch 220/653 | Loss: 5.3231 | Acc: 9.95%
+  评估Batch 230/653 | Loss: 5.2002 | Acc: 9.11%
+  评估Batch 240/653 | Loss: 5.4137 | Acc: 7.35%
+  评估Batch 250/653 | Loss: 4.7949 | Acc: 13.35%
+  评估Batch 260/653 | Loss: 5.0350 | Acc: 11.32%
+  评估Batch 270/653 | Loss: 5.3134 | Acc: 9.14%
+  评估Batch 280/653 | Loss: 5.7447 | Acc: 7.75%
+  评估Batch 290/653 | Loss: 5.3025 | Acc: 9.52%
+  评估Batch 300/653 | Loss: 5.2436 | Acc: 7.96%
+  评估Batch 310/653 | Loss: 5.0212 | Acc: 11.22%
+  评估Batch 320/653 | Loss: 4.9920 | Acc: 14.32%
+  评估Batch 330/653 | Loss: 4.5799 | Acc: 17.90%
+  评估Batch 340/653 | Loss: 4.3091 | Acc: 18.20%
+  评估Batch 350/653 | Loss: 5.0254 | Acc: 10.87%
+  评估Batch 360/653 | Loss: 4.8924 | Acc: 12.90%
+  评估Batch 370/653 | Loss: 5.4631 | Acc: 9.39%
+  评估Batch 380/653 | Loss: 5.5023 | Acc: 7.95%
+  评估Batch 390/653 | Loss: 4.8660 | Acc: 14.34%
+  评估Batch 400/653 | Loss: 4.6102 | Acc: 17.03%
+  评估Batch 410/653 | Loss: 4.9709 | Acc: 11.57%
+  评估Batch 420/653 | Loss: 5.3544 | Acc: 9.34%
+  评估Batch 430/653 | Loss: 5.4480 | Acc: 5.23%
+  评估Batch 440/653 | Loss: 4.5443 | Acc: 15.86%
+  评估Batch 450/653 | Loss: 5.0048 | Acc: 12.33%
+  评估Batch 460/653 | Loss: 4.5282 | Acc: 16.97%
+  评估Batch 470/653 | Loss: 5.3772 | Acc: 6.72%
+  评估Batch 480/653 | Loss: 5.5080 | Acc: 5.85%
+  评估Batch 490/653 | Loss: 5.5876 | Acc: 6.82%
+  评估Batch 500/653 | Loss: 5.1582 | Acc: 10.23%
+  评估Batch 510/653 | Loss: 5.1165 | Acc: 12.01%
+  评估Batch 520/653 | Loss: 4.9491 | Acc: 11.37%
+  评估Batch 530/653 | Loss: 4.8210 | Acc: 15.15%
+  评估Batch 540/653 | Loss: 5.3123 | Acc: 9.01%
+  评估Batch 550/653 | Loss: 5.2734 | Acc: 11.13%
+  评估Batch 560/653 | Loss: 5.5200 | Acc: 7.75%
+  评估Batch 570/653 | Loss: 5.8579 | Acc: 9.72%
+  评估Batch 580/653 | Loss: 5.0829 | Acc: 11.77%
+  评估Batch 590/653 | Loss: 4.8798 | Acc: 11.95%
+  评估Batch 600/653 | Loss: 4.9920 | Acc: 11.72%
+  评估Batch 610/653 | Loss: 5.9692 | Acc: 8.46%
+  评估Batch 620/653 | Loss: 5.4320 | Acc: 7.45%
+  评估Batch 630/653 | Loss: 5.3177 | Acc: 10.63%
+  评估Batch 640/653 | Loss: 4.8415 | Acc: 13.19%
+  评估Batch 650/653 | Loss: 4.4816 | Acc: 17.16%
+✅ 评估完成: 平均损失/Token = 5.1621, 平均准确率 = 10.80%
+Epoch 05 | 训练损失: 5.4516 | 训练准确率: 8.82% | 测试损失: 5.1621 | 测试准确率: 10.80%
+
+==================================================
+Epoch 06/10
+==================================================
+开始训练epoch，共714个batch...
+训练Batch 0/714 GPU内存: 已分配 1.24GB, 保留 11.54GB
+  Batch 0/714 | Loss: 5.4279 | Acc: 9.44% | Tokens: 2337
+训练Batch 10/714 GPU内存: 已分配 1.24GB, 保留 16.24GB
+  Batch 10/714 | Loss: 5.3667 | Acc: 10.51% | Tokens: 2670
+训练Batch 20/714 GPU内存: 已分配 1.24GB, 保留 16.24GB
+  Batch 20/714 | Loss: 5.5431 | Acc: 8.43% | Tokens: 3045
+训练Batch 30/714 GPU内存: 已分配 1.24GB, 保留 15.11GB
+  Batch 30/714 | Loss: 5.5654 | Acc: 7.00% | Tokens: 2481
+训练Batch 40/714 GPU内存: 已分配 1.24GB, 保留 15.11GB
+  Batch 40/714 | Loss: 5.7148 | Acc: 5.61% | Tokens: 2332
+训练Batch 50/714 GPU内存: 已分配 1.24GB, 保留 15.52GB
+  Batch 50/714 | Loss: 5.2716 | Acc: 10.61% | Tokens: 2117
+训练Batch 60/714 GPU内存: 已分配 1.24GB, 保留 17.18GB
+  Batch 60/714 | Loss: 5.5698 | Acc: 9.98% | Tokens: 3042
+训练Batch 70/714 GPU内存: 已分配 1.24GB, 保留 10.70GB
+  Batch 70/714 | Loss: 5.4082 | Acc: 11.86% | Tokens: 2929
+训练Batch 80/714 GPU内存: 已分配 1.24GB, 保留 16.86GB
+  Batch 80/714 | Loss: 5.6911 | Acc: 5.82% | Tokens: 2730
+训练Batch 90/714 GPU内存: 已分配 1.24GB, 保留 13.83GB
+  Batch 90/714 | Loss: 5.4272 | Acc: 7.88% | Tokens: 2952
+训练Batch 100/714 GPU内存: 已分配 1.24GB, 保留 15.04GB
+  Batch 100/714 | Loss: 5.5880 | Acc: 6.86% | Tokens: 2679
+训练Batch 110/714 GPU内存: 已分配 1.24GB, 保留 15.37GB
+  Batch 110/714 | Loss: 5.4589 | Acc: 12.48% | Tokens: 2448
+训练Batch 120/714 GPU内存: 已分配 1.24GB, 保留 15.37GB
+  Batch 120/714 | Loss: 5.4254 | Acc: 8.97% | Tokens: 2338
+训练Batch 130/714 GPU内存: 已分配 1.24GB, 保留 14.73GB
+  Batch 130/714 | Loss: 5.1718 | Acc: 9.48% | Tokens: 1906
+训练Batch 140/714 GPU内存: 已分配 1.24GB, 保留 17.20GB
+  Batch 140/714 | Loss: 5.3869 | Acc: 8.44% | Tokens: 3007
+训练Batch 150/714 GPU内存: 已分配 1.24GB, 保留 15.27GB
+  Batch 150/714 | Loss: 5.3650 | Acc: 8.17% | Tokens: 2088
+训练Batch 160/714 GPU内存: 已分配 1.24GB, 保留 16.54GB
+  Batch 160/714 | Loss: 5.5654 | Acc: 7.82% | Tokens: 2936
+训练Batch 170/714 GPU内存: 已分配 1.24GB, 保留 14.46GB
+  Batch 170/714 | Loss: 5.5792 | Acc: 6.65% | Tokens: 2823
+训练Batch 180/714 GPU内存: 已分配 1.24GB, 保留 14.46GB
+  Batch 180/714 | Loss: 5.4815 | Acc: 7.87% | Tokens: 2460
+训练Batch 190/714 GPU内存: 已分配 1.24GB, 保留 14.76GB
+  Batch 190/714 | Loss: 5.3396 | Acc: 9.51% | Tokens: 2120
+训练Batch 200/714 GPU内存: 已分配 1.24GB, 保留 14.76GB
+  Batch 200/714 | Loss: 5.4512 | Acc: 8.97% | Tokens: 2414
+训练Batch 210/714 GPU内存: 已分配 1.24GB, 保留 14.74GB
+  Batch 210/714 | Loss: 5.4909 | Acc: 10.51% | Tokens: 3068
+训练Batch 220/714 GPU内存: 已分配 1.24GB, 保留 16.36GB
+  Batch 220/714 | Loss: 5.4834 | Acc: 8.94% | Tokens: 2391
+训练Batch 230/714 GPU内存: 已分配 1.25GB, 保留 16.65GB
+  Batch 230/714 | Loss: 5.3001 | Acc: 10.30% | Tokens: 2277
+训练Batch 240/714 GPU内存: 已分配 1.24GB, 保留 17.50GB
+  Batch 240/714 | Loss: 4.4786 | Acc: 15.66% | Tokens: 1727
+训练Batch 250/714 GPU内存: 已分配 1.24GB, 保留 17.70GB
+  Batch 250/714 | Loss: 5.5625 | Acc: 6.57% | Tokens: 2706
+训练Batch 260/714 GPU内存: 已分配 1.24GB, 保留 17.70GB
+  Batch 260/714 | Loss: 5.4367 | Acc: 8.14% | Tokens: 2355
+训练Batch 270/714 GPU内存: 已分配 1.24GB, 保留 15.58GB
+  Batch 270/714 | Loss: 5.5449 | Acc: 8.05% | Tokens: 2730
+训练Batch 280/714 GPU内存: 已分配 1.24GB, 保留 15.58GB
+  Batch 280/714 | Loss: 5.5113 | Acc: 9.20% | Tokens: 2909
+训练Batch 290/714 GPU内存: 已分配 1.24GB, 保留 14.85GB
+  Batch 290/714 | Loss: 5.2567 | Acc: 11.13% | Tokens: 1864
+训练Batch 300/714 GPU内存: 已分配 1.24GB, 保留 14.85GB
+  Batch 300/714 | Loss: 5.4084 | Acc: 8.49% | Tokens: 2164
+训练Batch 310/714 GPU内存: 已分配 1.24GB, 保留 14.47GB
+  Batch 310/714 | Loss: 5.5845 | Acc: 7.51% | Tokens: 2445
+训练Batch 320/714 GPU内存: 已分配 1.24GB, 保留 15.33GB
+  Batch 320/714 | Loss: 5.3819 | Acc: 9.10% | Tokens: 1810
+训练Batch 330/714 GPU内存: 已分配 1.24GB, 保留 14.17GB
+  Batch 330/714 | Loss: 5.5133 | Acc: 8.07% | Tokens: 2426
+训练Batch 340/714 GPU内存: 已分配 1.24GB, 保留 16.61GB
+  Batch 340/714 | Loss: 5.6397 | Acc: 6.56% | Tokens: 3134
+训练Batch 350/714 GPU内存: 已分配 1.24GB, 保留 13.31GB
+  Batch 350/714 | Loss: 5.4365 | Acc: 7.77% | Tokens: 2479
+训练Batch 360/714 GPU内存: 已分配 1.24GB, 保留 16.85GB
+  Batch 360/714 | Loss: 5.5955 | Acc: 6.45% | Tokens: 2818
+训练Batch 370/714 GPU内存: 已分配 1.24GB, 保留 13.74GB
+  Batch 370/714 | Loss: 5.5698 | Acc: 6.59% | Tokens: 2392
+训练Batch 380/714 GPU内存: 已分配 1.24GB, 保留 15.30GB
+  Batch 380/714 | Loss: 5.5391 | Acc: 8.79% | Tokens: 2409
+训练Batch 390/714 GPU内存: 已分配 1.24GB, 保留 16.12GB
+  Batch 390/714 | Loss: 5.5740 | Acc: 8.19% | Tokens: 2730
+训练Batch 400/714 GPU内存: 已分配 1.24GB, 保留 16.12GB
+  Batch 400/714 | Loss: 5.6450 | Acc: 7.13% | Tokens: 2998
+训练Batch 410/714 GPU内存: 已分配 1.24GB, 保留 14.54GB
+  Batch 410/714 | Loss: 5.2914 | Acc: 9.42% | Tokens: 1801
+训练Batch 420/714 GPU内存: 已分配 1.24GB, 保留 14.54GB
+  Batch 420/714 | Loss: 4.5722 | Acc: 15.51% | Tokens: 2646
+训练Batch 430/714 GPU内存: 已分配 1.24GB, 保留 15.44GB
+  Batch 430/714 | Loss: 5.4804 | Acc: 8.96% | Tokens: 2754
+训练Batch 440/714 GPU内存: 已分配 1.24GB, 保留 15.44GB
+  Batch 440/714 | Loss: 5.3754 | Acc: 7.92% | Tokens: 2269
+训练Batch 450/714 GPU内存: 已分配 1.24GB, 保留 16.06GB
+  Batch 450/714 | Loss: 5.5064 | Acc: 7.88% | Tokens: 2586
+训练Batch 460/714 GPU内存: 已分配 1.24GB, 保留 16.87GB
+  Batch 460/714 | Loss: 5.5424 | Acc: 8.51% | Tokens: 2558
+训练Batch 470/714 GPU内存: 已分配 1.24GB, 保留 14.88GB
+  Batch 470/714 | Loss: 5.1711 | Acc: 11.05% | Tokens: 1561
+训练Batch 480/714 GPU内存: 已分配 1.24GB, 保留 16.50GB
+  Batch 480/714 | Loss: 5.4099 | Acc: 10.08% | Tokens: 2665
+训练Batch 490/714 GPU内存: 已分配 1.24GB, 保留 15.20GB
+  Batch 490/714 | Loss: 5.4504 | Acc: 9.10% | Tokens: 2907
+训练Batch 500/714 GPU内存: 已分配 1.24GB, 保留 15.20GB
+  Batch 500/714 | Loss: 5.1906 | Acc: 11.29% | Tokens: 2131
+训练Batch 510/714 GPU内存: 已分配 1.24GB, 保留 13.41GB
+  Batch 510/714 | Loss: 5.4961 | Acc: 7.71% | Tokens: 2486
+训练Batch 520/714 GPU内存: 已分配 1.24GB, 保留 14.65GB
+  Batch 520/714 | Loss: 5.5455 | Acc: 7.53% | Tokens: 2507
+训练Batch 530/714 GPU内存: 已分配 1.24GB, 保留 14.49GB
+  Batch 530/714 | Loss: 5.5588 | Acc: 8.18% | Tokens: 2745
+训练Batch 540/714 GPU内存: 已分配 1.24GB, 保留 14.89GB
+  Batch 540/714 | Loss: 5.7328 | Acc: 6.37% | Tokens: 2885
+训练Batch 550/714 GPU内存: 已分配 1.24GB, 保留 14.73GB
+  Batch 550/714 | Loss: 5.3240 | Acc: 13.14% | Tokens: 2933
+训练Batch 560/714 GPU内存: 已分配 1.24GB, 保留 16.80GB
+  Batch 560/714 | Loss: 5.1541 | Acc: 11.03% | Tokens: 1891
+训练Batch 570/714 GPU内存: 已分配 1.24GB, 保留 13.65GB
+  Batch 570/714 | Loss: 4.3185 | Acc: 17.84% | Tokens: 1913
+训练Batch 580/714 GPU内存: 已分配 1.24GB, 保留 14.03GB
+  Batch 580/714 | Loss: 5.0746 | Acc: 13.14% | Tokens: 1982
+训练Batch 590/714 GPU内存: 已分配 1.24GB, 保留 15.01GB
+  Batch 590/714 | Loss: 5.4409 | Acc: 11.60% | Tokens: 2754
+训练Batch 600/714 GPU内存: 已分配 1.24GB, 保留 16.69GB
+  Batch 600/714 | Loss: 5.6707 | Acc: 6.58% | Tokens: 2990
+训练Batch 610/714 GPU内存: 已分配 1.24GB, 保留 11.65GB
+  Batch 610/714 | Loss: 5.5018 | Acc: 7.12% | Tokens: 2369
+训练Batch 620/714 GPU内存: 已分配 1.24GB, 保留 11.65GB
+  Batch 620/714 | Loss: 5.6022 | Acc: 8.53% | Tokens: 2858
+训练Batch 630/714 GPU内存: 已分配 1.24GB, 保留 14.40GB
+  Batch 630/714 | Loss: 5.4500 | Acc: 9.28% | Tokens: 2344
+训练Batch 640/714 GPU内存: 已分配 1.24GB, 保留 15.20GB
+  Batch 640/714 | Loss: 5.4807 | Acc: 7.83% | Tokens: 2154
+训练Batch 650/714 GPU内存: 已分配 1.24GB, 保留 16.51GB
+  Batch 650/714 | Loss: 4.7999 | Acc: 15.36% | Tokens: 2990
+训练Batch 660/714 GPU内存: 已分配 1.24GB, 保留 17.31GB
+  Batch 660/714 | Loss: 5.3615 | Acc: 10.13% | Tokens: 2463
+训练Batch 670/714 GPU内存: 已分配 1.24GB, 保留 12.98GB
+  Batch 670/714 | Loss: 5.5523 | Acc: 7.15% | Tokens: 2570
+训练Batch 680/714 GPU内存: 已分配 1.24GB, 保留 15.39GB
+  Batch 680/714 | Loss: 5.4096 | Acc: 10.28% | Tokens: 2496
+训练Batch 690/714 GPU内存: 已分配 1.24GB, 保留 15.03GB
+  Batch 690/714 | Loss: 5.2265 | Acc: 11.69% | Tokens: 2623
+训练Batch 700/714 GPU内存: 已分配 1.24GB, 保留 16.69GB
+  Batch 700/714 | Loss: 5.5315 | Acc: 8.72% | Tokens: 2485
+训练Batch 710/714 GPU内存: 已分配 1.24GB, 保留 13.71GB
+  Batch 710/714 | Loss: 5.6575 | Acc: 5.75% | Tokens: 2933
+✅ 训练完成: 平均损失/Token = 5.4267, 平均准确率 = 9.00%
+开始评估，共653个batch...
+  评估Batch 0/653 | Loss: 4.8766 | Acc: 13.16%
+  评估Batch 10/653 | Loss: 4.7757 | Acc: 14.02%
+  评估Batch 20/653 | Loss: 4.9913 | Acc: 14.41%
+  评估Batch 30/653 | Loss: 5.0442 | Acc: 19.68%
+  评估Batch 40/653 | Loss: 5.0690 | Acc: 12.91%
+  评估Batch 50/653 | Loss: 4.1809 | Acc: 16.24%
+  评估Batch 60/653 | Loss: 5.0179 | Acc: 10.05%
+  评估Batch 70/653 | Loss: 5.2221 | Acc: 7.83%
+  评估Batch 80/653 | Loss: 5.1862 | Acc: 8.75%
+  评估Batch 90/653 | Loss: 5.1207 | Acc: 11.02%
+  评估Batch 100/653 | Loss: 5.3399 | Acc: 8.91%
+  评估Batch 110/653 | Loss: 5.4549 | Acc: 9.66%
+  评估Batch 120/653 | Loss: 5.7504 | Acc: 6.08%
+  评估Batch 130/653 | Loss: 4.3344 | Acc: 18.78%
+  评估Batch 140/653 | Loss: 5.0654 | Acc: 10.60%
+  评估Batch 150/653 | Loss: 5.0529 | Acc: 11.72%
+  评估Batch 160/653 | Loss: 5.1444 | Acc: 10.21%
+  评估Batch 170/653 | Loss: 5.4309 | Acc: 6.52%
+  评估Batch 180/653 | Loss: 4.9452 | Acc: 11.47%
+  评估Batch 190/653 | Loss: 5.0856 | Acc: 11.82%
+  评估Batch 200/653 | Loss: 5.1728 | Acc: 11.44%
+  评估Batch 210/653 | Loss: 5.2478 | Acc: 10.72%
+  评估Batch 220/653 | Loss: 5.3973 | Acc: 9.13%
+  评估Batch 230/653 | Loss: 5.2177 | Acc: 8.39%
+  评估Batch 240/653 | Loss: 5.4725 | Acc: 7.35%
+  评估Batch 250/653 | Loss: 4.8191 | Acc: 13.28%
+  评估Batch 260/653 | Loss: 5.0728 | Acc: 11.02%
+  评估Batch 270/653 | Loss: 5.2691 | Acc: 9.38%
+  评估Batch 280/653 | Loss: 5.8816 | Acc: 5.47%
+  评估Batch 290/653 | Loss: 5.3077 | Acc: 9.66%
+  评估Batch 300/653 | Loss: 5.2853 | Acc: 9.53%
+  评估Batch 310/653 | Loss: 5.1225 | Acc: 10.38%
+  评估Batch 320/653 | Loss: 5.2145 | Acc: 13.20%
+  评估Batch 330/653 | Loss: 4.6676 | Acc: 16.57%
+  评估Batch 340/653 | Loss: 4.3384 | Acc: 18.20%
+  评估Batch 350/653 | Loss: 4.9990 | Acc: 11.49%
+  评估Batch 360/653 | Loss: 4.8781 | Acc: 12.56%
+  评估Batch 370/653 | Loss: 5.5132 | Acc: 8.96%
+  评估Batch 380/653 | Loss: 5.5137 | Acc: 7.95%
+  评估Batch 390/653 | Loss: 4.8191 | Acc: 14.38%
+  评估Batch 400/653 | Loss: 4.6732 | Acc: 15.95%
+  评估Batch 410/653 | Loss: 5.0633 | Acc: 11.47%
+  评估Batch 420/653 | Loss: 5.3023 | Acc: 9.74%
+  评估Batch 430/653 | Loss: 5.3546 | Acc: 7.37%
+  评估Batch 440/653 | Loss: 4.5148 | Acc: 14.97%
+  评估Batch 450/653 | Loss: 4.9610 | Acc: 12.43%
+  评估Batch 460/653 | Loss: 4.4303 | Acc: 18.43%
+  评估Batch 470/653 | Loss: 5.4459 | Acc: 7.31%
+  评估Batch 480/653 | Loss: 5.5999 | Acc: 5.60%
+  评估Batch 490/653 | Loss: 5.5959 | Acc: 7.28%
+  评估Batch 500/653 | Loss: 5.1779 | Acc: 10.16%
+  评估Batch 510/653 | Loss: 5.0550 | Acc: 12.69%
+  评估Batch 520/653 | Loss: 4.8956 | Acc: 12.22%
+  评估Batch 530/653 | Loss: 4.7366 | Acc: 16.18%
+  评估Batch 540/653 | Loss: 5.3094 | Acc: 9.48%
+  评估Batch 550/653 | Loss: 5.2371 | Acc: 11.23%
+  评估Batch 560/653 | Loss: 5.5129 | Acc: 7.52%
+  评估Batch 570/653 | Loss: 6.6433 | Acc: 9.86%
+  评估Batch 580/653 | Loss: 5.0743 | Acc: 11.81%
+  评估Batch 590/653 | Loss: 4.7582 | Acc: 12.46%
+  评估Batch 600/653 | Loss: 4.8991 | Acc: 13.80%
+  评估Batch 610/653 | Loss: 6.5667 | Acc: 8.82%
+  评估Batch 620/653 | Loss: 5.4417 | Acc: 7.09%
+  评估Batch 630/653 | Loss: 5.3614 | Acc: 9.75%
+  评估Batch 640/653 | Loss: 4.8187 | Acc: 13.50%
+  评估Batch 650/653 | Loss: 4.4617 | Acc: 16.61%
+✅ 评估完成: 平均损失/Token = 5.1744, 平均准确率 = 10.78%
+Epoch 06 | 训练损失: 5.4267 | 训练准确率: 9.00% | 测试损失: 5.1744 | 测试准确率: 10.78%
+Epoch 6 后 GPU内存: 已分配 1.24GB, 保留 1.29GB
+
+==================================================
+Epoch 07/10
+==================================================
+开始训练epoch，共714个batch...
+训练Batch 0/714 GPU内存: 已分配 1.24GB, 保留 1.29GB
+  Batch 0/714 | Loss: 4.3783 | Acc: 16.62% | Tokens: 2288
+训练Batch 10/714 GPU内存: 已分配 1.24GB, 保留 14.71GB
+  Batch 10/714 | Loss: 5.4648 | Acc: 9.36% | Tokens: 3061
+训练Batch 20/714 GPU内存: 已分配 1.24GB, 保留 14.71GB
+  Batch 20/714 | Loss: 5.4750 | Acc: 8.31% | Tokens: 2848
+训练Batch 30/714 GPU内存: 已分配 1.24GB, 保留 14.16GB
+  Batch 30/714 | Loss: 5.4962 | Acc: 8.74% | Tokens: 3004
+训练Batch 40/714 GPU内存: 已分配 1.24GB, 保留 16.12GB
+  Batch 40/714 | Loss: 5.2854 | Acc: 9.22% | Tokens: 2479
+训练Batch 50/714 GPU内存: 已分配 1.24GB, 保留 14.51GB
+  Batch 50/714 | Loss: 5.5736 | Acc: 7.32% | Tokens: 2946
+训练Batch 60/714 GPU内存: 已分配 1.24GB, 保留 16.21GB
+  Batch 60/714 | Loss: 5.4502 | Acc: 10.22% | Tokens: 2530
+训练Batch 70/714 GPU内存: 已分配 1.24GB, 保留 14.31GB
+  Batch 70/714 | Loss: 4.9950 | Acc: 13.25% | Tokens: 1890
+训练Batch 80/714 GPU内存: 已分配 1.24GB, 保留 15.95GB
+  Batch 80/714 | Loss: 5.4602 | Acc: 8.18% | Tokens: 2417
+训练Batch 90/714 GPU内存: 已分配 1.25GB, 保留 15.55GB
+  Batch 90/714 | Loss: 5.5491 | Acc: 11.19% | Tokens: 2801
+训练Batch 100/714 GPU内存: 已分配 1.24GB, 保留 16.42GB
+  Batch 100/714 | Loss: 5.3531 | Acc: 8.54% | Tokens: 2080
+训练Batch 110/714 GPU内存: 已分配 1.24GB, 保留 11.71GB
+  Batch 110/714 | Loss: 5.5338 | Acc: 6.81% | Tokens: 2670
+训练Batch 120/714 GPU内存: 已分配 1.24GB, 保留 11.71GB
+  Batch 120/714 | Loss: 5.4532 | Acc: 11.96% | Tokens: 2948
+训练Batch 130/714 GPU内存: 已分配 1.24GB, 保留 14.27GB
+  Batch 130/714 | Loss: 5.4814 | Acc: 8.30% | Tokens: 2742
+训练Batch 140/714 GPU内存: 已分配 1.24GB, 保留 15.09GB
+  Batch 140/714 | Loss: 5.6421 | Acc: 6.76% | Tokens: 2939
+训练Batch 150/714 GPU内存: 已分配 1.24GB, 保留 15.16GB
+  Batch 150/714 | Loss: 5.4021 | Acc: 8.95% | Tokens: 2131
+训练Batch 160/714 GPU内存: 已分配 1.24GB, 保留 16.92GB
+  Batch 160/714 | Loss: 5.5290 | Acc: 7.72% | Tokens: 2574
+训练Batch 170/714 GPU内存: 已分配 1.24GB, 保留 16.04GB
+  Batch 170/714 | Loss: 5.6428 | Acc: 6.50% | Tokens: 2717
+训练Batch 180/714 GPU内存: 已分配 1.24GB, 保留 16.90GB
+  Batch 180/714 | Loss: 5.1953 | Acc: 10.04% | Tokens: 1998
+训练Batch 190/714 GPU内存: 已分配 1.25GB, 保留 15.33GB
+  Batch 190/714 | Loss: 5.6293 | Acc: 6.04% | Tokens: 2910
+训练Batch 200/714 GPU内存: 已分配 1.25GB, 保留 16.98GB
+  Batch 200/714 | Loss: 5.5732 | Acc: 7.34% | Tokens: 2844
+训练Batch 210/714 GPU内存: 已分配 1.24GB, 保留 13.59GB
+  Batch 210/714 | Loss: 4.3842 | Acc: 16.86% | Tokens: 2884
+训练Batch 220/714 GPU内存: 已分配 1.24GB, 保留 15.22GB
+  Batch 220/714 | Loss: 5.3972 | Acc: 8.49% | Tokens: 2411
+训练Batch 230/714 GPU内存: 已分配 1.24GB, 保留 14.77GB
+  Batch 230/714 | Loss: 5.5708 | Acc: 7.02% | Tokens: 2715
+训练Batch 240/714 GPU内存: 已分配 1.24GB, 保留 14.77GB
+  Batch 240/714 | Loss: 5.3857 | Acc: 10.78% | Tokens: 2611
+训练Batch 250/714 GPU内存: 已分配 1.24GB, 保留 13.18GB
+  Batch 250/714 | Loss: 5.4344 | Acc: 7.91% | Tokens: 2259
+训练Batch 260/714 GPU内存: 已分配 1.24GB, 保留 13.18GB
+  Batch 260/714 | Loss: 5.4615 | Acc: 9.04% | Tokens: 2807
+训练Batch 270/714 GPU内存: 已分配 1.24GB, 保留 16.23GB
+  Batch 270/714 | Loss: 5.6430 | Acc: 5.65% | Tokens: 2916
+训练Batch 280/714 GPU内存: 已分配 1.24GB, 保留 16.23GB
+  Batch 280/714 | Loss: 5.6725 | Acc: 6.20% | Tokens: 2980
+训练Batch 290/714 GPU内存: 已分配 1.24GB, 保留 11.04GB
+  Batch 290/714 | Loss: 5.3212 | Acc: 10.05% | Tokens: 2394
+训练Batch 300/714 GPU内存: 已分配 1.24GB, 保留 14.80GB
+  Batch 300/714 | Loss: 4.9431 | Acc: 11.01% | Tokens: 2957
+训练Batch 310/714 GPU内存: 已分配 1.24GB, 保留 15.75GB
+  Batch 310/714 | Loss: 5.3501 | Acc: 8.90% | Tokens: 2963
+训练Batch 320/714 GPU内存: 已分配 1.24GB, 保留 15.75GB
+  Batch 320/714 | Loss: 5.4223 | Acc: 8.52% | Tokens: 2566
+训练Batch 330/714 GPU内存: 已分配 1.24GB, 保留 12.37GB
+  Batch 330/714 | Loss: 5.4258 | Acc: 8.21% | Tokens: 2348
+训练Batch 340/714 GPU内存: 已分配 1.24GB, 保留 14.39GB
+  Batch 340/714 | Loss: 5.3069 | Acc: 9.34% | Tokens: 2224
+训练Batch 350/714 GPU内存: 已分配 1.24GB, 保留 14.43GB
+  Batch 350/714 | Loss: 5.4402 | Acc: 7.95% | Tokens: 2573
+训练Batch 360/714 GPU内存: 已分配 1.24GB, 保留 15.21GB
+  Batch 360/714 | Loss: 5.5656 | Acc: 7.52% | Tokens: 2923
+训练Batch 370/714 GPU内存: 已分配 1.24GB, 保留 13.42GB
+  Batch 370/714 | Loss: 5.4153 | Acc: 9.23% | Tokens: 2574
+训练Batch 380/714 GPU内存: 已分配 1.24GB, 保留 17.46GB
+  Batch 380/714 | Loss: 5.4291 | Acc: 10.74% | Tokens: 2632
+训练Batch 390/714 GPU内存: 已分配 1.24GB, 保留 14.55GB
+  Batch 390/714 | Loss: 5.4540 | Acc: 9.09% | Tokens: 2527
+训练Batch 400/714 GPU内存: 已分配 1.24GB, 保留 15.35GB
+  Batch 400/714 | Loss: 5.5677 | Acc: 8.24% | Tokens: 2643
+训练Batch 410/714 GPU内存: 已分配 1.24GB, 保留 14.69GB
+  Batch 410/714 | Loss: 4.6460 | Acc: 14.50% | Tokens: 1927
+训练Batch 420/714 GPU内存: 已分配 1.24GB, 保留 16.35GB
+  Batch 420/714 | Loss: 5.4149 | Acc: 9.54% | Tokens: 2858
+训练Batch 430/714 GPU内存: 已分配 1.24GB, 保留 15.13GB
+  Batch 430/714 | Loss: 5.3448 | Acc: 11.00% | Tokens: 2397
+训练Batch 440/714 GPU内存: 已分配 1.24GB, 保留 15.13GB
+  Batch 440/714 | Loss: 5.3480 | Acc: 8.57% | Tokens: 2353
+训练Batch 450/714 GPU内存: 已分配 1.24GB, 保留 15.16GB
+  Batch 450/714 | Loss: 5.6141 | Acc: 7.07% | Tokens: 2952
+训练Batch 460/714 GPU内存: 已分配 1.24GB, 保留 15.16GB
+  Batch 460/714 | Loss: 5.3105 | Acc: 7.44% | Tokens: 2119
+训练Batch 470/714 GPU内存: 已分配 1.24GB, 保留 15.82GB
+  Batch 470/714 | Loss: 5.2804 | Acc: 14.24% | Tokens: 3101
+训练Batch 480/714 GPU内存: 已分配 1.24GB, 保留 15.82GB
+  Batch 480/714 | Loss: 5.3983 | Acc: 10.36% | Tokens: 2466
+训练Batch 490/714 GPU内存: 已分配 1.24GB, 保留 14.85GB
+  Batch 490/714 | Loss: 5.5949 | Acc: 8.51% | Tokens: 2545
+训练Batch 500/714 GPU内存: 已分配 1.24GB, 保留 16.52GB
+  Batch 500/714 | Loss: 5.3801 | Acc: 8.38% | Tokens: 2407
+训练Batch 510/714 GPU内存: 已分配 1.24GB, 保留 15.40GB
+  Batch 510/714 | Loss: 5.4705 | Acc: 7.77% | Tokens: 2453
+训练Batch 520/714 GPU内存: 已分配 1.24GB, 保留 17.08GB
+  Batch 520/714 | Loss: 5.5296 | Acc: 7.07% | Tokens: 2727
+训练Batch 530/714 GPU内存: 已分配 1.24GB, 保留 16.97GB
+  Batch 530/714 | Loss: 5.3405 | Acc: 9.15% | Tokens: 2182
+训练Batch 540/714 GPU内存: 已分配 1.24GB, 保留 18.56GB
+  Batch 540/714 | Loss: 5.7272 | Acc: 9.53% | Tokens: 2902
+训练Batch 550/714 GPU内存: 已分配 1.24GB, 保留 15.30GB
+  Batch 550/714 | Loss: 5.4534 | Acc: 9.78% | Tokens: 2727
+训练Batch 560/714 GPU内存: 已分配 1.25GB, 保留 15.30GB
+  Batch 560/714 | Loss: 5.6513 | Acc: 6.97% | Tokens: 2838
+训练Batch 570/714 GPU内存: 已分配 1.24GB, 保留 14.12GB
+  Batch 570/714 | Loss: 5.5487 | Acc: 7.93% | Tokens: 2696
+训练Batch 580/714 GPU内存: 已分配 1.24GB, 保留 17.76GB
+  Batch 580/714 | Loss: 5.4670 | Acc: 7.66% | Tokens: 2423
+训练Batch 590/714 GPU内存: 已分配 1.24GB, 保留 15.01GB
+  Batch 590/714 | Loss: 5.2060 | Acc: 8.89% | Tokens: 2211
+训练Batch 600/714 GPU内存: 已分配 1.24GB, 保留 17.51GB
+  Batch 600/714 | Loss: 5.3021 | Acc: 9.39% | Tokens: 2753
+训练Batch 610/714 GPU内存: 已分配 1.24GB, 保留 15.10GB
+  Batch 610/714 | Loss: 5.3338 | Acc: 11.03% | Tokens: 2662
+训练Batch 620/714 GPU内存: 已分配 1.24GB, 保留 15.51GB
+  Batch 620/714 | Loss: 5.2800 | Acc: 9.62% | Tokens: 2356
+训练Batch 630/714 GPU内存: 已分配 1.24GB, 保留 14.50GB
+  Batch 630/714 | Loss: 5.5051 | Acc: 9.68% | Tokens: 2982
+训练Batch 640/714 GPU内存: 已分配 1.24GB, 保留 15.36GB
+  Batch 640/714 | Loss: 5.3763 | Acc: 11.90% | Tokens: 2600
+训练Batch 650/714 GPU内存: 已分配 1.24GB, 保留 15.09GB
+  Batch 650/714 | Loss: 5.2301 | Acc: 8.77% | Tokens: 1901
+训练Batch 660/714 GPU内存: 已分配 1.24GB, 保留 15.93GB
+  Batch 660/714 | Loss: 5.2567 | Acc: 11.23% | Tokens: 2026
+训练Batch 670/714 GPU内存: 已分配 1.24GB, 保留 16.59GB
+  Batch 670/714 | Loss: 5.0753 | Acc: 10.86% | Tokens: 1691
+训练Batch 680/714 GPU内存: 已分配 1.24GB, 保留 16.59GB
+  Batch 680/714 | Loss: 5.5246 | Acc: 10.11% | Tokens: 2814
+训练Batch 690/714 GPU内存: 已分配 1.24GB, 保留 15.00GB
+  Batch 690/714 | Loss: 5.5277 | Acc: 7.51% | Tokens: 2499
+训练Batch 700/714 GPU内存: 已分配 1.24GB, 保留 16.63GB
+  Batch 700/714 | Loss: 5.6154 | Acc: 7.36% | Tokens: 2620
+训练Batch 710/714 GPU内存: 已分配 1.24GB, 保留 15.07GB
+  Batch 710/714 | Loss: 5.5517 | Acc: 7.49% | Tokens: 2895
+✅ 训练完成: 平均损失/Token = 5.4170, 平均准确率 = 9.06%
+开始评估，共653个batch...
+  评估Batch 0/653 | Loss: 4.8936 | Acc: 13.33%
+  评估Batch 10/653 | Loss: 4.7953 | Acc: 13.85%
+  评估Batch 20/653 | Loss: 5.0067 | Acc: 14.96%
+  评估Batch 30/653 | Loss: 4.9620 | Acc: 19.68%
+  评估Batch 40/653 | Loss: 5.0722 | Acc: 12.51%
+  评估Batch 50/653 | Loss: 4.1584 | Acc: 16.67%
+  评估Batch 60/653 | Loss: 5.0065 | Acc: 10.17%
+  评估Batch 70/653 | Loss: 5.1922 | Acc: 7.92%
+  评估Batch 80/653 | Loss: 5.1898 | Acc: 8.88%
+  评估Batch 90/653 | Loss: 5.0361 | Acc: 11.30%
+  评估Batch 100/653 | Loss: 5.2870 | Acc: 8.27%
+  评估Batch 110/653 | Loss: 5.4260 | Acc: 10.92%
+  评估Batch 120/653 | Loss: 5.7200 | Acc: 6.31%
+  评估Batch 130/653 | Loss: 4.3156 | Acc: 19.00%
+  评估Batch 140/653 | Loss: 5.0743 | Acc: 10.98%
+  评估Batch 150/653 | Loss: 5.0421 | Acc: 11.63%
+  评估Batch 160/653 | Loss: 5.1117 | Acc: 11.20%
+  评估Batch 170/653 | Loss: 5.3323 | Acc: 7.15%
+  评估Batch 180/653 | Loss: 4.9704 | Acc: 12.78%
+  评估Batch 190/653 | Loss: 5.0632 | Acc: 11.57%
+  评估Batch 200/653 | Loss: 5.1694 | Acc: 11.13%
+  评估Batch 210/653 | Loss: 5.2590 | Acc: 10.45%
+  评估Batch 220/653 | Loss: 5.3484 | Acc: 9.51%
+  评估Batch 230/653 | Loss: 5.2064 | Acc: 9.11%
+  评估Batch 240/653 | Loss: 5.4506 | Acc: 7.29%
+  评估Batch 250/653 | Loss: 4.7796 | Acc: 13.38%
+  评估Batch 260/653 | Loss: 5.0392 | Acc: 11.17%
+  评估Batch 270/653 | Loss: 5.2973 | Acc: 9.03%
+  评估Batch 280/653 | Loss: 5.7819 | Acc: 6.39%
+  评估Batch 290/653 | Loss: 5.3306 | Acc: 10.07%
+  评估Batch 300/653 | Loss: 5.2687 | Acc: 9.40%
+  评估Batch 310/653 | Loss: 5.0563 | Acc: 10.94%
+  评估Batch 320/653 | Loss: 5.0276 | Acc: 13.84%
+  评估Batch 330/653 | Loss: 4.6057 | Acc: 16.80%
+  评估Batch 340/653 | Loss: 4.2953 | Acc: 19.11%
+  评估Batch 350/653 | Loss: 5.0053 | Acc: 11.37%
+  评估Batch 360/653 | Loss: 4.8650 | Acc: 13.07%
+  评估Batch 370/653 | Loss: 5.4598 | Acc: 9.25%
+  评估Batch 380/653 | Loss: 5.4744 | Acc: 7.21%
+  评估Batch 390/653 | Loss: 4.8319 | Acc: 14.23%
+  评估Batch 400/653 | Loss: 4.6564 | Acc: 15.77%
+  评估Batch 410/653 | Loss: 5.0199 | Acc: 11.26%
+  评估Batch 420/653 | Loss: 5.3349 | Acc: 9.87%
+  评估Batch 430/653 | Loss: 5.3464 | Acc: 7.77%
+  评估Batch 440/653 | Loss: 4.5240 | Acc: 14.53%
+  评估Batch 450/653 | Loss: 4.9539 | Acc: 12.29%
+  评估Batch 460/653 | Loss: 4.4337 | Acc: 17.81%
+  评估Batch 470/653 | Loss: 5.4402 | Acc: 6.87%
+  评估Batch 480/653 | Loss: 5.5466 | Acc: 6.36%
+  评估Batch 490/653 | Loss: 5.5802 | Acc: 7.18%
+  评估Batch 500/653 | Loss: 5.1601 | Acc: 9.82%
+  评估Batch 510/653 | Loss: 5.0728 | Acc: 13.30%
+  评估Batch 520/653 | Loss: 4.8782 | Acc: 12.02%
+  评估Batch 530/653 | Loss: 4.7116 | Acc: 15.77%
+  评估Batch 540/653 | Loss: 5.2890 | Acc: 8.86%
+  评估Batch 550/653 | Loss: 5.2583 | Acc: 11.60%
+  评估Batch 560/653 | Loss: 5.5000 | Acc: 8.12%
+  评估Batch 570/653 | Loss: 5.3304 | Acc: 9.92%
+  评估Batch 580/653 | Loss: 5.0672 | Acc: 11.56%
+  评估Batch 590/653 | Loss: 4.8181 | Acc: 12.71%
+  评估Batch 600/653 | Loss: 4.9105 | Acc: 13.38%
+  评估Batch 610/653 | Loss: 5.5360 | Acc: 8.57%
+  评估Batch 620/653 | Loss: 5.4291 | Acc: 7.36%
+  评估Batch 630/653 | Loss: 5.3305 | Acc: 10.47%
+  评估Batch 640/653 | Loss: 4.8271 | Acc: 13.50%
+  评估Batch 650/653 | Loss: 4.4790 | Acc: 16.81%
+✅ 评估完成: 平均损失/Token = 5.1447, 平均准确率 = 10.90%
+Epoch 07 | 训练损失: 5.4170 | 训练准确率: 9.06% | 测试损失: 5.1447 | 测试准确率: 10.90%
+
+==================================================
+Epoch 08/10
+==================================================
+开始训练epoch，共714个batch...
+训练Batch 0/714 GPU内存: 已分配 1.24GB, 保留 15.11GB
+  Batch 0/714 | Loss: 5.3145 | Acc: 9.81% | Tokens: 2422
+训练Batch 10/714 GPU内存: 已分配 1.24GB, 保留 15.50GB
+  Batch 10/714 | Loss: 5.6554 | Acc: 6.43% | Tokens: 2407
+训练Batch 20/714 GPU内存: 已分配 1.24GB, 保留 15.50GB
+  Batch 20/714 | Loss: 5.5091 | Acc: 8.55% | Tokens: 2815
+训练Batch 30/714 GPU内存: 已分配 1.24GB, 保留 15.43GB
+  Batch 30/714 | Loss: 5.2474 | Acc: 10.23% | Tokens: 2420
+训练Batch 40/714 GPU内存: 已分配 1.24GB, 保留 16.24GB
+  Batch 40/714 | Loss: 5.3645 | Acc: 10.45% | Tokens: 2877
+训练Batch 50/714 GPU内存: 已分配 1.24GB, 保留 14.70GB
+  Batch 50/714 | Loss: 5.6241 | Acc: 7.01% | Tokens: 2665
+训练Batch 60/714 GPU内存: 已分配 1.24GB, 保留 16.32GB
+  Batch 60/714 | Loss: 5.4971 | Acc: 8.01% | Tokens: 2756
+训练Batch 70/714 GPU内存: 已分配 1.24GB, 保留 13.45GB
+  Batch 70/714 | Loss: 5.5188 | Acc: 7.76% | Tokens: 2510
+训练Batch 80/714 GPU内存: 已分配 1.24GB, 保留 13.83GB
+  Batch 80/714 | Loss: 5.5673 | Acc: 7.46% | Tokens: 2797
+训练Batch 90/714 GPU内存: 已分配 1.24GB, 保留 15.33GB
+  Batch 90/714 | Loss: 5.4757 | Acc: 8.05% | Tokens: 2456
+训练Batch 100/714 GPU内存: 已分配 1.24GB, 保留 15.33GB
+  Batch 100/714 | Loss: 5.2874 | Acc: 10.13% | Tokens: 2305
+训练Batch 110/714 GPU内存: 已分配 1.24GB, 保留 13.29GB
+  Batch 110/714 | Loss: 5.5402 | Acc: 9.12% | Tokens: 2935
+训练Batch 120/714 GPU内存: 已分配 1.24GB, 保留 13.69GB
+  Batch 120/714 | Loss: 4.7143 | Acc: 12.94% | Tokens: 2816
+训练Batch 130/714 GPU内存: 已分配 1.24GB, 保留 11.20GB
+  Batch 130/714 | Loss: 5.1695 | Acc: 10.47% | Tokens: 2680
+训练Batch 140/714 GPU内存: 已分配 1.24GB, 保留 15.51GB
+  Batch 140/714 | Loss: 4.8844 | Acc: 12.33% | Tokens: 1578
+训练Batch 150/714 GPU内存: 已分配 1.24GB, 保留 16.26GB
+  Batch 150/714 | Loss: 5.4901 | Acc: 7.65% | Tokens: 2468
+训练Batch 160/714 GPU内存: 已分配 1.24GB, 保留 16.26GB
+  Batch 160/714 | Loss: 5.5833 | Acc: 8.31% | Tokens: 2994
+训练Batch 170/714 GPU内存: 已分配 1.24GB, 保留 17.05GB
+  Batch 170/714 | Loss: 5.3228 | Acc: 13.07% | Tokens: 2873
+训练Batch 180/714 GPU内存: 已分配 1.24GB, 保留 17.92GB
+  Batch 180/714 | Loss: 5.2232 | Acc: 9.72% | Tokens: 2599
+训练Batch 190/714 GPU内存: 已分配 1.24GB, 保留 17.74GB
+  Batch 190/714 | Loss: 5.1359 | Acc: 11.98% | Tokens: 1991
+训练Batch 200/714 GPU内存: 已分配 1.24GB, 保留 17.74GB
+  Batch 200/714 | Loss: 5.3482 | Acc: 9.10% | Tokens: 2270
+训练Batch 210/714 GPU内存: 已分配 1.24GB, 保留 14.21GB
+  Batch 210/714 | Loss: 5.1491 | Acc: 8.66% | Tokens: 1833
+训练Batch 220/714 GPU内存: 已分配 1.24GB, 保留 15.82GB
+  Batch 220/714 | Loss: 5.7646 | Acc: 5.06% | Tokens: 2920
+训练Batch 230/714 GPU内存: 已分配 1.24GB, 保留 10.58GB
+  Batch 230/714 | Loss: 5.5712 | Acc: 7.29% | Tokens: 3056
+训练Batch 240/714 GPU内存: 已分配 1.24GB, 保留 14.54GB
+  Batch 240/714 | Loss: 5.6218 | Acc: 6.70% | Tokens: 2580
+训练Batch 250/714 GPU内存: 已分配 1.24GB, 保留 16.71GB
+  Batch 250/714 | Loss: 5.6439 | Acc: 6.85% | Tokens: 2960
+训练Batch 260/714 GPU内存: 已分配 1.24GB, 保留 16.71GB
+  Batch 260/714 | Loss: 5.2665 | Acc: 9.77% | Tokens: 2812
+训练Batch 270/714 GPU内存: 已分配 1.24GB, 保留 14.62GB
+  Batch 270/714 | Loss: 5.3310 | Acc: 10.57% | Tokens: 2313
+训练Batch 280/714 GPU内存: 已分配 1.24GB, 保留 16.35GB
+  Batch 280/714 | Loss: 5.4370 | Acc: 8.55% | Tokens: 2161
+训练Batch 290/714 GPU内存: 已分配 1.24GB, 保留 15.85GB
+  Batch 290/714 | Loss: 5.4280 | Acc: 9.27% | Tokens: 2391
+训练Batch 300/714 GPU内存: 已分配 1.24GB, 保留 16.73GB
+  Batch 300/714 | Loss: 5.3197 | Acc: 8.32% | Tokens: 2569
+训练Batch 310/714 GPU内存: 已分配 1.24GB, 保留 15.29GB
+  Batch 310/714 | Loss: 5.5882 | Acc: 6.81% | Tokens: 2963
+训练Batch 320/714 GPU内存: 已分配 1.24GB, 保留 15.29GB
+  Batch 320/714 | Loss: 5.5812 | Acc: 8.21% | Tokens: 2942
+训练Batch 330/714 GPU内存: 已分配 1.24GB, 保留 10.66GB
+  Batch 330/714 | Loss: 5.4700 | Acc: 6.95% | Tokens: 2213
+训练Batch 340/714 GPU内存: 已分配 1.24GB, 保留 16.45GB
+  Batch 340/714 | Loss: 4.6968 | Acc: 16.63% | Tokens: 1638
+训练Batch 350/714 GPU内存: 已分配 1.24GB, 保留 14.63GB
+  Batch 350/714 | Loss: 5.3851 | Acc: 9.19% | Tokens: 2684
+训练Batch 360/714 GPU内存: 已分配 1.24GB, 保留 16.27GB
+  Batch 360/714 | Loss: 5.1394 | Acc: 10.10% | Tokens: 2066
+训练Batch 370/714 GPU内存: 已分配 1.24GB, 保留 14.91GB
+  Batch 370/714 | Loss: 5.1210 | Acc: 12.81% | Tokens: 2306
+训练Batch 380/714 GPU内存: 已分配 1.24GB, 保留 15.32GB
+  Batch 380/714 | Loss: 5.5665 | Acc: 9.44% | Tokens: 2645
+训练Batch 390/714 GPU内存: 已分配 1.24GB, 保留 15.74GB
+  Batch 390/714 | Loss: 5.5231 | Acc: 7.96% | Tokens: 2937
+训练Batch 400/714 GPU内存: 已分配 1.24GB, 保留 16.95GB
+  Batch 400/714 | Loss: 5.3221 | Acc: 10.00% | Tokens: 2137
+训练Batch 410/714 GPU内存: 已分配 1.24GB, 保留 14.67GB
+  Batch 410/714 | Loss: 5.4382 | Acc: 8.45% | Tokens: 2611
+训练Batch 420/714 GPU内存: 已分配 1.24GB, 保留 15.49GB
+  Batch 420/714 | Loss: 5.5501 | Acc: 7.56% | Tokens: 2602
+训练Batch 430/714 GPU内存: 已分配 1.24GB, 保留 15.56GB
+  Batch 430/714 | Loss: 5.3319 | Acc: 12.90% | Tokens: 2136
+训练Batch 440/714 GPU内存: 已分配 1.24GB, 保留 16.43GB
+  Batch 440/714 | Loss: 5.5457 | Acc: 6.76% | Tokens: 2009
+训练Batch 450/714 GPU内存: 已分配 1.24GB, 保留 15.51GB
+  Batch 450/714 | Loss: 5.0719 | Acc: 11.73% | Tokens: 2033
+训练Batch 460/714 GPU内存: 已分配 1.24GB, 保留 17.40GB
+  Batch 460/714 | Loss: 5.2441 | Acc: 12.72% | Tokens: 2087
+训练Batch 470/714 GPU内存: 已分配 1.24GB, 保留 11.33GB
+  Batch 470/714 | Loss: 5.1601 | Acc: 13.28% | Tokens: 2292
+训练Batch 480/714 GPU内存: 已分配 1.24GB, 保留 12.56GB
+  Batch 480/714 | Loss: 5.3202 | Acc: 10.49% | Tokens: 2303
+训练Batch 490/714 GPU内存: 已分配 1.24GB, 保留 14.95GB
+  Batch 490/714 | Loss: 5.3925 | Acc: 10.27% | Tokens: 2382
+训练Batch 500/714 GPU内存: 已分配 1.24GB, 保留 15.78GB
+  Batch 500/714 | Loss: 5.5052 | Acc: 8.46% | Tokens: 2775
+训练Batch 510/714 GPU内存: 已分配 1.24GB, 保留 14.26GB
+  Batch 510/714 | Loss: 5.4599 | Acc: 8.30% | Tokens: 2744
+训练Batch 520/714 GPU内存: 已分配 1.24GB, 保留 14.26GB
+  Batch 520/714 | Loss: 5.5070 | Acc: 8.14% | Tokens: 2614
+训练Batch 530/714 GPU内存: 已分配 1.24GB, 保留 14.88GB
+  Batch 530/714 | Loss: 5.6977 | Acc: 6.68% | Tokens: 3093
+训练Batch 540/714 GPU内存: 已分配 1.24GB, 保留 16.57GB
+  Batch 540/714 | Loss: 5.1764 | Acc: 13.15% | Tokens: 2240
+训练Batch 550/714 GPU内存: 已分配 1.24GB, 保留 14.67GB
+  Batch 550/714 | Loss: 4.8218 | Acc: 12.24% | Tokens: 2693
+训练Batch 560/714 GPU内存: 已分配 1.24GB, 保留 14.67GB
+  Batch 560/714 | Loss: 5.3261 | Acc: 8.39% | Tokens: 2177
+训练Batch 570/714 GPU内存: 已分配 1.24GB, 保留 14.10GB
+  Batch 570/714 | Loss: 5.3335 | Acc: 8.72% | Tokens: 1509
+训练Batch 580/714 GPU内存: 已分配 1.24GB, 保留 14.10GB
+  Batch 580/714 | Loss: 5.1743 | Acc: 11.39% | Tokens: 2059
+训练Batch 590/714 GPU内存: 已分配 1.24GB, 保留 14.81GB
+  Batch 590/714 | Loss: 5.3108 | Acc: 8.56% | Tokens: 2298
+训练Batch 600/714 GPU内存: 已分配 1.24GB, 保留 14.81GB
+  Batch 600/714 | Loss: 5.2903 | Acc: 10.25% | Tokens: 2913
+训练Batch 610/714 GPU内存: 已分配 1.24GB, 保留 15.00GB
+  Batch 610/714 | Loss: 5.4237 | Acc: 9.12% | Tokens: 2342
+训练Batch 620/714 GPU内存: 已分配 1.24GB, 保留 15.00GB
+  Batch 620/714 | Loss: 5.2402 | Acc: 8.30% | Tokens: 1827
+训练Batch 630/714 GPU内存: 已分配 1.24GB, 保留 13.36GB
+  Batch 630/714 | Loss: 5.5090 | Acc: 8.57% | Tokens: 2785
+训练Batch 640/714 GPU内存: 已分配 1.24GB, 保留 15.36GB
+  Batch 640/714 | Loss: 5.1478 | Acc: 11.79% | Tokens: 1956
+训练Batch 650/714 GPU内存: 已分配 1.24GB, 保留 16.08GB
+  Batch 650/714 | Loss: 5.2738 | Acc: 10.69% | Tokens: 2101
+训练Batch 660/714 GPU内存: 已分配 1.24GB, 保留 16.08GB
+  Batch 660/714 | Loss: 5.5659 | Acc: 7.57% | Tokens: 2692
+训练Batch 670/714 GPU内存: 已分配 1.24GB, 保留 14.78GB
+  Batch 670/714 | Loss: 5.7080 | Acc: 6.03% | Tokens: 2465
+训练Batch 680/714 GPU内存: 已分配 1.24GB, 保留 14.78GB
+  Batch 680/714 | Loss: 5.5147 | Acc: 7.83% | Tokens: 2818
+训练Batch 690/714 GPU内存: 已分配 1.24GB, 保留 15.99GB
+  Batch 690/714 | Loss: 5.0527 | Acc: 11.84% | Tokens: 2040
+训练Batch 700/714 GPU内存: 已分配 1.24GB, 保留 15.99GB
+  Batch 700/714 | Loss: 5.1936 | Acc: 8.85% | Tokens: 1748
+训练Batch 710/714 GPU内存: 已分配 1.24GB, 保留 15.25GB
+  Batch 710/714 | Loss: 5.5024 | Acc: 7.70% | Tokens: 2515
+✅ 训练完成: 平均损失/Token = 5.3986, 平均准确率 = 9.22%
+开始评估，共653个batch...
+  评估Batch 0/653 | Loss: 4.8575 | Acc: 13.16%
+  评估Batch 10/653 | Loss: 4.8116 | Acc: 13.28%
+  评估Batch 20/653 | Loss: 4.9873 | Acc: 15.35%
+  评估Batch 30/653 | Loss: 4.9053 | Acc: 14.91%
+  评估Batch 40/653 | Loss: 5.0413 | Acc: 11.91%
+  评估Batch 50/653 | Loss: 4.1775 | Acc: 15.76%
+  评估Batch 60/653 | Loss: 4.9865 | Acc: 10.36%
+  评估Batch 70/653 | Loss: 5.1836 | Acc: 8.82%
+  评估Batch 80/653 | Loss: 5.1690 | Acc: 9.90%
+  评估Batch 90/653 | Loss: 4.9722 | Acc: 12.23%
+  评估Batch 100/653 | Loss: 5.2400 | Acc: 9.16%
+  评估Batch 110/653 | Loss: 5.4437 | Acc: 8.91%
+  评估Batch 120/653 | Loss: 5.7260 | Acc: 6.31%
+  评估Batch 130/653 | Loss: 4.3001 | Acc: 17.71%
+  评估Batch 140/653 | Loss: 5.0416 | Acc: 11.11%
+  评估Batch 150/653 | Loss: 5.0329 | Acc: 11.63%
+  评估Batch 160/653 | Loss: 5.0745 | Acc: 10.71%
+  评估Batch 170/653 | Loss: 5.2942 | Acc: 8.11%
+  评估Batch 180/653 | Loss: 5.0149 | Acc: 10.45%
+  评估Batch 190/653 | Loss: 5.0900 | Acc: 12.07%
+  评估Batch 200/653 | Loss: 5.2085 | Acc: 10.97%
+  评估Batch 210/653 | Loss: 5.2732 | Acc: 10.04%
+  评估Batch 220/653 | Loss: 5.3151 | Acc: 9.64%
+  评估Batch 230/653 | Loss: 5.1828 | Acc: 9.42%
+  评估Batch 240/653 | Loss: 5.4173 | Acc: 7.35%
+  评估Batch 250/653 | Loss: 4.7648 | Acc: 14.32%
+  评估Batch 260/653 | Loss: 5.0183 | Acc: 11.51%
+  评估Batch 270/653 | Loss: 5.2582 | Acc: 9.55%
+  评估Batch 280/653 | Loss: 5.7283 | Acc: 7.53%
+  评估Batch 290/653 | Loss: 5.2899 | Acc: 9.79%
+  评估Batch 300/653 | Loss: 5.1918 | Acc: 9.40%
+  评估Batch 310/653 | Loss: 4.9719 | Acc: 12.83%
+  评估Batch 320/653 | Loss: 4.9883 | Acc: 15.32%
+  评估Batch 330/653 | Loss: 4.5363 | Acc: 18.76%
+  评估Batch 340/653 | Loss: 4.2980 | Acc: 19.69%
+  评估Batch 350/653 | Loss: 4.9963 | Acc: 11.86%
+  评估Batch 360/653 | Loss: 4.8576 | Acc: 12.84%
+  评估Batch 370/653 | Loss: 5.4242 | Acc: 9.82%
+  评估Batch 380/653 | Loss: 5.4372 | Acc: 8.31%
+  评估Batch 390/653 | Loss: 4.8368 | Acc: 13.83%
+  评估Batch 400/653 | Loss: 4.5790 | Acc: 17.20%
+  评估Batch 410/653 | Loss: 4.9266 | Acc: 11.57%
+  评估Batch 420/653 | Loss: 5.2828 | Acc: 9.74%
+  评估Batch 430/653 | Loss: 5.4267 | Acc: 6.97%
+  评估Batch 440/653 | Loss: 4.5435 | Acc: 14.35%
+  评估Batch 450/653 | Loss: 4.9551 | Acc: 12.88%
+  评估Batch 460/653 | Loss: 4.4612 | Acc: 18.35%
+  评估Batch 470/653 | Loss: 5.3499 | Acc: 7.61%
+  评估Batch 480/653 | Loss: 5.4488 | Acc: 6.28%
+  评估Batch 490/653 | Loss: 5.5863 | Acc: 7.13%
+  评估Batch 500/653 | Loss: 5.1388 | Acc: 10.10%
+  评估Batch 510/653 | Loss: 5.1273 | Acc: 12.35%
+  评估Batch 520/653 | Loss: 4.8915 | Acc: 12.27%
+  评估Batch 530/653 | Loss: 4.7382 | Acc: 15.15%
+  评估Batch 540/653 | Loss: 5.2768 | Acc: 8.86%
+  评估Batch 550/653 | Loss: 5.2511 | Acc: 11.60%
+  评估Batch 560/653 | Loss: 5.4944 | Acc: 8.46%
+  评估Batch 570/653 | Loss: 6.0991 | Acc: 9.97%
+  评估Batch 580/653 | Loss: 5.0520 | Acc: 12.51%
+  评估Batch 590/653 | Loss: 4.8379 | Acc: 12.12%
+  评估Batch 600/653 | Loss: 4.9345 | Acc: 13.38%
+  评估Batch 610/653 | Loss: 5.8777 | Acc: 8.53%
+  评估Batch 620/653 | Loss: 5.3908 | Acc: 7.45%
+  评估Batch 630/653 | Loss: 5.2781 | Acc: 10.79%
+  评估Batch 640/653 | Loss: 4.8273 | Acc: 13.35%
+  评估Batch 650/653 | Loss: 4.4874 | Acc: 16.81%
+✅ 评估完成: 平均损失/Token = 5.1355, 平均准确率 = 11.12%
+Epoch 08 | 训练损失: 5.3986 | 训练准确率: 9.22% | 测试损失: 5.1355 | 测试准确率: 11.12%
+
+==================================================
+Epoch 09/10
+==================================================
+开始训练epoch，共714个batch...
+训练Batch 0/714 GPU内存: 已分配 1.24GB, 保留 15.11GB
+  Batch 0/714 | Loss: 5.4848 | Acc: 9.70% | Tokens: 3038
+训练Batch 10/714 GPU内存: 已分配 1.24GB, 保留 16.55GB
+  Batch 10/714 | Loss: 5.3057 | Acc: 9.96% | Tokens: 2104
+训练Batch 20/714 GPU内存: 已分配 1.24GB, 保留 16.96GB
+  Batch 20/714 | Loss: 5.4136 | Acc: 9.63% | Tokens: 2954
+训练Batch 30/714 GPU内存: 已分配 1.24GB, 保留 11.02GB
+  Batch 30/714 | Loss: 5.5441 | Acc: 8.14% | Tokens: 2774
+训练Batch 40/714 GPU内存: 已分配 1.24GB, 保留 11.02GB
+  Batch 40/714 | Loss: 5.1764 | Acc: 9.84% | Tokens: 2669
+训练Batch 50/714 GPU内存: 已分配 1.24GB, 保留 14.38GB
+  Batch 50/714 | Loss: 5.4637 | Acc: 8.82% | Tokens: 2695
+训练Batch 60/714 GPU内存: 已分配 1.24GB, 保留 14.38GB
+  Batch 60/714 | Loss: 5.4209 | Acc: 8.59% | Tokens: 2568
+训练Batch 70/714 GPU内存: 已分配 1.24GB, 保留 14.93GB
+  Batch 70/714 | Loss: 5.2465 | Acc: 10.48% | Tokens: 2668
+训练Batch 80/714 GPU内存: 已分配 1.24GB, 保留 14.93GB
+  Batch 80/714 | Loss: 5.3497 | Acc: 8.10% | Tokens: 2503
+训练Batch 90/714 GPU内存: 已分配 1.24GB, 保留 15.66GB
+  Batch 90/714 | Loss: 5.5666 | Acc: 7.72% | Tokens: 2625
+训练Batch 100/714 GPU内存: 已分配 1.24GB, 保留 16.48GB
+  Batch 100/714 | Loss: 5.1591 | Acc: 10.29% | Tokens: 1793
+训练Batch 110/714 GPU内存: 已分配 1.24GB, 保留 16.59GB
+  Batch 110/714 | Loss: 5.3329 | Acc: 10.11% | Tokens: 2687
+训练Batch 120/714 GPU内存: 已分配 1.24GB, 保留 17.46GB
+  Batch 120/714 | Loss: 5.1958 | Acc: 11.97% | Tokens: 2351
+训练Batch 130/714 GPU内存: 已分配 1.24GB, 保留 16.31GB
+  Batch 130/714 | Loss: 4.9996 | Acc: 12.30% | Tokens: 1914
+训练Batch 140/714 GPU内存: 已分配 1.24GB, 保留 17.15GB
+  Batch 140/714 | Loss: 5.3156 | Acc: 10.17% | Tokens: 2680
+训练Batch 150/714 GPU内存: 已分配 1.24GB, 保留 15.55GB
+  Batch 150/714 | Loss: 5.4599 | Acc: 8.27% | Tokens: 2790
+训练Batch 160/714 GPU内存: 已分配 1.24GB, 保留 15.55GB
+  Batch 160/714 | Loss: 4.9929 | Acc: 13.70% | Tokens: 2055
+训练Batch 170/714 GPU内存: 已分配 1.24GB, 保留 15.42GB
+  Batch 170/714 | Loss: 5.3656 | Acc: 11.11% | Tokens: 2902
+训练Batch 180/714 GPU内存: 已分配 1.24GB, 保留 15.42GB
+  Batch 180/714 | Loss: 5.3107 | Acc: 9.28% | Tokens: 2399
+训练Batch 190/714 GPU内存: 已分配 1.24GB, 保留 11.22GB
+  Batch 190/714 | Loss: 5.6122 | Acc: 6.51% | Tokens: 2745
+训练Batch 200/714 GPU内存: 已分配 1.24GB, 保留 11.22GB
+  Batch 200/714 | Loss: 5.3735 | Acc: 8.26% | Tokens: 2368
+训练Batch 210/714 GPU内存: 已分配 1.24GB, 保留 14.90GB
+  Batch 210/714 | Loss: 5.5959 | Acc: 10.18% | Tokens: 2776
+训练Batch 220/714 GPU内存: 已分配 1.24GB, 保留 16.60GB
+  Batch 220/714 | Loss: 5.4824 | Acc: 10.73% | Tokens: 2856
+训练Batch 230/714 GPU内存: 已分配 1.24GB, 保留 15.43GB
+  Batch 230/714 | Loss: 4.6806 | Acc: 16.04% | Tokens: 2421
+训练Batch 240/714 GPU内存: 已分配 1.24GB, 保留 19.25GB
+  Batch 240/714 | Loss: 5.5032 | Acc: 9.49% | Tokens: 2684
+训练Batch 250/714 GPU内存: 已分配 1.24GB, 保留 13.50GB
+  Batch 250/714 | Loss: 5.3340 | Acc: 12.18% | Tokens: 2541
+训练Batch 260/714 GPU内存: 已分配 1.24GB, 保留 15.14GB
+  Batch 260/714 | Loss: 5.4574 | Acc: 7.30% | Tokens: 2860
+训练Batch 270/714 GPU内存: 已分配 1.24GB, 保留 13.82GB
+  Batch 270/714 | Loss: 5.4195 | Acc: 8.91% | Tokens: 2913
+训练Batch 280/714 GPU内存: 已分配 1.24GB, 保留 13.82GB
+  Batch 280/714 | Loss: 5.3870 | Acc: 9.26% | Tokens: 2468
+训练Batch 290/714 GPU内存: 已分配 1.24GB, 保留 16.09GB
+  Batch 290/714 | Loss: 5.5200 | Acc: 8.46% | Tokens: 2773
+训练Batch 300/714 GPU内存: 已分配 1.24GB, 保留 16.96GB
+  Batch 300/714 | Loss: 5.6141 | Acc: 7.31% | Tokens: 2486
+训练Batch 310/714 GPU内存: 已分配 1.24GB, 保留 15.76GB
+  Batch 310/714 | Loss: 5.4696 | Acc: 12.30% | Tokens: 2979
+训练Batch 320/714 GPU内存: 已分配 1.24GB, 保留 16.97GB
+  Batch 320/714 | Loss: 5.3947 | Acc: 12.69% | Tokens: 2541
+训练Batch 330/714 GPU内存: 已分配 1.24GB, 保留 12.06GB
+  Batch 330/714 | Loss: 5.2004 | Acc: 10.63% | Tokens: 1605
+训练Batch 340/714 GPU内存: 已分配 1.24GB, 保留 12.44GB
+  Batch 340/714 | Loss: 5.3211 | Acc: 10.14% | Tokens: 2579
+训练Batch 350/714 GPU内存: 已分配 1.24GB, 保留 16.11GB
+  Batch 350/714 | Loss: 5.5506 | Acc: 7.61% | Tokens: 3030
+训练Batch 360/714 GPU内存: 已分配 1.24GB, 保留 16.31GB
+  Batch 360/714 | Loss: 5.2390 | Acc: 11.45% | Tokens: 2206
+训练Batch 370/714 GPU内存: 已分配 1.24GB, 保留 15.50GB
+  Batch 370/714 | Loss: 5.6247 | Acc: 6.94% | Tokens: 2750
+训练Batch 380/714 GPU内存: 已分配 1.24GB, 保留 15.50GB
+  Batch 380/714 | Loss: 5.5145 | Acc: 7.98% | Tokens: 2490
+训练Batch 390/714 GPU内存: 已分配 1.24GB, 保留 17.30GB
+  Batch 390/714 | Loss: 4.8449 | Acc: 12.06% | Tokens: 1547
+训练Batch 400/714 GPU内存: 已分配 1.24GB, 保留 19.00GB
+  Batch 400/714 | Loss: 5.3719 | Acc: 11.59% | Tokens: 2948
+训练Batch 410/714 GPU内存: 已分配 1.24GB, 保留 14.98GB
+  Batch 410/714 | Loss: 5.4973 | Acc: 7.70% | Tokens: 2255
+训练Batch 420/714 GPU内存: 已分配 1.24GB, 保留 15.17GB
+  Batch 420/714 | Loss: 5.5675 | Acc: 9.70% | Tokens: 2861
+训练Batch 430/714 GPU内存: 已分配 1.24GB, 保留 13.81GB
+  Batch 430/714 | Loss: 5.1134 | Acc: 12.75% | Tokens: 2497
+训练Batch 440/714 GPU内存: 已分配 1.24GB, 保留 18.20GB
+  Batch 440/714 | Loss: 5.7063 | Acc: 6.96% | Tokens: 2857
+训练Batch 450/714 GPU内存: 已分配 1.24GB, 保留 11.62GB
+  Batch 450/714 | Loss: 5.3804 | Acc: 13.44% | Tokens: 2608
+训练Batch 460/714 GPU内存: 已分配 1.24GB, 保留 11.62GB
+  Batch 460/714 | Loss: 5.4418 | Acc: 10.10% | Tokens: 2838
+训练Batch 470/714 GPU内存: 已分配 1.24GB, 保留 13.88GB
+  Batch 470/714 | Loss: 5.3275 | Acc: 10.13% | Tokens: 1546
+训练Batch 480/714 GPU内存: 已分配 1.24GB, 保留 15.44GB
+  Batch 480/714 | Loss: 5.3839 | Acc: 9.63% | Tokens: 2510
+训练Batch 490/714 GPU内存: 已分配 1.24GB, 保留 15.34GB
+  Batch 490/714 | Loss: 5.5109 | Acc: 8.04% | Tokens: 2460
+训练Batch 500/714 GPU内存: 已分配 1.24GB, 保留 21.43GB
+  Batch 500/714 | Loss: 5.6083 | Acc: 7.37% | Tokens: 3132
+训练Batch 510/714 GPU内存: 已分配 1.24GB, 保留 14.47GB
+  Batch 510/714 | Loss: 5.4455 | Acc: 9.28% | Tokens: 2441
+训练Batch 520/714 GPU内存: 已分配 1.24GB, 保留 14.47GB
+  Batch 520/714 | Loss: 5.6036 | Acc: 9.41% | Tokens: 2769
+训练Batch 530/714 GPU内存: 已分配 1.24GB, 保留 14.27GB
+  Batch 530/714 | Loss: 5.4865 | Acc: 7.20% | Tokens: 2441
+训练Batch 540/714 GPU内存: 已分配 1.24GB, 保留 16.43GB
+  Batch 540/714 | Loss: 5.0282 | Acc: 15.74% | Tokens: 2315
+训练Batch 550/714 GPU内存: 已分配 1.24GB, 保留 14.56GB
+  Batch 550/714 | Loss: 5.2888 | Acc: 11.20% | Tokens: 2094
+训练Batch 560/714 GPU内存: 已分配 1.24GB, 保留 15.78GB
+  Batch 560/714 | Loss: 5.6165 | Acc: 7.06% | Tokens: 2644
+训练Batch 570/714 GPU内存: 已分配 1.24GB, 保留 16.05GB
+  Batch 570/714 | Loss: 5.4884 | Acc: 9.23% | Tokens: 2467
+训练Batch 580/714 GPU内存: 已分配 1.24GB, 保留 17.66GB
+  Batch 580/714 | Loss: 5.0322 | Acc: 11.07% | Tokens: 2607
+训练Batch 590/714 GPU内存: 已分配 1.24GB, 保留 10.76GB
+  Batch 590/714 | Loss: 5.2398 | Acc: 9.74% | Tokens: 2112
+训练Batch 600/714 GPU内存: 已分配 1.24GB, 保留 15.61GB
+  Batch 600/714 | Loss: 5.3382 | Acc: 12.44% | Tokens: 2246
+训练Batch 610/714 GPU内存: 已分配 1.24GB, 保留 14.15GB
+  Batch 610/714 | Loss: 5.4405 | Acc: 8.45% | Tokens: 2552
+训练Batch 620/714 GPU内存: 已分配 1.24GB, 保留 14.15GB
+  Batch 620/714 | Loss: 5.1963 | Acc: 10.92% | Tokens: 1964
+训练Batch 630/714 GPU内存: 已分配 1.24GB, 保留 14.10GB
+  Batch 630/714 | Loss: 5.1018 | Acc: 10.12% | Tokens: 2189
+训练Batch 640/714 GPU内存: 已分配 1.24GB, 保留 15.28GB
+  Batch 640/714 | Loss: 5.4574 | Acc: 8.21% | Tokens: 2553
+训练Batch 650/714 GPU内存: 已分配 1.24GB, 保留 14.76GB
+  Batch 650/714 | Loss: 5.0351 | Acc: 12.16% | Tokens: 2447
+训练Batch 660/714 GPU内存: 已分配 1.24GB, 保留 18.20GB
+  Batch 660/714 | Loss: 5.4546 | Acc: 8.88% | Tokens: 2744
+训练Batch 670/714 GPU内存: 已分配 1.24GB, 保留 10.29GB
+  Batch 670/714 | Loss: 5.3820 | Acc: 9.35% | Tokens: 2637
+训练Batch 680/714 GPU内存: 已分配 1.24GB, 保留 16.84GB
+  Batch 680/714 | Loss: 5.3672 | Acc: 9.83% | Tokens: 2254
+训练Batch 690/714 GPU内存: 已分配 1.24GB, 保留 10.66GB
+  Batch 690/714 | Loss: 5.5506 | Acc: 8.08% | Tokens: 2817
+训练Batch 700/714 GPU内存: 已分配 1.24GB, 保留 16.91GB
+  Batch 700/714 | Loss: 5.5441 | Acc: 8.52% | Tokens: 2967
+训练Batch 710/714 GPU内存: 已分配 1.24GB, 保留 15.27GB
+  Batch 710/714 | Loss: 4.4400 | Acc: 16.65% | Tokens: 2536
+✅ 训练完成: 平均损失/Token = 5.3969, 平均准确率 = 9.27%
+开始评估，共653个batch...
+  评估Batch 0/653 | Loss: 4.8625 | Acc: 13.68%
+  评估Batch 10/653 | Loss: 4.7828 | Acc: 13.69%
+  评估Batch 20/653 | Loss: 4.9517 | Acc: 14.96%
+  评估Batch 30/653 | Loss: 4.8048 | Acc: 20.41%
+  评估Batch 40/653 | Loss: 5.0030 | Acc: 12.77%
+  评估Batch 50/653 | Loss: 4.1244 | Acc: 16.48%
+  评估Batch 60/653 | Loss: 4.9666 | Acc: 9.99%
+  评估Batch 70/653 | Loss: 5.1945 | Acc: 8.55%
+  评估Batch 80/653 | Loss: 5.1702 | Acc: 9.15%
+  评估Batch 90/653 | Loss: 4.9440 | Acc: 12.61%
+  评估Batch 100/653 | Loss: 5.2564 | Acc: 9.54%
+  评估Batch 110/653 | Loss: 5.3869 | Acc: 10.16%
+  评估Batch 120/653 | Loss: 5.6680 | Acc: 6.79%
+  评估Batch 130/653 | Loss: 4.2841 | Acc: 17.66%
+  评估Batch 140/653 | Loss: 5.0399 | Acc: 10.86%
+  评估Batch 150/653 | Loss: 5.0256 | Acc: 12.19%
+  评估Batch 160/653 | Loss: 5.0432 | Acc: 10.71%
+  评估Batch 170/653 | Loss: 5.2680 | Acc: 8.43%
+  评估Batch 180/653 | Loss: 4.9555 | Acc: 10.91%
+  评估Batch 190/653 | Loss: 5.0448 | Acc: 11.70%
+  评估Batch 200/653 | Loss: 5.1507 | Acc: 11.52%
+  评估Batch 210/653 | Loss: 5.2408 | Acc: 10.31%
+  评估Batch 220/653 | Loss: 5.3163 | Acc: 9.81%
+  评估Batch 230/653 | Loss: 5.1568 | Acc: 9.21%
+  评估Batch 240/653 | Loss: 5.3868 | Acc: 7.47%
+  评估Batch 250/653 | Loss: 4.7531 | Acc: 13.71%
+  评估Batch 260/653 | Loss: 4.9818 | Acc: 12.15%
+  评估Batch 270/653 | Loss: 5.2342 | Acc: 10.24%
+  评估Batch 280/653 | Loss: 5.7332 | Acc: 7.30%
+  评估Batch 290/653 | Loss: 5.2717 | Acc: 10.07%
+  评估Batch 300/653 | Loss: 5.1608 | Acc: 10.05%
+  评估Batch 310/653 | Loss: 4.9411 | Acc: 12.06%
+  评估Batch 320/653 | Loss: 5.0039 | Acc: 14.51%
+  评估Batch 330/653 | Loss: 4.5170 | Acc: 19.05%
+  评估Batch 340/653 | Loss: 4.2488 | Acc: 20.14%
+  评估Batch 350/653 | Loss: 4.9655 | Acc: 11.55%
+  评估Batch 360/653 | Loss: 4.8117 | Acc: 13.07%
+  评估Batch 370/653 | Loss: 5.3958 | Acc: 10.24%
+  评估Batch 380/653 | Loss: 5.3761 | Acc: 8.80%
+  评估Batch 390/653 | Loss: 4.7939 | Acc: 14.12%
+  评估Batch 400/653 | Loss: 4.5315 | Acc: 15.95%
+  评估Batch 410/653 | Loss: 4.9259 | Acc: 11.36%
+  评估Batch 420/653 | Loss: 5.2440 | Acc: 11.05%
+  评估Batch 430/653 | Loss: 5.3501 | Acc: 8.31%
+  评估Batch 440/653 | Loss: 4.5136 | Acc: 15.15%
+  评估Batch 450/653 | Loss: 4.9261 | Acc: 12.75%
+  评估Batch 460/653 | Loss: 4.3970 | Acc: 17.97%
+  评估Batch 470/653 | Loss: 5.3568 | Acc: 7.46%
+  评估Batch 480/653 | Loss: 5.4410 | Acc: 5.94%
+  评估Batch 490/653 | Loss: 5.5736 | Acc: 7.18%
+  评估Batch 500/653 | Loss: 5.1375 | Acc: 10.44%
+  评估Batch 510/653 | Loss: 5.0696 | Acc: 12.55%
+  评估Batch 520/653 | Loss: 4.8318 | Acc: 13.13%
+  评估Batch 530/653 | Loss: 4.6843 | Acc: 16.60%
+  评估Batch 540/653 | Loss: 5.2429 | Acc: 9.40%
+  评估Batch 550/653 | Loss: 5.1941 | Acc: 11.98%
+  评估Batch 560/653 | Loss: 5.4588 | Acc: 8.65%
+  评估Batch 570/653 | Loss: 6.6593 | Acc: 9.97%
+  评估Batch 580/653 | Loss: 5.0256 | Acc: 12.84%
+  评估Batch 590/653 | Loss: 4.7408 | Acc: 14.23%
+  评估Batch 600/653 | Loss: 4.8920 | Acc: 12.64%
+  评估Batch 610/653 | Loss: 6.5937 | Acc: 8.60%
+  评估Batch 620/653 | Loss: 5.3976 | Acc: 8.18%
+  评估Batch 630/653 | Loss: 5.2394 | Acc: 10.96%
+  评估Batch 640/653 | Loss: 4.7898 | Acc: 13.81%
+  评估Batch 650/653 | Loss: 4.4492 | Acc: 17.06%
+✅ 评估完成: 平均损失/Token = 5.1138, 平均准确率 = 11.35%
+Epoch 09 | 训练损失: 5.3969 | 训练准确率: 9.27% | 测试损失: 5.1138 | 测试准确率: 11.35%
+Epoch 9 后 GPU内存: 已分配 1.25GB, 保留 1.32GB
+
+==================================================
+Epoch 10/10
+==================================================
+开始训练epoch，共714个batch...
+训练Batch 0/714 GPU内存: 已分配 1.25GB, 保留 1.32GB
+  Batch 0/714 | Loss: 5.4528 | Acc: 8.26% | Tokens: 2672
+训练Batch 10/714 GPU内存: 已分配 1.24GB, 保留 14.80GB
+  Batch 10/714 | Loss: 4.9594 | Acc: 12.23% | Tokens: 2916
+训练Batch 20/714 GPU内存: 已分配 1.24GB, 保留 16.42GB
+  Batch 20/714 | Loss: 5.5502 | Acc: 8.45% | Tokens: 3014
+训练Batch 30/714 GPU内存: 已分配 1.24GB, 保留 15.38GB
+  Batch 30/714 | Loss: 4.9861 | Acc: 12.25% | Tokens: 1930
+训练Batch 40/714 GPU内存: 已分配 1.24GB, 保留 15.38GB
+  Batch 40/714 | Loss: 5.4893 | Acc: 8.39% | Tokens: 2917
+训练Batch 50/714 GPU内存: 已分配 1.24GB, 保留 10.43GB
+  Batch 50/714 | Loss: 5.3984 | Acc: 8.11% | Tokens: 2399
+训练Batch 60/714 GPU内存: 已分配 1.24GB, 保留 14.87GB
+  Batch 60/714 | Loss: 5.2793 | Acc: 13.01% | Tokens: 2664
+训练Batch 70/714 GPU内存: 已分配 1.24GB, 保留 16.68GB
+  Batch 70/714 | Loss: 5.5405 | Acc: 7.15% | Tokens: 2918
+训练Batch 80/714 GPU内存: 已分配 1.24GB, 保留 16.68GB
+  Batch 80/714 | Loss: 5.4479 | Acc: 8.79% | Tokens: 2601
+训练Batch 90/714 GPU内存: 已分配 1.24GB, 保留 15.39GB
+  Batch 90/714 | Loss: 5.6492 | Acc: 6.69% | Tokens: 3149
+训练Batch 100/714 GPU内存: 已分配 1.24GB, 保留 17.00GB
+  Batch 100/714 | Loss: 5.4310 | Acc: 8.27% | Tokens: 2294
+训练Batch 110/714 GPU内存: 已分配 1.24GB, 保留 16.36GB
+  Batch 110/714 | Loss: 5.4043 | Acc: 8.45% | Tokens: 2376
+训练Batch 120/714 GPU内存: 已分配 1.24GB, 保留 17.96GB
+  Batch 120/714 | Loss: 5.3265 | Acc: 10.66% | Tokens: 2417
+训练Batch 130/714 GPU内存: 已分配 1.24GB, 保留 14.34GB
+  Batch 130/714 | Loss: 4.8895 | Acc: 12.35% | Tokens: 2401
+训练Batch 140/714 GPU内存: 已分配 1.24GB, 保留 16.67GB
+  Batch 140/714 | Loss: 5.5225 | Acc: 10.47% | Tokens: 2939
+训练Batch 150/714 GPU内存: 已分配 1.24GB, 保留 10.66GB
+  Batch 150/714 | Loss: 5.4992 | Acc: 9.55% | Tokens: 2991
+训练Batch 160/714 GPU内存: 已分配 1.24GB, 保留 11.81GB
+  Batch 160/714 | Loss: 5.6128 | Acc: 6.90% | Tokens: 2937
+训练Batch 170/714 GPU内存: 已分配 1.24GB, 保留 10.48GB
+  Batch 170/714 | Loss: 5.3807 | Acc: 8.42% | Tokens: 2823
+训练Batch 180/714 GPU内存: 已分配 1.24GB, 保留 14.17GB
+  Batch 180/714 | Loss: 5.5675 | Acc: 7.23% | Tokens: 2997
+训练Batch 190/714 GPU内存: 已分配 1.24GB, 保留 15.14GB
+  Batch 190/714 | Loss: 5.3642 | Acc: 10.53% | Tokens: 2749
+训练Batch 200/714 GPU内存: 已分配 1.24GB, 保留 15.14GB
+  Batch 200/714 | Loss: 4.7943 | Acc: 13.51% | Tokens: 2882
+训练Batch 210/714 GPU内存: 已分配 1.24GB, 保留 14.83GB
+  Batch 210/714 | Loss: 5.4847 | Acc: 8.77% | Tokens: 2264
+训练Batch 220/714 GPU内存: 已分配 1.24GB, 保留 16.04GB
+  Batch 220/714 | Loss: 5.5093 | Acc: 10.02% | Tokens: 2830
+训练Batch 230/714 GPU内存: 已分配 1.24GB, 保留 14.65GB
+  Batch 230/714 | Loss: 5.2258 | Acc: 9.28% | Tokens: 3067
+训练Batch 240/714 GPU内存: 已分配 1.24GB, 保留 16.31GB
+  Batch 240/714 | Loss: 5.2479 | Acc: 10.73% | Tokens: 2195
+训练Batch 250/714 GPU内存: 已分配 1.24GB, 保留 14.21GB
+  Batch 250/714 | Loss: 5.5664 | Acc: 7.16% | Tokens: 2886
+训练Batch 260/714 GPU内存: 已分配 1.24GB, 保留 14.60GB
+  Batch 260/714 | Loss: 5.6248 | Acc: 8.06% | Tokens: 2813
+训练Batch 270/714 GPU内存: 已分配 1.24GB, 保留 10.59GB
+  Batch 270/714 | Loss: 5.5526 | Acc: 7.29% | Tokens: 2191
+训练Batch 280/714 GPU内存: 已分配 1.24GB, 保留 14.95GB
+  Batch 280/714 | Loss: 5.5530 | Acc: 8.83% | Tokens: 2657
+训练Batch 290/714 GPU内存: 已分配 1.24GB, 保留 15.05GB
+  Batch 290/714 | Loss: 5.3538 | Acc: 9.27% | Tokens: 2704
+训练Batch 300/714 GPU内存: 已分配 1.24GB, 保留 15.05GB
+  Batch 300/714 | Loss: 4.6592 | Acc: 12.77% | Tokens: 1265
+训练Batch 310/714 GPU内存: 已分配 1.24GB, 保留 15.55GB
+  Batch 310/714 | Loss: 5.5078 | Acc: 8.20% | Tokens: 2629
+训练Batch 320/714 GPU内存: 已分配 1.24GB, 保留 17.09GB
+  Batch 320/714 | Loss: 5.5240 | Acc: 8.20% | Tokens: 2814
+训练Batch 330/714 GPU内存: 已分配 1.24GB, 保留 13.83GB
+  Batch 330/714 | Loss: 5.3867 | Acc: 7.63% | Tokens: 2002
+训练Batch 340/714 GPU内存: 已分配 1.24GB, 保留 15.47GB
+  Batch 340/714 | Loss: 5.5110 | Acc: 8.05% | Tokens: 2443
+训练Batch 350/714 GPU内存: 已分配 1.24GB, 保留 12.08GB
+  Batch 350/714 | Loss: 5.5357 | Acc: 7.32% | Tokens: 2771
+训练Batch 360/714 GPU内存: 已分配 1.24GB, 保留 14.54GB
+  Batch 360/714 | Loss: 5.5926 | Acc: 6.92% | Tokens: 2237
+训练Batch 370/714 GPU内存: 已分配 1.24GB, 保留 15.58GB
+  Batch 370/714 | Loss: 4.9924 | Acc: 12.32% | Tokens: 1765
+训练Batch 380/714 GPU内存: 已分配 1.24GB, 保留 15.58GB
+  Batch 380/714 | Loss: 5.1448 | Acc: 15.61% | Tokens: 2347
+训练Batch 390/714 GPU内存: 已分配 1.24GB, 保留 15.85GB
+  Batch 390/714 | Loss: 5.2749 | Acc: 11.54% | Tokens: 2708
+训练Batch 400/714 GPU内存: 已分配 1.24GB, 保留 15.85GB
+  Batch 400/714 | Loss: 5.4446 | Acc: 8.00% | Tokens: 2271
+训练Batch 410/714 GPU内存: 已分配 1.24GB, 保留 13.79GB
+  Batch 410/714 | Loss: 5.4652 | Acc: 9.22% | Tokens: 2253
+训练Batch 420/714 GPU内存: 已分配 1.24GB, 保留 13.79GB
+  Batch 420/714 | Loss: 5.5566 | Acc: 6.75% | Tokens: 2694
+训练Batch 430/714 GPU内存: 已分配 1.24GB, 保留 15.95GB
+  Batch 430/714 | Loss: 4.6079 | Acc: 20.07% | Tokens: 1695
+训练Batch 440/714 GPU内存: 已分配 1.24GB, 保留 18.08GB
+  Batch 440/714 | Loss: 4.7452 | Acc: 13.52% | Tokens: 2888
+训练Batch 450/714 GPU内存: 已分配 1.24GB, 保留 10.66GB
+  Batch 450/714 | Loss: 5.4637 | Acc: 8.24% | Tokens: 2655
+训练Batch 460/714 GPU内存: 已分配 1.24GB, 保留 14.35GB
+  Batch 460/714 | Loss: 5.5269 | Acc: 7.42% | Tokens: 2865
+训练Batch 470/714 GPU内存: 已分配 1.24GB, 保留 15.94GB
+  Batch 470/714 | Loss: 5.3963 | Acc: 9.72% | Tokens: 2805
+训练Batch 480/714 GPU内存: 已分配 1.24GB, 保留 17.61GB
+  Batch 480/714 | Loss: 5.0720 | Acc: 12.16% | Tokens: 1024
+训练Batch 490/714 GPU内存: 已分配 1.24GB, 保留 15.62GB
+  Batch 490/714 | Loss: 5.5906 | Acc: 6.22% | Tokens: 2376
+训练Batch 500/714 GPU内存: 已分配 1.25GB, 保留 16.02GB
+  Batch 500/714 | Loss: 5.3924 | Acc: 10.91% | Tokens: 2756
+训练Batch 510/714 GPU内存: 已分配 1.24GB, 保留 14.69GB
+  Batch 510/714 | Loss: 5.6474 | Acc: 6.00% | Tokens: 2962
+训练Batch 520/714 GPU内存: 已分配 1.24GB, 保留 15.76GB
+  Batch 520/714 | Loss: 5.3563 | Acc: 8.12% | Tokens: 2643
+训练Batch 530/714 GPU内存: 已分配 1.24GB, 保留 12.89GB
+  Batch 530/714 | Loss: 5.3139 | Acc: 8.81% | Tokens: 2901
+训练Batch 540/714 GPU内存: 已分配 1.24GB, 保留 13.76GB
+  Batch 540/714 | Loss: 5.6849 | Acc: 6.50% | Tokens: 2551
+训练Batch 550/714 GPU内存: 已分配 1.24GB, 保留 13.45GB
+  Batch 550/714 | Loss: 4.9288 | Acc: 12.57% | Tokens: 2375
+训练Batch 560/714 GPU内存: 已分配 1.24GB, 保留 13.45GB
+  Batch 560/714 | Loss: 5.1306 | Acc: 11.11% | Tokens: 2652
+训练Batch 570/714 GPU内存: 已分配 1.24GB, 保留 15.10GB
+  Batch 570/714 | Loss: 5.5533 | Acc: 8.42% | Tokens: 2881
+训练Batch 580/714 GPU内存: 已分配 1.24GB, 保留 15.10GB
+  Batch 580/714 | Loss: 5.3179 | Acc: 8.71% | Tokens: 2452
+训练Batch 590/714 GPU内存: 已分配 1.24GB, 保留 12.79GB
+  Batch 590/714 | Loss: 5.2807 | Acc: 10.49% | Tokens: 2798
+训练Batch 600/714 GPU内存: 已分配 1.24GB, 保留 12.79GB
+  Batch 600/714 | Loss: 5.4326 | Acc: 8.11% | Tokens: 2523
+训练Batch 610/714 GPU内存: 已分配 1.24GB, 保留 16.72GB
+  Batch 610/714 | Loss: 5.4436 | Acc: 8.56% | Tokens: 2695
+训练Batch 620/714 GPU内存: 已分配 1.24GB, 保留 16.72GB
+  Batch 620/714 | Loss: 5.5777 | Acc: 6.64% | Tokens: 2450
+训练Batch 630/714 GPU内存: 已分配 1.24GB, 保留 16.11GB
+  Batch 630/714 | Loss: 5.6950 | Acc: 5.92% | Tokens: 3071
+训练Batch 640/714 GPU内存: 已分配 1.24GB, 保留 16.30GB
+  Batch 640/714 | Loss: 5.3851 | Acc: 8.63% | Tokens: 2289
+训练Batch 650/714 GPU内存: 已分配 1.24GB, 保留 13.68GB
+  Batch 650/714 | Loss: 5.4706 | Acc: 9.29% | Tokens: 2945
+训练Batch 660/714 GPU内存: 已分配 1.24GB, 保留 15.82GB
+  Batch 660/714 | Loss: 5.6280 | Acc: 7.39% | Tokens: 2809
+训练Batch 670/714 GPU内存: 已分配 1.24GB, 保留 14.92GB
+  Batch 670/714 | Loss: 5.2216 | Acc: 11.05% | Tokens: 2024
+训练Batch 680/714 GPU内存: 已分配 1.24GB, 保留 16.96GB
+  Batch 680/714 | Loss: 5.6216 | Acc: 6.97% | Tokens: 3038
+训练Batch 690/714 GPU内存: 已分配 1.24GB, 保留 13.85GB
+  Batch 690/714 | Loss: 5.4950 | Acc: 7.08% | Tokens: 2610
+训练Batch 700/714 GPU内存: 已分配 1.24GB, 保留 15.87GB
+  Batch 700/714 | Loss: 5.4485 | Acc: 9.21% | Tokens: 2603
+训练Batch 710/714 GPU内存: 已分配 1.24GB, 保留 13.07GB
+  Batch 710/714 | Loss: 5.2839 | Acc: 9.67% | Tokens: 1671
+✅ 训练完成: 平均损失/Token = 5.3739, 平均准确率 = 9.44%
+开始评估，共653个batch...
+  评估Batch 0/653 | Loss: 4.8172 | Acc: 12.47%
+  评估Batch 10/653 | Loss: 4.7663 | Acc: 13.69%
+  评估Batch 20/653 | Loss: 4.9422 | Acc: 15.90%
+  评估Batch 30/653 | Loss: 4.8396 | Acc: 14.33%
+  评估Batch 40/653 | Loss: 5.0160 | Acc: 12.64%
+  评估Batch 50/653 | Loss: 4.1279 | Acc: 16.57%
+  评估Batch 60/653 | Loss: 4.9225 | Acc: 10.42%
+  评估Batch 70/653 | Loss: 5.1803 | Acc: 8.64%
+  评估Batch 80/653 | Loss: 5.1239 | Acc: 10.98%
+  评估Batch 90/653 | Loss: 4.9143 | Acc: 12.61%
+  评估Batch 100/653 | Loss: 5.1920 | Acc: 10.18%
+  评估Batch 110/653 | Loss: 5.3845 | Acc: 10.92%
+  评估Batch 120/653 | Loss: 5.6262 | Acc: 6.95%
+  评估Batch 130/653 | Loss: 4.2582 | Acc: 18.11%
+  评估Batch 140/653 | Loss: 4.9413 | Acc: 11.24%
+  评估Batch 150/653 | Loss: 5.0114 | Acc: 12.16%
+  评估Batch 160/653 | Loss: 5.0302 | Acc: 10.96%
+  评估Batch 170/653 | Loss: 5.2530 | Acc: 9.22%
+  评估Batch 180/653 | Loss: 4.9311 | Acc: 11.10%
+  评估Batch 190/653 | Loss: 5.0604 | Acc: 11.70%
+  评估Batch 200/653 | Loss: 5.1309 | Acc: 10.82%
+  评估Batch 210/653 | Loss: 5.2170 | Acc: 9.49%
+  评估Batch 220/653 | Loss: 5.3074 | Acc: 9.95%
+  评估Batch 230/653 | Loss: 5.1356 | Acc: 9.21%
+  评估Batch 240/653 | Loss: 5.3846 | Acc: 7.70%
+  评估Batch 250/653 | Loss: 4.6986 | Acc: 14.00%
+  评估Batch 260/653 | Loss: 4.9752 | Acc: 11.71%
+  评估Batch 270/653 | Loss: 5.2172 | Acc: 9.95%
+  评估Batch 280/653 | Loss: 5.6617 | Acc: 7.41%
+  评估Batch 290/653 | Loss: 5.2289 | Acc: 10.07%
+  评估Batch 300/653 | Loss: 5.2157 | Acc: 9.53%
+  评估Batch 310/653 | Loss: 4.9877 | Acc: 12.06%
+  评估Batch 320/653 | Loss: 4.8891 | Acc: 15.83%
+  评估Batch 330/653 | Loss: 4.4946 | Acc: 19.28%
+  评估Batch 340/653 | Loss: 4.2283 | Acc: 20.23%
+  评估Batch 350/653 | Loss: 4.9367 | Acc: 11.93%
+  评估Batch 360/653 | Loss: 4.8231 | Acc: 12.78%
+  评估Batch 370/653 | Loss: 5.3154 | Acc: 10.38%
+  评估Batch 380/653 | Loss: 5.3086 | Acc: 8.44%
+  评估Batch 390/653 | Loss: 4.8136 | Acc: 14.23%
+  评估Batch 400/653 | Loss: 4.4393 | Acc: 15.77%
+  评估Batch 410/653 | Loss: 4.8764 | Acc: 12.40%
+  评估Batch 420/653 | Loss: 5.2605 | Acc: 11.18%
+  评估Batch 430/653 | Loss: 5.3271 | Acc: 7.91%
+  评估Batch 440/653 | Loss: 4.4869 | Acc: 15.15%
+  评估Batch 450/653 | Loss: 4.8860 | Acc: 13.34%
+  评估Batch 460/653 | Loss: 4.4537 | Acc: 16.74%
+  评估Batch 470/653 | Loss: 5.3074 | Acc: 7.16%
+  评估Batch 480/653 | Loss: 5.4418 | Acc: 6.45%
+  评估Batch 490/653 | Loss: 5.5551 | Acc: 7.49%
+  评估Batch 500/653 | Loss: 5.0984 | Acc: 10.23%
+  评估Batch 510/653 | Loss: 5.1003 | Acc: 11.66%
+  评估Batch 520/653 | Loss: 4.8376 | Acc: 13.03%
+  评估Batch 530/653 | Loss: 4.6586 | Acc: 16.49%
+  评估Batch 540/653 | Loss: 5.2477 | Acc: 9.17%
+  评估Batch 550/653 | Loss: 5.1855 | Acc: 11.70%
+  评估Batch 560/653 | Loss: 5.4750 | Acc: 8.80%
+  评估Batch 570/653 | Loss: 5.6355 | Acc: 9.86%
+  评估Batch 580/653 | Loss: 4.9991 | Acc: 12.06%
+  评估Batch 590/653 | Loss: 4.6647 | Acc: 13.30%
+  评估Batch 600/653 | Loss: 4.8654 | Acc: 13.97%
+  评估Batch 610/653 | Loss: 5.7251 | Acc: 8.78%
+  评估Batch 620/653 | Loss: 5.3666 | Acc: 7.64%
+  评估Batch 630/653 | Loss: 5.2420 | Acc: 11.07%
+  评估Batch 640/653 | Loss: 4.7887 | Acc: 13.60%
+  评估Batch 650/653 | Loss: 4.4510 | Acc: 16.71%
+✅ 评估完成: 平均损失/Token = 5.0857, 平均准确率 = 11.40%
+Epoch 10 | 训练损失: 5.3739 | 训练准确率: 9.44% | 测试损失: 5.0857 | 测试准确率: 11.40%
+✅ 损失曲线已保存为 loss_curve.png
+
+==================================================
+训练完成，开始推理示例...
+==================================================
+使用测试样本进行推理: 1089-134686-0000
+✅ 生成完成: 200 个S3 tokens
+真实S3 tokens (前10个): [721, 113, 113, 236, 93, 66, 66, 66, 2130, 230]... (共522个)
+预测S3 tokens (前10个): [511, 2130, 2130, 2130, 2130, 2130, 2130, 2130, 2130, 2130]... (共200个)
+前10个token准确率: 10.00%
+
+🎉 程序执行完成！

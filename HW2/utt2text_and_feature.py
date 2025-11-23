@@ -185,9 +185,9 @@ def main(args):
     print("加载 Whisper 模型...")
     try:
         # 使用最小的模型
-        processor = AutoProcessor.from_pretrained("openai/whisper-base")
+        processor = AutoProcessor.from_pretrained("openai/whisper-large-v3")
         whisper_model = AutoModelForSpeechSeq2Seq.from_pretrained(
-            "openai/whisper-base"
+            "openai/whisper-large-v3"
         ).to(device)
         whisper_model.eval()
     except Exception as e:
