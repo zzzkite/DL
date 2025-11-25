@@ -4,22 +4,18 @@ import os
 import gc
 import psutil
 
-# 添加 CosyVoice 到 Python 路径 - 使用与utt2相同的设置
 current_dir = os.path.dirname(os.path.abspath(__file__))
 cosyvoice_path = os.path.join(current_dir, 'CosyVoice')
 
-# 添加 CosyVoice 主目录
 if cosyvoice_path not in sys.path:
     sys.path.insert(0, cosyvoice_path)
 
-# 添加 CosyVoice 的第三方依赖路径
 matcha_path = os.path.join(cosyvoice_path, 'third_party', 'Matcha-TTS')
 if os.path.exists(matcha_path) and matcha_path not in sys.path:
     sys.path.insert(0, matcha_path)
 
 print(f"添加 CosyVoice 路径: {cosyvoice_path}")
 
-# --- huggingface_hub compatibility patch (for CosyVoice) ---
 try:
     import huggingface_hub as _hfh
     if not hasattr(_hfh, "cached_download"):
@@ -31,8 +27,6 @@ try:
         _hfh.cached_download = cached_download
 except Exception:
     pass
-
-# 现在导入其他模块
 import math
 import random
 from pathlib import Path
@@ -225,7 +219,7 @@ class CosyVoiceS3Model(nn.Module):
         # 复用预训练的输出投影层 (Decoder Head)
         self.proj = llm_wrapper.llm_decoder
         
-        # 融合：添加归一化
+        # 融合: 归一化层
         self.ln_text = nn.LayerNorm(text_dim)
         self.ln_z = nn.LayerNorm(hidden_dim)
         # self.fuse_alpha = nn.Parameter(torch.tensor(0.0)) # 移除门控参数，使用直接相加
@@ -682,7 +676,7 @@ def predict_s3(model, text_emb, speech_last, speech_mid, device, max_steps=200):
         next_id_clamped = next_id.clamp(min=0, max=model.s3_vocab_size - 1)
         next_embed = model.speech_embedding(next_id_clamped).unsqueeze(1)  # (1, 1, D_llm_in)
         
-        # 添加到序列
+        # 将嵌入附加到序列
         seq = torch.cat([seq, next_embed], dim=1)
         seq_len = torch.tensor([seq.size(1)], dtype=torch.int32, device=device)
         generated_ids.append(next_id_clamped.item())

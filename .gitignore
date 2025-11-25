@@ -20,3 +20,10 @@ HW2/train_whisper_feats.pt
 HW2/test_text_emb.pt
 HW2/test_whisper_feats.pt
 HW2/utt2_output
+
+# Final
+FinalProject/20bn-something-something-v2-00
+FinalProject/20bn-something-something-v2-01
+FinalProject/extracted_videos
+FinalProject/ControlNet
+FinalProject/stablediffusion

@@ -1,0 +1,11 @@
+{
+  "name": "Something-Something V2 Processed Dataset",
+  "total_samples": 600,
+  "train_samples": 480,
+  "val_samples": 120,
+  "frame_info": {
+    "input_frames": 20,
+    "target_frame": 1,
+    "resolution": "96x96"
+  }
+}

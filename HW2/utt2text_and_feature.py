@@ -2,17 +2,14 @@
 import sys
 import os
 import gc
-import psutil  # 添加系统监控
+import psutil
 
-# 添加 CosyVoice 到 Python 路径
 current_dir = os.path.dirname(os.path.abspath(__file__))
 cosyvoice_path = os.path.join(current_dir, 'CosyVoice')
 
-# 添加 CosyVoice 主目录
 if cosyvoice_path not in sys.path:
     sys.path.insert(0, cosyvoice_path)
 
-# 添加 CosyVoice 的第三方依赖路径
 matcha_path = os.path.join(cosyvoice_path, 'third_party', 'Matcha-TTS')
 if os.path.exists(matcha_path) and matcha_path not in sys.path:
     sys.path.insert(0, matcha_path)
@@ -21,7 +18,7 @@ print(f"添加 CosyVoice 路径: {cosyvoice_path}")
 
 import argparse
 import json
-import signal  # 添加信号处理
+import signal
 import glob
 
 import torch
@@ -29,7 +26,7 @@ import torchaudio
 from tqdm import tqdm
 from transformers import AutoProcessor, AutoModelForSpeechSeq2Seq
 
-# 全局变量，用于优雅退出
+# 全局变量用于优雅退出
 stop_processing = False
 
 def signal_handler(sig, frame):
@@ -41,7 +38,7 @@ def signal_handler(sig, frame):
 signal.signal(signal.SIGINT, signal_handler)
 signal.signal(signal.SIGTERM, signal_handler)
 
-# --- huggingface_hub compatibility patch (for CosyVoice) ---
+# huggingface_hub compatibility patch
 try:
     import huggingface_hub as _hfh
     if not hasattr(_hfh, "cached_download"):
@@ -212,9 +209,8 @@ def main(args):
     # 分批处理配置
     # BATCH_SIZE = 1000  # 不再使用分批保存到磁盘
     
-    # --- 阶段1: 扫描已处理的数据 (仅获取Keys，不保留数据以节省显存) ---
-    # 简化逻辑：如果文件存在，直接加载到内存中作为基础，继续追加
-    # 如果内存不够，这是用户接受的风险（因为要求一次性生成）
+    # 阶段1: 扫描已处理的数据（仅获取 keys，不保留大量数据以节省显存）
+    # 简化逻辑：如果输出文件已存在，脚本会加载已处理项并继续追加。
     
     existing_text_emb = {}
     existing_whisper_mid = {}
@@ -274,7 +270,7 @@ def main(args):
             if not check_system_resources():
                 break
 
-        # ----- CosyVoice 文本嵌入 -----
+        # CosyVoice 文本嵌入
         try:
             text_token, text_token_len = cosy.frontend._extract_text_token(text)
             with torch.no_grad():

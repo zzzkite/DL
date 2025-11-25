@@ -9,7 +9,6 @@ import torch.nn.functional as F
 from torch.utils.data import Dataset, DataLoader
 from cosyvoice.cli.cosyvoice import CosyVoice
 
-# --- huggingface_hub compatibility patch (for CosyVoice) ---
 try:
     import huggingface_hub as _hfh
     if not hasattr(_hfh, "cached_download"):
