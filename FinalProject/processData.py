@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
 """
 Something-Something V2 数据集处理脚本
-用于提取视频帧并创建训练数据集
-支持自动补足样本到指定数量
+输入前20帧，预测第25帧（跳过中间4帧）
 """
 
 import os
@@ -167,8 +166,8 @@ class VideoProcessor:
         
         return selected_samples
     
-    def extract_frames(self, video_path, num_frames=21, target_size=(96, 96)):
-        """提取视频帧"""
+    def extract_frames(self, video_path, num_frames=25, target_size=(96, 96)):
+        """提取视频帧 - 提取25帧，使用前20帧作为输入，第25帧作为目标"""
         try:
             cap = cv2.VideoCapture(str(video_path))
             if not cap.isOpened():
@@ -179,7 +178,7 @@ class VideoProcessor:
             if total_frames < num_frames:
                 return None
             
-            # 均匀提取帧
+            # 均匀提取25帧
             frame_indices = np.linspace(0, total_frames-1, num_frames, dtype=int)
             
             frames = []
@@ -259,12 +258,13 @@ class VideoProcessor:
                     
                     print(f"    [{processed_count+1}/{target_per_category}] 处理: {video_id}")
                     
-                    frames = self.extract_frames(video_path)
+                    # 提取25帧：前20帧作为输入，第25帧作为目标（跳过21-24帧）
+                    frames = self.extract_frames(video_path, num_frames=25)
                     
-                    if frames and len(frames) >= 21:
-                        # 保存帧数据
-                        input_frames = np.array(frames[:20])
-                        target_frame = np.array(frames[20])
+                    if frames and len(frames) >= 25:
+                        # 保存帧数据 - 前20帧作为输入，第25帧作为目标
+                        input_frames = np.array(frames[:20])  # 前20帧作为输入
+                        target_frame = np.array(frames[24])   # 第25帧作为目标（跳过中间4帧）
                         
                         input_path = self.output_dir / "frames" / category / f"{video_id}_input.npy"
                         target_path = self.output_dir / "frames" / category / f"{video_id}_target.npy"
@@ -280,7 +280,7 @@ class VideoProcessor:
                             cv2.imwrite(str(sample_dir / "input_frame_0.jpg"), 
                                        cv2.cvtColor(frames[0], cv2.COLOR_RGB2BGR))
                             cv2.imwrite(str(sample_dir / "target_frame.jpg"), 
-                                       cv2.cvtColor(frames[20], cv2.COLOR_RGB2BGR))
+                                       cv2.cvtColor(frames[24], cv2.COLOR_RGB2BGR))  # 第25帧作为目标
                         
                         processed_sample = {
                             'category': category,
@@ -334,22 +334,37 @@ class VideoProcessor:
         return existing_samples
     
     def save_metadata(self, all_samples):
-        """保存元数据"""
-        # 创建训练/验证分割
+        """保存元数据，包括训练集、验证集和测试集（8:1:1比例）"""
+        # 确保有足够的样本进行划分
+        if len(all_samples) < 10:
+            print(f"⚠️  样本数量不足 {len(all_samples)}，无法划分数据集")
+            return
+        
+        # 随机打乱所有样本
         random.shuffle(all_samples)
-        split_idx = int(0.8 * len(all_samples))
-        train_samples = all_samples[:split_idx]
-        val_samples = all_samples[split_idx:]
+        
+        # 按8:1:1比例划分数据集
+        total_samples = len(all_samples)
+        train_count = int(0.8 * total_samples)  # 80% 训练集
+        val_count = int(0.1 * total_samples)    # 10% 验证集
+        test_count = total_samples - train_count - val_count  # 10% 测试集
+        
+        train_samples = all_samples[:train_count]
+        val_samples = all_samples[train_count:train_count + val_count]
+        test_samples = all_samples[train_count + val_count:]
         
         # 保存数据集信息
         dataset_info = {
             "name": "Something-Something V2 Processed Dataset",
-            "total_samples": len(all_samples),
+            "total_samples": total_samples,
             "train_samples": len(train_samples),
             "val_samples": len(val_samples),
+            "test_samples": len(test_samples),
+            "split_ratio": "train:val:test = {}:{}:{}".format(len(train_samples), len(val_samples), len(test_samples)),
             "frame_info": {
-                "input_frames": 20,
-                "target_frame": 1,
+                "input_frames": 20,    # 前20帧作为输入
+                "target_frame": 1,     # 第25帧作为目标（跳过中间4帧）
+                "skip_frames": 4,      # 跳过的帧数
                 "resolution": "96x96"
             }
         }
@@ -361,30 +376,37 @@ class VideoProcessor:
         all_df = pd.DataFrame(all_samples)
         train_df = pd.DataFrame(train_samples)
         val_df = pd.DataFrame(val_samples)
+        test_df = pd.DataFrame(test_samples)
         
         all_df.to_csv(self.output_dir / "metadata" / "all_samples.csv", index=False)
         train_df.to_csv(self.output_dir / "metadata" / "train_samples.csv", index=False)
         val_df.to_csv(self.output_dir / "metadata" / "val_samples.csv", index=False)
+        test_df.to_csv(self.output_dir / "metadata" / "test_samples.csv", index=False)
         
         # 打印统计信息
         print(f"\n✅ 元数据已保存")
-        print(f"   总样本数: {len(all_samples)}")
-        print(f"   训练集: {len(train_samples)}")
-        print(f"   验证集: {len(val_samples)}")
+        print(f"   总样本数: {total_samples}")
+        print(f"   训练集: {len(train_samples)} (80%)")
+        print(f"   验证集: {len(val_samples)} (10%)")
+        print(f"   测试集: {len(test_samples)} (10%)")
+        print(f"   帧设置: 输入前20帧 → 预测第25帧（跳过4帧）")
         
-        # 类别统计
-        category_counts = {}
-        for sample in all_samples:
-            cat = sample['category']
-            category_counts[cat] = category_counts.get(cat, 0) + 1
-        
-        print("\n=== 类别统计 ===")
-        for cat, count in category_counts.items():
-            print(f"{cat}: {count} 个样本")
+        # 类别统计（按数据集划分）
+        print("\n=== 数据集类别分布 ===")
+        for dataset_name, dataset in [("训练集", train_samples), ("验证集", val_samples), ("测试集", test_samples)]:
+            category_counts = {}
+            for sample in dataset:
+                cat = sample['category']
+                category_counts[cat] = category_counts.get(cat, 0) + 1
+            
+            print(f"\n{dataset_name} ({len(dataset)} 个样本):")
+            for cat, count in category_counts.items():
+                print(f"  {cat}: {count} 个样本")
     
     def process(self):
         """主处理流程"""
         print("开始数据处理...")
+        print("📹 帧设置: 输入前20帧 → 预测第25帧（跳过中间4帧）")
         
         # 加载训练集标签
         train_samples = self.load_dataset_labels('train')
@@ -392,8 +414,8 @@ class VideoProcessor:
         # 分类样本
         categorized_samples = self.categorize_by_template_pattern(train_samples)
         
-        # 处理样本并自动补足到每个类别200个
-        all_samples = self.process_samples_with_retry(categorized_samples, 200)
+        # 处理样本并自动补足到每个类别300个
+        all_samples = self.process_samples_with_retry(categorized_samples, 300)
         
         if not all_samples:
             print("❌ 没有成功处理任何样本")
@@ -410,6 +432,7 @@ class VideoProcessor:
         
         print(f"\n🎉 数据处理完成!")
         print(f"   总共处理了 {len(all_samples)} 个样本")
+        print(f"   帧设置: 输入前20帧 → 预测第25帧（跳过4帧）")
         print(f"   各类别数量:")
         for cat, count in category_counts.items():
             print(f"     {cat}: {count} 个样本")
