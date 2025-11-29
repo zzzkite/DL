@@ -1,0 +1,14 @@
+{
+  "name": "Something-Something V2 Processed Dataset",
+  "total_samples": 3388,
+  "train_samples": 2710,
+  "val_samples": 338,
+  "test_samples": 340,
+  "split_ratio": "train:val:test = 2710:338:340",
+  "frame_info": {
+    "input_frames": 20,
+    "target_frame": 1,
+    "skip_frames": 4,
+    "resolution": "512x512"
+  }
+}

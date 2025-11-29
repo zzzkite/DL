@@ -33,3 +33,6 @@ FinalProject/ControlNet-v1-1
 FinalProject/training_results_move_object
 FinalProject/training_results_cover_object
 FinalProject/training_results_drop_object
+
+*.pth
+*.npy

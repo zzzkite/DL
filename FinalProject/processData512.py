@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Something-Something V2 数据集处理脚本
+Something-Something V2 数据集处理脚本 - 512x512版本
 输入前20帧，预测第25帧（跳过中间4帧）
 """
 
@@ -15,10 +15,11 @@ import random
 class VideoProcessor:
     def __init__(self, video_dir="extracted_videos/20bn-something-something-v2", 
                  label_dir="labels",
-                 output_dir="processed_data"):
+                 output_dir="processed_data_512"):
         self.video_dir = Path(video_dir)
         self.label_dir = Path(label_dir)
         self.output_dir = Path(output_dir)
+        self.target_size = (512, 512)  # 修改为512x512
         self.setup_directories()
         
     def setup_directories(self):
@@ -33,7 +34,7 @@ class VideoProcessor:
         
         for dir_name in directories:
             (self.output_dir / dir_name).mkdir(parents=True, exist_ok=True)
-        print("✅ 目录结构创建完成")
+        print(f"✅ 目录结构创建完成 - 分辨率: {self.target_size[0]}x{self.target_size[1]}")
     
     def load_dataset_labels(self, split='train'):
         """加载数据集标签"""
@@ -166,7 +167,7 @@ class VideoProcessor:
         
         return selected_samples
     
-    def extract_frames(self, video_path, num_frames=25, target_size=(96, 96)):
+    def extract_frames(self, video_path, num_frames=25):
         """提取视频帧 - 提取25帧，使用前20帧作为输入，第25帧作为目标"""
         try:
             cap = cv2.VideoCapture(str(video_path))
@@ -186,7 +187,8 @@ class VideoProcessor:
                 cap.set(cv2.CAP_PROP_POS_FRAMES, idx)
                 ret, frame = cap.read()
                 if ret:
-                    frame_resized = cv2.resize(frame, target_size)
+                    # 使用高质量插值方法上采样到512x512
+                    frame_resized = cv2.resize(frame, self.target_size, interpolation=cv2.INTER_LANCZOS4)
                     frame_rgb = cv2.cvtColor(frame_resized, cv2.COLOR_BGR2RGB)
                     frames.append(frame_rgb)
                 else:
@@ -290,7 +292,8 @@ class VideoProcessor:
                             'target_frame_path': str(target_path),
                             'template': sample['template'],
                             'label': sample['label'],
-                            'placeholders': sample.get('placeholders', [])
+                            'placeholders': sample.get('placeholders', []),
+                            'resolution': f"{self.target_size[0]}x{self.target_size[1]}"  # 添加分辨率信息
                         }
                         
                         all_samples.append(processed_sample)
@@ -324,7 +327,8 @@ class VideoProcessor:
                         'target_frame_path': row['target_frame_path'],
                         'template': row.get('template', ''),
                         'label': row.get('label', ''),
-                        'placeholders': eval(row.get('placeholders', '[]')) if isinstance(row.get('placeholders', ''), str) else []
+                        'placeholders': eval(row.get('placeholders', '[]')) if isinstance(row.get('placeholders', ''), str) else [],
+                        'resolution': row.get('resolution', '512x512')
                     }
                     existing_samples.append(sample)
                 print(f"✅ 加载了 {len(existing_samples)} 个现有样本")
@@ -365,7 +369,7 @@ class VideoProcessor:
                 "input_frames": 20,    # 前20帧作为输入
                 "target_frame": 1,     # 第25帧作为目标（跳过中间4帧）
                 "skip_frames": 4,      # 跳过的帧数
-                "resolution": "96x96"
+                "resolution": f"{self.target_size[0]}x{self.target_size[1]}"  # 更新分辨率
             }
         }
         
@@ -390,6 +394,7 @@ class VideoProcessor:
         print(f"   验证集: {len(val_samples)} (10%)")
         print(f"   测试集: {len(test_samples)} (10%)")
         print(f"   帧设置: 输入前20帧 → 预测第25帧（跳过4帧）")
+        print(f"   分辨率: {self.target_size[0]}x{self.target_size[1]}")
         
         # 类别统计（按数据集划分）
         print("\n=== 数据集类别分布 ===")
@@ -406,7 +411,8 @@ class VideoProcessor:
     def process(self):
         """主处理流程"""
         print("开始数据处理...")
-        print("📹 帧设置: 输入前20帧 → 预测第25帧（跳过中间4帧）")
+        print(f"📹 帧设置: 输入前20帧 → 预测第25帧（跳过中间4帧）")
+        print(f"📏 分辨率: {self.target_size[0]}x{self.target_size[1]}")
         
         # 加载训练集标签
         train_samples = self.load_dataset_labels('train')
@@ -433,6 +439,7 @@ class VideoProcessor:
         print(f"\n🎉 数据处理完成!")
         print(f"   总共处理了 {len(all_samples)} 个样本")
         print(f"   帧设置: 输入前20帧 → 预测第25帧（跳过4帧）")
+        print(f"   分辨率: {self.target_size[0]}x{self.target_size[1]}")
         print(f"   各类别数量:")
         for cat, count in category_counts.items():
             print(f"     {cat}: {count} 个样本")

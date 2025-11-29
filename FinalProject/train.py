@@ -16,6 +16,8 @@ import sys
 import os
 import math
 from collections import deque
+import gc
+import time
 
 # 添加项目路径
 project_root = Path(__file__).parent
@@ -182,6 +184,11 @@ class DynamicConditioningControlNetTrainer:
             self.scaler = torch.amp.GradScaler(device='cuda')
         else:
             self.scaler = None
+
+        # 显存清理与监控设置
+        self.cleanup_steps = config.get('cleanup_steps', 20)  # 每多少个batch执行一次显存清理
+        self.mem_log_steps = config.get('mem_log_steps', 10)  # 每多少个batch打印一次显存信息
+        self.enable_mem_logging = config.get('enable_mem_logging', True)
         
         # 初始化组件
         self.setup_models()
@@ -293,7 +300,7 @@ class DynamicConditioningControlNetTrainer:
             self.text_encoder.requires_grad_(False)
             self.vae.requires_grad_(False)
             self.unet.requires_grad_(False)
-            self.temporal_extractor.requires_grad_(False)
+            self.temporal_extractor.requires_grad_(True) # 允许训练时序提取器
             
             # 只训练ControlNet
             self.controlnet.requires_grad_(True)
@@ -369,6 +376,46 @@ class DynamicConditioningControlNetTrainer:
             )
         
         print("✅ 优化器设置完成")
+
+    # ---- GPU 内存监控/工具方法 ----
+    def _log_gpu_memory(self, label: str = ""):
+        if self.device.type != 'cuda' or not self.enable_mem_logging:
+            return
+        try:
+            allocated = torch.cuda.memory_allocated() / 1024**2
+            reserved = torch.cuda.memory_reserved() / 1024**2
+            max_alloc = torch.cuda.max_memory_allocated() / 1024**2
+            print(f"[GPU MEM] {label} allocated={allocated:.1f}MB reserved={reserved:.1f}MB max_alloc={max_alloc:.1f}MB")
+        except Exception:
+            pass
+
+    def _optimizer_state_cpu(self):
+        """Return a CPU copy of optimizer.state_dict() to avoid storing GPU tensors when saving."""
+        state = self.optimizer.state_dict()
+        state_cpu = {'state': {}, 'param_groups': state.get('param_groups', [])}
+        for k, v in state.get('state', {}).items():
+            state_cpu['state'][k] = {}
+            for kk, vv in v.items():
+                try:
+                    if isinstance(vv, torch.Tensor):
+                        state_cpu['state'][k][kk] = vv.cpu()
+                    else:
+                        state_cpu['state'][k][kk] = vv
+                except Exception:
+                    state_cpu['state'][k][kk] = vv
+        return state_cpu
+
+    def _cleanup_temps(self, *tensors, force_gc: bool = False):
+        """Delete provided tensor references and optionally run GC + empty_cache."""
+        for t in tensors:
+            try:
+                del t
+            except Exception:
+                pass
+        if force_gc:
+            torch.cuda.synchronize()
+            torch.cuda.empty_cache()
+            gc.collect()
     
     def prepare_control_image(self, input_frames):
         """
@@ -537,10 +584,23 @@ class DynamicConditioningControlNetTrainer:
                 total_loss += loss.item()
                 num_batches += 1
                 
-                # 定期清理内存
-                if batch_idx % 20 == 0:
+                # 定期打印显存信息和清理临时变量
+                if batch_idx % self.mem_log_steps == 0:
+                    self._log_gpu_memory(f"Epoch{epoch} Batch{batch_idx} post-step")
+
+                # 删除大张量引用以便回收
+                try:
+                    del target_latents, text_embeddings, control_images, noise, timesteps, noisy_latents
+                    del down_block_res_samples, mid_block_res_sample, noise_pred
+                except Exception:
+                    pass
+
+                # 每隔 cleanup_steps 触发显存清理和 GC
+                if (batch_idx + 1) % self.cleanup_steps == 0:
+                    torch.cuda.synchronize()
                     torch.cuda.empty_cache()
-                
+                    gc.collect()
+
                 if batch_idx % 10 == 0:
                     current_lr = self.optimizer.param_groups[0]['lr']
                     print(f"  Epoch {epoch}, Batch {batch_idx}, Loss: {loss.item():.4f}, "
@@ -550,6 +610,7 @@ class DynamicConditioningControlNetTrainer:
                 if "out of memory" in str(e):
                     print(f"⚠️  批次 {batch_idx} 内存不足，跳过")
                     torch.cuda.empty_cache()
+                    gc.collect()
                     continue
                 else:
                     raise
@@ -609,6 +670,21 @@ class DynamicConditioningControlNetTrainer:
                 
                 total_loss += loss.item()
                 num_batches += 1
+
+                # 验证阶段也定期清理和打印显存
+                if num_batches % self.mem_log_steps == 0:
+                    self._log_gpu_memory(f"Validate Batch {num_batches}")
+
+                try:
+                    del target_latents, text_embeddings, control_images, noise, timesteps, noisy_latents
+                    del down_block_res_samples, mid_block_res_sample, noise_pred
+                except Exception:
+                    pass
+
+                if num_batches % self.cleanup_steps == 0:
+                    torch.cuda.synchronize()
+                    torch.cuda.empty_cache()
+                    gc.collect()
         
         return total_loss / num_batches if num_batches > 0 else 0.0
     
@@ -667,10 +743,17 @@ class DynamicConditioningControlNetTrainer:
     
     def save_checkpoint(self, epoch, val_loss, is_best=False):
         """保存模型检查点"""
+        # 为了减少在保存时的GPU内存占用，把 optimizer state 转到 CPU
+        optimizer_state_cpu = None
+        try:
+            optimizer_state_cpu = self._optimizer_state_cpu()
+        except Exception:
+            optimizer_state_cpu = self.optimizer.state_dict()
+
         checkpoint = {
             'epoch': epoch,
             'controlnet_state_dict': self.controlnet.state_dict(),
-            'optimizer_state_dict': self.optimizer.state_dict(),
+            'optimizer_state_dict': optimizer_state_cpu,
             'lr_scheduler_state_dict': self.lr_scheduler.state_dict() if self.lr_scheduler else None,
             'val_loss': val_loss,
             'config': self.config,
@@ -725,7 +808,7 @@ def main():
         'learning_rate': 1e-4,
         'min_learning_rate': 1e-6,
         'weight_decay': 1e-3,
-        'num_epochs': 200,
+        'num_epochs': 50,
         'batch_size': 2,
         'save_interval': 10,
 
@@ -756,7 +839,7 @@ def main():
             'display_name': '移动物体',
             'config_override': {
                 'learning_rate': 1e-4,
-                'num_epochs': 200,
+                'num_epochs': 50,
                 'conditioning_strategy': 'adaptive',
                 'initial_conditioning_scale': 0.2,  # 移动任务可以更宽松
                 'final_conditioning_scale': 1.0,
@@ -769,7 +852,7 @@ def main():
             'display_name': '掉落物体',
             'config_override': {
                 'learning_rate': 1e-4,
-                'num_epochs': 200,
+                'num_epochs': 50,
                 'conditioning_strategy': 'linear_increase',  # 掉落任务需要逐渐加强控制
                 'initial_conditioning_scale': 0.8,
                 'final_conditioning_scale': 1.3,
@@ -780,7 +863,7 @@ def main():
             'display_name': '覆盖物体', 
             'config_override': {
                 'learning_rate': 8e-6,
-                'num_epochs': 200,
+                'num_epochs': 50,
                 'conditioning_strategy': 'stepwise',  # 覆盖任务分阶段控制
                 'initial_conditioning_scale': 0.8,
                 'final_conditioning_scale': 1.2,
@@ -873,18 +956,33 @@ def main_single_task():
     """单个任务训练（用于调试或特定任务）"""
     config = {
         'learning_rate': 1e-5,
-        'num_epochs': 30,
+        'num_epochs': 50,
         'batch_size': 2,
         'save_interval': 10,
         'output_dir': 'training_results_single',
-        'task_name': 'move_object',  # 指定单个任务
+        'task_name': 'drop_object',  # 指定单个任务
         
         # 动态条件缩放参数
-        'conditioning_strategy': 'adaptive',
+        'conditioning_strategy': 'linear_increase',
         'initial_conditioning_scale': 0.8,
-        'final_conditioning_scale': 1.2,
+        'final_conditioning_scale': 1.3,
         'adaptive_threshold': 0.15,
         'scale_step': 0.05,
+
+        'min_learning_rate': 1e-6,
+        'weight_decay': 1e-3,
+
+        # 添加梯度累积
+        'gradient_accumulation_steps': 4,  # 新的参数
+
+        # 优化器参数
+        'lr_scheduler': 'cosine',
+        'lr_step_size': 20,
+        'lr_gamma': 0.5,
+        'warmup_steps': 500,                  # 新的参数
+        
+        # 训练策略参数
+        'grad_clip': 1.0,
     }
     
     train_loader, val_loader, _ = create_task_specific_loaders(
@@ -896,5 +994,5 @@ def main_single_task():
     trainer.train(train_loader, val_loader)
 
 if __name__ == "__main__":
-    main()  # 使用多任务训练
-    # main_single_task()  # 或者使用单任务训练
+    #main()  # 使用多任务训练
+    main_single_task()  # 或者使用单任务训练

@@ -1,0 +1,3076 @@
+nohup: ignoring input
+/home/zhangzhikui/enter/envs/dl/lib/python3.10/site-packages/torch/cuda/__init__.py:827: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+⚠️  无法导入cldm: No module named 'cldm'
+
+============================================================
+🚀 开始训练任务: 移动物体
+============================================================
+   筛选任务 'move_object': 2014/6000 个样本
+✅ 加载数据集 (move_object): 2014 个样本
+   帧设置: 输入前20帧 → 预测第25帧（跳过4帧）
+   move_object: 2014 个样本
+   筛选任务 'move_object': 236/750 个样本
+✅ 加载数据集 (move_object): 236 个样本
+   帧设置: 输入前20帧 → 预测第25帧（跳过4帧）
+   move_object: 236 个样本
+   筛选任务 'move_object': 250/750 个样本
+✅ 加载数据集 (move_object): 250 个样本
+   帧设置: 输入前20帧 → 预测第25帧（跳过4帧）
+   move_object: 250 个样本
+✅ 创建任务 'move_object' 数据加载器完成
+   训练集: 2014 个样本, 1007 个批次
+   验证集: 236 个样本, 118 个批次
+   测试集: 250 个样本, 125 个批次
+   批次大小: 2
+📊 从总样本 2500 中随机抽取 1000 个（按 8:1:1 划分）
+✅ 数据集分配: train=800 val=100 test=100
+🚀 使用设备: cuda
+🎯 任务: move_object
+📦 初始化模型...
+🆕 从 UNet 复制权重初始化 ControlNet
+✅ 模型初始化完成，可训练参数: 361,279,120 / 总参数: 361,279,120
+🚀 开始修复版训练...
+
+🔍 进行初始验证...
+🧪 开始验证，共有 50 个批次
+验证批次 0/50 | Loss: 0.632464
+验证批次 5/50 | Loss: 0.385549
+验证批次 10/50 | Loss: 0.441481
+验证批次 15/50 | Loss: 0.172886
+验证批次 20/50 | Loss: 0.092567
+验证批次 25/50 | Loss: 0.538610
+验证批次 30/50 | Loss: 0.137709
+验证批次 35/50 | Loss: 0.136711
+验证批次 40/50 | Loss: 0.075302
+验证批次 45/50 | Loss: 0.065582
+✅ 验证完成，平均损失: 0.345267
+初始验证损失: 0.345267
+Epoch 1 | Batch 0/400 | Loss: 0.074713 | LR: 1.00e-05
+Epoch 1 | Batch 10/400 | Loss: 0.231985 | LR: 1.00e-05
+Epoch 1 | Batch 20/400 | Loss: 0.300712 | LR: 1.00e-05
+Epoch 1 | Batch 30/400 | Loss: 0.156272 | LR: 1.00e-05
+Epoch 1 | Batch 40/400 | Loss: 0.067645 | LR: 1.00e-05
+Epoch 1 | Batch 50/400 | Loss: 0.099952 | LR: 1.00e-05
+Epoch 1 | Batch 60/400 | Loss: 0.686598 | LR: 1.00e-05
+Epoch 1 | Batch 70/400 | Loss: 0.194981 | LR: 1.00e-05
+Epoch 1 | Batch 80/400 | Loss: 0.308915 | LR: 1.00e-05
+Epoch 1 | Batch 90/400 | Loss: 0.229167 | LR: 1.00e-05
+Epoch 1 | Batch 100/400 | Loss: 0.363933 | LR: 1.00e-05
+Epoch 1 | Batch 110/400 | Loss: 0.239994 | LR: 1.00e-05
+Epoch 1 | Batch 120/400 | Loss: 0.361805 | LR: 1.00e-05
+Epoch 1 | Batch 130/400 | Loss: 0.416071 | LR: 1.00e-05
+Epoch 1 | Batch 140/400 | Loss: 0.226788 | LR: 1.00e-05
+Epoch 1 | Batch 150/400 | Loss: 0.455896 | LR: 1.00e-05
+Epoch 1 | Batch 160/400 | Loss: 0.342682 | LR: 1.00e-05
+Epoch 1 | Batch 170/400 | Loss: 0.018399 | LR: 1.00e-05
+Epoch 1 | Batch 180/400 | Loss: 0.403775 | LR: 1.00e-05
+Epoch 1 | Batch 190/400 | Loss: 0.114975 | LR: 1.00e-05
+Epoch 1 | Batch 200/400 | Loss: 0.197806 | LR: 1.00e-05
+Epoch 1 | Batch 210/400 | Loss: 0.106085 | LR: 1.00e-05
+Epoch 1 | Batch 220/400 | Loss: 0.085997 | LR: 1.00e-05
+Epoch 1 | Batch 230/400 | Loss: 0.034601 | LR: 1.00e-05
+Epoch 1 | Batch 240/400 | Loss: 0.232670 | LR: 1.00e-05
+Epoch 1 | Batch 250/400 | Loss: 0.270936 | LR: 1.00e-05
+Epoch 1 | Batch 260/400 | Loss: 0.349296 | LR: 1.00e-05
+Epoch 1 | Batch 270/400 | Loss: 0.170178 | LR: 1.00e-05
+Epoch 1 | Batch 280/400 | Loss: 0.217493 | LR: 1.00e-05
+Epoch 1 | Batch 290/400 | Loss: 0.241037 | LR: 1.00e-05
+Epoch 1 | Batch 300/400 | Loss: 0.038931 | LR: 1.00e-05
+Epoch 1 | Batch 310/400 | Loss: 0.009064 | LR: 1.00e-05
+Epoch 1 | Batch 320/400 | Loss: 0.310859 | LR: 1.00e-05
+Epoch 1 | Batch 330/400 | Loss: 0.141097 | LR: 1.00e-05
+Epoch 1 | Batch 340/400 | Loss: 0.035339 | LR: 1.00e-05
+Epoch 1 | Batch 350/400 | Loss: 0.418991 | LR: 1.00e-05
+Epoch 1 | Batch 360/400 | Loss: 0.071160 | LR: 1.00e-05
+Epoch 1 | Batch 370/400 | Loss: 0.271870 | LR: 1.00e-05
+Epoch 1 | Batch 380/400 | Loss: 0.123202 | LR: 1.00e-05
+Epoch 1 | Batch 390/400 | Loss: 0.206645 | LR: 1.00e-05
+✅ 第 1 轮训练完成，平均损失: 0.213145
+🧪 开始验证，共有 50 个批次
+验证批次 0/50 | Loss: 0.280398
+验证批次 5/50 | Loss: 0.126152
+验证批次 10/50 | Loss: 0.030885
+验证批次 15/50 | Loss: 0.016448
+验证批次 20/50 | Loss: 0.112567
+验证批次 25/50 | Loss: 0.065582
+验证批次 30/50 | Loss: 0.277533
+验证批次 35/50 | Loss: 0.727726
+验证批次 40/50 | Loss: 0.088287
+验证批次 45/50 | Loss: 0.299560
+✅ 验证完成，平均损失: 0.220003
+
+============================================================
+📊 Epoch 1/50 完成
+   Train Loss: 0.213145
+   Val Loss: 0.220003
+   LR: 1.00e-05 | Time: 70.7s
+============================================================
+💾 模型已保存: training_results_move_object_fixed/controlnet_move_object_best.pth
+🎉 新的最佳验证损失: 0.220003
+Epoch 2 | Batch 0/400 | Loss: 0.184162 | LR: 9.99e-06
+Epoch 2 | Batch 10/400 | Loss: 0.103032 | LR: 9.99e-06
+Epoch 2 | Batch 20/400 | Loss: 0.225907 | LR: 9.99e-06
+Epoch 2 | Batch 30/400 | Loss: 0.119009 | LR: 9.99e-06
+Epoch 2 | Batch 40/400 | Loss: 0.162801 | LR: 9.99e-06
+Epoch 2 | Batch 50/400 | Loss: 0.034584 | LR: 9.99e-06
+Epoch 2 | Batch 60/400 | Loss: 0.021247 | LR: 9.99e-06
+Epoch 2 | Batch 70/400 | Loss: 0.028879 | LR: 9.99e-06
+Epoch 2 | Batch 80/400 | Loss: 0.017508 | LR: 9.99e-06
+Epoch 2 | Batch 90/400 | Loss: 0.181017 | LR: 9.99e-06
+Epoch 2 | Batch 100/400 | Loss: 0.005462 | LR: 9.99e-06
+Epoch 2 | Batch 110/400 | Loss: 0.059293 | LR: 9.99e-06
+Epoch 2 | Batch 120/400 | Loss: 0.398049 | LR: 9.99e-06
+Epoch 2 | Batch 130/400 | Loss: 0.121073 | LR: 9.99e-06
+Epoch 2 | Batch 140/400 | Loss: 0.059873 | LR: 9.99e-06
+Epoch 2 | Batch 150/400 | Loss: 0.529970 | LR: 9.99e-06
+Epoch 2 | Batch 160/400 | Loss: 0.233337 | LR: 9.99e-06
+Epoch 2 | Batch 170/400 | Loss: 0.133631 | LR: 9.99e-06
+Epoch 2 | Batch 180/400 | Loss: 0.217822 | LR: 9.99e-06
+Epoch 2 | Batch 190/400 | Loss: 0.131431 | LR: 9.99e-06
+Epoch 2 | Batch 200/400 | Loss: 0.214610 | LR: 9.99e-06
+Epoch 2 | Batch 210/400 | Loss: 0.179925 | LR: 9.99e-06
+Epoch 2 | Batch 220/400 | Loss: 0.152996 | LR: 9.99e-06
+Epoch 2 | Batch 230/400 | Loss: 0.161865 | LR: 9.99e-06
+Epoch 2 | Batch 240/400 | Loss: 0.128095 | LR: 9.99e-06
+Epoch 2 | Batch 250/400 | Loss: 0.277885 | LR: 9.99e-06
+Epoch 2 | Batch 260/400 | Loss: 0.591764 | LR: 9.99e-06
+Epoch 2 | Batch 270/400 | Loss: 0.019733 | LR: 9.99e-06
+Epoch 2 | Batch 280/400 | Loss: 0.203460 | LR: 9.99e-06
+Epoch 2 | Batch 290/400 | Loss: 0.241775 | LR: 9.99e-06
+Epoch 2 | Batch 300/400 | Loss: 0.101192 | LR: 9.99e-06
+Epoch 2 | Batch 310/400 | Loss: 0.037461 | LR: 9.99e-06
+Epoch 2 | Batch 320/400 | Loss: 0.337185 | LR: 9.99e-06
+Epoch 2 | Batch 330/400 | Loss: 0.218532 | LR: 9.99e-06
+Epoch 2 | Batch 340/400 | Loss: 0.434172 | LR: 9.99e-06
+Epoch 2 | Batch 350/400 | Loss: 0.172095 | LR: 9.99e-06
+Epoch 2 | Batch 360/400 | Loss: 0.280622 | LR: 9.99e-06
+Epoch 2 | Batch 370/400 | Loss: 0.064938 | LR: 9.99e-06
+Epoch 2 | Batch 380/400 | Loss: 0.236370 | LR: 9.99e-06
+Epoch 2 | Batch 390/400 | Loss: 0.325287 | LR: 9.99e-06
+✅ 第 2 轮训练完成，平均损失: 0.196112
+🧪 开始验证，共有 50 个批次
+验证批次 0/50 | Loss: 0.156216
+验证批次 5/50 | Loss: 0.021627
+验证批次 10/50 | Loss: 0.458615
+验证批次 15/50 | Loss: 0.102983
+验证批次 20/50 | Loss: 0.012550
+验证批次 25/50 | Loss: 0.149025
+验证批次 30/50 | Loss: 0.014852
+验证批次 35/50 | Loss: 0.105889
+验证批次 40/50 | Loss: 0.385690
+验证批次 45/50 | Loss: 0.030601
+✅ 验证完成，平均损失: 0.168588
+
+============================================================
+📊 Epoch 2/50 完成
+   Train Loss: 0.196112
+   Val Loss: 0.168588
+   LR: 9.99e-06 | Time: 71.1s
+============================================================
+💾 模型已保存: training_results_move_object_fixed/controlnet_move_object_best.pth
+🎉 新的最佳验证损失: 0.168588
+Epoch 3 | Batch 0/400 | Loss: 0.218801 | LR: 9.96e-06
+Epoch 3 | Batch 10/400 | Loss: 0.168481 | LR: 9.96e-06
+Epoch 3 | Batch 20/400 | Loss: 0.121193 | LR: 9.96e-06
+Epoch 3 | Batch 30/400 | Loss: 0.108190 | LR: 9.96e-06
+Epoch 3 | Batch 40/400 | Loss: 0.050194 | LR: 9.96e-06
+Epoch 3 | Batch 50/400 | Loss: 0.325674 | LR: 9.96e-06
+Epoch 3 | Batch 60/400 | Loss: 0.078494 | LR: 9.96e-06
+Epoch 3 | Batch 70/400 | Loss: 0.158156 | LR: 9.96e-06
+Epoch 3 | Batch 80/400 | Loss: 0.033319 | LR: 9.96e-06
+Epoch 3 | Batch 90/400 | Loss: 0.079857 | LR: 9.96e-06
+Epoch 3 | Batch 100/400 | Loss: 0.633548 | LR: 9.96e-06
+Epoch 3 | Batch 110/400 | Loss: 0.493060 | LR: 9.96e-06
+Epoch 3 | Batch 120/400 | Loss: 0.169940 | LR: 9.96e-06
+Epoch 3 | Batch 130/400 | Loss: 0.369541 | LR: 9.96e-06
+Epoch 3 | Batch 140/400 | Loss: 0.060238 | LR: 9.96e-06
+Epoch 3 | Batch 150/400 | Loss: 0.292209 | LR: 9.96e-06
+Epoch 3 | Batch 160/400 | Loss: 0.200726 | LR: 9.96e-06
+Epoch 3 | Batch 170/400 | Loss: 0.252398 | LR: 9.96e-06
+Epoch 3 | Batch 180/400 | Loss: 0.020927 | LR: 9.96e-06
+Epoch 3 | Batch 190/400 | Loss: 0.053607 | LR: 9.96e-06
+Epoch 3 | Batch 200/400 | Loss: 0.004103 | LR: 9.96e-06
+Epoch 3 | Batch 210/400 | Loss: 0.060366 | LR: 9.96e-06
+Epoch 3 | Batch 220/400 | Loss: 0.276523 | LR: 9.96e-06
+Epoch 3 | Batch 230/400 | Loss: 0.474708 | LR: 9.96e-06
+Epoch 3 | Batch 240/400 | Loss: 0.040129 | LR: 9.96e-06
+Epoch 3 | Batch 250/400 | Loss: 0.064743 | LR: 9.96e-06
+Epoch 3 | Batch 260/400 | Loss: 0.135058 | LR: 9.96e-06
+Epoch 3 | Batch 270/400 | Loss: 0.053743 | LR: 9.96e-06
+Epoch 3 | Batch 280/400 | Loss: 0.057857 | LR: 9.96e-06
+Epoch 3 | Batch 290/400 | Loss: 0.017424 | LR: 9.96e-06
+Epoch 3 | Batch 300/400 | Loss: 0.073789 | LR: 9.96e-06
+Epoch 3 | Batch 310/400 | Loss: 0.159465 | LR: 9.96e-06
+Epoch 3 | Batch 320/400 | Loss: 0.331677 | LR: 9.96e-06
+Epoch 3 | Batch 330/400 | Loss: 0.239504 | LR: 9.96e-06
+Epoch 3 | Batch 340/400 | Loss: 0.283783 | LR: 9.96e-06
+Epoch 3 | Batch 350/400 | Loss: 0.012148 | LR: 9.96e-06
+Epoch 3 | Batch 360/400 | Loss: 0.597108 | LR: 9.96e-06
+Epoch 3 | Batch 370/400 | Loss: 0.105033 | LR: 9.96e-06
+Epoch 3 | Batch 380/400 | Loss: 0.175775 | LR: 9.96e-06
+Epoch 3 | Batch 390/400 | Loss: 0.376869 | LR: 9.96e-06
+✅ 第 3 轮训练完成，平均损失: 0.186844
+🧪 开始验证，共有 50 个批次
+验证批次 0/50 | Loss: 0.034307
+验证批次 5/50 | Loss: 0.172011
+验证批次 10/50 | Loss: 0.045314
+验证批次 15/50 | Loss: 0.142045
+验证批次 20/50 | Loss: 0.005613
+验证批次 25/50 | Loss: 0.306449
+验证批次 30/50 | Loss: 0.171504
+验证批次 35/50 | Loss: 0.007177
+验证批次 40/50 | Loss: 0.013981
+验证批次 45/50 | Loss: 0.026761
+✅ 验证完成，平均损失: 0.164179
+
+============================================================
+📊 Epoch 3/50 完成
+   Train Loss: 0.186844
+   Val Loss: 0.164179
+   LR: 9.96e-06 | Time: 71.9s
+============================================================
+💾 模型已保存: training_results_move_object_fixed/controlnet_move_object_best.pth
+🎉 新的最佳验证损失: 0.164179
+Epoch 4 | Batch 0/400 | Loss: 0.142199 | LR: 9.92e-06
+Epoch 4 | Batch 10/400 | Loss: 0.457876 | LR: 9.92e-06
+Epoch 4 | Batch 20/400 | Loss: 0.335367 | LR: 9.92e-06
+Epoch 4 | Batch 30/400 | Loss: 0.286251 | LR: 9.92e-06
+Epoch 4 | Batch 40/400 | Loss: 0.508012 | LR: 9.92e-06
+Epoch 4 | Batch 50/400 | Loss: 0.124745 | LR: 9.92e-06
+Epoch 4 | Batch 60/400 | Loss: 0.175957 | LR: 9.92e-06
+Epoch 4 | Batch 70/400 | Loss: 0.195687 | LR: 9.92e-06
+Epoch 4 | Batch 80/400 | Loss: 0.203625 | LR: 9.92e-06
+Epoch 4 | Batch 90/400 | Loss: 0.627746 | LR: 9.92e-06
+Epoch 4 | Batch 100/400 | Loss: 0.090425 | LR: 9.92e-06
+Epoch 4 | Batch 110/400 | Loss: 0.083546 | LR: 9.92e-06
+Epoch 4 | Batch 120/400 | Loss: 0.087514 | LR: 9.92e-06
+Epoch 4 | Batch 130/400 | Loss: 0.211763 | LR: 9.92e-06
+Epoch 4 | Batch 140/400 | Loss: 0.106971 | LR: 9.92e-06
+Epoch 4 | Batch 150/400 | Loss: 0.289156 | LR: 9.92e-06
+Epoch 4 | Batch 160/400 | Loss: 0.322673 | LR: 9.92e-06
+Epoch 4 | Batch 170/400 | Loss: 0.172870 | LR: 9.92e-06
+Epoch 4 | Batch 180/400 | Loss: 0.011191 | LR: 9.92e-06
+Epoch 4 | Batch 190/400 | Loss: 0.473805 | LR: 9.92e-06
+Epoch 4 | Batch 200/400 | Loss: 0.128537 | LR: 9.92e-06
+Epoch 4 | Batch 210/400 | Loss: 0.038070 | LR: 9.92e-06
+Epoch 4 | Batch 220/400 | Loss: 0.146050 | LR: 9.92e-06
+Epoch 4 | Batch 230/400 | Loss: 0.074942 | LR: 9.92e-06
+Epoch 4 | Batch 240/400 | Loss: 0.250680 | LR: 9.92e-06
+Epoch 4 | Batch 250/400 | Loss: 0.007147 | LR: 9.92e-06
+Epoch 4 | Batch 260/400 | Loss: 0.295893 | LR: 9.92e-06
+Epoch 4 | Batch 270/400 | Loss: 0.388867 | LR: 9.92e-06
+Epoch 4 | Batch 280/400 | Loss: 0.068373 | LR: 9.92e-06
+Epoch 4 | Batch 290/400 | Loss: 0.394486 | LR: 9.92e-06
+Epoch 4 | Batch 300/400 | Loss: 0.088713 | LR: 9.92e-06
+Epoch 4 | Batch 310/400 | Loss: 0.497966 | LR: 9.92e-06
+Epoch 4 | Batch 320/400 | Loss: 0.192385 | LR: 9.92e-06
+Epoch 4 | Batch 330/400 | Loss: 0.109506 | LR: 9.92e-06
+Epoch 4 | Batch 340/400 | Loss: 0.125610 | LR: 9.92e-06
+Epoch 4 | Batch 350/400 | Loss: 0.183647 | LR: 9.92e-06
+Epoch 4 | Batch 360/400 | Loss: 0.009124 | LR: 9.92e-06
+Epoch 4 | Batch 370/400 | Loss: 0.304725 | LR: 9.92e-06
+Epoch 4 | Batch 380/400 | Loss: 0.052793 | LR: 9.92e-06
+Epoch 4 | Batch 390/400 | Loss: 0.311768 | LR: 9.92e-06
+✅ 第 4 轮训练完成，平均损失: 0.198611
+🧪 开始验证，共有 50 个批次
+验证批次 0/50 | Loss: 0.008833
+验证批次 5/50 | Loss: 0.312381
+验证批次 10/50 | Loss: 0.017660
+验证批次 15/50 | Loss: 0.173232
+验证批次 20/50 | Loss: 0.033811
+验证批次 25/50 | Loss: 0.100822
+验证批次 30/50 | Loss: 0.202269
+验证批次 35/50 | Loss: 0.059383
+验证批次 40/50 | Loss: 0.126029
+验证批次 45/50 | Loss: 0.254242
+✅ 验证完成，平均损失: 0.157329
+
+============================================================
+📊 Epoch 4/50 完成
+   Train Loss: 0.198611
+   Val Loss: 0.157329
+   LR: 9.92e-06 | Time: 71.0s
+============================================================
+💾 模型已保存: training_results_move_object_fixed/controlnet_move_object_best.pth
+🎉 新的最佳验证损失: 0.157329
+Epoch 5 | Batch 0/400 | Loss: 0.298633 | LR: 9.86e-06
+Epoch 5 | Batch 10/400 | Loss: 0.027755 | LR: 9.86e-06
+Epoch 5 | Batch 20/400 | Loss: 0.048689 | LR: 9.86e-06
+Epoch 5 | Batch 30/400 | Loss: 0.290035 | LR: 9.86e-06
+Epoch 5 | Batch 40/400 | Loss: 0.114219 | LR: 9.86e-06
+Epoch 5 | Batch 50/400 | Loss: 0.122953 | LR: 9.86e-06
+Epoch 5 | Batch 60/400 | Loss: 0.048734 | LR: 9.86e-06
+Epoch 5 | Batch 70/400 | Loss: 0.342084 | LR: 9.86e-06
+Epoch 5 | Batch 80/400 | Loss: 0.058947 | LR: 9.86e-06
+Epoch 5 | Batch 90/400 | Loss: 0.056906 | LR: 9.86e-06
+Epoch 5 | Batch 100/400 | Loss: 0.197299 | LR: 9.86e-06
+Epoch 5 | Batch 110/400 | Loss: 0.143729 | LR: 9.86e-06
+Epoch 5 | Batch 120/400 | Loss: 0.096071 | LR: 9.86e-06
+Epoch 5 | Batch 130/400 | Loss: 0.027739 | LR: 9.86e-06
+Epoch 5 | Batch 140/400 | Loss: 0.369486 | LR: 9.86e-06
+Epoch 5 | Batch 150/400 | Loss: 0.157018 | LR: 9.86e-06
+Epoch 5 | Batch 160/400 | Loss: 0.342490 | LR: 9.86e-06
+Epoch 5 | Batch 170/400 | Loss: 0.015042 | LR: 9.86e-06
+Epoch 5 | Batch 180/400 | Loss: 0.334434 | LR: 9.86e-06
+Epoch 5 | Batch 190/400 | Loss: 0.369821 | LR: 9.86e-06
+Epoch 5 | Batch 200/400 | Loss: 0.137824 | LR: 9.86e-06
+Epoch 5 | Batch 210/400 | Loss: 0.017271 | LR: 9.86e-06
+Epoch 5 | Batch 220/400 | Loss: 0.183434 | LR: 9.86e-06
+Epoch 5 | Batch 230/400 | Loss: 0.320659 | LR: 9.86e-06
+Epoch 5 | Batch 240/400 | Loss: 0.048840 | LR: 9.86e-06
+Epoch 5 | Batch 250/400 | Loss: 0.143146 | LR: 9.86e-06
+Epoch 5 | Batch 260/400 | Loss: 0.024646 | LR: 9.86e-06
+Epoch 5 | Batch 270/400 | Loss: 0.337245 | LR: 9.86e-06
+Epoch 5 | Batch 280/400 | Loss: 0.011153 | LR: 9.86e-06
+Epoch 5 | Batch 290/400 | Loss: 0.184203 | LR: 9.86e-06
+Epoch 5 | Batch 300/400 | Loss: 0.190996 | LR: 9.86e-06
+Epoch 5 | Batch 310/400 | Loss: 0.019605 | LR: 9.86e-06
+Epoch 5 | Batch 320/400 | Loss: 0.404809 | LR: 9.86e-06
+Epoch 5 | Batch 330/400 | Loss: 0.128860 | LR: 9.86e-06
+Epoch 5 | Batch 340/400 | Loss: 0.421168 | LR: 9.86e-06
+Epoch 5 | Batch 350/400 | Loss: 0.177351 | LR: 9.86e-06
+Epoch 5 | Batch 360/400 | Loss: 0.085984 | LR: 9.86e-06
+Epoch 5 | Batch 370/400 | Loss: 0.190253 | LR: 9.86e-06
+Epoch 5 | Batch 380/400 | Loss: 0.271263 | LR: 9.86e-06
+Epoch 5 | Batch 390/400 | Loss: 0.115649 | LR: 9.86e-06
+✅ 第 5 轮训练完成，平均损失: 0.187315
+🧪 开始验证，共有 50 个批次
+验证批次 0/50 | Loss: 0.321618
+验证批次 5/50 | Loss: 0.311060
+验证批次 10/50 | Loss: 0.044162
+验证批次 15/50 | Loss: 0.301436
+验证批次 20/50 | Loss: 0.294001
+验证批次 25/50 | Loss: 0.391891
+验证批次 30/50 | Loss: 0.258786
+验证批次 35/50 | Loss: 0.502005
+验证批次 40/50 | Loss: 0.086322
+验证批次 45/50 | Loss: 0.284183
+✅ 验证完成，平均损失: 0.228062
+
+============================================================
+📊 Epoch 5/50 完成
+   Train Loss: 0.187315
+   Val Loss: 0.228062
+   LR: 9.86e-06 | Time: 70.9s
+============================================================
+⏳ 早停计数: 1/10
+💾 模型已保存: training_results_move_object_fixed/controlnet_move_object_epoch_5.pth
+Epoch 6 | Batch 0/400 | Loss: 0.031833 | LR: 9.78e-06
+Epoch 6 | Batch 10/400 | Loss: 0.219013 | LR: 9.78e-06
+Epoch 6 | Batch 20/400 | Loss: 0.058035 | LR: 9.78e-06
+Epoch 6 | Batch 30/400 | Loss: 0.011610 | LR: 9.78e-06
+Epoch 6 | Batch 40/400 | Loss: 0.264083 | LR: 9.78e-06
+Epoch 6 | Batch 50/400 | Loss: 0.323118 | LR: 9.78e-06
+Epoch 6 | Batch 60/400 | Loss: 0.101782 | LR: 9.78e-06
+Epoch 6 | Batch 70/400 | Loss: 0.624746 | LR: 9.78e-06
+Epoch 6 | Batch 80/400 | Loss: 0.375826 | LR: 9.78e-06
+Epoch 6 | Batch 90/400 | Loss: 0.432630 | LR: 9.78e-06
+Epoch 6 | Batch 100/400 | Loss: 0.152684 | LR: 9.78e-06
+Epoch 6 | Batch 110/400 | Loss: 0.064005 | LR: 9.78e-06
+Epoch 6 | Batch 120/400 | Loss: 0.191500 | LR: 9.78e-06
+Epoch 6 | Batch 130/400 | Loss: 0.239308 | LR: 9.78e-06
+Epoch 6 | Batch 140/400 | Loss: 0.008286 | LR: 9.78e-06
+Epoch 6 | Batch 150/400 | Loss: 0.080434 | LR: 9.78e-06
+Epoch 6 | Batch 160/400 | Loss: 0.167236 | LR: 9.78e-06
+Epoch 6 | Batch 170/400 | Loss: 0.035772 | LR: 9.78e-06
+Epoch 6 | Batch 180/400 | Loss: 0.307473 | LR: 9.78e-06
+Epoch 6 | Batch 190/400 | Loss: 0.330395 | LR: 9.78e-06
+Epoch 6 | Batch 200/400 | Loss: 0.061017 | LR: 9.78e-06
+Epoch 6 | Batch 210/400 | Loss: 0.073861 | LR: 9.78e-06
+Epoch 6 | Batch 220/400 | Loss: 0.071461 | LR: 9.78e-06
+Epoch 6 | Batch 230/400 | Loss: 0.008068 | LR: 9.78e-06
+Epoch 6 | Batch 240/400 | Loss: 0.010151 | LR: 9.78e-06
+Epoch 6 | Batch 250/400 | Loss: 0.245104 | LR: 9.78e-06
+Epoch 6 | Batch 260/400 | Loss: 0.165785 | LR: 9.78e-06
+Epoch 6 | Batch 270/400 | Loss: 0.351802 | LR: 9.78e-06
+Epoch 6 | Batch 280/400 | Loss: 0.143611 | LR: 9.78e-06
+Epoch 6 | Batch 290/400 | Loss: 0.274080 | LR: 9.78e-06
+Epoch 6 | Batch 300/400 | Loss: 0.162840 | LR: 9.78e-06
+Epoch 6 | Batch 310/400 | Loss: 0.188536 | LR: 9.78e-06
+Epoch 6 | Batch 320/400 | Loss: 0.172152 | LR: 9.78e-06
+Epoch 6 | Batch 330/400 | Loss: 0.021731 | LR: 9.78e-06
+Epoch 6 | Batch 340/400 | Loss: 0.173546 | LR: 9.78e-06
+Epoch 6 | Batch 350/400 | Loss: 0.237214 | LR: 9.78e-06
+Epoch 6 | Batch 360/400 | Loss: 0.234790 | LR: 9.78e-06
+Epoch 6 | Batch 370/400 | Loss: 0.129868 | LR: 9.78e-06
+Epoch 6 | Batch 380/400 | Loss: 0.371398 | LR: 9.78e-06
+Epoch 6 | Batch 390/400 | Loss: 0.018200 | LR: 9.78e-06
+✅ 第 6 轮训练完成，平均损失: 0.205499
+🧪 开始验证，共有 50 个批次
+验证批次 0/50 | Loss: 0.032825
+验证批次 5/50 | Loss: 0.065559
+验证批次 10/50 | Loss: 0.082268
+验证批次 15/50 | Loss: 0.253024
+验证批次 20/50 | Loss: 0.432418
+验证批次 25/50 | Loss: 0.066533
+验证批次 30/50 | Loss: 0.263409
+验证批次 35/50 | Loss: 0.061715
+验证批次 40/50 | Loss: 0.249350
+验证批次 45/50 | Loss: 0.116814
+✅ 验证完成，平均损失: 0.164802
+
+============================================================
+📊 Epoch 6/50 完成
+   Train Loss: 0.205499
+   Val Loss: 0.164802
+   LR: 9.78e-06 | Time: 74.2s
+============================================================
+⏳ 早停计数: 2/10
+Epoch 7 | Batch 0/400 | Loss: 0.015620 | LR: 9.68e-06
+Epoch 7 | Batch 10/400 | Loss: 0.223631 | LR: 9.68e-06
+Epoch 7 | Batch 20/400 | Loss: 0.085331 | LR: 9.68e-06
+Epoch 7 | Batch 30/400 | Loss: 0.112047 | LR: 9.68e-06
+Epoch 7 | Batch 40/400 | Loss: 0.044653 | LR: 9.68e-06
+Epoch 7 | Batch 50/400 | Loss: 0.381709 | LR: 9.68e-06
+Epoch 7 | Batch 60/400 | Loss: 0.376982 | LR: 9.68e-06
+Epoch 7 | Batch 70/400 | Loss: 0.037040 | LR: 9.68e-06
+Epoch 7 | Batch 80/400 | Loss: 0.310693 | LR: 9.68e-06
+Epoch 7 | Batch 90/400 | Loss: 0.011350 | LR: 9.68e-06
+Epoch 7 | Batch 100/400 | Loss: 0.211324 | LR: 9.68e-06
+Epoch 7 | Batch 110/400 | Loss: 0.094398 | LR: 9.68e-06
+Epoch 7 | Batch 120/400 | Loss: 0.043362 | LR: 9.68e-06
+Epoch 7 | Batch 130/400 | Loss: 0.113368 | LR: 9.68e-06
+Epoch 7 | Batch 140/400 | Loss: 0.230334 | LR: 9.68e-06
+Epoch 7 | Batch 150/400 | Loss: 0.246399 | LR: 9.68e-06
+Epoch 7 | Batch 160/400 | Loss: 0.032483 | LR: 9.68e-06
+Epoch 7 | Batch 170/400 | Loss: 0.147034 | LR: 9.68e-06
+Epoch 7 | Batch 180/400 | Loss: 0.092973 | LR: 9.68e-06
+Epoch 7 | Batch 190/400 | Loss: 0.314567 | LR: 9.68e-06
+Epoch 7 | Batch 200/400 | Loss: 0.088388 | LR: 9.68e-06
+Epoch 7 | Batch 210/400 | Loss: 0.018311 | LR: 9.68e-06
+Epoch 7 | Batch 220/400 | Loss: 0.305724 | LR: 9.68e-06
+Epoch 7 | Batch 230/400 | Loss: 0.450525 | LR: 9.68e-06
+Epoch 7 | Batch 240/400 | Loss: 0.036621 | LR: 9.68e-06
+Epoch 7 | Batch 250/400 | Loss: 0.236195 | LR: 9.68e-06
+Epoch 7 | Batch 260/400 | Loss: 0.599659 | LR: 9.68e-06
+Epoch 7 | Batch 270/400 | Loss: 0.222052 | LR: 9.68e-06
+Epoch 7 | Batch 280/400 | Loss: 0.207289 | LR: 9.68e-06
+Epoch 7 | Batch 290/400 | Loss: 0.326186 | LR: 9.68e-06
+Epoch 7 | Batch 300/400 | Loss: 0.063369 | LR: 9.68e-06
+Epoch 7 | Batch 310/400 | Loss: 0.129867 | LR: 9.68e-06
+Epoch 7 | Batch 320/400 | Loss: 0.084402 | LR: 9.68e-06
+Epoch 7 | Batch 330/400 | Loss: 0.132901 | LR: 9.68e-06
+Epoch 7 | Batch 340/400 | Loss: 0.302159 | LR: 9.68e-06
+Epoch 7 | Batch 350/400 | Loss: 0.210474 | LR: 9.68e-06
+Epoch 7 | Batch 360/400 | Loss: 0.006579 | LR: 9.68e-06
+Epoch 7 | Batch 370/400 | Loss: 0.012929 | LR: 9.68e-06
+Epoch 7 | Batch 380/400 | Loss: 0.321602 | LR: 9.68e-06
+Epoch 7 | Batch 390/400 | Loss: 0.058241 | LR: 9.68e-06
+✅ 第 7 轮训练完成，平均损失: 0.186581
+🧪 开始验证，共有 50 个批次
+验证批次 0/50 | Loss: 0.486231
+验证批次 5/50 | Loss: 0.005376
+验证批次 10/50 | Loss: 0.209754
+验证批次 15/50 | Loss: 0.042907
+验证批次 20/50 | Loss: 0.007064
+验证批次 25/50 | Loss: 0.110867
+验证批次 30/50 | Loss: 0.278509
+验证批次 35/50 | Loss: 0.056021
+验证批次 40/50 | Loss: 0.125190
+验证批次 45/50 | Loss: 0.147854
+✅ 验证完成，平均损失: 0.167309
+
+============================================================
+📊 Epoch 7/50 完成
+   Train Loss: 0.186581
+   Val Loss: 0.167309
+   LR: 9.68e-06 | Time: 71.4s
+============================================================
+⏳ 早停计数: 3/10
+Epoch 8 | Batch 0/400 | Loss: 0.357529 | LR: 9.57e-06
+Epoch 8 | Batch 10/400 | Loss: 0.297981 | LR: 9.57e-06
+Epoch 8 | Batch 20/400 | Loss: 0.300607 | LR: 9.57e-06
+Epoch 8 | Batch 30/400 | Loss: 0.461899 | LR: 9.57e-06
+Epoch 8 | Batch 40/400 | Loss: 0.145024 | LR: 9.57e-06
+Epoch 8 | Batch 50/400 | Loss: 0.038745 | LR: 9.57e-06
+Epoch 8 | Batch 60/400 | Loss: 0.044257 | LR: 9.57e-06
+Epoch 8 | Batch 70/400 | Loss: 0.027140 | LR: 9.57e-06
+Epoch 8 | Batch 80/400 | Loss: 0.391492 | LR: 9.57e-06
+Epoch 8 | Batch 90/400 | Loss: 0.443516 | LR: 9.57e-06
+Epoch 8 | Batch 100/400 | Loss: 0.092684 | LR: 9.57e-06
+Epoch 8 | Batch 110/400 | Loss: 0.394291 | LR: 9.57e-06
+Epoch 8 | Batch 120/400 | Loss: 0.214799 | LR: 9.57e-06
+Epoch 8 | Batch 130/400 | Loss: 0.104338 | LR: 9.57e-06
+Epoch 8 | Batch 140/400 | Loss: 0.304751 | LR: 9.57e-06
+Epoch 8 | Batch 150/400 | Loss: 0.201582 | LR: 9.57e-06
+Epoch 8 | Batch 160/400 | Loss: 0.186525 | LR: 9.57e-06
+Epoch 8 | Batch 170/400 | Loss: 0.078116 | LR: 9.57e-06
+Epoch 8 | Batch 180/400 | Loss: 0.634072 | LR: 9.57e-06
+Epoch 8 | Batch 190/400 | Loss: 0.130020 | LR: 9.57e-06
+Epoch 8 | Batch 200/400 | Loss: 0.156007 | LR: 9.57e-06
+Epoch 8 | Batch 210/400 | Loss: 0.148345 | LR: 9.57e-06
+Epoch 8 | Batch 220/400 | Loss: 0.156244 | LR: 9.57e-06
+Epoch 8 | Batch 230/400 | Loss: 0.279731 | LR: 9.57e-06
+Epoch 8 | Batch 240/400 | Loss: 0.012813 | LR: 9.57e-06
+Epoch 8 | Batch 250/400 | Loss: 0.091043 | LR: 9.57e-06
+Epoch 8 | Batch 260/400 | Loss: 0.567333 | LR: 9.57e-06
+Epoch 8 | Batch 270/400 | Loss: 0.136834 | LR: 9.57e-06
+Epoch 8 | Batch 280/400 | Loss: 0.106263 | LR: 9.57e-06
+Epoch 8 | Batch 290/400 | Loss: 0.006963 | LR: 9.57e-06
+Epoch 8 | Batch 300/400 | Loss: 0.347694 | LR: 9.57e-06
+Epoch 8 | Batch 310/400 | Loss: 0.025774 | LR: 9.57e-06
+Epoch 8 | Batch 320/400 | Loss: 0.385157 | LR: 9.57e-06
+Epoch 8 | Batch 330/400 | Loss: 0.214199 | LR: 9.57e-06
+Epoch 8 | Batch 340/400 | Loss: 0.007854 | LR: 9.57e-06
+Epoch 8 | Batch 350/400 | Loss: 0.027448 | LR: 9.57e-06
+Epoch 8 | Batch 360/400 | Loss: 0.172869 | LR: 9.57e-06
+Epoch 8 | Batch 370/400 | Loss: 0.399466 | LR: 9.57e-06
+Epoch 8 | Batch 380/400 | Loss: 0.012021 | LR: 9.57e-06
+Epoch 8 | Batch 390/400 | Loss: 0.376453 | LR: 9.57e-06
+✅ 第 8 轮训练完成，平均损失: 0.182591
+🧪 开始验证，共有 50 个批次
+验证批次 0/50 | Loss: 0.305908
+验证批次 5/50 | Loss: 0.229028
+验证批次 10/50 | Loss: 0.049484
+验证批次 15/50 | Loss: 0.026490
+验证批次 20/50 | Loss: 0.152943
+验证批次 25/50 | Loss: 0.381031
+验证批次 30/50 | Loss: 0.180194
+验证批次 35/50 | Loss: 0.279575
+验证批次 40/50 | Loss: 0.129507
+验证批次 45/50 | Loss: 0.025952
+✅ 验证完成，平均损失: 0.179972
+
+============================================================
+📊 Epoch 8/50 完成
+   Train Loss: 0.182591
+   Val Loss: 0.179972
+   LR: 9.57e-06 | Time: 69.6s
+============================================================
+⏳ 早停计数: 4/10
+Epoch 9 | Batch 0/400 | Loss: 0.036455 | LR: 9.44e-06
+Epoch 9 | Batch 10/400 | Loss: 0.191185 | LR: 9.44e-06
+Epoch 9 | Batch 20/400 | Loss: 0.124865 | LR: 9.44e-06
+Epoch 9 | Batch 30/400 | Loss: 0.275449 | LR: 9.44e-06
+Epoch 9 | Batch 40/400 | Loss: 0.242143 | LR: 9.44e-06
+Epoch 9 | Batch 50/400 | Loss: 0.282136 | LR: 9.44e-06
+Epoch 9 | Batch 60/400 | Loss: 0.087227 | LR: 9.44e-06
+Epoch 9 | Batch 70/400 | Loss: 0.084131 | LR: 9.44e-06
+Epoch 9 | Batch 80/400 | Loss: 0.229250 | LR: 9.44e-06
+Epoch 9 | Batch 90/400 | Loss: 0.173151 | LR: 9.44e-06
+Epoch 9 | Batch 100/400 | Loss: 0.532981 | LR: 9.44e-06
+Epoch 9 | Batch 110/400 | Loss: 0.021023 | LR: 9.44e-06
+Epoch 9 | Batch 120/400 | Loss: 0.110777 | LR: 9.44e-06
+Epoch 9 | Batch 130/400 | Loss: 0.229661 | LR: 9.44e-06
+Epoch 9 | Batch 140/400 | Loss: 0.178466 | LR: 9.44e-06
+Epoch 9 | Batch 150/400 | Loss: 0.560215 | LR: 9.44e-06
+Epoch 9 | Batch 160/400 | Loss: 0.164185 | LR: 9.44e-06
+Epoch 9 | Batch 170/400 | Loss: 0.189575 | LR: 9.44e-06
+Epoch 9 | Batch 180/400 | Loss: 0.130761 | LR: 9.44e-06
+Epoch 9 | Batch 190/400 | Loss: 0.489472 | LR: 9.44e-06
+Epoch 9 | Batch 200/400 | Loss: 0.082094 | LR: 9.44e-06
+Epoch 9 | Batch 210/400 | Loss: 0.242141 | LR: 9.44e-06
+Epoch 9 | Batch 220/400 | Loss: 0.382331 | LR: 9.44e-06
+Epoch 9 | Batch 230/400 | Loss: 0.052960 | LR: 9.44e-06
+Epoch 9 | Batch 240/400 | Loss: 0.077367 | LR: 9.44e-06
+Epoch 9 | Batch 250/400 | Loss: 0.252530 | LR: 9.44e-06
+Epoch 9 | Batch 260/400 | Loss: 0.061038 | LR: 9.44e-06
+Epoch 9 | Batch 270/400 | Loss: 0.064232 | LR: 9.44e-06
+Epoch 9 | Batch 280/400 | Loss: 0.034343 | LR: 9.44e-06
+Epoch 9 | Batch 290/400 | Loss: 0.087467 | LR: 9.44e-06
+Epoch 9 | Batch 300/400 | Loss: 0.200535 | LR: 9.44e-06
+Epoch 9 | Batch 310/400 | Loss: 0.214976 | LR: 9.44e-06
+Epoch 9 | Batch 320/400 | Loss: 0.276770 | LR: 9.44e-06
+Epoch 9 | Batch 330/400 | Loss: 0.323044 | LR: 9.44e-06
+Epoch 9 | Batch 340/400 | Loss: 0.181990 | LR: 9.44e-06
+Epoch 9 | Batch 350/400 | Loss: 0.043742 | LR: 9.44e-06
+Epoch 9 | Batch 360/400 | Loss: 0.019295 | LR: 9.44e-06
+Epoch 9 | Batch 370/400 | Loss: 0.062469 | LR: 9.44e-06
+Epoch 9 | Batch 380/400 | Loss: 0.008871 | LR: 9.44e-06
+Epoch 9 | Batch 390/400 | Loss: 0.206119 | LR: 9.44e-06
+✅ 第 9 轮训练完成，平均损失: 0.195500
+🧪 开始验证，共有 50 个批次
+验证批次 0/50 | Loss: 0.362575
+验证批次 5/50 | Loss: 0.159340
+验证批次 10/50 | Loss: 0.215513
+验证批次 15/50 | Loss: 0.508460
+验证批次 20/50 | Loss: 0.062506
+验证批次 25/50 | Loss: 0.113292
+验证批次 30/50 | Loss: 0.031540
+验证批次 35/50 | Loss: 0.153417
+验证批次 40/50 | Loss: 0.347795
+验证批次 45/50 | Loss: 0.078234
+✅ 验证完成，平均损失: 0.201414
+
+============================================================
+📊 Epoch 9/50 完成
+   Train Loss: 0.195500
+   Val Loss: 0.201414
+   LR: 9.44e-06 | Time: 74.7s
+============================================================
+⏳ 早停计数: 5/10
+Epoch 10 | Batch 0/400 | Loss: 0.271061 | LR: 9.30e-06
+Epoch 10 | Batch 10/400 | Loss: 0.182314 | LR: 9.30e-06
+Epoch 10 | Batch 20/400 | Loss: 0.233532 | LR: 9.30e-06
+Epoch 10 | Batch 30/400 | Loss: 0.113388 | LR: 9.30e-06
+Epoch 10 | Batch 40/400 | Loss: 0.019972 | LR: 9.30e-06
+Epoch 10 | Batch 50/400 | Loss: 0.025512 | LR: 9.30e-06
+Epoch 10 | Batch 60/400 | Loss: 0.202499 | LR: 9.30e-06
+Epoch 10 | Batch 70/400 | Loss: 0.184392 | LR: 9.30e-06
+Epoch 10 | Batch 80/400 | Loss: 0.339415 | LR: 9.30e-06
+Epoch 10 | Batch 90/400 | Loss: 0.189172 | LR: 9.30e-06
+Epoch 10 | Batch 100/400 | Loss: 0.020454 | LR: 9.30e-06
+Epoch 10 | Batch 110/400 | Loss: 0.220317 | LR: 9.30e-06
+Epoch 10 | Batch 120/400 | Loss: 0.157110 | LR: 9.30e-06
+Epoch 10 | Batch 130/400 | Loss: 0.150247 | LR: 9.30e-06
+Epoch 10 | Batch 140/400 | Loss: 0.010821 | LR: 9.30e-06
+Epoch 10 | Batch 150/400 | Loss: 0.083040 | LR: 9.30e-06
+Epoch 10 | Batch 160/400 | Loss: 0.153662 | LR: 9.30e-06
+Epoch 10 | Batch 170/400 | Loss: 0.212759 | LR: 9.30e-06
+Epoch 10 | Batch 180/400 | Loss: 0.054925 | LR: 9.30e-06
+Epoch 10 | Batch 190/400 | Loss: 0.072903 | LR: 9.30e-06
+Epoch 10 | Batch 200/400 | Loss: 0.028645 | LR: 9.30e-06
+Epoch 10 | Batch 210/400 | Loss: 0.206998 | LR: 9.30e-06
+Epoch 10 | Batch 220/400 | Loss: 0.205159 | LR: 9.30e-06
+Epoch 10 | Batch 230/400 | Loss: 0.050207 | LR: 9.30e-06
+Epoch 10 | Batch 240/400 | Loss: 0.130652 | LR: 9.30e-06
+Epoch 10 | Batch 250/400 | Loss: 0.096950 | LR: 9.30e-06
+Epoch 10 | Batch 260/400 | Loss: 0.272564 | LR: 9.30e-06
+Epoch 10 | Batch 270/400 | Loss: 0.146706 | LR: 9.30e-06
+Epoch 10 | Batch 280/400 | Loss: 0.350989 | LR: 9.30e-06
+Epoch 10 | Batch 290/400 | Loss: 0.219211 | LR: 9.30e-06
+Epoch 10 | Batch 300/400 | Loss: 0.128502 | LR: 9.30e-06
+Epoch 10 | Batch 310/400 | Loss: 0.261615 | LR: 9.30e-06
+Epoch 10 | Batch 320/400 | Loss: 0.442432 | LR: 9.30e-06
+Epoch 10 | Batch 330/400 | Loss: 0.150760 | LR: 9.30e-06
+Epoch 10 | Batch 340/400 | Loss: 0.242306 | LR: 9.30e-06
+Epoch 10 | Batch 350/400 | Loss: 0.027659 | LR: 9.30e-06
+Epoch 10 | Batch 360/400 | Loss: 0.282810 | LR: 9.30e-06
+Epoch 10 | Batch 370/400 | Loss: 0.065066 | LR: 9.30e-06
+Epoch 10 | Batch 380/400 | Loss: 0.051862 | LR: 9.30e-06
+Epoch 10 | Batch 390/400 | Loss: 0.162576 | LR: 9.30e-06
+✅ 第 10 轮训练完成，平均损失: 0.186195
+🧪 开始验证，共有 50 个批次
+验证批次 0/50 | Loss: 0.100863
+验证批次 5/50 | Loss: 0.110660
+验证批次 10/50 | Loss: 0.186927
+验证批次 15/50 | Loss: 0.260271
+验证批次 20/50 | Loss: 0.253205
+验证批次 25/50 | Loss: 0.254350
+验证批次 30/50 | Loss: 0.146862
+验证批次 35/50 | Loss: 0.040448
+验证批次 40/50 | Loss: 0.441764
+验证批次 45/50 | Loss: 0.006040
+✅ 验证完成，平均损失: 0.161920
+
+============================================================
+📊 Epoch 10/50 完成
+   Train Loss: 0.186195
+   Val Loss: 0.161920
+   LR: 9.30e-06 | Time: 72.3s
+============================================================
+⏳ 早停计数: 6/10
+💾 模型已保存: training_results_move_object_fixed/controlnet_move_object_epoch_10.pth
+Epoch 11 | Batch 0/400 | Loss: 0.106540 | LR: 9.14e-06
+Epoch 11 | Batch 10/400 | Loss: 0.308385 | LR: 9.14e-06
+Epoch 11 | Batch 20/400 | Loss: 0.207485 | LR: 9.14e-06
+Epoch 11 | Batch 30/400 | Loss: 0.267816 | LR: 9.14e-06
+Epoch 11 | Batch 40/400 | Loss: 0.059941 | LR: 9.14e-06
+Epoch 11 | Batch 50/400 | Loss: 0.052833 | LR: 9.14e-06
+Epoch 11 | Batch 60/400 | Loss: 0.480382 | LR: 9.14e-06
+Epoch 11 | Batch 70/400 | Loss: 0.080748 | LR: 9.14e-06
+Epoch 11 | Batch 80/400 | Loss: 0.348191 | LR: 9.14e-06
+Epoch 11 | Batch 90/400 | Loss: 0.173274 | LR: 9.14e-06
+Epoch 11 | Batch 100/400 | Loss: 0.080126 | LR: 9.14e-06
+Epoch 11 | Batch 110/400 | Loss: 0.240474 | LR: 9.14e-06
+Epoch 11 | Batch 120/400 | Loss: 0.217457 | LR: 9.14e-06
+Epoch 11 | Batch 130/400 | Loss: 0.351746 | LR: 9.14e-06
+Epoch 11 | Batch 140/400 | Loss: 0.233067 | LR: 9.14e-06
+Epoch 11 | Batch 150/400 | Loss: 0.238351 | LR: 9.14e-06
+Epoch 11 | Batch 160/400 | Loss: 0.444409 | LR: 9.14e-06
+Epoch 11 | Batch 170/400 | Loss: 0.116488 | LR: 9.14e-06
+Epoch 11 | Batch 180/400 | Loss: 0.042480 | LR: 9.14e-06
+Epoch 11 | Batch 190/400 | Loss: 0.564530 | LR: 9.14e-06
+Epoch 11 | Batch 200/400 | Loss: 0.028616 | LR: 9.14e-06
+Epoch 11 | Batch 210/400 | Loss: 0.053053 | LR: 9.14e-06
+Epoch 11 | Batch 220/400 | Loss: 0.199474 | LR: 9.14e-06
+Epoch 11 | Batch 230/400 | Loss: 0.013884 | LR: 9.14e-06
+Epoch 11 | Batch 240/400 | Loss: 0.300492 | LR: 9.14e-06
+Epoch 11 | Batch 250/400 | Loss: 0.196180 | LR: 9.14e-06
+Epoch 11 | Batch 260/400 | Loss: 0.150423 | LR: 9.14e-06
+Epoch 11 | Batch 270/400 | Loss: 0.090723 | LR: 9.14e-06
+Epoch 11 | Batch 280/400 | Loss: 0.072102 | LR: 9.14e-06
+Epoch 11 | Batch 290/400 | Loss: 0.040405 | LR: 9.14e-06
+Epoch 11 | Batch 300/400 | Loss: 0.391817 | LR: 9.14e-06
+Epoch 11 | Batch 310/400 | Loss: 0.288407 | LR: 9.14e-06
+Epoch 11 | Batch 320/400 | Loss: 0.029255 | LR: 9.14e-06
+Epoch 11 | Batch 330/400 | Loss: 0.239809 | LR: 9.14e-06
+Epoch 11 | Batch 340/400 | Loss: 0.011432 | LR: 9.14e-06
+Epoch 11 | Batch 350/400 | Loss: 0.217060 | LR: 9.14e-06
+Epoch 11 | Batch 360/400 | Loss: 0.227051 | LR: 9.14e-06
+Epoch 11 | Batch 370/400 | Loss: 0.242017 | LR: 9.14e-06
+Epoch 11 | Batch 380/400 | Loss: 0.216642 | LR: 9.14e-06
+Epoch 11 | Batch 390/400 | Loss: 0.281006 | LR: 9.14e-06
+✅ 第 11 轮训练完成，平均损失: 0.205194
+🧪 开始验证，共有 50 个批次
+验证批次 0/50 | Loss: 0.708370
+验证批次 5/50 | Loss: 0.066462
+验证批次 10/50 | Loss: 0.149583
+验证批次 15/50 | Loss: 0.080640
+验证批次 20/50 | Loss: 0.412504
+验证批次 25/50 | Loss: 0.013829
+验证批次 30/50 | Loss: 0.316554
+验证批次 35/50 | Loss: 0.307551
+验证批次 40/50 | Loss: 0.019798
+验证批次 45/50 | Loss: 0.088716
+✅ 验证完成，平均损失: 0.227209
+
+============================================================
+📊 Epoch 11/50 完成
+   Train Loss: 0.205194
+   Val Loss: 0.227209
+   LR: 9.14e-06 | Time: 68.4s
+============================================================
+⏳ 早停计数: 7/10
+Epoch 12 | Batch 0/400 | Loss: 0.313203 | LR: 8.97e-06
+Epoch 12 | Batch 10/400 | Loss: 0.296219 | LR: 8.97e-06
+Epoch 12 | Batch 20/400 | Loss: 0.071215 | LR: 8.97e-06
+Epoch 12 | Batch 30/400 | Loss: 0.148675 | LR: 8.97e-06
+Epoch 12 | Batch 40/400 | Loss: 0.112464 | LR: 8.97e-06
+Epoch 12 | Batch 50/400 | Loss: 0.104270 | LR: 8.97e-06
+Epoch 12 | Batch 60/400 | Loss: 0.185005 | LR: 8.97e-06
+Epoch 12 | Batch 70/400 | Loss: 0.048607 | LR: 8.97e-06
+Epoch 12 | Batch 80/400 | Loss: 0.195341 | LR: 8.97e-06
+Epoch 12 | Batch 90/400 | Loss: 0.238307 | LR: 8.97e-06
+Epoch 12 | Batch 100/400 | Loss: 0.431159 | LR: 8.97e-06
+Epoch 12 | Batch 110/400 | Loss: 0.467989 | LR: 8.97e-06
+Epoch 12 | Batch 120/400 | Loss: 0.051705 | LR: 8.97e-06
+Epoch 12 | Batch 130/400 | Loss: 0.048122 | LR: 8.97e-06
+Epoch 12 | Batch 140/400 | Loss: 0.315791 | LR: 8.97e-06
+Epoch 12 | Batch 150/400 | Loss: 0.119884 | LR: 8.97e-06
+Epoch 12 | Batch 160/400 | Loss: 0.143043 | LR: 8.97e-06
+Epoch 12 | Batch 170/400 | Loss: 0.082413 | LR: 8.97e-06
+Epoch 12 | Batch 180/400 | Loss: 0.220658 | LR: 8.97e-06
+Epoch 12 | Batch 190/400 | Loss: 0.047507 | LR: 8.97e-06
+Epoch 12 | Batch 200/400 | Loss: 0.390318 | LR: 8.97e-06
+Epoch 12 | Batch 210/400 | Loss: 0.241744 | LR: 8.97e-06
+Epoch 12 | Batch 220/400 | Loss: 0.067790 | LR: 8.97e-06
+Epoch 12 | Batch 230/400 | Loss: 0.483061 | LR: 8.97e-06
+Epoch 12 | Batch 240/400 | Loss: 0.300611 | LR: 8.97e-06
+Epoch 12 | Batch 250/400 | Loss: 0.021576 | LR: 8.97e-06
+Epoch 12 | Batch 260/400 | Loss: 0.043457 | LR: 8.97e-06
+Epoch 12 | Batch 270/400 | Loss: 0.169817 | LR: 8.97e-06
+Epoch 12 | Batch 280/400 | Loss: 0.031467 | LR: 8.97e-06
+Epoch 12 | Batch 290/400 | Loss: 0.045909 | LR: 8.97e-06
+Epoch 12 | Batch 300/400 | Loss: 0.281933 | LR: 8.97e-06
+Epoch 12 | Batch 310/400 | Loss: 0.255023 | LR: 8.97e-06
+Epoch 12 | Batch 320/400 | Loss: 0.348939 | LR: 8.97e-06
+Epoch 12 | Batch 330/400 | Loss: 0.014876 | LR: 8.97e-06
+Epoch 12 | Batch 340/400 | Loss: 0.082722 | LR: 8.97e-06
+Epoch 12 | Batch 350/400 | Loss: 0.462033 | LR: 8.97e-06
+Epoch 12 | Batch 360/400 | Loss: 0.365217 | LR: 8.97e-06
+Epoch 12 | Batch 370/400 | Loss: 0.368181 | LR: 8.97e-06
+Epoch 12 | Batch 380/400 | Loss: 0.135205 | LR: 8.97e-06
+Epoch 12 | Batch 390/400 | Loss: 0.179586 | LR: 8.97e-06
+✅ 第 12 轮训练完成，平均损失: 0.186365
+🧪 开始验证，共有 50 个批次
+验证批次 0/50 | Loss: 0.416365
+验证批次 5/50 | Loss: 0.360255
+验证批次 10/50 | Loss: 0.072080
+验证批次 15/50 | Loss: 0.086282
+验证批次 20/50 | Loss: 0.442952
+验证批次 25/50 | Loss: 0.274026
+验证批次 30/50 | Loss: 0.266114
+验证批次 35/50 | Loss: 0.520796
+验证批次 40/50 | Loss: 0.030011
+验证批次 45/50 | Loss: 0.358037
+✅ 验证完成，平均损失: 0.220251
+
+============================================================
+📊 Epoch 12/50 完成
+   Train Loss: 0.186365
+   Val Loss: 0.220251
+   LR: 8.97e-06 | Time: 69.8s
+============================================================
+⏳ 早停计数: 8/10
+Epoch 13 | Batch 0/400 | Loss: 0.100598 | LR: 8.78e-06
+Epoch 13 | Batch 10/400 | Loss: 0.040957 | LR: 8.78e-06
+Epoch 13 | Batch 20/400 | Loss: 0.236273 | LR: 8.78e-06
+Epoch 13 | Batch 30/400 | Loss: 0.567066 | LR: 8.78e-06
+Epoch 13 | Batch 40/400 | Loss: 0.045340 | LR: 8.78e-06
+Epoch 13 | Batch 50/400 | Loss: 0.362595 | LR: 8.78e-06
+Epoch 13 | Batch 60/400 | Loss: 0.170711 | LR: 8.78e-06
+Epoch 13 | Batch 70/400 | Loss: 0.003086 | LR: 8.78e-06
+Epoch 13 | Batch 80/400 | Loss: 0.257184 | LR: 8.78e-06
+Epoch 13 | Batch 90/400 | Loss: 0.078831 | LR: 8.78e-06
+Epoch 13 | Batch 100/400 | Loss: 0.004173 | LR: 8.78e-06
+Epoch 13 | Batch 110/400 | Loss: 0.246194 | LR: 8.78e-06
+Epoch 13 | Batch 120/400 | Loss: 0.084205 | LR: 8.78e-06
+Epoch 13 | Batch 130/400 | Loss: 0.185131 | LR: 8.78e-06
+Epoch 13 | Batch 140/400 | Loss: 0.528435 | LR: 8.78e-06
+Epoch 13 | Batch 150/400 | Loss: 0.099097 | LR: 8.78e-06
+Epoch 13 | Batch 160/400 | Loss: 0.239893 | LR: 8.78e-06
+Epoch 13 | Batch 170/400 | Loss: 0.039805 | LR: 8.78e-06
+Epoch 13 | Batch 180/400 | Loss: 0.064664 | LR: 8.78e-06
+Epoch 13 | Batch 190/400 | Loss: 0.178164 | LR: 8.78e-06
+Epoch 13 | Batch 200/400 | Loss: 0.484069 | LR: 8.78e-06
+Epoch 13 | Batch 210/400 | Loss: 0.017830 | LR: 8.78e-06
+Epoch 13 | Batch 220/400 | Loss: 0.083182 | LR: 8.78e-06
+Epoch 13 | Batch 230/400 | Loss: 0.275919 | LR: 8.78e-06
+Epoch 13 | Batch 240/400 | Loss: 0.032752 | LR: 8.78e-06
+Epoch 13 | Batch 250/400 | Loss: 0.198024 | LR: 8.78e-06
+Epoch 13 | Batch 260/400 | Loss: 0.129916 | LR: 8.78e-06
+Epoch 13 | Batch 270/400 | Loss: 0.160666 | LR: 8.78e-06
+Epoch 13 | Batch 280/400 | Loss: 0.033234 | LR: 8.78e-06
+Epoch 13 | Batch 290/400 | Loss: 0.065267 | LR: 8.78e-06
+Epoch 13 | Batch 300/400 | Loss: 0.025965 | LR: 8.78e-06
+Epoch 13 | Batch 310/400 | Loss: 0.383226 | LR: 8.78e-06
+Epoch 13 | Batch 320/400 | Loss: 0.246887 | LR: 8.78e-06
+Epoch 13 | Batch 330/400 | Loss: 0.017394 | LR: 8.78e-06
+Epoch 13 | Batch 340/400 | Loss: 0.031709 | LR: 8.78e-06
+Epoch 13 | Batch 350/400 | Loss: 0.391131 | LR: 8.78e-06
+Epoch 13 | Batch 360/400 | Loss: 0.138810 | LR: 8.78e-06
+Epoch 13 | Batch 370/400 | Loss: 0.065477 | LR: 8.78e-06
+Epoch 13 | Batch 380/400 | Loss: 0.006393 | LR: 8.78e-06
+Epoch 13 | Batch 390/400 | Loss: 0.253567 | LR: 8.78e-06
+✅ 第 13 轮训练完成，平均损失: 0.191341
+🧪 开始验证，共有 50 个批次
+验证批次 0/50 | Loss: 0.157645
+验证批次 5/50 | Loss: 0.242449
+验证批次 10/50 | Loss: 0.070648
+验证批次 15/50 | Loss: 0.048653
+验证批次 20/50 | Loss: 0.032465
+验证批次 25/50 | Loss: 0.031778
+验证批次 30/50 | Loss: 0.075152
+验证批次 35/50 | Loss: 0.078193
+验证批次 40/50 | Loss: 0.059171
+验证批次 45/50 | Loss: 0.185624
+✅ 验证完成，平均损失: 0.177322
+
+============================================================
+📊 Epoch 13/50 完成
+   Train Loss: 0.191341
+   Val Loss: 0.177322
+   LR: 8.78e-06 | Time: 71.6s
+============================================================
+⏳ 早停计数: 9/10
+Epoch 14 | Batch 0/400 | Loss: 0.024141 | LR: 8.58e-06
+Epoch 14 | Batch 10/400 | Loss: 0.181282 | LR: 8.58e-06
+Epoch 14 | Batch 20/400 | Loss: 0.041889 | LR: 8.58e-06
+Epoch 14 | Batch 30/400 | Loss: 0.417769 | LR: 8.58e-06
+Epoch 14 | Batch 40/400 | Loss: 0.551515 | LR: 8.58e-06
+Epoch 14 | Batch 50/400 | Loss: 0.030861 | LR: 8.58e-06
+Epoch 14 | Batch 60/400 | Loss: 0.304254 | LR: 8.58e-06
+Epoch 14 | Batch 70/400 | Loss: 0.364663 | LR: 8.58e-06
+Epoch 14 | Batch 80/400 | Loss: 0.058087 | LR: 8.58e-06
+Epoch 14 | Batch 90/400 | Loss: 0.017518 | LR: 8.58e-06
+Epoch 14 | Batch 100/400 | Loss: 0.292333 | LR: 8.58e-06
+Epoch 14 | Batch 110/400 | Loss: 0.192102 | LR: 8.58e-06
+Epoch 14 | Batch 120/400 | Loss: 0.397362 | LR: 8.58e-06
+Epoch 14 | Batch 130/400 | Loss: 0.167843 | LR: 8.58e-06
+Epoch 14 | Batch 140/400 | Loss: 0.161434 | LR: 8.58e-06
+Epoch 14 | Batch 150/400 | Loss: 0.019003 | LR: 8.58e-06
+Epoch 14 | Batch 160/400 | Loss: 0.149015 | LR: 8.58e-06
+Epoch 14 | Batch 170/400 | Loss: 0.011252 | LR: 8.58e-06
+Epoch 14 | Batch 180/400 | Loss: 0.003191 | LR: 8.58e-06
+Epoch 14 | Batch 190/400 | Loss: 0.154627 | LR: 8.58e-06
+Epoch 14 | Batch 200/400 | Loss: 0.321145 | LR: 8.58e-06
+Epoch 14 | Batch 210/400 | Loss: 0.009004 | LR: 8.58e-06
+Epoch 14 | Batch 220/400 | Loss: 0.261019 | LR: 8.58e-06
+Epoch 14 | Batch 230/400 | Loss: 0.036675 | LR: 8.58e-06
+Epoch 14 | Batch 240/400 | Loss: 0.199669 | LR: 8.58e-06
+Epoch 14 | Batch 250/400 | Loss: 0.024886 | LR: 8.58e-06
+Epoch 14 | Batch 260/400 | Loss: 0.090252 | LR: 8.58e-06
+Epoch 14 | Batch 270/400 | Loss: 0.260726 | LR: 8.58e-06
+Epoch 14 | Batch 280/400 | Loss: 0.509362 | LR: 8.58e-06
+Epoch 14 | Batch 290/400 | Loss: 0.028225 | LR: 8.58e-06
+Epoch 14 | Batch 300/400 | Loss: 0.020411 | LR: 8.58e-06
+Epoch 14 | Batch 310/400 | Loss: 0.035781 | LR: 8.58e-06
+Epoch 14 | Batch 320/400 | Loss: 0.273694 | LR: 8.58e-06
+Epoch 14 | Batch 330/400 | Loss: 0.384917 | LR: 8.58e-06
+Epoch 14 | Batch 340/400 | Loss: 0.163412 | LR: 8.58e-06
+Epoch 14 | Batch 350/400 | Loss: 0.498273 | LR: 8.58e-06
+Epoch 14 | Batch 360/400 | Loss: 0.197401 | LR: 8.58e-06
+Epoch 14 | Batch 370/400 | Loss: 0.063249 | LR: 8.58e-06
+Epoch 14 | Batch 380/400 | Loss: 0.220073 | LR: 8.58e-06
+Epoch 14 | Batch 390/400 | Loss: 0.250370 | LR: 8.58e-06
+✅ 第 14 轮训练完成，平均损失: 0.186810
+🧪 开始验证，共有 50 个批次
+验证批次 0/50 | Loss: 0.216171
+验证批次 5/50 | Loss: 0.188471
+验证批次 10/50 | Loss: 0.151174
+验证批次 15/50 | Loss: 0.255357
+验证批次 20/50 | Loss: 0.010350
+验证批次 25/50 | Loss: 0.118043
+验证批次 30/50 | Loss: 0.364300
+验证批次 35/50 | Loss: 0.340246
+验证批次 40/50 | Loss: 0.282747
+验证批次 45/50 | Loss: 0.262075
+✅ 验证完成，平均损失: 0.205329
+
+============================================================
+📊 Epoch 14/50 完成
+   Train Loss: 0.186810
+   Val Loss: 0.205329
+   LR: 8.58e-06 | Time: 75.9s
+============================================================
+⏳ 早停计数: 10/10
+🛑 早停触发！在 epoch 14 停止训练
+💾 模型已保存: training_results_move_object_fixed/controlnet_move_object_epoch_50.pth
+📈 Loss 图已保存: training_results_move_object_fixed/training_val_loss_move_object.png
+
+🏁 训练完成！最佳验证损失: 0.157329
+
+============================================================
+🚀 开始训练任务: 掉落物体
+============================================================
+   筛选任务 'drop_object': 1969/6000 个样本
+✅ 加载数据集 (drop_object): 1969 个样本
+   帧设置: 输入前20帧 → 预测第25帧（跳过4帧）
+   drop_object: 1969 个样本
+   筛选任务 'drop_object': 271/750 个样本
+✅ 加载数据集 (drop_object): 271 个样本
+   帧设置: 输入前20帧 → 预测第25帧（跳过4帧）
+   drop_object: 271 个样本
+   筛选任务 'drop_object': 260/750 个样本
+✅ 加载数据集 (drop_object): 260 个样本
+   帧设置: 输入前20帧 → 预测第25帧（跳过4帧）
+   drop_object: 260 个样本
+✅ 创建任务 'drop_object' 数据加载器完成
+   训练集: 1969 个样本, 985 个批次
+   验证集: 271 个样本, 136 个批次
+   测试集: 260 个样本, 130 个批次
+   批次大小: 2
+📊 从总样本 2500 中随机抽取 1000 个（按 8:1:1 划分）
+✅ 数据集分配: train=800 val=100 test=100
+🚀 使用设备: cuda
+🎯 任务: drop_object
+📦 初始化模型...
+🆕 从 UNet 复制权重初始化 ControlNet
+✅ 模型初始化完成，可训练参数: 361,279,120 / 总参数: 361,279,120
+🚀 开始修复版训练...
+
+🔍 进行初始验证...
+🧪 开始验证，共有 50 个批次
+验证批次 0/50 | Loss: 0.089962
+验证批次 5/50 | Loss: 0.206995
+验证批次 10/50 | Loss: 0.085789
+验证批次 15/50 | Loss: 0.423480
+验证批次 20/50 | Loss: 0.328354
+验证批次 25/50 | Loss: 0.084704
+验证批次 30/50 | Loss: 0.188969
+验证批次 35/50 | Loss: 0.276294
+验证批次 40/50 | Loss: 0.493096
+验证批次 45/50 | Loss: 0.674052
+✅ 验证完成，平均损失: 0.354253
+初始验证损失: 0.354253
+Epoch 1 | Batch 0/400 | Loss: 0.342159 | LR: 1.00e-05
+Epoch 1 | Batch 10/400 | Loss: 0.517076 | LR: 1.00e-05
+Epoch 1 | Batch 20/400 | Loss: 0.468618 | LR: 1.00e-05
+Epoch 1 | Batch 30/400 | Loss: 0.055310 | LR: 1.00e-05
+Epoch 1 | Batch 40/400 | Loss: 0.010293 | LR: 1.00e-05
+Epoch 1 | Batch 50/400 | Loss: 0.239894 | LR: 1.00e-05
+Epoch 1 | Batch 60/400 | Loss: 0.124689 | LR: 1.00e-05
+Epoch 1 | Batch 70/400 | Loss: 0.058893 | LR: 1.00e-05
+Epoch 1 | Batch 80/400 | Loss: 0.250813 | LR: 1.00e-05
+Epoch 1 | Batch 90/400 | Loss: 0.062178 | LR: 1.00e-05
+Epoch 1 | Batch 100/400 | Loss: 0.130736 | LR: 1.00e-05
+Epoch 1 | Batch 110/400 | Loss: 0.273117 | LR: 1.00e-05
+Epoch 1 | Batch 120/400 | Loss: 0.290334 | LR: 1.00e-05
+Epoch 1 | Batch 130/400 | Loss: 0.252918 | LR: 1.00e-05
+Epoch 1 | Batch 140/400 | Loss: 0.334171 | LR: 1.00e-05
+Epoch 1 | Batch 150/400 | Loss: 0.163184 | LR: 1.00e-05
+Epoch 1 | Batch 160/400 | Loss: 0.319144 | LR: 1.00e-05
+Epoch 1 | Batch 170/400 | Loss: 0.145482 | LR: 1.00e-05
+Epoch 1 | Batch 180/400 | Loss: 0.063183 | LR: 1.00e-05
+Epoch 1 | Batch 190/400 | Loss: 0.168157 | LR: 1.00e-05
+Epoch 1 | Batch 200/400 | Loss: 0.012687 | LR: 1.00e-05
+Epoch 1 | Batch 210/400 | Loss: 0.205129 | LR: 1.00e-05
+Epoch 1 | Batch 220/400 | Loss: 0.303078 | LR: 1.00e-05
+Epoch 1 | Batch 230/400 | Loss: 0.111299 | LR: 1.00e-05
+Epoch 1 | Batch 240/400 | Loss: 0.021785 | LR: 1.00e-05
+Epoch 1 | Batch 250/400 | Loss: 0.023320 | LR: 1.00e-05
+Epoch 1 | Batch 260/400 | Loss: 0.039597 | LR: 1.00e-05
+Epoch 1 | Batch 270/400 | Loss: 0.353571 | LR: 1.00e-05
+Epoch 1 | Batch 280/400 | Loss: 0.267631 | LR: 1.00e-05
+Epoch 1 | Batch 290/400 | Loss: 0.141324 | LR: 1.00e-05
+Epoch 1 | Batch 300/400 | Loss: 0.285600 | LR: 1.00e-05
+Epoch 1 | Batch 310/400 | Loss: 0.122542 | LR: 1.00e-05
+Epoch 1 | Batch 320/400 | Loss: 0.532038 | LR: 1.00e-05
+Epoch 1 | Batch 330/400 | Loss: 0.228940 | LR: 1.00e-05
+Epoch 1 | Batch 340/400 | Loss: 0.384422 | LR: 1.00e-05
+Epoch 1 | Batch 350/400 | Loss: 0.275240 | LR: 1.00e-05
+Epoch 1 | Batch 360/400 | Loss: 0.036789 | LR: 1.00e-05
+Epoch 1 | Batch 370/400 | Loss: 0.215741 | LR: 1.00e-05
+Epoch 1 | Batch 380/400 | Loss: 0.321480 | LR: 1.00e-05
+Epoch 1 | Batch 390/400 | Loss: 0.501243 | LR: 1.00e-05
+✅ 第 1 轮训练完成，平均损失: 0.219165
+🧪 开始验证，共有 50 个批次
+验证批次 0/50 | Loss: 0.008141
+验证批次 5/50 | Loss: 0.253601
+验证批次 10/50 | Loss: 0.505590
+验证批次 15/50 | Loss: 0.104739
+验证批次 20/50 | Loss: 0.288199
+验证批次 25/50 | Loss: 0.390358
+验证批次 30/50 | Loss: 0.256814
+验证批次 35/50 | Loss: 0.141575
+验证批次 40/50 | Loss: 0.474530
+验证批次 45/50 | Loss: 0.360550
+✅ 验证完成，平均损失: 0.250869
+
+============================================================
+📊 Epoch 1/50 完成
+   Train Loss: 0.219165
+   Val Loss: 0.250869
+   LR: 1.00e-05 | Time: 73.7s
+============================================================
+💾 模型已保存: training_results_drop_object_fixed/controlnet_drop_object_best.pth
+🎉 新的最佳验证损失: 0.250869
+Epoch 2 | Batch 0/400 | Loss: 0.078279 | LR: 9.99e-06
+Epoch 2 | Batch 10/400 | Loss: 0.138113 | LR: 9.99e-06
+Epoch 2 | Batch 20/400 | Loss: 0.233610 | LR: 9.99e-06
+Epoch 2 | Batch 30/400 | Loss: 0.066374 | LR: 9.99e-06
+Epoch 2 | Batch 40/400 | Loss: 0.222432 | LR: 9.99e-06
+Epoch 2 | Batch 50/400 | Loss: 0.108787 | LR: 9.99e-06
+Epoch 2 | Batch 60/400 | Loss: 0.087001 | LR: 9.99e-06
+Epoch 2 | Batch 70/400 | Loss: 0.170339 | LR: 9.99e-06
+Epoch 2 | Batch 80/400 | Loss: 0.431761 | LR: 9.99e-06
+Epoch 2 | Batch 90/400 | Loss: 0.359899 | LR: 9.99e-06
+Epoch 2 | Batch 100/400 | Loss: 0.177666 | LR: 9.99e-06
+Epoch 2 | Batch 110/400 | Loss: 0.190815 | LR: 9.99e-06
+Epoch 2 | Batch 120/400 | Loss: 0.035808 | LR: 9.99e-06
+Epoch 2 | Batch 130/400 | Loss: 0.011722 | LR: 9.99e-06
+Epoch 2 | Batch 140/400 | Loss: 0.084106 | LR: 9.99e-06
+Epoch 2 | Batch 150/400 | Loss: 0.281105 | LR: 9.99e-06
+Epoch 2 | Batch 160/400 | Loss: 0.444206 | LR: 9.99e-06
+Epoch 2 | Batch 170/400 | Loss: 0.071080 | LR: 9.99e-06
+Epoch 2 | Batch 180/400 | Loss: 0.181109 | LR: 9.99e-06
+Epoch 2 | Batch 190/400 | Loss: 0.185878 | LR: 9.99e-06
+Epoch 2 | Batch 200/400 | Loss: 0.207822 | LR: 9.99e-06
+Epoch 2 | Batch 210/400 | Loss: 0.168425 | LR: 9.99e-06
+Epoch 2 | Batch 220/400 | Loss: 0.709769 | LR: 9.99e-06
+Epoch 2 | Batch 230/400 | Loss: 0.272049 | LR: 9.99e-06
+Epoch 2 | Batch 240/400 | Loss: 0.176073 | LR: 9.99e-06
+Epoch 2 | Batch 250/400 | Loss: 0.086834 | LR: 9.99e-06
+Epoch 2 | Batch 260/400 | Loss: 0.129420 | LR: 9.99e-06
+Epoch 2 | Batch 270/400 | Loss: 0.183318 | LR: 9.99e-06
+Epoch 2 | Batch 280/400 | Loss: 0.058362 | LR: 9.99e-06
+Epoch 2 | Batch 290/400 | Loss: 0.171390 | LR: 9.99e-06
+Epoch 2 | Batch 300/400 | Loss: 0.015253 | LR: 9.99e-06
+Epoch 2 | Batch 310/400 | Loss: 0.120418 | LR: 9.99e-06
+Epoch 2 | Batch 320/400 | Loss: 0.120946 | LR: 9.99e-06
+Epoch 2 | Batch 330/400 | Loss: 0.430165 | LR: 9.99e-06
+Epoch 2 | Batch 340/400 | Loss: 0.147402 | LR: 9.99e-06
+Epoch 2 | Batch 350/400 | Loss: 0.092869 | LR: 9.99e-06
+Epoch 2 | Batch 360/400 | Loss: 0.027380 | LR: 9.99e-06
+Epoch 2 | Batch 370/400 | Loss: 0.090053 | LR: 9.99e-06
+Epoch 2 | Batch 380/400 | Loss: 0.006932 | LR: 9.99e-06
+Epoch 2 | Batch 390/400 | Loss: 0.151099 | LR: 9.99e-06
+✅ 第 2 轮训练完成，平均损失: 0.185934
+🧪 开始验证，共有 50 个批次
+验证批次 0/50 | Loss: 0.276557
+验证批次 5/50 | Loss: 0.055329
+验证批次 10/50 | Loss: 0.233398
+验证批次 15/50 | Loss: 0.049830
+验证批次 20/50 | Loss: 0.152074
+验证批次 25/50 | Loss: 0.210879
+验证批次 30/50 | Loss: 0.337045
+验证批次 35/50 | Loss: 0.023075
+验证批次 40/50 | Loss: 0.423720
+验证批次 45/50 | Loss: 0.652385
+✅ 验证完成，平均损失: 0.185368
+
+============================================================
+📊 Epoch 2/50 完成
+   Train Loss: 0.185934
+   Val Loss: 0.185368
+   LR: 9.99e-06 | Time: 69.1s
+============================================================
+💾 模型已保存: training_results_drop_object_fixed/controlnet_drop_object_best.pth
+🎉 新的最佳验证损失: 0.185368
+Epoch 3 | Batch 0/400 | Loss: 0.031752 | LR: 9.96e-06
+Epoch 3 | Batch 10/400 | Loss: 0.044157 | LR: 9.96e-06
+Epoch 3 | Batch 20/400 | Loss: 0.036646 | LR: 9.96e-06
+Epoch 3 | Batch 30/400 | Loss: 0.323068 | LR: 9.96e-06
+Epoch 3 | Batch 40/400 | Loss: 0.026222 | LR: 9.96e-06
+Epoch 3 | Batch 50/400 | Loss: 0.309663 | LR: 9.96e-06
+Epoch 3 | Batch 60/400 | Loss: 0.272939 | LR: 9.96e-06
+Epoch 3 | Batch 70/400 | Loss: 0.576349 | LR: 9.96e-06
+Epoch 3 | Batch 80/400 | Loss: 0.030444 | LR: 9.96e-06
+Epoch 3 | Batch 90/400 | Loss: 0.197817 | LR: 9.96e-06
+Epoch 3 | Batch 100/400 | Loss: 0.152458 | LR: 9.96e-06
+Epoch 3 | Batch 110/400 | Loss: 0.118850 | LR: 9.96e-06
+Epoch 3 | Batch 120/400 | Loss: 0.351596 | LR: 9.96e-06
+Epoch 3 | Batch 130/400 | Loss: 0.280983 | LR: 9.96e-06
+Epoch 3 | Batch 140/400 | Loss: 0.255060 | LR: 9.96e-06
+Epoch 3 | Batch 150/400 | Loss: 0.027458 | LR: 9.96e-06
+Epoch 3 | Batch 160/400 | Loss: 0.155809 | LR: 9.96e-06
+Epoch 3 | Batch 170/400 | Loss: 0.015654 | LR: 9.96e-06
+Epoch 3 | Batch 180/400 | Loss: 0.334154 | LR: 9.96e-06
+Epoch 3 | Batch 190/400 | Loss: 0.268971 | LR: 9.96e-06
+Epoch 3 | Batch 200/400 | Loss: 0.462508 | LR: 9.96e-06
+Epoch 3 | Batch 210/400 | Loss: 0.125470 | LR: 9.96e-06
+Epoch 3 | Batch 220/400 | Loss: 0.167899 | LR: 9.96e-06
+Epoch 3 | Batch 230/400 | Loss: 0.223808 | LR: 9.96e-06
+Epoch 3 | Batch 240/400 | Loss: 0.198439 | LR: 9.96e-06
+Epoch 3 | Batch 250/400 | Loss: 0.224146 | LR: 9.96e-06
+Epoch 3 | Batch 260/400 | Loss: 0.102702 | LR: 9.96e-06
+Epoch 3 | Batch 270/400 | Loss: 0.510693 | LR: 9.96e-06
+Epoch 3 | Batch 280/400 | Loss: 0.122684 | LR: 9.96e-06
+Epoch 3 | Batch 290/400 | Loss: 0.723121 | LR: 9.96e-06
+Epoch 3 | Batch 300/400 | Loss: 0.004836 | LR: 9.96e-06
+Epoch 3 | Batch 310/400 | Loss: 0.017991 | LR: 9.96e-06
+Epoch 3 | Batch 320/400 | Loss: 0.037320 | LR: 9.96e-06
+Epoch 3 | Batch 330/400 | Loss: 0.021853 | LR: 9.96e-06
+Epoch 3 | Batch 340/400 | Loss: 0.500848 | LR: 9.96e-06
+Epoch 3 | Batch 350/400 | Loss: 0.056011 | LR: 9.96e-06
+Epoch 3 | Batch 360/400 | Loss: 0.125055 | LR: 9.96e-06
+Epoch 3 | Batch 370/400 | Loss: 0.298205 | LR: 9.96e-06
+Epoch 3 | Batch 380/400 | Loss: 0.022864 | LR: 9.96e-06
+Epoch 3 | Batch 390/400 | Loss: 0.069302 | LR: 9.96e-06
+✅ 第 3 轮训练完成，平均损失: 0.194756
+🧪 开始验证，共有 50 个批次
+验证批次 0/50 | Loss: 0.085131
+验证批次 5/50 | Loss: 0.153415
+验证批次 10/50 | Loss: 0.093377
+验证批次 15/50 | Loss: 0.417159
+验证批次 20/50 | Loss: 0.105287
+验证批次 25/50 | Loss: 0.395352
+验证批次 30/50 | Loss: 0.320951
+验证批次 35/50 | Loss: 0.040344
+验证批次 40/50 | Loss: 0.368521
+验证批次 45/50 | Loss: 0.113709
+✅ 验证完成，平均损失: 0.189280
+
+============================================================
+📊 Epoch 3/50 完成
+   Train Loss: 0.194756
+   Val Loss: 0.189280
+   LR: 9.96e-06 | Time: 69.8s
+============================================================
+⏳ 早停计数: 1/10
+Epoch 4 | Batch 0/400 | Loss: 0.282684 | LR: 9.92e-06
+Epoch 4 | Batch 10/400 | Loss: 0.496893 | LR: 9.92e-06
+Epoch 4 | Batch 20/400 | Loss: 0.009213 | LR: 9.92e-06
+Epoch 4 | Batch 30/400 | Loss: 0.319765 | LR: 9.92e-06
+Epoch 4 | Batch 40/400 | Loss: 0.264746 | LR: 9.92e-06
+Epoch 4 | Batch 50/400 | Loss: 0.251947 | LR: 9.92e-06
+Epoch 4 | Batch 60/400 | Loss: 0.327131 | LR: 9.92e-06
+Epoch 4 | Batch 70/400 | Loss: 0.088793 | LR: 9.92e-06
+Epoch 4 | Batch 80/400 | Loss: 0.284520 | LR: 9.92e-06
+Epoch 4 | Batch 90/400 | Loss: 0.105931 | LR: 9.92e-06
+Epoch 4 | Batch 100/400 | Loss: 0.254642 | LR: 9.92e-06
+Epoch 4 | Batch 110/400 | Loss: 0.314901 | LR: 9.92e-06
+Epoch 4 | Batch 120/400 | Loss: 0.028686 | LR: 9.92e-06
+Epoch 4 | Batch 130/400 | Loss: 0.101900 | LR: 9.92e-06
+Epoch 4 | Batch 140/400 | Loss: 0.111768 | LR: 9.92e-06
+Epoch 4 | Batch 150/400 | Loss: 0.156451 | LR: 9.92e-06
+Epoch 4 | Batch 160/400 | Loss: 0.073936 | LR: 9.92e-06
+Epoch 4 | Batch 170/400 | Loss: 0.316368 | LR: 9.92e-06
+Epoch 4 | Batch 180/400 | Loss: 0.084276 | LR: 9.92e-06
+Epoch 4 | Batch 190/400 | Loss: 0.353482 | LR: 9.92e-06
+Epoch 4 | Batch 200/400 | Loss: 0.131675 | LR: 9.92e-06
+Epoch 4 | Batch 210/400 | Loss: 0.171486 | LR: 9.92e-06
+Epoch 4 | Batch 220/400 | Loss: 0.633204 | LR: 9.92e-06
+Epoch 4 | Batch 230/400 | Loss: 0.399967 | LR: 9.92e-06
+Epoch 4 | Batch 240/400 | Loss: 0.005172 | LR: 9.92e-06
+Epoch 4 | Batch 250/400 | Loss: 0.079976 | LR: 9.92e-06
+Epoch 4 | Batch 260/400 | Loss: 0.112721 | LR: 9.92e-06
+Epoch 4 | Batch 270/400 | Loss: 0.224014 | LR: 9.92e-06
+Epoch 4 | Batch 280/400 | Loss: 0.154023 | LR: 9.92e-06
+Epoch 4 | Batch 290/400 | Loss: 0.118852 | LR: 9.92e-06
+Epoch 4 | Batch 300/400 | Loss: 0.272993 | LR: 9.92e-06
+Epoch 4 | Batch 310/400 | Loss: 0.379563 | LR: 9.92e-06
+Epoch 4 | Batch 320/400 | Loss: 0.095552 | LR: 9.92e-06
+Epoch 4 | Batch 330/400 | Loss: 0.011598 | LR: 9.92e-06
+Epoch 4 | Batch 340/400 | Loss: 0.078749 | LR: 9.92e-06
+Epoch 4 | Batch 350/400 | Loss: 0.271097 | LR: 9.92e-06
+Epoch 4 | Batch 360/400 | Loss: 0.019871 | LR: 9.92e-06
+Epoch 4 | Batch 370/400 | Loss: 0.188481 | LR: 9.92e-06
+Epoch 4 | Batch 380/400 | Loss: 0.251784 | LR: 9.92e-06
+Epoch 4 | Batch 390/400 | Loss: 0.034663 | LR: 9.92e-06
+✅ 第 4 轮训练完成，平均损失: 0.204243
+🧪 开始验证，共有 50 个批次
+验证批次 0/50 | Loss: 0.169843
+验证批次 5/50 | Loss: 0.143594
+验证批次 10/50 | Loss: 0.042230
+验证批次 15/50 | Loss: 0.114449
+验证批次 20/50 | Loss: 0.165692
+验证批次 25/50 | Loss: 0.377647
+验证批次 30/50 | Loss: 0.534545
+验证批次 35/50 | Loss: 0.179272
+验证批次 40/50 | Loss: 0.150820
+验证批次 45/50 | Loss: 0.186963
+✅ 验证完成，平均损失: 0.188818
+
+============================================================
+📊 Epoch 4/50 完成
+   Train Loss: 0.204243
+   Val Loss: 0.188818
+   LR: 9.92e-06 | Time: 73.3s
+============================================================
+⏳ 早停计数: 2/10
+Epoch 5 | Batch 0/400 | Loss: 0.075758 | LR: 9.86e-06
+Epoch 5 | Batch 10/400 | Loss: 0.196491 | LR: 9.86e-06
+Epoch 5 | Batch 20/400 | Loss: 0.007802 | LR: 9.86e-06
+Epoch 5 | Batch 30/400 | Loss: 0.165463 | LR: 9.86e-06
+Epoch 5 | Batch 40/400 | Loss: 0.349331 | LR: 9.86e-06
+Epoch 5 | Batch 50/400 | Loss: 0.199682 | LR: 9.86e-06
+Epoch 5 | Batch 60/400 | Loss: 0.191889 | LR: 9.86e-06
+Epoch 5 | Batch 70/400 | Loss: 0.110528 | LR: 9.86e-06
+Epoch 5 | Batch 80/400 | Loss: 0.059656 | LR: 9.86e-06
+Epoch 5 | Batch 90/400 | Loss: 0.101358 | LR: 9.86e-06
+Epoch 5 | Batch 100/400 | Loss: 0.288396 | LR: 9.86e-06
+Epoch 5 | Batch 110/400 | Loss: 0.173029 | LR: 9.86e-06
+Epoch 5 | Batch 120/400 | Loss: 0.207987 | LR: 9.86e-06
+Epoch 5 | Batch 130/400 | Loss: 0.225446 | LR: 9.86e-06
+Epoch 5 | Batch 140/400 | Loss: 0.050825 | LR: 9.86e-06
+Epoch 5 | Batch 150/400 | Loss: 0.187162 | LR: 9.86e-06
+Epoch 5 | Batch 160/400 | Loss: 0.185046 | LR: 9.86e-06
+Epoch 5 | Batch 170/400 | Loss: 0.315460 | LR: 9.86e-06
+Epoch 5 | Batch 180/400 | Loss: 0.049375 | LR: 9.86e-06
+Epoch 5 | Batch 190/400 | Loss: 0.162917 | LR: 9.86e-06
+Epoch 5 | Batch 200/400 | Loss: 0.107276 | LR: 9.86e-06
+Epoch 5 | Batch 210/400 | Loss: 0.172504 | LR: 9.86e-06
+Epoch 5 | Batch 220/400 | Loss: 0.083978 | LR: 9.86e-06
+Epoch 5 | Batch 230/400 | Loss: 0.020944 | LR: 9.86e-06
+Epoch 5 | Batch 240/400 | Loss: 0.172314 | LR: 9.86e-06
+Epoch 5 | Batch 250/400 | Loss: 0.480569 | LR: 9.86e-06
+Epoch 5 | Batch 260/400 | Loss: 0.196410 | LR: 9.86e-06
+Epoch 5 | Batch 270/400 | Loss: 0.195799 | LR: 9.86e-06
+Epoch 5 | Batch 280/400 | Loss: 0.408287 | LR: 9.86e-06
+Epoch 5 | Batch 290/400 | Loss: 0.326632 | LR: 9.86e-06
+Epoch 5 | Batch 300/400 | Loss: 0.333792 | LR: 9.86e-06
+Epoch 5 | Batch 310/400 | Loss: 0.015990 | LR: 9.86e-06
+Epoch 5 | Batch 320/400 | Loss: 0.166893 | LR: 9.86e-06
+Epoch 5 | Batch 330/400 | Loss: 0.082313 | LR: 9.86e-06
+Epoch 5 | Batch 340/400 | Loss: 0.252890 | LR: 9.86e-06
+Epoch 5 | Batch 350/400 | Loss: 0.199958 | LR: 9.86e-06
+Epoch 5 | Batch 360/400 | Loss: 0.212109 | LR: 9.86e-06
+Epoch 5 | Batch 370/400 | Loss: 0.051783 | LR: 9.86e-06
+Epoch 5 | Batch 380/400 | Loss: 0.079869 | LR: 9.86e-06
+Epoch 5 | Batch 390/400 | Loss: 0.085745 | LR: 9.86e-06
+✅ 第 5 轮训练完成，平均损失: 0.195943
+🧪 开始验证，共有 50 个批次
+验证批次 0/50 | Loss: 0.375197
+验证批次 5/50 | Loss: 0.120568
+验证批次 10/50 | Loss: 0.017592
+验证批次 15/50 | Loss: 0.195454
+验证批次 20/50 | Loss: 0.177343
+验证批次 25/50 | Loss: 0.564196
+验证批次 30/50 | Loss: 0.229171
+验证批次 35/50 | Loss: 0.051032
+验证批次 40/50 | Loss: 0.383656
+验证批次 45/50 | Loss: 0.026992
+✅ 验证完成，平均损失: 0.176820
+
+============================================================
+📊 Epoch 5/50 完成
+   Train Loss: 0.195943
+   Val Loss: 0.176820
+   LR: 9.86e-06 | Time: 77.8s
+============================================================
+💾 模型已保存: training_results_drop_object_fixed/controlnet_drop_object_best.pth
+🎉 新的最佳验证损失: 0.176820
+💾 模型已保存: training_results_drop_object_fixed/controlnet_drop_object_epoch_5.pth
+Epoch 6 | Batch 0/400 | Loss: 0.315827 | LR: 9.78e-06
+Epoch 6 | Batch 10/400 | Loss: 0.233961 | LR: 9.78e-06
+Epoch 6 | Batch 20/400 | Loss: 0.341639 | LR: 9.78e-06
+Epoch 6 | Batch 30/400 | Loss: 0.265741 | LR: 9.78e-06
+Epoch 6 | Batch 40/400 | Loss: 0.366920 | LR: 9.78e-06
+Epoch 6 | Batch 50/400 | Loss: 0.008015 | LR: 9.78e-06
+Epoch 6 | Batch 60/400 | Loss: 0.151737 | LR: 9.78e-06
+Epoch 6 | Batch 70/400 | Loss: 0.353774 | LR: 9.78e-06
+Epoch 6 | Batch 80/400 | Loss: 0.161758 | LR: 9.78e-06
+Epoch 6 | Batch 90/400 | Loss: 0.137885 | LR: 9.78e-06
+Epoch 6 | Batch 100/400 | Loss: 0.364052 | LR: 9.78e-06
+Epoch 6 | Batch 110/400 | Loss: 0.175005 | LR: 9.78e-06
+Epoch 6 | Batch 120/400 | Loss: 0.178347 | LR: 9.78e-06
+Epoch 6 | Batch 130/400 | Loss: 0.145883 | LR: 9.78e-06
+Epoch 6 | Batch 140/400 | Loss: 0.273921 | LR: 9.78e-06
+Epoch 6 | Batch 150/400 | Loss: 0.178470 | LR: 9.78e-06
+Epoch 6 | Batch 160/400 | Loss: 0.378002 | LR: 9.78e-06
+Epoch 6 | Batch 170/400 | Loss: 0.324336 | LR: 9.78e-06
+Epoch 6 | Batch 180/400 | Loss: 0.143043 | LR: 9.78e-06
+Epoch 6 | Batch 190/400 | Loss: 0.170623 | LR: 9.78e-06
+Epoch 6 | Batch 200/400 | Loss: 0.109166 | LR: 9.78e-06
+Epoch 6 | Batch 210/400 | Loss: 0.277451 | LR: 9.78e-06
+Epoch 6 | Batch 220/400 | Loss: 0.085532 | LR: 9.78e-06
+Epoch 6 | Batch 230/400 | Loss: 0.298614 | LR: 9.78e-06
+Epoch 6 | Batch 240/400 | Loss: 0.045171 | LR: 9.78e-06
+Epoch 6 | Batch 250/400 | Loss: 0.293369 | LR: 9.78e-06
+Epoch 6 | Batch 260/400 | Loss: 0.496003 | LR: 9.78e-06
+Epoch 6 | Batch 270/400 | Loss: 0.191284 | LR: 9.78e-06
+Epoch 6 | Batch 280/400 | Loss: 0.315279 | LR: 9.78e-06
+Epoch 6 | Batch 290/400 | Loss: 0.181726 | LR: 9.78e-06
+Epoch 6 | Batch 300/400 | Loss: 0.292798 | LR: 9.78e-06
+Epoch 6 | Batch 310/400 | Loss: 0.076007 | LR: 9.78e-06
+Epoch 6 | Batch 320/400 | Loss: 0.198971 | LR: 9.78e-06
+Epoch 6 | Batch 330/400 | Loss: 0.060476 | LR: 9.78e-06
+Epoch 6 | Batch 340/400 | Loss: 0.053657 | LR: 9.78e-06
+Epoch 6 | Batch 350/400 | Loss: 0.080784 | LR: 9.78e-06
+Epoch 6 | Batch 360/400 | Loss: 0.183390 | LR: 9.78e-06
+Epoch 6 | Batch 370/400 | Loss: 0.033050 | LR: 9.78e-06
+Epoch 6 | Batch 380/400 | Loss: 0.127230 | LR: 9.78e-06
+Epoch 6 | Batch 390/400 | Loss: 0.060407 | LR: 9.78e-06
+✅ 第 6 轮训练完成，平均损失: 0.202477
+🧪 开始验证，共有 50 个批次
+验证批次 0/50 | Loss: 0.168277
+验证批次 5/50 | Loss: 0.432966
+验证批次 10/50 | Loss: 0.083364
+验证批次 15/50 | Loss: 0.128101
+验证批次 20/50 | Loss: 0.244756
+验证批次 25/50 | Loss: 0.309761
+验证批次 30/50 | Loss: 0.451338
+验证批次 35/50 | Loss: 0.110869
+验证批次 40/50 | Loss: 0.154564
+验证批次 45/50 | Loss: 0.163258
+✅ 验证完成，平均损失: 0.224995
+
+============================================================
+📊 Epoch 6/50 完成
+   Train Loss: 0.202477
+   Val Loss: 0.224995
+   LR: 9.78e-06 | Time: 77.4s
+============================================================
+⏳ 早停计数: 1/10
+Epoch 7 | Batch 0/400 | Loss: 0.511839 | LR: 9.68e-06
+Epoch 7 | Batch 10/400 | Loss: 0.071002 | LR: 9.68e-06
+Epoch 7 | Batch 20/400 | Loss: 0.042604 | LR: 9.68e-06
+Epoch 7 | Batch 30/400 | Loss: 0.369983 | LR: 9.68e-06
+Epoch 7 | Batch 40/400 | Loss: 0.189022 | LR: 9.68e-06
+Epoch 7 | Batch 50/400 | Loss: 0.256120 | LR: 9.68e-06
+Epoch 7 | Batch 60/400 | Loss: 0.037524 | LR: 9.68e-06
+Epoch 7 | Batch 70/400 | Loss: 0.183974 | LR: 9.68e-06
+Epoch 7 | Batch 80/400 | Loss: 0.324990 | LR: 9.68e-06
+Epoch 7 | Batch 90/400 | Loss: 0.293865 | LR: 9.68e-06
+Epoch 7 | Batch 100/400 | Loss: 0.215866 | LR: 9.68e-06
+Epoch 7 | Batch 110/400 | Loss: 0.021099 | LR: 9.68e-06
+Epoch 7 | Batch 120/400 | Loss: 0.250406 | LR: 9.68e-06
+Epoch 7 | Batch 130/400 | Loss: 0.076857 | LR: 9.68e-06
+Epoch 7 | Batch 140/400 | Loss: 0.097033 | LR: 9.68e-06
+Epoch 7 | Batch 150/400 | Loss: 0.067189 | LR: 9.68e-06
+Epoch 7 | Batch 160/400 | Loss: 0.199979 | LR: 9.68e-06
+Epoch 7 | Batch 170/400 | Loss: 0.276371 | LR: 9.68e-06
+Epoch 7 | Batch 180/400 | Loss: 0.037760 | LR: 9.68e-06
+Epoch 7 | Batch 190/400 | Loss: 0.118335 | LR: 9.68e-06
+Epoch 7 | Batch 200/400 | Loss: 0.007408 | LR: 9.68e-06
+Epoch 7 | Batch 210/400 | Loss: 0.146441 | LR: 9.68e-06
+Epoch 7 | Batch 220/400 | Loss: 0.066909 | LR: 9.68e-06
+Epoch 7 | Batch 230/400 | Loss: 0.360759 | LR: 9.68e-06
+Epoch 7 | Batch 240/400 | Loss: 0.470845 | LR: 9.68e-06
+Epoch 7 | Batch 250/400 | Loss: 0.192483 | LR: 9.68e-06
+Epoch 7 | Batch 260/400 | Loss: 0.078541 | LR: 9.68e-06
+Epoch 7 | Batch 270/400 | Loss: 0.082615 | LR: 9.68e-06
+Epoch 7 | Batch 280/400 | Loss: 0.391243 | LR: 9.68e-06
+Epoch 7 | Batch 290/400 | Loss: 0.282055 | LR: 9.68e-06
+Epoch 7 | Batch 300/400 | Loss: 0.093614 | LR: 9.68e-06
+Epoch 7 | Batch 310/400 | Loss: 0.012491 | LR: 9.68e-06
+Epoch 7 | Batch 320/400 | Loss: 0.091907 | LR: 9.68e-06
+Epoch 7 | Batch 330/400 | Loss: 0.098642 | LR: 9.68e-06
+Epoch 7 | Batch 340/400 | Loss: 0.335891 | LR: 9.68e-06
+Epoch 7 | Batch 350/400 | Loss: 0.135097 | LR: 9.68e-06
+Epoch 7 | Batch 360/400 | Loss: 0.039378 | LR: 9.68e-06
+Epoch 7 | Batch 370/400 | Loss: 0.261684 | LR: 9.68e-06
+Epoch 7 | Batch 380/400 | Loss: 0.315677 | LR: 9.68e-06
+Epoch 7 | Batch 390/400 | Loss: 0.228416 | LR: 9.68e-06
+✅ 第 7 轮训练完成，平均损失: 0.197436
+🧪 开始验证，共有 50 个批次
+验证批次 0/50 | Loss: 0.248101
+验证批次 5/50 | Loss: 0.188957
+验证批次 10/50 | Loss: 0.049260
+验证批次 15/50 | Loss: 0.009491
+验证批次 20/50 | Loss: 0.028485
+验证批次 25/50 | Loss: 0.296816
+验证批次 30/50 | Loss: 0.275976
+验证批次 35/50 | Loss: 0.021179
+验证批次 40/50 | Loss: 0.025193
+验证批次 45/50 | Loss: 0.025694
+✅ 验证完成，平均损失: 0.202545
+
+============================================================
+📊 Epoch 7/50 完成
+   Train Loss: 0.197436
+   Val Loss: 0.202545
+   LR: 9.68e-06 | Time: 69.4s
+============================================================
+⏳ 早停计数: 2/10
+Epoch 8 | Batch 0/400 | Loss: 0.292058 | LR: 9.57e-06
+Epoch 8 | Batch 10/400 | Loss: 0.146200 | LR: 9.57e-06
+Epoch 8 | Batch 20/400 | Loss: 0.630927 | LR: 9.57e-06
+Epoch 8 | Batch 30/400 | Loss: 0.110777 | LR: 9.57e-06
+Epoch 8 | Batch 40/400 | Loss: 0.091992 | LR: 9.57e-06
+Epoch 8 | Batch 50/400 | Loss: 0.039317 | LR: 9.57e-06
+Epoch 8 | Batch 60/400 | Loss: 0.014151 | LR: 9.57e-06
+Epoch 8 | Batch 70/400 | Loss: 0.158965 | LR: 9.57e-06
+Epoch 8 | Batch 80/400 | Loss: 0.060339 | LR: 9.57e-06
+Epoch 8 | Batch 90/400 | Loss: 0.076938 | LR: 9.57e-06
+Epoch 8 | Batch 100/400 | Loss: 0.278019 | LR: 9.57e-06
+Epoch 8 | Batch 110/400 | Loss: 0.040433 | LR: 9.57e-06
+Epoch 8 | Batch 120/400 | Loss: 0.178687 | LR: 9.57e-06
+Epoch 8 | Batch 130/400 | Loss: 0.394683 | LR: 9.57e-06
+Epoch 8 | Batch 140/400 | Loss: 0.091803 | LR: 9.57e-06
+Epoch 8 | Batch 150/400 | Loss: 0.545197 | LR: 9.57e-06
+Epoch 8 | Batch 160/400 | Loss: 0.053080 | LR: 9.57e-06
+Epoch 8 | Batch 170/400 | Loss: 0.357523 | LR: 9.57e-06
+Epoch 8 | Batch 180/400 | Loss: 0.144644 | LR: 9.57e-06
+Epoch 8 | Batch 190/400 | Loss: 0.363730 | LR: 9.57e-06
+Epoch 8 | Batch 200/400 | Loss: 0.254588 | LR: 9.57e-06
+Epoch 8 | Batch 210/400 | Loss: 0.035147 | LR: 9.57e-06
+Epoch 8 | Batch 220/400 | Loss: 0.046962 | LR: 9.57e-06
+Epoch 8 | Batch 230/400 | Loss: 0.007584 | LR: 9.57e-06
+Epoch 8 | Batch 240/400 | Loss: 0.211266 | LR: 9.57e-06
+Epoch 8 | Batch 250/400 | Loss: 0.147289 | LR: 9.57e-06
+Epoch 8 | Batch 260/400 | Loss: 0.485794 | LR: 9.57e-06
+Epoch 8 | Batch 270/400 | Loss: 0.146515 | LR: 9.57e-06
+Epoch 8 | Batch 280/400 | Loss: 0.036184 | LR: 9.57e-06
+Epoch 8 | Batch 290/400 | Loss: 0.055107 | LR: 9.57e-06
+Epoch 8 | Batch 300/400 | Loss: 0.010186 | LR: 9.57e-06
+Epoch 8 | Batch 310/400 | Loss: 0.236719 | LR: 9.57e-06
+Epoch 8 | Batch 320/400 | Loss: 0.311796 | LR: 9.57e-06
+Epoch 8 | Batch 330/400 | Loss: 0.102222 | LR: 9.57e-06
+Epoch 8 | Batch 340/400 | Loss: 0.159753 | LR: 9.57e-06
+Epoch 8 | Batch 350/400 | Loss: 0.301434 | LR: 9.57e-06
+Epoch 8 | Batch 360/400 | Loss: 0.241340 | LR: 9.57e-06
+Epoch 8 | Batch 370/400 | Loss: 0.604882 | LR: 9.57e-06
+Epoch 8 | Batch 380/400 | Loss: 0.370146 | LR: 9.57e-06
+Epoch 8 | Batch 390/400 | Loss: 0.183965 | LR: 9.57e-06
+✅ 第 8 轮训练完成，平均损失: 0.182189
+🧪 开始验证，共有 50 个批次
+验证批次 0/50 | Loss: 0.170005
+验证批次 5/50 | Loss: 0.140529
+验证批次 10/50 | Loss: 0.301905
+验证批次 15/50 | Loss: 0.410037
+验证批次 20/50 | Loss: 0.446220
+验证批次 25/50 | Loss: 0.284992
+验证批次 30/50 | Loss: 0.421941
+验证批次 35/50 | Loss: 0.194414
+验证批次 40/50 | Loss: 0.174449
+验证批次 45/50 | Loss: 0.105752
+✅ 验证完成，平均损失: 0.217262
+
+============================================================
+📊 Epoch 8/50 完成
+   Train Loss: 0.182189
+   Val Loss: 0.217262
+   LR: 9.57e-06 | Time: 70.3s
+============================================================
+⏳ 早停计数: 3/10
+Epoch 9 | Batch 0/400 | Loss: 0.255061 | LR: 9.44e-06
+Epoch 9 | Batch 10/400 | Loss: 0.051405 | LR: 9.44e-06
+Epoch 9 | Batch 20/400 | Loss: 0.189278 | LR: 9.44e-06
+Epoch 9 | Batch 30/400 | Loss: 0.222983 | LR: 9.44e-06
+Epoch 9 | Batch 40/400 | Loss: 0.246673 | LR: 9.44e-06
+Epoch 9 | Batch 50/400 | Loss: 0.071795 | LR: 9.44e-06
+Epoch 9 | Batch 60/400 | Loss: 0.311775 | LR: 9.44e-06
+Epoch 9 | Batch 70/400 | Loss: 0.090384 | LR: 9.44e-06
+Epoch 9 | Batch 80/400 | Loss: 0.004871 | LR: 9.44e-06
+Epoch 9 | Batch 90/400 | Loss: 0.143394 | LR: 9.44e-06
+Epoch 9 | Batch 100/400 | Loss: 0.118923 | LR: 9.44e-06
+Epoch 9 | Batch 110/400 | Loss: 0.101796 | LR: 9.44e-06
+Epoch 9 | Batch 120/400 | Loss: 0.077133 | LR: 9.44e-06
+Epoch 9 | Batch 130/400 | Loss: 0.170689 | LR: 9.44e-06
+Epoch 9 | Batch 140/400 | Loss: 0.127875 | LR: 9.44e-06
+Epoch 9 | Batch 150/400 | Loss: 0.039980 | LR: 9.44e-06
+Epoch 9 | Batch 160/400 | Loss: 0.036381 | LR: 9.44e-06
+Epoch 9 | Batch 170/400 | Loss: 0.164089 | LR: 9.44e-06
+Epoch 9 | Batch 180/400 | Loss: 0.135156 | LR: 9.44e-06
+Epoch 9 | Batch 190/400 | Loss: 0.030445 | LR: 9.44e-06
+Epoch 9 | Batch 200/400 | Loss: 0.653493 | LR: 9.44e-06
+Epoch 9 | Batch 210/400 | Loss: 0.113115 | LR: 9.44e-06
+Epoch 9 | Batch 220/400 | Loss: 0.246635 | LR: 9.44e-06
+Epoch 9 | Batch 230/400 | Loss: 0.024662 | LR: 9.44e-06
+Epoch 9 | Batch 240/400 | Loss: 0.132433 | LR: 9.44e-06
+Epoch 9 | Batch 250/400 | Loss: 0.327107 | LR: 9.44e-06
+Epoch 9 | Batch 260/400 | Loss: 0.165323 | LR: 9.44e-06
+Epoch 9 | Batch 270/400 | Loss: 0.081588 | LR: 9.44e-06
+Epoch 9 | Batch 280/400 | Loss: 0.237873 | LR: 9.44e-06
+Epoch 9 | Batch 290/400 | Loss: 0.780273 | LR: 9.44e-06
+Epoch 9 | Batch 300/400 | Loss: 0.637512 | LR: 9.44e-06
+Epoch 9 | Batch 310/400 | Loss: 0.311876 | LR: 9.44e-06
+Epoch 9 | Batch 320/400 | Loss: 0.053045 | LR: 9.44e-06
+Epoch 9 | Batch 330/400 | Loss: 0.102326 | LR: 9.44e-06
+Epoch 9 | Batch 340/400 | Loss: 0.120571 | LR: 9.44e-06
+Epoch 9 | Batch 350/400 | Loss: 0.082247 | LR: 9.44e-06
+Epoch 9 | Batch 360/400 | Loss: 0.217922 | LR: 9.44e-06
+Epoch 9 | Batch 370/400 | Loss: 0.026946 | LR: 9.44e-06
+Epoch 9 | Batch 380/400 | Loss: 0.028342 | LR: 9.44e-06
+Epoch 9 | Batch 390/400 | Loss: 0.119927 | LR: 9.44e-06
+✅ 第 9 轮训练完成，平均损失: 0.189451
+🧪 开始验证，共有 50 个批次
+验证批次 0/50 | Loss: 0.154793
+验证批次 5/50 | Loss: 0.215302
+验证批次 10/50 | Loss: 0.206286
+验证批次 15/50 | Loss: 0.155038
+验证批次 20/50 | Loss: 0.102325
+验证批次 25/50 | Loss: 0.334244
+验证批次 30/50 | Loss: 0.110630
+验证批次 35/50 | Loss: 0.036761
+验证批次 40/50 | Loss: 0.031894
+验证批次 45/50 | Loss: 0.052222
+✅ 验证完成，平均损失: 0.169574
+
+============================================================
+📊 Epoch 9/50 完成
+   Train Loss: 0.189451
+   Val Loss: 0.169574
+   LR: 9.44e-06 | Time: 70.4s
+============================================================
+💾 模型已保存: training_results_drop_object_fixed/controlnet_drop_object_best.pth
+🎉 新的最佳验证损失: 0.169574
+Epoch 10 | Batch 0/400 | Loss: 0.206377 | LR: 9.30e-06
+Epoch 10 | Batch 10/400 | Loss: 0.311588 | LR: 9.30e-06
+Epoch 10 | Batch 20/400 | Loss: 0.131380 | LR: 9.30e-06
+Epoch 10 | Batch 30/400 | Loss: 0.007054 | LR: 9.30e-06
+Epoch 10 | Batch 40/400 | Loss: 0.027615 | LR: 9.30e-06
+Epoch 10 | Batch 50/400 | Loss: 0.118583 | LR: 9.30e-06
+Epoch 10 | Batch 60/400 | Loss: 0.195841 | LR: 9.30e-06
+Epoch 10 | Batch 70/400 | Loss: 0.067603 | LR: 9.30e-06
+Epoch 10 | Batch 80/400 | Loss: 0.172250 | LR: 9.30e-06
+Epoch 10 | Batch 90/400 | Loss: 0.176841 | LR: 9.30e-06
+Epoch 10 | Batch 100/400 | Loss: 0.280334 | LR: 9.30e-06
+Epoch 10 | Batch 110/400 | Loss: 0.048523 | LR: 9.30e-06
+Epoch 10 | Batch 120/400 | Loss: 0.441266 | LR: 9.30e-06
+Epoch 10 | Batch 130/400 | Loss: 0.235240 | LR: 9.30e-06
+Epoch 10 | Batch 140/400 | Loss: 0.181820 | LR: 9.30e-06
+Epoch 10 | Batch 150/400 | Loss: 0.170026 | LR: 9.30e-06
+Epoch 10 | Batch 160/400 | Loss: 0.051521 | LR: 9.30e-06
+Epoch 10 | Batch 170/400 | Loss: 0.099518 | LR: 9.30e-06
+Epoch 10 | Batch 180/400 | Loss: 0.143371 | LR: 9.30e-06
+Epoch 10 | Batch 190/400 | Loss: 0.334980 | LR: 9.30e-06
+Epoch 10 | Batch 200/400 | Loss: 0.264976 | LR: 9.30e-06
+Epoch 10 | Batch 210/400 | Loss: 0.112672 | LR: 9.30e-06
+Epoch 10 | Batch 220/400 | Loss: 0.197646 | LR: 9.30e-06
+Epoch 10 | Batch 230/400 | Loss: 0.357653 | LR: 9.30e-06
+Epoch 10 | Batch 240/400 | Loss: 0.042872 | LR: 9.30e-06
+Epoch 10 | Batch 250/400 | Loss: 0.114786 | LR: 9.30e-06
+Epoch 10 | Batch 260/400 | Loss: 0.060316 | LR: 9.30e-06
+Epoch 10 | Batch 270/400 | Loss: 0.266350 | LR: 9.30e-06
+Epoch 10 | Batch 280/400 | Loss: 0.310957 | LR: 9.30e-06
+Epoch 10 | Batch 290/400 | Loss: 0.315865 | LR: 9.30e-06
+Epoch 10 | Batch 300/400 | Loss: 0.066388 | LR: 9.30e-06
+Epoch 10 | Batch 310/400 | Loss: 0.238164 | LR: 9.30e-06
+Epoch 10 | Batch 320/400 | Loss: 0.066962 | LR: 9.30e-06
+Epoch 10 | Batch 330/400 | Loss: 0.015108 | LR: 9.30e-06
+Epoch 10 | Batch 340/400 | Loss: 0.084264 | LR: 9.30e-06
+Epoch 10 | Batch 350/400 | Loss: 0.310074 | LR: 9.30e-06
+Epoch 10 | Batch 360/400 | Loss: 0.118538 | LR: 9.30e-06
+Epoch 10 | Batch 370/400 | Loss: 0.624454 | LR: 9.30e-06
+Epoch 10 | Batch 380/400 | Loss: 0.111996 | LR: 9.30e-06
+Epoch 10 | Batch 390/400 | Loss: 0.221204 | LR: 9.30e-06
+✅ 第 10 轮训练完成，平均损失: 0.200824
+🧪 开始验证，共有 50 个批次
+验证批次 0/50 | Loss: 0.073054
+验证批次 5/50 | Loss: 0.071522
+验证批次 10/50 | Loss: 0.121921
+验证批次 15/50 | Loss: 0.098873
+验证批次 20/50 | Loss: 0.187492
+验证批次 25/50 | Loss: 0.129332
+验证批次 30/50 | Loss: 0.142912
+验证批次 35/50 | Loss: 0.205573
+验证批次 40/50 | Loss: 0.065681
+验证批次 45/50 | Loss: 0.096544
+✅ 验证完成，平均损失: 0.184046
+
+============================================================
+📊 Epoch 10/50 完成
+   Train Loss: 0.200824
+   Val Loss: 0.184046
+   LR: 9.30e-06 | Time: 71.1s
+============================================================
+⏳ 早停计数: 1/10
+💾 模型已保存: training_results_drop_object_fixed/controlnet_drop_object_epoch_10.pth
+Epoch 11 | Batch 0/400 | Loss: 0.108570 | LR: 9.14e-06
+Epoch 11 | Batch 10/400 | Loss: 0.125173 | LR: 9.14e-06
+Epoch 11 | Batch 20/400 | Loss: 0.308527 | LR: 9.14e-06
+Epoch 11 | Batch 30/400 | Loss: 0.119536 | LR: 9.14e-06
+Epoch 11 | Batch 40/400 | Loss: 0.279747 | LR: 9.14e-06
+Epoch 11 | Batch 50/400 | Loss: 0.029415 | LR: 9.14e-06
+Epoch 11 | Batch 60/400 | Loss: 0.249844 | LR: 9.14e-06
+Epoch 11 | Batch 70/400 | Loss: 0.079079 | LR: 9.14e-06
+Epoch 11 | Batch 80/400 | Loss: 0.476162 | LR: 9.14e-06
+Epoch 11 | Batch 90/400 | Loss: 0.055836 | LR: 9.14e-06
+Epoch 11 | Batch 100/400 | Loss: 0.300771 | LR: 9.14e-06
+Epoch 11 | Batch 110/400 | Loss: 0.032263 | LR: 9.14e-06
+Epoch 11 | Batch 120/400 | Loss: 0.199250 | LR: 9.14e-06
+Epoch 11 | Batch 130/400 | Loss: 0.545081 | LR: 9.14e-06
+Epoch 11 | Batch 140/400 | Loss: 0.268950 | LR: 9.14e-06
+Epoch 11 | Batch 150/400 | Loss: 0.018043 | LR: 9.14e-06
+Epoch 11 | Batch 160/400 | Loss: 0.098249 | LR: 9.14e-06
+Epoch 11 | Batch 170/400 | Loss: 0.397257 | LR: 9.14e-06
+Epoch 11 | Batch 180/400 | Loss: 0.118699 | LR: 9.14e-06
+Epoch 11 | Batch 190/400 | Loss: 0.135408 | LR: 9.14e-06
+Epoch 11 | Batch 200/400 | Loss: 0.280960 | LR: 9.14e-06
+Epoch 11 | Batch 210/400 | Loss: 0.033086 | LR: 9.14e-06
+Epoch 11 | Batch 220/400 | Loss: 0.154414 | LR: 9.14e-06
+Epoch 11 | Batch 230/400 | Loss: 0.120129 | LR: 9.14e-06
+Epoch 11 | Batch 240/400 | Loss: 0.241126 | LR: 9.14e-06
+Epoch 11 | Batch 250/400 | Loss: 0.114954 | LR: 9.14e-06
+Epoch 11 | Batch 260/400 | Loss: 0.034520 | LR: 9.14e-06
+Epoch 11 | Batch 270/400 | Loss: 0.055884 | LR: 9.14e-06
+Epoch 11 | Batch 280/400 | Loss: 0.392126 | LR: 9.14e-06
+Epoch 11 | Batch 290/400 | Loss: 0.058785 | LR: 9.14e-06
+Epoch 11 | Batch 300/400 | Loss: 0.312842 | LR: 9.14e-06
+Epoch 11 | Batch 310/400 | Loss: 0.113151 | LR: 9.14e-06
+Epoch 11 | Batch 320/400 | Loss: 0.040043 | LR: 9.14e-06
+Epoch 11 | Batch 330/400 | Loss: 0.022962 | LR: 9.14e-06
+Epoch 11 | Batch 340/400 | Loss: 0.076514 | LR: 9.14e-06
+Epoch 11 | Batch 350/400 | Loss: 0.111016 | LR: 9.14e-06
+Epoch 11 | Batch 360/400 | Loss: 0.090974 | LR: 9.14e-06
+Epoch 11 | Batch 370/400 | Loss: 0.054032 | LR: 9.14e-06
+Epoch 11 | Batch 380/400 | Loss: 0.243589 | LR: 9.14e-06
+Epoch 11 | Batch 390/400 | Loss: 0.457114 | LR: 9.14e-06
+✅ 第 11 轮训练完成，平均损失: 0.197624
+🧪 开始验证，共有 50 个批次
+验证批次 0/50 | Loss: 0.077021
+验证批次 5/50 | Loss: 0.437885
+验证批次 10/50 | Loss: 0.059003
+验证批次 15/50 | Loss: 0.348234
+验证批次 20/50 | Loss: 0.023732
+验证批次 25/50 | Loss: 0.197087
+验证批次 30/50 | Loss: 0.530773
+验证批次 35/50 | Loss: 0.180823
+验证批次 40/50 | Loss: 0.098525
+验证批次 45/50 | Loss: 0.215062
+✅ 验证完成，平均损失: 0.208352
+
+============================================================
+📊 Epoch 11/50 完成
+   Train Loss: 0.197624
+   Val Loss: 0.208352
+   LR: 9.14e-06 | Time: 73.0s
+============================================================
+⏳ 早停计数: 2/10
+Epoch 12 | Batch 0/400 | Loss: 0.401156 | LR: 8.97e-06
+Epoch 12 | Batch 10/400 | Loss: 0.347418 | LR: 8.97e-06
+Epoch 12 | Batch 20/400 | Loss: 0.013503 | LR: 8.97e-06
+Epoch 12 | Batch 30/400 | Loss: 0.338072 | LR: 8.97e-06
+Epoch 12 | Batch 40/400 | Loss: 0.247966 | LR: 8.97e-06
+Epoch 12 | Batch 50/400 | Loss: 0.199161 | LR: 8.97e-06
+Epoch 12 | Batch 60/400 | Loss: 0.317084 | LR: 8.97e-06
+Epoch 12 | Batch 70/400 | Loss: 0.162837 | LR: 8.97e-06
+Epoch 12 | Batch 80/400 | Loss: 0.292060 | LR: 8.97e-06
+Epoch 12 | Batch 90/400 | Loss: 0.206268 | LR: 8.97e-06
+Epoch 12 | Batch 100/400 | Loss: 0.137348 | LR: 8.97e-06
+Epoch 12 | Batch 110/400 | Loss: 0.030939 | LR: 8.97e-06
+Epoch 12 | Batch 120/400 | Loss: 0.414400 | LR: 8.97e-06
+Epoch 12 | Batch 130/400 | Loss: 0.186454 | LR: 8.97e-06
+Epoch 12 | Batch 140/400 | Loss: 0.007231 | LR: 8.97e-06
+Epoch 12 | Batch 150/400 | Loss: 0.168003 | LR: 8.97e-06
+Epoch 12 | Batch 160/400 | Loss: 0.058889 | LR: 8.97e-06
+Epoch 12 | Batch 170/400 | Loss: 0.616176 | LR: 8.97e-06
+Epoch 12 | Batch 180/400 | Loss: 0.162207 | LR: 8.97e-06
+Epoch 12 | Batch 190/400 | Loss: 0.048008 | LR: 8.97e-06
+Epoch 12 | Batch 200/400 | Loss: 0.270339 | LR: 8.97e-06
+Epoch 12 | Batch 210/400 | Loss: 0.456412 | LR: 8.97e-06
+Epoch 12 | Batch 220/400 | Loss: 0.263714 | LR: 8.97e-06
+Epoch 12 | Batch 230/400 | Loss: 0.296931 | LR: 8.97e-06
+Epoch 12 | Batch 240/400 | Loss: 0.219924 | LR: 8.97e-06
+Epoch 12 | Batch 250/400 | Loss: 0.068788 | LR: 8.97e-06
+Epoch 12 | Batch 260/400 | Loss: 0.250948 | LR: 8.97e-06
+Epoch 12 | Batch 270/400 | Loss: 0.110848 | LR: 8.97e-06
+Epoch 12 | Batch 280/400 | Loss: 0.406074 | LR: 8.97e-06
+Epoch 12 | Batch 290/400 | Loss: 0.090372 | LR: 8.97e-06
+Epoch 12 | Batch 300/400 | Loss: 0.366995 | LR: 8.97e-06
+Epoch 12 | Batch 310/400 | Loss: 0.047378 | LR: 8.97e-06
+Epoch 12 | Batch 320/400 | Loss: 0.180521 | LR: 8.97e-06
+Epoch 12 | Batch 330/400 | Loss: 0.047915 | LR: 8.97e-06
+Epoch 12 | Batch 340/400 | Loss: 0.259069 | LR: 8.97e-06
+Epoch 12 | Batch 350/400 | Loss: 0.376172 | LR: 8.97e-06
+Epoch 12 | Batch 360/400 | Loss: 0.134925 | LR: 8.97e-06
+Epoch 12 | Batch 370/400 | Loss: 0.057816 | LR: 8.97e-06
+Epoch 12 | Batch 380/400 | Loss: 0.060978 | LR: 8.97e-06
+Epoch 12 | Batch 390/400 | Loss: 0.347407 | LR: 8.97e-06
+✅ 第 12 轮训练完成，平均损失: 0.196629
+🧪 开始验证，共有 50 个批次
+验证批次 0/50 | Loss: 0.323556
+验证批次 5/50 | Loss: 0.509301
+验证批次 10/50 | Loss: 0.559907
+验证批次 15/50 | Loss: 0.336291
+验证批次 20/50 | Loss: 0.276352
+验证批次 25/50 | Loss: 0.056099
+验证批次 30/50 | Loss: 0.236999
+验证批次 35/50 | Loss: 0.009947
+验证批次 40/50 | Loss: 0.032658
+验证批次 45/50 | Loss: 0.258378
+✅ 验证完成，平均损失: 0.173953
+
+============================================================
+📊 Epoch 12/50 完成
+   Train Loss: 0.196629
+   Val Loss: 0.173953
+   LR: 8.97e-06 | Time: 70.7s
+============================================================
+⏳ 早停计数: 3/10
+Epoch 13 | Batch 0/400 | Loss: 0.195335 | LR: 8.78e-06
+Epoch 13 | Batch 10/400 | Loss: 0.135475 | LR: 8.78e-06
+Epoch 13 | Batch 20/400 | Loss: 0.014288 | LR: 8.78e-06
+Epoch 13 | Batch 30/400 | Loss: 0.098806 | LR: 8.78e-06
+Epoch 13 | Batch 40/400 | Loss: 0.092876 | LR: 8.78e-06
+Epoch 13 | Batch 50/400 | Loss: 0.126129 | LR: 8.78e-06
+Epoch 13 | Batch 60/400 | Loss: 0.125360 | LR: 8.78e-06
+Epoch 13 | Batch 70/400 | Loss: 0.099998 | LR: 8.78e-06
+Epoch 13 | Batch 80/400 | Loss: 0.133808 | LR: 8.78e-06
+Epoch 13 | Batch 90/400 | Loss: 0.121908 | LR: 8.78e-06
+Epoch 13 | Batch 100/400 | Loss: 0.198300 | LR: 8.78e-06
+Epoch 13 | Batch 110/400 | Loss: 0.173183 | LR: 8.78e-06
+Epoch 13 | Batch 120/400 | Loss: 0.208366 | LR: 8.78e-06
+Epoch 13 | Batch 130/400 | Loss: 0.059504 | LR: 8.78e-06
+Epoch 13 | Batch 140/400 | Loss: 0.067633 | LR: 8.78e-06
+Epoch 13 | Batch 150/400 | Loss: 0.157532 | LR: 8.78e-06
+Epoch 13 | Batch 160/400 | Loss: 0.409375 | LR: 8.78e-06
+Epoch 13 | Batch 170/400 | Loss: 0.063922 | LR: 8.78e-06
+Epoch 13 | Batch 180/400 | Loss: 0.535217 | LR: 8.78e-06
+Epoch 13 | Batch 190/400 | Loss: 0.057598 | LR: 8.78e-06
+Epoch 13 | Batch 200/400 | Loss: 0.046233 | LR: 8.78e-06
+Epoch 13 | Batch 210/400 | Loss: 0.163498 | LR: 8.78e-06
+Epoch 13 | Batch 220/400 | Loss: 0.029383 | LR: 8.78e-06
+Epoch 13 | Batch 230/400 | Loss: 0.177732 | LR: 8.78e-06
+Epoch 13 | Batch 240/400 | Loss: 0.071109 | LR: 8.78e-06
+Epoch 13 | Batch 250/400 | Loss: 0.107946 | LR: 8.78e-06
+Epoch 13 | Batch 260/400 | Loss: 0.358731 | LR: 8.78e-06
+Epoch 13 | Batch 270/400 | Loss: 0.506098 | LR: 8.78e-06
+Epoch 13 | Batch 280/400 | Loss: 0.249219 | LR: 8.78e-06
+Epoch 13 | Batch 290/400 | Loss: 0.050447 | LR: 8.78e-06
+Epoch 13 | Batch 300/400 | Loss: 0.231357 | LR: 8.78e-06
+Epoch 13 | Batch 310/400 | Loss: 0.519219 | LR: 8.78e-06
+Epoch 13 | Batch 320/400 | Loss: 0.366767 | LR: 8.78e-06
+Epoch 13 | Batch 330/400 | Loss: 0.493771 | LR: 8.78e-06
+Epoch 13 | Batch 340/400 | Loss: 0.090355 | LR: 8.78e-06
+Epoch 13 | Batch 350/400 | Loss: 0.214179 | LR: 8.78e-06
+Epoch 13 | Batch 360/400 | Loss: 0.396949 | LR: 8.78e-06
+Epoch 13 | Batch 370/400 | Loss: 0.051622 | LR: 8.78e-06
+Epoch 13 | Batch 380/400 | Loss: 0.099340 | LR: 8.78e-06
+Epoch 13 | Batch 390/400 | Loss: 0.283015 | LR: 8.78e-06
+✅ 第 13 轮训练完成，平均损失: 0.185837
+🧪 开始验证，共有 50 个批次
+验证批次 0/50 | Loss: 0.299719
+验证批次 5/50 | Loss: 0.135827
+验证批次 10/50 | Loss: 0.144783
+验证批次 15/50 | Loss: 0.145783
+验证批次 20/50 | Loss: 0.466025
+验证批次 25/50 | Loss: 0.289510
+验证批次 30/50 | Loss: 0.290940
+验证批次 35/50 | Loss: 0.123370
+验证批次 40/50 | Loss: 0.078253
+验证批次 45/50 | Loss: 0.509597
+✅ 验证完成，平均损失: 0.189964
+
+============================================================
+📊 Epoch 13/50 完成
+   Train Loss: 0.185837
+   Val Loss: 0.189964
+   LR: 8.78e-06 | Time: 71.7s
+============================================================
+⏳ 早停计数: 4/10
+Epoch 14 | Batch 0/400 | Loss: 0.209239 | LR: 8.58e-06
+Epoch 14 | Batch 10/400 | Loss: 0.408981 | LR: 8.58e-06
+Epoch 14 | Batch 20/400 | Loss: 0.024263 | LR: 8.58e-06
+Epoch 14 | Batch 30/400 | Loss: 0.508840 | LR: 8.58e-06
+Epoch 14 | Batch 40/400 | Loss: 0.248849 | LR: 8.58e-06
+Epoch 14 | Batch 50/400 | Loss: 0.201047 | LR: 8.58e-06
+Epoch 14 | Batch 60/400 | Loss: 0.335772 | LR: 8.58e-06
+Epoch 14 | Batch 70/400 | Loss: 0.020753 | LR: 8.58e-06
+Epoch 14 | Batch 80/400 | Loss: 0.407262 | LR: 8.58e-06
+Epoch 14 | Batch 90/400 | Loss: 0.115222 | LR: 8.58e-06
+Epoch 14 | Batch 100/400 | Loss: 0.044141 | LR: 8.58e-06
+Epoch 14 | Batch 110/400 | Loss: 0.217333 | LR: 8.58e-06
+Epoch 14 | Batch 120/400 | Loss: 0.549831 | LR: 8.58e-06
+Epoch 14 | Batch 130/400 | Loss: 0.250419 | LR: 8.58e-06
+Epoch 14 | Batch 140/400 | Loss: 0.144052 | LR: 8.58e-06
+Epoch 14 | Batch 150/400 | Loss: 0.071699 | LR: 8.58e-06
+Epoch 14 | Batch 160/400 | Loss: 0.130802 | LR: 8.58e-06
+Epoch 14 | Batch 170/400 | Loss: 0.057175 | LR: 8.58e-06
+Epoch 14 | Batch 180/400 | Loss: 0.205361 | LR: 8.58e-06
+Epoch 14 | Batch 190/400 | Loss: 0.083239 | LR: 8.58e-06
+Epoch 14 | Batch 200/400 | Loss: 0.324219 | LR: 8.58e-06
+Epoch 14 | Batch 210/400 | Loss: 0.101418 | LR: 8.58e-06
+Epoch 14 | Batch 220/400 | Loss: 0.408420 | LR: 8.58e-06
+Epoch 14 | Batch 230/400 | Loss: 0.460771 | LR: 8.58e-06
+Epoch 14 | Batch 240/400 | Loss: 0.320690 | LR: 8.58e-06
+Epoch 14 | Batch 250/400 | Loss: 0.546485 | LR: 8.58e-06
+Epoch 14 | Batch 260/400 | Loss: 0.439120 | LR: 8.58e-06
+Epoch 14 | Batch 270/400 | Loss: 0.296934 | LR: 8.58e-06
+Epoch 14 | Batch 280/400 | Loss: 0.301619 | LR: 8.58e-06
+Epoch 14 | Batch 290/400 | Loss: 0.341717 | LR: 8.58e-06
+Epoch 14 | Batch 300/400 | Loss: 0.154737 | LR: 8.58e-06
+Epoch 14 | Batch 310/400 | Loss: 0.302308 | LR: 8.58e-06
+Epoch 14 | Batch 320/400 | Loss: 0.011453 | LR: 8.58e-06
+Epoch 14 | Batch 330/400 | Loss: 0.010194 | LR: 8.58e-06
+Epoch 14 | Batch 340/400 | Loss: 0.045663 | LR: 8.58e-06
+Epoch 14 | Batch 350/400 | Loss: 0.038949 | LR: 8.58e-06
+Epoch 14 | Batch 360/400 | Loss: 0.009035 | LR: 8.58e-06
+Epoch 14 | Batch 370/400 | Loss: 0.007507 | LR: 8.58e-06
+Epoch 14 | Batch 380/400 | Loss: 0.357495 | LR: 8.58e-06
+Epoch 14 | Batch 390/400 | Loss: 0.199924 | LR: 8.58e-06
+✅ 第 14 轮训练完成，平均损失: 0.203960
+🧪 开始验证，共有 50 个批次
+验证批次 0/50 | Loss: 0.205073
+验证批次 5/50 | Loss: 0.167365
+验证批次 10/50 | Loss: 0.208633
+验证批次 15/50 | Loss: 0.079703
+验证批次 20/50 | Loss: 0.026965
+验证批次 25/50 | Loss: 0.211261
+验证批次 30/50 | Loss: 0.250405
+验证批次 35/50 | Loss: 0.019815
+验证批次 40/50 | Loss: 0.167081
+验证批次 45/50 | Loss: 0.047590
+✅ 验证完成，平均损失: 0.161924
+
+============================================================
+📊 Epoch 14/50 完成
+   Train Loss: 0.203960
+   Val Loss: 0.161924
+   LR: 8.58e-06 | Time: 69.7s
+============================================================
+💾 模型已保存: training_results_drop_object_fixed/controlnet_drop_object_best.pth
+🎉 新的最佳验证损失: 0.161924
+Epoch 15 | Batch 0/400 | Loss: 0.060571 | LR: 8.37e-06
+Epoch 15 | Batch 10/400 | Loss: 0.098419 | LR: 8.37e-06
+Epoch 15 | Batch 20/400 | Loss: 0.103413 | LR: 8.37e-06
+Epoch 15 | Batch 30/400 | Loss: 0.098174 | LR: 8.37e-06
+Epoch 15 | Batch 40/400 | Loss: 0.219374 | LR: 8.37e-06
+Epoch 15 | Batch 50/400 | Loss: 0.016601 | LR: 8.37e-06
+Epoch 15 | Batch 60/400 | Loss: 0.408289 | LR: 8.37e-06
+Epoch 15 | Batch 70/400 | Loss: 0.561967 | LR: 8.37e-06
+Epoch 15 | Batch 80/400 | Loss: 0.344626 | LR: 8.37e-06
+Epoch 15 | Batch 90/400 | Loss: 0.030768 | LR: 8.37e-06
+Epoch 15 | Batch 100/400 | Loss: 0.028459 | LR: 8.37e-06
+Epoch 15 | Batch 110/400 | Loss: 0.060615 | LR: 8.37e-06
+Epoch 15 | Batch 120/400 | Loss: 0.088956 | LR: 8.37e-06
+Epoch 15 | Batch 130/400 | Loss: 0.120976 | LR: 8.37e-06
+Epoch 15 | Batch 140/400 | Loss: 0.363773 | LR: 8.37e-06
+Epoch 15 | Batch 150/400 | Loss: 0.404540 | LR: 8.37e-06
+Epoch 15 | Batch 160/400 | Loss: 0.090455 | LR: 8.37e-06
+Epoch 15 | Batch 170/400 | Loss: 0.162780 | LR: 8.37e-06
+Epoch 15 | Batch 180/400 | Loss: 0.164144 | LR: 8.37e-06
+Epoch 15 | Batch 190/400 | Loss: 0.133094 | LR: 8.37e-06
+Epoch 15 | Batch 200/400 | Loss: 0.145394 | LR: 8.37e-06
+Epoch 15 | Batch 210/400 | Loss: 0.451421 | LR: 8.37e-06
+Epoch 15 | Batch 220/400 | Loss: 0.133457 | LR: 8.37e-06
+Epoch 15 | Batch 230/400 | Loss: 0.518278 | LR: 8.37e-06
+Epoch 15 | Batch 240/400 | Loss: 0.092388 | LR: 8.37e-06
+Epoch 15 | Batch 250/400 | Loss: 0.145578 | LR: 8.37e-06
+Epoch 15 | Batch 260/400 | Loss: 0.705442 | LR: 8.37e-06
+Epoch 15 | Batch 270/400 | Loss: 0.334808 | LR: 8.37e-06
+Epoch 15 | Batch 280/400 | Loss: 0.176210 | LR: 8.37e-06
+Epoch 15 | Batch 290/400 | Loss: 0.100566 | LR: 8.37e-06
+Epoch 15 | Batch 300/400 | Loss: 0.020746 | LR: 8.37e-06
+Epoch 15 | Batch 310/400 | Loss: 0.017845 | LR: 8.37e-06
+Epoch 15 | Batch 320/400 | Loss: 0.054666 | LR: 8.37e-06
+Epoch 15 | Batch 330/400 | Loss: 0.369397 | LR: 8.37e-06
+Epoch 15 | Batch 340/400 | Loss: 0.147359 | LR: 8.37e-06
+Epoch 15 | Batch 350/400 | Loss: 0.295867 | LR: 8.37e-06
+Epoch 15 | Batch 360/400 | Loss: 0.140036 | LR: 8.37e-06
+Epoch 15 | Batch 370/400 | Loss: 0.124235 | LR: 8.37e-06
+Epoch 15 | Batch 380/400 | Loss: 0.206875 | LR: 8.37e-06
+Epoch 15 | Batch 390/400 | Loss: 0.025800 | LR: 8.37e-06
+✅ 第 15 轮训练完成，平均损失: 0.202354
+🧪 开始验证，共有 50 个批次
+验证批次 0/50 | Loss: 0.286284
+验证批次 5/50 | Loss: 0.179720
+验证批次 10/50 | Loss: 0.362099
+验证批次 15/50 | Loss: 0.105717
+验证批次 20/50 | Loss: 0.160505
+验证批次 25/50 | Loss: 0.752839
+验证批次 30/50 | Loss: 0.179095
+验证批次 35/50 | Loss: 0.324848
+验证批次 40/50 | Loss: 0.028185
+验证批次 45/50 | Loss: 0.111794
+✅ 验证完成，平均损失: 0.205031
+
+============================================================
+📊 Epoch 15/50 完成
+   Train Loss: 0.202354
+   Val Loss: 0.205031
+   LR: 8.37e-06 | Time: 70.7s
+============================================================
+⏳ 早停计数: 1/10
+💾 模型已保存: training_results_drop_object_fixed/controlnet_drop_object_epoch_15.pth
+Epoch 16 | Batch 0/400 | Loss: 0.086133 | LR: 8.15e-06
+Epoch 16 | Batch 10/400 | Loss: 0.075708 | LR: 8.15e-06
+Epoch 16 | Batch 20/400 | Loss: 0.094795 | LR: 8.15e-06
+Epoch 16 | Batch 30/400 | Loss: 0.004728 | LR: 8.15e-06
+Epoch 16 | Batch 40/400 | Loss: 0.140639 | LR: 8.15e-06
+Epoch 16 | Batch 50/400 | Loss: 0.029043 | LR: 8.15e-06
+Epoch 16 | Batch 60/400 | Loss: 0.207645 | LR: 8.15e-06
+Epoch 16 | Batch 70/400 | Loss: 0.316981 | LR: 8.15e-06
+Epoch 16 | Batch 80/400 | Loss: 0.181053 | LR: 8.15e-06
+Epoch 16 | Batch 90/400 | Loss: 0.099246 | LR: 8.15e-06
+Epoch 16 | Batch 100/400 | Loss: 0.279760 | LR: 8.15e-06
+Epoch 16 | Batch 110/400 | Loss: 0.069923 | LR: 8.15e-06
+Epoch 16 | Batch 120/400 | Loss: 0.079071 | LR: 8.15e-06
+Epoch 16 | Batch 130/400 | Loss: 0.370456 | LR: 8.15e-06
+Epoch 16 | Batch 140/400 | Loss: 0.266785 | LR: 8.15e-06
+Epoch 16 | Batch 150/400 | Loss: 0.413080 | LR: 8.15e-06
+Epoch 16 | Batch 160/400 | Loss: 0.127746 | LR: 8.15e-06
+Epoch 16 | Batch 170/400 | Loss: 0.010415 | LR: 8.15e-06
+Epoch 16 | Batch 180/400 | Loss: 0.347345 | LR: 8.15e-06
+Epoch 16 | Batch 190/400 | Loss: 0.079804 | LR: 8.15e-06
+Epoch 16 | Batch 200/400 | Loss: 0.094059 | LR: 8.15e-06
+Epoch 16 | Batch 210/400 | Loss: 0.543334 | LR: 8.15e-06
+Epoch 16 | Batch 220/400 | Loss: 0.141937 | LR: 8.15e-06
+Epoch 16 | Batch 230/400 | Loss: 0.632759 | LR: 8.15e-06
+Epoch 16 | Batch 240/400 | Loss: 0.205154 | LR: 8.15e-06
+Epoch 16 | Batch 250/400 | Loss: 0.447103 | LR: 8.15e-06
+Epoch 16 | Batch 260/400 | Loss: 0.066207 | LR: 8.15e-06
+Epoch 16 | Batch 270/400 | Loss: 0.079988 | LR: 8.15e-06
+Epoch 16 | Batch 280/400 | Loss: 0.058731 | LR: 8.15e-06
+Epoch 16 | Batch 290/400 | Loss: 0.043112 | LR: 8.15e-06
+Epoch 16 | Batch 300/400 | Loss: 0.011619 | LR: 8.15e-06
+Epoch 16 | Batch 310/400 | Loss: 0.071422 | LR: 8.15e-06
+Epoch 16 | Batch 320/400 | Loss: 0.052836 | LR: 8.15e-06
+Epoch 16 | Batch 330/400 | Loss: 0.235133 | LR: 8.15e-06
+Epoch 16 | Batch 340/400 | Loss: 0.480796 | LR: 8.15e-06
+Epoch 16 | Batch 350/400 | Loss: 0.232751 | LR: 8.15e-06
+Epoch 16 | Batch 360/400 | Loss: 0.309326 | LR: 8.15e-06
+Epoch 16 | Batch 370/400 | Loss: 0.229571 | LR: 8.15e-06
+Epoch 16 | Batch 380/400 | Loss: 0.130976 | LR: 8.15e-06
+Epoch 16 | Batch 390/400 | Loss: 0.219702 | LR: 8.15e-06
+✅ 第 16 轮训练完成，平均损失: 0.199228
+🧪 开始验证，共有 50 个批次
+验证批次 0/50 | Loss: 0.175056
+验证批次 5/50 | Loss: 0.090103
+验证批次 10/50 | Loss: 0.152469
+验证批次 15/50 | Loss: 0.259386
+验证批次 20/50 | Loss: 0.163289
+验证批次 25/50 | Loss: 0.344959
+验证批次 30/50 | Loss: 0.390420
+验证批次 35/50 | Loss: 0.292093
+验证批次 40/50 | Loss: 0.464576
+验证批次 45/50 | Loss: 0.396744
+✅ 验证完成，平均损失: 0.239032
+
+============================================================
+📊 Epoch 16/50 完成
+   Train Loss: 0.199228
+   Val Loss: 0.239032
+   LR: 8.15e-06 | Time: 75.8s
+============================================================
+⏳ 早停计数: 2/10
+Epoch 17 | Batch 0/400 | Loss: 0.319211 | LR: 7.91e-06
+Epoch 17 | Batch 10/400 | Loss: 0.160718 | LR: 7.91e-06
+Epoch 17 | Batch 20/400 | Loss: 0.004058 | LR: 7.91e-06
+Epoch 17 | Batch 30/400 | Loss: 0.481623 | LR: 7.91e-06
+Epoch 17 | Batch 40/400 | Loss: 0.122721 | LR: 7.91e-06
+Epoch 17 | Batch 50/400 | Loss: 0.193663 | LR: 7.91e-06
+Epoch 17 | Batch 60/400 | Loss: 0.062647 | LR: 7.91e-06
+Epoch 17 | Batch 70/400 | Loss: 0.020143 | LR: 7.91e-06
+Epoch 17 | Batch 80/400 | Loss: 0.161186 | LR: 7.91e-06
+Epoch 17 | Batch 90/400 | Loss: 0.158709 | LR: 7.91e-06
+Epoch 17 | Batch 100/400 | Loss: 0.189270 | LR: 7.91e-06
+Epoch 17 | Batch 110/400 | Loss: 0.158575 | LR: 7.91e-06
+Epoch 17 | Batch 120/400 | Loss: 0.301234 | LR: 7.91e-06
+Epoch 17 | Batch 130/400 | Loss: 0.157552 | LR: 7.91e-06
+Epoch 17 | Batch 140/400 | Loss: 0.533191 | LR: 7.91e-06
+Epoch 17 | Batch 150/400 | Loss: 0.480555 | LR: 7.91e-06
+Epoch 17 | Batch 160/400 | Loss: 0.154815 | LR: 7.91e-06
+Epoch 17 | Batch 170/400 | Loss: 0.018879 | LR: 7.91e-06
+Epoch 17 | Batch 180/400 | Loss: 0.017829 | LR: 7.91e-06
+Epoch 17 | Batch 190/400 | Loss: 0.634691 | LR: 7.91e-06
+Epoch 17 | Batch 200/400 | Loss: 0.100566 | LR: 7.91e-06
+Epoch 17 | Batch 210/400 | Loss: 0.393882 | LR: 7.91e-06
+Epoch 17 | Batch 220/400 | Loss: 0.188173 | LR: 7.91e-06
+Epoch 17 | Batch 230/400 | Loss: 0.026317 | LR: 7.91e-06
+Epoch 17 | Batch 240/400 | Loss: 0.290328 | LR: 7.91e-06
+Epoch 17 | Batch 250/400 | Loss: 0.050058 | LR: 7.91e-06
+Epoch 17 | Batch 260/400 | Loss: 0.152976 | LR: 7.91e-06
+Epoch 17 | Batch 270/400 | Loss: 0.251797 | LR: 7.91e-06
+Epoch 17 | Batch 280/400 | Loss: 0.281292 | LR: 7.91e-06
+Epoch 17 | Batch 290/400 | Loss: 0.283603 | LR: 7.91e-06
+Epoch 17 | Batch 300/400 | Loss: 0.245038 | LR: 7.91e-06
+Epoch 17 | Batch 310/400 | Loss: 0.224121 | LR: 7.91e-06
+Epoch 17 | Batch 320/400 | Loss: 0.192266 | LR: 7.91e-06
+Epoch 17 | Batch 330/400 | Loss: 0.319996 | LR: 7.91e-06
+Epoch 17 | Batch 340/400 | Loss: 0.020322 | LR: 7.91e-06
+Epoch 17 | Batch 350/400 | Loss: 0.028440 | LR: 7.91e-06
+Epoch 17 | Batch 360/400 | Loss: 0.005293 | LR: 7.91e-06
+Epoch 17 | Batch 370/400 | Loss: 0.006011 | LR: 7.91e-06
+Epoch 17 | Batch 380/400 | Loss: 0.230560 | LR: 7.91e-06
+Epoch 17 | Batch 390/400 | Loss: 0.113177 | LR: 7.91e-06
+✅ 第 17 轮训练完成，平均损失: 0.199080
+🧪 开始验证，共有 50 个批次
+验证批次 0/50 | Loss: 0.071890
+验证批次 5/50 | Loss: 0.170821
+验证批次 10/50 | Loss: 0.673814
+验证批次 15/50 | Loss: 0.276536
+验证批次 20/50 | Loss: 0.064818
+验证批次 25/50 | Loss: 0.056759
+验证批次 30/50 | Loss: 0.237513
+验证批次 35/50 | Loss: 0.089585
+验证批次 40/50 | Loss: 0.443726
+验证批次 45/50 | Loss: 0.172436
+✅ 验证完成，平均损失: 0.171787
+
+============================================================
+📊 Epoch 17/50 完成
+   Train Loss: 0.199080
+   Val Loss: 0.171787
+   LR: 7.91e-06 | Time: 78.0s
+============================================================
+⏳ 早停计数: 3/10
+Epoch 18 | Batch 0/400 | Loss: 0.025891 | LR: 7.67e-06
+Epoch 18 | Batch 10/400 | Loss: 0.181128 | LR: 7.67e-06
+Epoch 18 | Batch 20/400 | Loss: 0.028035 | LR: 7.67e-06
+Epoch 18 | Batch 30/400 | Loss: 0.340480 | LR: 7.67e-06
+Epoch 18 | Batch 40/400 | Loss: 0.071776 | LR: 7.67e-06
+Epoch 18 | Batch 50/400 | Loss: 0.247454 | LR: 7.67e-06
+Epoch 18 | Batch 60/400 | Loss: 0.164411 | LR: 7.67e-06
+Epoch 18 | Batch 70/400 | Loss: 0.061352 | LR: 7.67e-06
+Epoch 18 | Batch 80/400 | Loss: 0.164216 | LR: 7.67e-06
+Epoch 18 | Batch 90/400 | Loss: 0.039665 | LR: 7.67e-06
+Epoch 18 | Batch 100/400 | Loss: 0.031002 | LR: 7.67e-06
+Epoch 18 | Batch 110/400 | Loss: 0.195440 | LR: 7.67e-06
+Epoch 18 | Batch 120/400 | Loss: 0.046447 | LR: 7.67e-06
+Epoch 18 | Batch 130/400 | Loss: 0.313901 | LR: 7.67e-06
+Epoch 18 | Batch 140/400 | Loss: 0.109492 | LR: 7.67e-06
+Epoch 18 | Batch 150/400 | Loss: 0.108532 | LR: 7.67e-06
+Epoch 18 | Batch 160/400 | Loss: 0.275204 | LR: 7.67e-06
+Epoch 18 | Batch 170/400 | Loss: 0.087102 | LR: 7.67e-06
+Epoch 18 | Batch 180/400 | Loss: 0.256820 | LR: 7.67e-06
+Epoch 18 | Batch 190/400 | Loss: 0.287868 | LR: 7.67e-06
+Epoch 18 | Batch 200/400 | Loss: 0.326371 | LR: 7.67e-06
+Epoch 18 | Batch 210/400 | Loss: 0.100103 | LR: 7.67e-06
+Epoch 18 | Batch 220/400 | Loss: 0.590145 | LR: 7.67e-06
+Epoch 18 | Batch 230/400 | Loss: 0.043344 | LR: 7.67e-06
+Epoch 18 | Batch 240/400 | Loss: 0.267934 | LR: 7.67e-06
+Epoch 18 | Batch 250/400 | Loss: 0.198525 | LR: 7.67e-06
+Epoch 18 | Batch 260/400 | Loss: 0.092004 | LR: 7.67e-06
+Epoch 18 | Batch 270/400 | Loss: 0.197708 | LR: 7.67e-06
+Epoch 18 | Batch 280/400 | Loss: 0.038036 | LR: 7.67e-06
+Epoch 18 | Batch 290/400 | Loss: 0.099433 | LR: 7.67e-06
+Epoch 18 | Batch 300/400 | Loss: 0.120391 | LR: 7.67e-06
+Epoch 18 | Batch 310/400 | Loss: 0.306512 | LR: 7.67e-06
+Epoch 18 | Batch 320/400 | Loss: 0.313347 | LR: 7.67e-06
+Epoch 18 | Batch 330/400 | Loss: 0.154147 | LR: 7.67e-06
+Epoch 18 | Batch 340/400 | Loss: 0.029745 | LR: 7.67e-06
+Epoch 18 | Batch 350/400 | Loss: 0.277251 | LR: 7.67e-06
+Epoch 18 | Batch 360/400 | Loss: 0.246784 | LR: 7.67e-06
+Epoch 18 | Batch 370/400 | Loss: 0.189607 | LR: 7.67e-06
+Epoch 18 | Batch 380/400 | Loss: 0.013966 | LR: 7.67e-06
+Epoch 18 | Batch 390/400 | Loss: 0.276166 | LR: 7.67e-06
+✅ 第 18 轮训练完成，平均损失: 0.195142
+🧪 开始验证，共有 50 个批次
+验证批次 0/50 | Loss: 0.048454
+验证批次 5/50 | Loss: 0.142938
+验证批次 10/50 | Loss: 0.273967
+验证批次 15/50 | Loss: 0.106865
+验证批次 20/50 | Loss: 0.442824
+验证批次 25/50 | Loss: 0.416370
+验证批次 30/50 | Loss: 0.014630
+验证批次 35/50 | Loss: 0.145856
+验证批次 40/50 | Loss: 0.181465
+验证批次 45/50 | Loss: 0.115666
+✅ 验证完成，平均损失: 0.212845
+
+============================================================
+📊 Epoch 18/50 完成
+   Train Loss: 0.195142
+   Val Loss: 0.212845
+   LR: 7.67e-06 | Time: 75.4s
+============================================================
+⏳ 早停计数: 4/10
+Epoch 19 | Batch 0/400 | Loss: 0.051159 | LR: 7.42e-06
+Epoch 19 | Batch 10/400 | Loss: 0.290871 | LR: 7.42e-06
+Epoch 19 | Batch 20/400 | Loss: 0.212157 | LR: 7.42e-06
+Epoch 19 | Batch 30/400 | Loss: 0.572889 | LR: 7.42e-06
+Epoch 19 | Batch 40/400 | Loss: 0.418877 | LR: 7.42e-06
+Epoch 19 | Batch 50/400 | Loss: 0.188014 | LR: 7.42e-06
+Epoch 19 | Batch 60/400 | Loss: 0.485175 | LR: 7.42e-06
+Epoch 19 | Batch 70/400 | Loss: 0.217963 | LR: 7.42e-06
+Epoch 19 | Batch 80/400 | Loss: 0.045702 | LR: 7.42e-06
+Epoch 19 | Batch 90/400 | Loss: 0.204019 | LR: 7.42e-06
+Epoch 19 | Batch 100/400 | Loss: 0.038511 | LR: 7.42e-06
+Epoch 19 | Batch 110/400 | Loss: 0.072610 | LR: 7.42e-06
+Epoch 19 | Batch 120/400 | Loss: 0.263576 | LR: 7.42e-06
+Epoch 19 | Batch 130/400 | Loss: 0.421667 | LR: 7.42e-06
+Epoch 19 | Batch 140/400 | Loss: 0.029400 | LR: 7.42e-06
+Epoch 19 | Batch 150/400 | Loss: 0.343865 | LR: 7.42e-06
+Epoch 19 | Batch 160/400 | Loss: 0.188914 | LR: 7.42e-06
+Epoch 19 | Batch 170/400 | Loss: 0.006893 | LR: 7.42e-06
+Epoch 19 | Batch 180/400 | Loss: 0.141091 | LR: 7.42e-06
+Epoch 19 | Batch 190/400 | Loss: 0.063612 | LR: 7.42e-06
+Epoch 19 | Batch 200/400 | Loss: 0.111795 | LR: 7.42e-06
+Epoch 19 | Batch 210/400 | Loss: 0.366181 | LR: 7.42e-06
+Epoch 19 | Batch 220/400 | Loss: 0.168364 | LR: 7.42e-06
+Epoch 19 | Batch 230/400 | Loss: 0.509454 | LR: 7.42e-06
+Epoch 19 | Batch 240/400 | Loss: 0.033144 | LR: 7.42e-06
+Epoch 19 | Batch 250/400 | Loss: 0.295762 | LR: 7.42e-06
+Epoch 19 | Batch 260/400 | Loss: 0.352295 | LR: 7.42e-06
+Epoch 19 | Batch 270/400 | Loss: 0.293467 | LR: 7.42e-06
+Epoch 19 | Batch 280/400 | Loss: 0.180958 | LR: 7.42e-06
+Epoch 19 | Batch 290/400 | Loss: 0.041773 | LR: 7.42e-06
+Epoch 19 | Batch 300/400 | Loss: 0.420910 | LR: 7.42e-06
+Epoch 19 | Batch 310/400 | Loss: 0.104866 | LR: 7.42e-06
+Epoch 19 | Batch 320/400 | Loss: 0.139612 | LR: 7.42e-06
+Epoch 19 | Batch 330/400 | Loss: 0.334097 | LR: 7.42e-06
+Epoch 19 | Batch 340/400 | Loss: 0.289703 | LR: 7.42e-06
+Epoch 19 | Batch 350/400 | Loss: 0.087537 | LR: 7.42e-06
+Epoch 19 | Batch 360/400 | Loss: 0.026142 | LR: 7.42e-06
+Epoch 19 | Batch 370/400 | Loss: 0.020337 | LR: 7.42e-06
+Epoch 19 | Batch 380/400 | Loss: 0.066672 | LR: 7.42e-06
+Epoch 19 | Batch 390/400 | Loss: 0.294629 | LR: 7.42e-06
+✅ 第 19 轮训练完成，平均损失: 0.197957
+🧪 开始验证，共有 50 个批次
+验证批次 0/50 | Loss: 0.295370
+验证批次 5/50 | Loss: 0.138887
+验证批次 10/50 | Loss: 0.361817
+验证批次 15/50 | Loss: 0.322293
+验证批次 20/50 | Loss: 0.140327
+验证批次 25/50 | Loss: 0.008739
+验证批次 30/50 | Loss: 0.425656
+验证批次 35/50 | Loss: 0.632379
+验证批次 40/50 | Loss: 0.004003
+验证批次 45/50 | Loss: 0.083384
+✅ 验证完成，平均损失: 0.194868
+
+============================================================
+📊 Epoch 19/50 完成
+   Train Loss: 0.197957
+   Val Loss: 0.194868
+   LR: 7.42e-06 | Time: 73.3s
+============================================================
+⏳ 早停计数: 5/10
+Epoch 20 | Batch 0/400 | Loss: 0.230838 | LR: 7.16e-06
+Epoch 20 | Batch 10/400 | Loss: 0.169794 | LR: 7.16e-06
+Epoch 20 | Batch 20/400 | Loss: 0.035112 | LR: 7.16e-06
+Epoch 20 | Batch 30/400 | Loss: 0.050968 | LR: 7.16e-06
+Epoch 20 | Batch 40/400 | Loss: 0.026671 | LR: 7.16e-06
+Epoch 20 | Batch 50/400 | Loss: 0.023421 | LR: 7.16e-06
+Epoch 20 | Batch 60/400 | Loss: 0.381691 | LR: 7.16e-06
+Epoch 20 | Batch 70/400 | Loss: 0.003882 | LR: 7.16e-06
+Epoch 20 | Batch 80/400 | Loss: 0.020935 | LR: 7.16e-06
+Epoch 20 | Batch 90/400 | Loss: 0.266081 | LR: 7.16e-06
+Epoch 20 | Batch 100/400 | Loss: 0.004836 | LR: 7.16e-06
+Epoch 20 | Batch 110/400 | Loss: 0.196896 | LR: 7.16e-06
+Epoch 20 | Batch 120/400 | Loss: 0.434429 | LR: 7.16e-06
+Epoch 20 | Batch 130/400 | Loss: 0.053673 | LR: 7.16e-06
+Epoch 20 | Batch 140/400 | Loss: 0.348612 | LR: 7.16e-06
+Epoch 20 | Batch 150/400 | Loss: 0.189610 | LR: 7.16e-06
+Epoch 20 | Batch 160/400 | Loss: 0.013253 | LR: 7.16e-06
+Epoch 20 | Batch 170/400 | Loss: 0.005512 | LR: 7.16e-06
+Epoch 20 | Batch 180/400 | Loss: 0.123432 | LR: 7.16e-06
+Epoch 20 | Batch 190/400 | Loss: 0.161324 | LR: 7.16e-06
+Epoch 20 | Batch 200/400 | Loss: 0.281864 | LR: 7.16e-06
+Epoch 20 | Batch 210/400 | Loss: 0.049232 | LR: 7.16e-06
+Epoch 20 | Batch 220/400 | Loss: 0.262156 | LR: 7.16e-06
+Epoch 20 | Batch 230/400 | Loss: 0.336022 | LR: 7.16e-06
+Epoch 20 | Batch 240/400 | Loss: 0.097739 | LR: 7.16e-06
+Epoch 20 | Batch 250/400 | Loss: 0.287242 | LR: 7.16e-06
+Epoch 20 | Batch 260/400 | Loss: 0.033233 | LR: 7.16e-06
+Epoch 20 | Batch 270/400 | Loss: 0.056869 | LR: 7.16e-06
+Epoch 20 | Batch 280/400 | Loss: 0.400671 | LR: 7.16e-06
+Epoch 20 | Batch 290/400 | Loss: 0.065648 | LR: 7.16e-06
+Epoch 20 | Batch 300/400 | Loss: 0.125336 | LR: 7.16e-06
+Epoch 20 | Batch 310/400 | Loss: 0.129926 | LR: 7.16e-06
+Epoch 20 | Batch 320/400 | Loss: 0.189750 | LR: 7.16e-06
+Epoch 20 | Batch 330/400 | Loss: 0.109290 | LR: 7.16e-06
+Epoch 20 | Batch 340/400 | Loss: 0.153475 | LR: 7.16e-06
+Epoch 20 | Batch 350/400 | Loss: 0.112004 | LR: 7.16e-06
+Epoch 20 | Batch 360/400 | Loss: 0.008503 | LR: 7.16e-06
+Epoch 20 | Batch 370/400 | Loss: 0.073734 | LR: 7.16e-06
+Epoch 20 | Batch 380/400 | Loss: 0.584141 | LR: 7.16e-06
+Epoch 20 | Batch 390/400 | Loss: 0.123395 | LR: 7.16e-06
+✅ 第 20 轮训练完成，平均损失: 0.203494
+🧪 开始验证，共有 50 个批次
+验证批次 0/50 | Loss: 0.032931
+验证批次 5/50 | Loss: 0.178249
+验证批次 10/50 | Loss: 0.043651
+验证批次 15/50 | Loss: 0.055947
+验证批次 20/50 | Loss: 0.137091
+验证批次 25/50 | Loss: 0.042634
+验证批次 30/50 | Loss: 0.093669
+验证批次 35/50 | Loss: 0.135802
+验证批次 40/50 | Loss: 0.334133
+验证批次 45/50 | Loss: 0.141341
+✅ 验证完成，平均损失: 0.149530
+
+============================================================
+📊 Epoch 20/50 完成
+   Train Loss: 0.203494
+   Val Loss: 0.149530
+   LR: 7.16e-06 | Time: 76.5s
+============================================================
+💾 模型已保存: training_results_drop_object_fixed/controlnet_drop_object_best.pth
+🎉 新的最佳验证损失: 0.149530
+💾 模型已保存: training_results_drop_object_fixed/controlnet_drop_object_epoch_20.pth
+Epoch 21 | Batch 0/400 | Loss: 0.015128 | LR: 6.89e-06
+Epoch 21 | Batch 10/400 | Loss: 0.383316 | LR: 6.89e-06
+Epoch 21 | Batch 20/400 | Loss: 0.127215 | LR: 6.89e-06
+Epoch 21 | Batch 30/400 | Loss: 0.051512 | LR: 6.89e-06
+Epoch 21 | Batch 40/400 | Loss: 0.175094 | LR: 6.89e-06
+Epoch 21 | Batch 50/400 | Loss: 0.039050 | LR: 6.89e-06
+Epoch 21 | Batch 60/400 | Loss: 0.069861 | LR: 6.89e-06
+Epoch 21 | Batch 70/400 | Loss: 0.259241 | LR: 6.89e-06
+Epoch 21 | Batch 80/400 | Loss: 0.022297 | LR: 6.89e-06
+Epoch 21 | Batch 90/400 | Loss: 0.138987 | LR: 6.89e-06
+Epoch 21 | Batch 100/400 | Loss: 0.199834 | LR: 6.89e-06
+Epoch 21 | Batch 110/400 | Loss: 0.272971 | LR: 6.89e-06
+Epoch 21 | Batch 120/400 | Loss: 0.151520 | LR: 6.89e-06
+Epoch 21 | Batch 130/400 | Loss: 0.179791 | LR: 6.89e-06
+Epoch 21 | Batch 140/400 | Loss: 0.365094 | LR: 6.89e-06
+Epoch 21 | Batch 150/400 | Loss: 0.530888 | LR: 6.89e-06
+Epoch 21 | Batch 160/400 | Loss: 0.099971 | LR: 6.89e-06
+Epoch 21 | Batch 170/400 | Loss: 0.044989 | LR: 6.89e-06
+Epoch 21 | Batch 180/400 | Loss: 0.193472 | LR: 6.89e-06
+Epoch 21 | Batch 190/400 | Loss: 0.250816 | LR: 6.89e-06
+Epoch 21 | Batch 200/400 | Loss: 0.034204 | LR: 6.89e-06
+Epoch 21 | Batch 210/400 | Loss: 0.147707 | LR: 6.89e-06
+Epoch 21 | Batch 220/400 | Loss: 0.230231 | LR: 6.89e-06
+Epoch 21 | Batch 230/400 | Loss: 0.230115 | LR: 6.89e-06
+Epoch 21 | Batch 240/400 | Loss: 0.008214 | LR: 6.89e-06
+Epoch 21 | Batch 250/400 | Loss: 0.083352 | LR: 6.89e-06
+Epoch 21 | Batch 260/400 | Loss: 0.420317 | LR: 6.89e-06
+Epoch 21 | Batch 270/400 | Loss: 0.096607 | LR: 6.89e-06
+Epoch 21 | Batch 280/400 | Loss: 0.232178 | LR: 6.89e-06
+Epoch 21 | Batch 290/400 | Loss: 0.349586 | LR: 6.89e-06
+Epoch 21 | Batch 300/400 | Loss: 0.182004 | LR: 6.89e-06
+Epoch 21 | Batch 310/400 | Loss: 0.225649 | LR: 6.89e-06
+Epoch 21 | Batch 320/400 | Loss: 0.322695 | LR: 6.89e-06
+Epoch 21 | Batch 330/400 | Loss: 0.147705 | LR: 6.89e-06
+Epoch 21 | Batch 340/400 | Loss: 0.488112 | LR: 6.89e-06
+Epoch 21 | Batch 350/400 | Loss: 0.182629 | LR: 6.89e-06
+Epoch 21 | Batch 360/400 | Loss: 0.207493 | LR: 6.89e-06
+Epoch 21 | Batch 370/400 | Loss: 0.344774 | LR: 6.89e-06
+Epoch 21 | Batch 380/400 | Loss: 0.087280 | LR: 6.89e-06
+Epoch 21 | Batch 390/400 | Loss: 0.006416 | LR: 6.89e-06
+✅ 第 21 轮训练完成，平均损失: 0.192349
+🧪 开始验证，共有 50 个批次
+验证批次 0/50 | Loss: 0.043443
+验证批次 5/50 | Loss: 0.436064
+验证批次 10/50 | Loss: 0.337866
+验证批次 15/50 | Loss: 0.267885
+验证批次 20/50 | Loss: 0.171490
+验证批次 25/50 | Loss: 0.234268
+验证批次 30/50 | Loss: 0.364382
+验证批次 35/50 | Loss: 0.029675
+验证批次 40/50 | Loss: 0.101670
+验证批次 45/50 | Loss: 0.115424
+✅ 验证完成，平均损失: 0.213681
+
+============================================================
+📊 Epoch 21/50 完成
+   Train Loss: 0.192349
+   Val Loss: 0.213681
+   LR: 6.89e-06 | Time: 80.5s
+============================================================
+⏳ 早停计数: 1/10
+Epoch 22 | Batch 0/400 | Loss: 0.207016 | LR: 6.62e-06
+Epoch 22 | Batch 10/400 | Loss: 0.190229 | LR: 6.62e-06
+Epoch 22 | Batch 20/400 | Loss: 0.105226 | LR: 6.62e-06
+Epoch 22 | Batch 30/400 | Loss: 0.193126 | LR: 6.62e-06
+Epoch 22 | Batch 40/400 | Loss: 0.501320 | LR: 6.62e-06
+Epoch 22 | Batch 50/400 | Loss: 0.168282 | LR: 6.62e-06
+Epoch 22 | Batch 60/400 | Loss: 0.116390 | LR: 6.62e-06
+Epoch 22 | Batch 70/400 | Loss: 0.012506 | LR: 6.62e-06
+Epoch 22 | Batch 80/400 | Loss: 0.102863 | LR: 6.62e-06
+Epoch 22 | Batch 90/400 | Loss: 0.251918 | LR: 6.62e-06
+Epoch 22 | Batch 100/400 | Loss: 0.122164 | LR: 6.62e-06
+Epoch 22 | Batch 110/400 | Loss: 0.380432 | LR: 6.62e-06
+Epoch 22 | Batch 120/400 | Loss: 0.018806 | LR: 6.62e-06
+Epoch 22 | Batch 130/400 | Loss: 0.369295 | LR: 6.62e-06
+Epoch 22 | Batch 140/400 | Loss: 0.230050 | LR: 6.62e-06
+Epoch 22 | Batch 150/400 | Loss: 0.381097 | LR: 6.62e-06
+Epoch 22 | Batch 160/400 | Loss: 0.169326 | LR: 6.62e-06
+Epoch 22 | Batch 170/400 | Loss: 0.004148 | LR: 6.62e-06
+Epoch 22 | Batch 180/400 | Loss: 0.227840 | LR: 6.62e-06
+Epoch 22 | Batch 190/400 | Loss: 0.702269 | LR: 6.62e-06
+Epoch 22 | Batch 200/400 | Loss: 0.185785 | LR: 6.62e-06
+Epoch 22 | Batch 210/400 | Loss: 0.257184 | LR: 6.62e-06
+Epoch 22 | Batch 220/400 | Loss: 0.314564 | LR: 6.62e-06
+Epoch 22 | Batch 230/400 | Loss: 0.196185 | LR: 6.62e-06
+Epoch 22 | Batch 240/400 | Loss: 0.386572 | LR: 6.62e-06
+Epoch 22 | Batch 250/400 | Loss: 0.086835 | LR: 6.62e-06
+Epoch 22 | Batch 260/400 | Loss: 0.088821 | LR: 6.62e-06
+Epoch 22 | Batch 270/400 | Loss: 0.113570 | LR: 6.62e-06
+Epoch 22 | Batch 280/400 | Loss: 0.147068 | LR: 6.62e-06
+Epoch 22 | Batch 290/400 | Loss: 0.120516 | LR: 6.62e-06
+Epoch 22 | Batch 300/400 | Loss: 0.092316 | LR: 6.62e-06
+Epoch 22 | Batch 310/400 | Loss: 0.143101 | LR: 6.62e-06
+Epoch 22 | Batch 320/400 | Loss: 0.131435 | LR: 6.62e-06
+Epoch 22 | Batch 330/400 | Loss: 0.431458 | LR: 6.62e-06
+Epoch 22 | Batch 340/400 | Loss: 0.043924 | LR: 6.62e-06
+Epoch 22 | Batch 350/400 | Loss: 0.095970 | LR: 6.62e-06
+Epoch 22 | Batch 360/400 | Loss: 0.006874 | LR: 6.62e-06
+Epoch 22 | Batch 370/400 | Loss: 0.106992 | LR: 6.62e-06
+Epoch 22 | Batch 380/400 | Loss: 0.046726 | LR: 6.62e-06
+Epoch 22 | Batch 390/400 | Loss: 0.192263 | LR: 6.62e-06
+✅ 第 22 轮训练完成，平均损失: 0.191793
+🧪 开始验证，共有 50 个批次
+验证批次 0/50 | Loss: 0.085833
+验证批次 5/50 | Loss: 0.248427
+验证批次 10/50 | Loss: 0.165999
+验证批次 15/50 | Loss: 0.467913
+验证批次 20/50 | Loss: 0.112654
+验证批次 25/50 | Loss: 0.044684
+验证批次 30/50 | Loss: 0.443817
+验证批次 35/50 | Loss: 0.036385
+验证批次 40/50 | Loss: 0.221013
+验证批次 45/50 | Loss: 0.275375
+✅ 验证完成，平均损失: 0.228845
+
+============================================================
+📊 Epoch 22/50 完成
+   Train Loss: 0.191793
+   Val Loss: 0.228845
+   LR: 6.62e-06 | Time: 80.4s
+============================================================
+⏳ 早停计数: 2/10
+Epoch 23 | Batch 0/400 | Loss: 0.263234 | LR: 6.34e-06
+Epoch 23 | Batch 10/400 | Loss: 0.565034 | LR: 6.34e-06
+Epoch 23 | Batch 20/400 | Loss: 0.338878 | LR: 6.34e-06
+Epoch 23 | Batch 30/400 | Loss: 0.279251 | LR: 6.34e-06
+Epoch 23 | Batch 40/400 | Loss: 0.103972 | LR: 6.34e-06
+Epoch 23 | Batch 50/400 | Loss: 0.259786 | LR: 6.34e-06
+Epoch 23 | Batch 60/400 | Loss: 0.206229 | LR: 6.34e-06
+Epoch 23 | Batch 70/400 | Loss: 0.660808 | LR: 6.34e-06
+Epoch 23 | Batch 80/400 | Loss: 0.307769 | LR: 6.34e-06
+Epoch 23 | Batch 90/400 | Loss: 0.366481 | LR: 6.34e-06
+Epoch 23 | Batch 100/400 | Loss: 0.158229 | LR: 6.34e-06
+Epoch 23 | Batch 110/400 | Loss: 0.486923 | LR: 6.34e-06
+Epoch 23 | Batch 120/400 | Loss: 0.470497 | LR: 6.34e-06
+Epoch 23 | Batch 130/400 | Loss: 0.214531 | LR: 6.34e-06
+Epoch 23 | Batch 140/400 | Loss: 0.058732 | LR: 6.34e-06
+Epoch 23 | Batch 150/400 | Loss: 0.191308 | LR: 6.34e-06
+Epoch 23 | Batch 160/400 | Loss: 0.363090 | LR: 6.34e-06
+Epoch 23 | Batch 170/400 | Loss: 0.419194 | LR: 6.34e-06
+Epoch 23 | Batch 180/400 | Loss: 0.198780 | LR: 6.34e-06
+Epoch 23 | Batch 190/400 | Loss: 0.253589 | LR: 6.34e-06
+Epoch 23 | Batch 200/400 | Loss: 0.452482 | LR: 6.34e-06
+Epoch 23 | Batch 210/400 | Loss: 0.011651 | LR: 6.34e-06
+Epoch 23 | Batch 220/400 | Loss: 0.104569 | LR: 6.34e-06
+Epoch 23 | Batch 230/400 | Loss: 0.542764 | LR: 6.34e-06
+Epoch 23 | Batch 240/400 | Loss: 0.146549 | LR: 6.34e-06
+Epoch 23 | Batch 250/400 | Loss: 0.037317 | LR: 6.34e-06
+Epoch 23 | Batch 260/400 | Loss: 0.199752 | LR: 6.34e-06
+Epoch 23 | Batch 270/400 | Loss: 0.043749 | LR: 6.34e-06
+Epoch 23 | Batch 280/400 | Loss: 0.349382 | LR: 6.34e-06
+Epoch 23 | Batch 290/400 | Loss: 0.437833 | LR: 6.34e-06
+Epoch 23 | Batch 300/400 | Loss: 0.341210 | LR: 6.34e-06
+Epoch 23 | Batch 310/400 | Loss: 0.082368 | LR: 6.34e-06
+Epoch 23 | Batch 320/400 | Loss: 0.047639 | LR: 6.34e-06
+Epoch 23 | Batch 330/400 | Loss: 0.150082 | LR: 6.34e-06
+Epoch 23 | Batch 340/400 | Loss: 0.405895 | LR: 6.34e-06
+Epoch 23 | Batch 350/400 | Loss: 0.178669 | LR: 6.34e-06
+Epoch 23 | Batch 360/400 | Loss: 0.105717 | LR: 6.34e-06
+Epoch 23 | Batch 370/400 | Loss: 0.279057 | LR: 6.34e-06
+Epoch 23 | Batch 380/400 | Loss: 0.465979 | LR: 6.34e-06
+Epoch 23 | Batch 390/400 | Loss: 0.046604 | LR: 6.34e-06
+✅ 第 23 轮训练完成，平均损失: 0.200149
+🧪 开始验证，共有 50 个批次
+验证批次 0/50 | Loss: 0.182558
+验证批次 5/50 | Loss: 0.521755
+验证批次 10/50 | Loss: 0.401074
+验证批次 15/50 | Loss: 0.161455
+验证批次 20/50 | Loss: 0.027535
+验证批次 25/50 | Loss: 0.115347
+验证批次 30/50 | Loss: 0.461149
+验证批次 35/50 | Loss: 0.339654
+验证批次 40/50 | Loss: 0.065892
+验证批次 45/50 | Loss: 0.152717
+✅ 验证完成，平均损失: 0.200547
+
+============================================================
+📊 Epoch 23/50 完成
+   Train Loss: 0.200149
+   Val Loss: 0.200547
+   LR: 6.34e-06 | Time: 78.6s
+============================================================
+⏳ 早停计数: 3/10
+Epoch 24 | Batch 0/400 | Loss: 0.170921 | LR: 6.06e-06
+Epoch 24 | Batch 10/400 | Loss: 0.150569 | LR: 6.06e-06
+Epoch 24 | Batch 20/400 | Loss: 0.452036 | LR: 6.06e-06
+Epoch 24 | Batch 30/400 | Loss: 0.164199 | LR: 6.06e-06
+Epoch 24 | Batch 40/400 | Loss: 0.097236 | LR: 6.06e-06
+Epoch 24 | Batch 50/400 | Loss: 0.273130 | LR: 6.06e-06
+Epoch 24 | Batch 60/400 | Loss: 0.121266 | LR: 6.06e-06
+Epoch 24 | Batch 70/400 | Loss: 0.595293 | LR: 6.06e-06
+Epoch 24 | Batch 80/400 | Loss: 0.284608 | LR: 6.06e-06
+Epoch 24 | Batch 90/400 | Loss: 0.233433 | LR: 6.06e-06
+Epoch 24 | Batch 100/400 | Loss: 0.094028 | LR: 6.06e-06
+Epoch 24 | Batch 110/400 | Loss: 0.006677 | LR: 6.06e-06
+Epoch 24 | Batch 120/400 | Loss: 0.129704 | LR: 6.06e-06
+Epoch 24 | Batch 130/400 | Loss: 0.085537 | LR: 6.06e-06
+Epoch 24 | Batch 140/400 | Loss: 0.026995 | LR: 6.06e-06
+Epoch 24 | Batch 150/400 | Loss: 0.220001 | LR: 6.06e-06
+Epoch 24 | Batch 160/400 | Loss: 0.339033 | LR: 6.06e-06
+Epoch 24 | Batch 170/400 | Loss: 0.393489 | LR: 6.06e-06
+Epoch 24 | Batch 180/400 | Loss: 0.344235 | LR: 6.06e-06
+Epoch 24 | Batch 190/400 | Loss: 0.233686 | LR: 6.06e-06
+Epoch 24 | Batch 200/400 | Loss: 0.184318 | LR: 6.06e-06
+Epoch 24 | Batch 210/400 | Loss: 0.005327 | LR: 6.06e-06
+Epoch 24 | Batch 220/400 | Loss: 0.120734 | LR: 6.06e-06
+Epoch 24 | Batch 230/400 | Loss: 0.068507 | LR: 6.06e-06
+Epoch 24 | Batch 240/400 | Loss: 0.442567 | LR: 6.06e-06
+Epoch 24 | Batch 250/400 | Loss: 0.284003 | LR: 6.06e-06
+Epoch 24 | Batch 260/400 | Loss: 0.048664 | LR: 6.06e-06
+Epoch 24 | Batch 270/400 | Loss: 0.369730 | LR: 6.06e-06
+Epoch 24 | Batch 280/400 | Loss: 0.050120 | LR: 6.06e-06
+Epoch 24 | Batch 290/400 | Loss: 0.012733 | LR: 6.06e-06
+Epoch 24 | Batch 300/400 | Loss: 0.292522 | LR: 6.06e-06
+Epoch 24 | Batch 310/400 | Loss: 0.304341 | LR: 6.06e-06
+Epoch 24 | Batch 320/400 | Loss: 0.301489 | LR: 6.06e-06
+Epoch 24 | Batch 330/400 | Loss: 0.482493 | LR: 6.06e-06
+Epoch 24 | Batch 340/400 | Loss: 0.043627 | LR: 6.06e-06
+Epoch 24 | Batch 350/400 | Loss: 0.317029 | LR: 6.06e-06
+Epoch 24 | Batch 360/400 | Loss: 0.145424 | LR: 6.06e-06
+Epoch 24 | Batch 370/400 | Loss: 0.701061 | LR: 6.06e-06
+Epoch 24 | Batch 380/400 | Loss: 0.213823 | LR: 6.06e-06
+Epoch 24 | Batch 390/400 | Loss: 0.052219 | LR: 6.06e-06
+✅ 第 24 轮训练完成，平均损失: 0.193129
+🧪 开始验证，共有 50 个批次
+验证批次 0/50 | Loss: 0.309799
+验证批次 5/50 | Loss: 0.171869
+验证批次 10/50 | Loss: 0.545968
+验证批次 15/50 | Loss: 0.201398
+验证批次 20/50 | Loss: 0.095254
+验证批次 25/50 | Loss: 0.326447
+验证批次 30/50 | Loss: 0.166760
+验证批次 35/50 | Loss: 0.557387
+验证批次 40/50 | Loss: 0.121765
+验证批次 45/50 | Loss: 0.440443
+✅ 验证完成，平均损失: 0.213524
+
+============================================================
+📊 Epoch 24/50 完成
+   Train Loss: 0.193129
+   Val Loss: 0.213524
+   LR: 6.06e-06 | Time: 82.1s
+============================================================
+⏳ 早停计数: 4/10
+Epoch 25 | Batch 0/400 | Loss: 0.051061 | LR: 5.78e-06
+Epoch 25 | Batch 10/400 | Loss: 0.243098 | LR: 5.78e-06
+Epoch 25 | Batch 20/400 | Loss: 0.385177 | LR: 5.78e-06
+Epoch 25 | Batch 30/400 | Loss: 0.126641 | LR: 5.78e-06
+Epoch 25 | Batch 40/400 | Loss: 0.204437 | LR: 5.78e-06
+Epoch 25 | Batch 50/400 | Loss: 0.309212 | LR: 5.78e-06
+Epoch 25 | Batch 60/400 | Loss: 0.140968 | LR: 5.78e-06
+Epoch 25 | Batch 70/400 | Loss: 0.121902 | LR: 5.78e-06
+Epoch 25 | Batch 80/400 | Loss: 0.083245 | LR: 5.78e-06
+Epoch 25 | Batch 90/400 | Loss: 0.028014 | LR: 5.78e-06
+Epoch 25 | Batch 100/400 | Loss: 0.216351 | LR: 5.78e-06
+Epoch 25 | Batch 110/400 | Loss: 0.092733 | LR: 5.78e-06
+Epoch 25 | Batch 120/400 | Loss: 0.240310 | LR: 5.78e-06
+Epoch 25 | Batch 130/400 | Loss: 0.004640 | LR: 5.78e-06
+Epoch 25 | Batch 140/400 | Loss: 0.221624 | LR: 5.78e-06
+Epoch 25 | Batch 150/400 | Loss: 0.013499 | LR: 5.78e-06
+Epoch 25 | Batch 160/400 | Loss: 0.029560 | LR: 5.78e-06
+Epoch 25 | Batch 170/400 | Loss: 0.336762 | LR: 5.78e-06
+Epoch 25 | Batch 180/400 | Loss: 0.147365 | LR: 5.78e-06
+Epoch 25 | Batch 190/400 | Loss: 0.279552 | LR: 5.78e-06
+Epoch 25 | Batch 200/400 | Loss: 0.121332 | LR: 5.78e-06
+Epoch 25 | Batch 210/400 | Loss: 0.051485 | LR: 5.78e-06
+Epoch 25 | Batch 220/400 | Loss: 0.376956 | LR: 5.78e-06
+Epoch 25 | Batch 230/400 | Loss: 0.011960 | LR: 5.78e-06
+Epoch 25 | Batch 240/400 | Loss: 0.061849 | LR: 5.78e-06
+Epoch 25 | Batch 250/400 | Loss: 0.135043 | LR: 5.78e-06
+Epoch 25 | Batch 260/400 | Loss: 0.028058 | LR: 5.78e-06
+Epoch 25 | Batch 270/400 | Loss: 0.249370 | LR: 5.78e-06
+Epoch 25 | Batch 280/400 | Loss: 0.074161 | LR: 5.78e-06
+Epoch 25 | Batch 290/400 | Loss: 0.019684 | LR: 5.78e-06
+Epoch 25 | Batch 300/400 | Loss: 0.080154 | LR: 5.78e-06
+Epoch 25 | Batch 310/400 | Loss: 0.018385 | LR: 5.78e-06
+Epoch 25 | Batch 320/400 | Loss: 0.412230 | LR: 5.78e-06
+Epoch 25 | Batch 330/400 | Loss: 0.164092 | LR: 5.78e-06
+Epoch 25 | Batch 340/400 | Loss: 0.038694 | LR: 5.78e-06
+Epoch 25 | Batch 350/400 | Loss: 0.040506 | LR: 5.78e-06
+Epoch 25 | Batch 360/400 | Loss: 0.415296 | LR: 5.78e-06
+Epoch 25 | Batch 370/400 | Loss: 0.213480 | LR: 5.78e-06
+Epoch 25 | Batch 380/400 | Loss: 0.031436 | LR: 5.78e-06
+Epoch 25 | Batch 390/400 | Loss: 0.138010 | LR: 5.78e-06
+✅ 第 25 轮训练完成，平均损失: 0.178743
+🧪 开始验证，共有 50 个批次
+验证批次 0/50 | Loss: 0.431130
+验证批次 5/50 | Loss: 0.258286
+验证批次 10/50 | Loss: 0.030482
+验证批次 15/50 | Loss: 0.140154
+验证批次 20/50 | Loss: 0.200782
+验证批次 25/50 | Loss: 0.123777
+验证批次 30/50 | Loss: 0.147654
+验证批次 35/50 | Loss: 0.171577
+验证批次 40/50 | Loss: 0.228701
+验证批次 45/50 | Loss: 0.055154
+✅ 验证完成，平均损失: 0.175741
+
+============================================================
+📊 Epoch 25/50 完成
+   Train Loss: 0.178743
+   Val Loss: 0.175741
+   LR: 5.78e-06 | Time: 80.4s
+============================================================
+⏳ 早停计数: 5/10
+💾 模型已保存: training_results_drop_object_fixed/controlnet_drop_object_epoch_25.pth
+Epoch 26 | Batch 0/400 | Loss: 0.065394 | LR: 5.50e-06
+Epoch 26 | Batch 10/400 | Loss: 0.133769 | LR: 5.50e-06
+Epoch 26 | Batch 20/400 | Loss: 0.050052 | LR: 5.50e-06
+Epoch 26 | Batch 30/400 | Loss: 0.062836 | LR: 5.50e-06
+Epoch 26 | Batch 40/400 | Loss: 0.526426 | LR: 5.50e-06
+Epoch 26 | Batch 50/400 | Loss: 0.385144 | LR: 5.50e-06
+Epoch 26 | Batch 60/400 | Loss: 0.028005 | LR: 5.50e-06
+Epoch 26 | Batch 70/400 | Loss: 0.507333 | LR: 5.50e-06
+Epoch 26 | Batch 80/400 | Loss: 0.478405 | LR: 5.50e-06
+Epoch 26 | Batch 90/400 | Loss: 0.170034 | LR: 5.50e-06
+Epoch 26 | Batch 100/400 | Loss: 0.326727 | LR: 5.50e-06
+Epoch 26 | Batch 110/400 | Loss: 0.506711 | LR: 5.50e-06
+Epoch 26 | Batch 120/400 | Loss: 0.192763 | LR: 5.50e-06
+Epoch 26 | Batch 130/400 | Loss: 0.343051 | LR: 5.50e-06
+Epoch 26 | Batch 140/400 | Loss: 0.085741 | LR: 5.50e-06
+Epoch 26 | Batch 150/400 | Loss: 0.173144 | LR: 5.50e-06
+Epoch 26 | Batch 160/400 | Loss: 0.406303 | LR: 5.50e-06
+Epoch 26 | Batch 170/400 | Loss: 0.100285 | LR: 5.50e-06
+Epoch 26 | Batch 180/400 | Loss: 0.070444 | LR: 5.50e-06
+Epoch 26 | Batch 190/400 | Loss: 0.253929 | LR: 5.50e-06
+Epoch 26 | Batch 200/400 | Loss: 0.007801 | LR: 5.50e-06
+Epoch 26 | Batch 210/400 | Loss: 0.026358 | LR: 5.50e-06
+Epoch 26 | Batch 220/400 | Loss: 0.135759 | LR: 5.50e-06
+Epoch 26 | Batch 230/400 | Loss: 0.361332 | LR: 5.50e-06
+Epoch 26 | Batch 240/400 | Loss: 0.047003 | LR: 5.50e-06
+Epoch 26 | Batch 250/400 | Loss: 0.082270 | LR: 5.50e-06
+Epoch 26 | Batch 260/400 | Loss: 0.097829 | LR: 5.50e-06
+Epoch 26 | Batch 270/400 | Loss: 0.040484 | LR: 5.50e-06
+Epoch 26 | Batch 280/400 | Loss: 0.145137 | LR: 5.50e-06
+Epoch 26 | Batch 290/400 | Loss: 0.276209 | LR: 5.50e-06
+Epoch 26 | Batch 300/400 | Loss: 0.008095 | LR: 5.50e-06
+Epoch 26 | Batch 310/400 | Loss: 0.248666 | LR: 5.50e-06
+Epoch 26 | Batch 320/400 | Loss: 0.333136 | LR: 5.50e-06
+Epoch 26 | Batch 330/400 | Loss: 0.074550 | LR: 5.50e-06
+Epoch 26 | Batch 340/400 | Loss: 0.275356 | LR: 5.50e-06
+Epoch 26 | Batch 350/400 | Loss: 0.586288 | LR: 5.50e-06
+Epoch 26 | Batch 360/400 | Loss: 0.121402 | LR: 5.50e-06
+Epoch 26 | Batch 370/400 | Loss: 0.024969 | LR: 5.50e-06
+Epoch 26 | Batch 380/400 | Loss: 0.316828 | LR: 5.50e-06
+Epoch 26 | Batch 390/400 | Loss: 0.194621 | LR: 5.50e-06
+✅ 第 26 轮训练完成，平均损失: 0.193106
+🧪 开始验证，共有 50 个批次
+验证批次 0/50 | Loss: 0.017889
+验证批次 5/50 | Loss: 0.041895
+验证批次 10/50 | Loss: 0.353491
+验证批次 15/50 | Loss: 0.174993
+验证批次 20/50 | Loss: 0.290993
+验证批次 25/50 | Loss: 0.185306
+验证批次 30/50 | Loss: 0.097035
+验证批次 35/50 | Loss: 0.487830
+验证批次 40/50 | Loss: 0.027116
+验证批次 45/50 | Loss: 0.049467
+✅ 验证完成，平均损失: 0.200408
+
+============================================================
+📊 Epoch 26/50 完成
+   Train Loss: 0.193106
+   Val Loss: 0.200408
+   LR: 5.50e-06 | Time: 83.9s
+============================================================
+⏳ 早停计数: 6/10
+Epoch 27 | Batch 0/400 | Loss: 0.274608 | LR: 5.22e-06
+Epoch 27 | Batch 10/400 | Loss: 0.284279 | LR: 5.22e-06
+Epoch 27 | Batch 20/400 | Loss: 0.146422 | LR: 5.22e-06
+Epoch 27 | Batch 30/400 | Loss: 0.119851 | LR: 5.22e-06
+Epoch 27 | Batch 40/400 | Loss: 0.059528 | LR: 5.22e-06
+Epoch 27 | Batch 50/400 | Loss: 0.169705 | LR: 5.22e-06
+Epoch 27 | Batch 60/400 | Loss: 0.240866 | LR: 5.22e-06
+Epoch 27 | Batch 70/400 | Loss: 0.154511 | LR: 5.22e-06
+Epoch 27 | Batch 80/400 | Loss: 0.143793 | LR: 5.22e-06
+Epoch 27 | Batch 90/400 | Loss: 0.170460 | LR: 5.22e-06
+Epoch 27 | Batch 100/400 | Loss: 0.122524 | LR: 5.22e-06
+Epoch 27 | Batch 110/400 | Loss: 0.035032 | LR: 5.22e-06
+Epoch 27 | Batch 120/400 | Loss: 0.108719 | LR: 5.22e-06
+Epoch 27 | Batch 130/400 | Loss: 0.155515 | LR: 5.22e-06
+Epoch 27 | Batch 140/400 | Loss: 0.259440 | LR: 5.22e-06
+Epoch 27 | Batch 150/400 | Loss: 0.428445 | LR: 5.22e-06
+Epoch 27 | Batch 160/400 | Loss: 0.131925 | LR: 5.22e-06
+Epoch 27 | Batch 170/400 | Loss: 0.015013 | LR: 5.22e-06
+Epoch 27 | Batch 180/400 | Loss: 0.176275 | LR: 5.22e-06
+Epoch 27 | Batch 190/400 | Loss: 0.191764 | LR: 5.22e-06
+Epoch 27 | Batch 200/400 | Loss: 0.149346 | LR: 5.22e-06
+Epoch 27 | Batch 210/400 | Loss: 0.007274 | LR: 5.22e-06
+Epoch 27 | Batch 220/400 | Loss: 0.410575 | LR: 5.22e-06
+Epoch 27 | Batch 230/400 | Loss: 0.209157 | LR: 5.22e-06
+Epoch 27 | Batch 240/400 | Loss: 0.130303 | LR: 5.22e-06
+Epoch 27 | Batch 250/400 | Loss: 0.036384 | LR: 5.22e-06
+Epoch 27 | Batch 260/400 | Loss: 0.370355 | LR: 5.22e-06
+Epoch 27 | Batch 270/400 | Loss: 0.045845 | LR: 5.22e-06
+Epoch 27 | Batch 280/400 | Loss: 0.057702 | LR: 5.22e-06
+Epoch 27 | Batch 290/400 | Loss: 0.319875 | LR: 5.22e-06
+Epoch 27 | Batch 300/400 | Loss: 0.473530 | LR: 5.22e-06
+Epoch 27 | Batch 310/400 | Loss: 0.156499 | LR: 5.22e-06
+Epoch 27 | Batch 320/400 | Loss: 0.273960 | LR: 5.22e-06
+Epoch 27 | Batch 330/400 | Loss: 0.115367 | LR: 5.22e-06
+Epoch 27 | Batch 340/400 | Loss: 0.108520 | LR: 5.22e-06
+Epoch 27 | Batch 350/400 | Loss: 0.056572 | LR: 5.22e-06
+Epoch 27 | Batch 360/400 | Loss: 0.447126 | LR: 5.22e-06
+Epoch 27 | Batch 370/400 | Loss: 0.139973 | LR: 5.22e-06
+Epoch 27 | Batch 380/400 | Loss: 0.019087 | LR: 5.22e-06
+Epoch 27 | Batch 390/400 | Loss: 0.276807 | LR: 5.22e-06
+✅ 第 27 轮训练完成，平均损失: 0.206041
+🧪 开始验证，共有 50 个批次
+验证批次 0/50 | Loss: 0.559568
+验证批次 5/50 | Loss: 0.108077
+验证批次 10/50 | Loss: 0.021774
+验证批次 15/50 | Loss: 0.213244
+验证批次 20/50 | Loss: 0.136246
+验证批次 25/50 | Loss: 0.410279
+验证批次 30/50 | Loss: 0.283159
+验证批次 35/50 | Loss: 0.182530
+验证批次 40/50 | Loss: 0.312137
+验证批次 45/50 | Loss: 0.573424
+✅ 验证完成，平均损失: 0.174634
+
+============================================================
+📊 Epoch 27/50 完成
+   Train Loss: 0.206041
+   Val Loss: 0.174634
+   LR: 5.22e-06 | Time: 80.2s
+============================================================
+⏳ 早停计数: 7/10
+Epoch 28 | Batch 0/400 | Loss: 0.483340 | LR: 4.94e-06
+Epoch 28 | Batch 10/400 | Loss: 0.215288 | LR: 4.94e-06
+Epoch 28 | Batch 20/400 | Loss: 0.185507 | LR: 4.94e-06
+Epoch 28 | Batch 30/400 | Loss: 0.427700 | LR: 4.94e-06
+Epoch 28 | Batch 40/400 | Loss: 0.182277 | LR: 4.94e-06
+Epoch 28 | Batch 50/400 | Loss: 0.176105 | LR: 4.94e-06
+Epoch 28 | Batch 60/400 | Loss: 0.437098 | LR: 4.94e-06
+Epoch 28 | Batch 70/400 | Loss: 0.127422 | LR: 4.94e-06
+Epoch 28 | Batch 80/400 | Loss: 0.270069 | LR: 4.94e-06
+Epoch 28 | Batch 90/400 | Loss: 0.070642 | LR: 4.94e-06
+Epoch 28 | Batch 100/400 | Loss: 0.185794 | LR: 4.94e-06
+Epoch 28 | Batch 110/400 | Loss: 0.097475 | LR: 4.94e-06
+Epoch 28 | Batch 120/400 | Loss: 0.186463 | LR: 4.94e-06
+Epoch 28 | Batch 130/400 | Loss: 0.199379 | LR: 4.94e-06
+Epoch 28 | Batch 140/400 | Loss: 0.138256 | LR: 4.94e-06
+Epoch 28 | Batch 150/400 | Loss: 0.176911 | LR: 4.94e-06
+Epoch 28 | Batch 160/400 | Loss: 0.247982 | LR: 4.94e-06
+Epoch 28 | Batch 170/400 | Loss: 0.300167 | LR: 4.94e-06
+Epoch 28 | Batch 180/400 | Loss: 0.292567 | LR: 4.94e-06
+Epoch 28 | Batch 190/400 | Loss: 0.186807 | LR: 4.94e-06
+Epoch 28 | Batch 200/400 | Loss: 0.030048 | LR: 4.94e-06
+Epoch 28 | Batch 210/400 | Loss: 0.089916 | LR: 4.94e-06
+Epoch 28 | Batch 220/400 | Loss: 0.146294 | LR: 4.94e-06
+Epoch 28 | Batch 230/400 | Loss: 0.218090 | LR: 4.94e-06
+Epoch 28 | Batch 240/400 | Loss: 0.025658 | LR: 4.94e-06
+Epoch 28 | Batch 250/400 | Loss: 0.256970 | LR: 4.94e-06
+Epoch 28 | Batch 260/400 | Loss: 0.667848 | LR: 4.94e-06
+Epoch 28 | Batch 270/400 | Loss: 0.168235 | LR: 4.94e-06
+Epoch 28 | Batch 280/400 | Loss: 0.156871 | LR: 4.94e-06
+Epoch 28 | Batch 290/400 | Loss: 0.121391 | LR: 4.94e-06
+Epoch 28 | Batch 300/400 | Loss: 0.151359 | LR: 4.94e-06
+Epoch 28 | Batch 310/400 | Loss: 0.499298 | LR: 4.94e-06
+Epoch 28 | Batch 320/400 | Loss: 0.236400 | LR: 4.94e-06
+Epoch 28 | Batch 330/400 | Loss: 0.320954 | LR: 4.94e-06
+Epoch 28 | Batch 340/400 | Loss: 0.164757 | LR: 4.94e-06
+Epoch 28 | Batch 350/400 | Loss: 0.081262 | LR: 4.94e-06
+Epoch 28 | Batch 360/400 | Loss: 0.290489 | LR: 4.94e-06
+Epoch 28 | Batch 370/400 | Loss: 0.466018 | LR: 4.94e-06
+Epoch 28 | Batch 380/400 | Loss: 0.017334 | LR: 4.94e-06
+Epoch 28 | Batch 390/400 | Loss: 0.192716 | LR: 4.94e-06
+✅ 第 28 轮训练完成，平均损失: 0.187945
+🧪 开始验证，共有 50 个批次
+验证批次 0/50 | Loss: 0.175029
+验证批次 5/50 | Loss: 0.665096
+验证批次 10/50 | Loss: 0.009289
+验证批次 15/50 | Loss: 0.278509
+验证批次 20/50 | Loss: 0.224260
+验证批次 25/50 | Loss: 0.283119
+验证批次 30/50 | Loss: 0.487805
+验证批次 35/50 | Loss: 0.391097
+验证批次 40/50 | Loss: 0.176970
+验证批次 45/50 | Loss: 0.228475
+✅ 验证完成，平均损失: 0.206384
+
+============================================================
+📊 Epoch 28/50 完成
+   Train Loss: 0.187945
+   Val Loss: 0.206384
+   LR: 4.94e-06 | Time: 78.0s
+============================================================
+⏳ 早停计数: 8/10
+Epoch 29 | Batch 0/400 | Loss: 0.589196 | LR: 4.66e-06
+Epoch 29 | Batch 10/400 | Loss: 0.192887 | LR: 4.66e-06
+Epoch 29 | Batch 20/400 | Loss: 0.161661 | LR: 4.66e-06
+Epoch 29 | Batch 30/400 | Loss: 0.444881 | LR: 4.66e-06
+Epoch 29 | Batch 40/400 | Loss: 0.563308 | LR: 4.66e-06
+Epoch 29 | Batch 50/400 | Loss: 0.117503 | LR: 4.66e-06
+Epoch 29 | Batch 60/400 | Loss: 0.025731 | LR: 4.66e-06
+Epoch 29 | Batch 70/400 | Loss: 0.111325 | LR: 4.66e-06
+Epoch 29 | Batch 80/400 | Loss: 0.265311 | LR: 4.66e-06
+Epoch 29 | Batch 90/400 | Loss: 0.161602 | LR: 4.66e-06
+Epoch 29 | Batch 100/400 | Loss: 0.020662 | LR: 4.66e-06
+Epoch 29 | Batch 110/400 | Loss: 0.033024 | LR: 4.66e-06
+Epoch 29 | Batch 120/400 | Loss: 0.023704 | LR: 4.66e-06
+Epoch 29 | Batch 130/400 | Loss: 0.145739 | LR: 4.66e-06
+Epoch 29 | Batch 140/400 | Loss: 0.040836 | LR: 4.66e-06
+Epoch 29 | Batch 150/400 | Loss: 0.172986 | LR: 4.66e-06
+Epoch 29 | Batch 160/400 | Loss: 0.217204 | LR: 4.66e-06
+Epoch 29 | Batch 170/400 | Loss: 0.293540 | LR: 4.66e-06
+Epoch 29 | Batch 180/400 | Loss: 0.026973 | LR: 4.66e-06
+Epoch 29 | Batch 190/400 | Loss: 0.313944 | LR: 4.66e-06
+Epoch 29 | Batch 200/400 | Loss: 0.223717 | LR: 4.66e-06
+Epoch 29 | Batch 210/400 | Loss: 0.295002 | LR: 4.66e-06
+Epoch 29 | Batch 220/400 | Loss: 0.042022 | LR: 4.66e-06
+Epoch 29 | Batch 230/400 | Loss: 0.006569 | LR: 4.66e-06
+Epoch 29 | Batch 240/400 | Loss: 0.012729 | LR: 4.66e-06
+Epoch 29 | Batch 250/400 | Loss: 0.036478 | LR: 4.66e-06
+Epoch 29 | Batch 260/400 | Loss: 0.054309 | LR: 4.66e-06
+Epoch 29 | Batch 270/400 | Loss: 0.350920 | LR: 4.66e-06
+Epoch 29 | Batch 280/400 | Loss: 0.043630 | LR: 4.66e-06
+Epoch 29 | Batch 290/400 | Loss: 0.263394 | LR: 4.66e-06
+Epoch 29 | Batch 300/400 | Loss: 0.495951 | LR: 4.66e-06
+Epoch 29 | Batch 310/400 | Loss: 0.137781 | LR: 4.66e-06
+Epoch 29 | Batch 320/400 | Loss: 0.016266 | LR: 4.66e-06
+Epoch 29 | Batch 330/400 | Loss: 0.021717 | LR: 4.66e-06
+Epoch 29 | Batch 340/400 | Loss: 0.120469 | LR: 4.66e-06
+Epoch 29 | Batch 350/400 | Loss: 0.237631 | LR: 4.66e-06
+Epoch 29 | Batch 360/400 | Loss: 0.170776 | LR: 4.66e-06
+Epoch 29 | Batch 370/400 | Loss: 0.006884 | LR: 4.66e-06
+Epoch 29 | Batch 380/400 | Loss: 0.153428 | LR: 4.66e-06
+Epoch 29 | Batch 390/400 | Loss: 0.005971 | LR: 4.66e-06
+✅ 第 29 轮训练完成，平均损失: 0.187090
+🧪 开始验证，共有 50 个批次
+验证批次 0/50 | Loss: 0.328602
+验证批次 5/50 | Loss: 0.055279
+验证批次 10/50 | Loss: 0.238126
+验证批次 15/50 | Loss: 0.540004
+验证批次 20/50 | Loss: 0.123987
+验证批次 25/50 | Loss: 0.085601
+验证批次 30/50 | Loss: 0.235853
+验证批次 35/50 | Loss: 0.038038
+验证批次 40/50 | Loss: 0.434699
+验证批次 45/50 | Loss: 0.214647
+✅ 验证完成，平均损失: 0.190347
+
+============================================================
+📊 Epoch 29/50 完成
+   Train Loss: 0.187090
+   Val Loss: 0.190347
+   LR: 4.66e-06 | Time: 76.7s
+============================================================
+⏳ 早停计数: 9/10
+Epoch 30 | Batch 0/400 | Loss: 0.033678 | LR: 4.38e-06
+Epoch 30 | Batch 10/400 | Loss: 0.044776 | LR: 4.38e-06
+Epoch 30 | Batch 20/400 | Loss: 0.064370 | LR: 4.38e-06
+Epoch 30 | Batch 30/400 | Loss: 0.345755 | LR: 4.38e-06
+Epoch 30 | Batch 40/400 | Loss: 0.379246 | LR: 4.38e-06
+Epoch 30 | Batch 50/400 | Loss: 0.326016 | LR: 4.38e-06
+Epoch 30 | Batch 60/400 | Loss: 0.129586 | LR: 4.38e-06
+Epoch 30 | Batch 70/400 | Loss: 0.147560 | LR: 4.38e-06
+Epoch 30 | Batch 80/400 | Loss: 0.302281 | LR: 4.38e-06
+Epoch 30 | Batch 90/400 | Loss: 0.163102 | LR: 4.38e-06
+Epoch 30 | Batch 100/400 | Loss: 0.062577 | LR: 4.38e-06
+Epoch 30 | Batch 110/400 | Loss: 0.313420 | LR: 4.38e-06
+Epoch 30 | Batch 120/400 | Loss: 0.488400 | LR: 4.38e-06
+Epoch 30 | Batch 130/400 | Loss: 0.144362 | LR: 4.38e-06
+Epoch 30 | Batch 140/400 | Loss: 0.176014 | LR: 4.38e-06
+Epoch 30 | Batch 150/400 | Loss: 0.035659 | LR: 4.38e-06
+Epoch 30 | Batch 160/400 | Loss: 0.072827 | LR: 4.38e-06
+Epoch 30 | Batch 170/400 | Loss: 0.230719 | LR: 4.38e-06
+Epoch 30 | Batch 180/400 | Loss: 0.169993 | LR: 4.38e-06
+Epoch 30 | Batch 190/400 | Loss: 0.260429 | LR: 4.38e-06
+Epoch 30 | Batch 200/400 | Loss: 0.056659 | LR: 4.38e-06
+Epoch 30 | Batch 210/400 | Loss: 0.054611 | LR: 4.38e-06
+Epoch 30 | Batch 220/400 | Loss: 0.400985 | LR: 4.38e-06
+Epoch 30 | Batch 230/400 | Loss: 0.063735 | LR: 4.38e-06
+Epoch 30 | Batch 240/400 | Loss: 0.046049 | LR: 4.38e-06
+Epoch 30 | Batch 250/400 | Loss: 0.406766 | LR: 4.38e-06
+Epoch 30 | Batch 260/400 | Loss: 0.225763 | LR: 4.38e-06
+Epoch 30 | Batch 270/400 | Loss: 0.162871 | LR: 4.38e-06
+Epoch 30 | Batch 280/400 | Loss: 0.050342 | LR: 4.38e-06
+Epoch 30 | Batch 290/400 | Loss: 0.328987 | LR: 4.38e-06
+Epoch 30 | Batch 300/400 | Loss: 0.010664 | LR: 4.38e-06
+Epoch 30 | Batch 310/400 | Loss: 0.436016 | LR: 4.38e-06
+Epoch 30 | Batch 320/400 | Loss: 0.031115 | LR: 4.38e-06
+Epoch 30 | Batch 330/400 | Loss: 0.025012 | LR: 4.38e-06
+Epoch 30 | Batch 340/400 | Loss: 0.520029 | LR: 4.38e-06
+Epoch 30 | Batch 350/400 | Loss: 0.540552 | LR: 4.38e-06
+Epoch 30 | Batch 360/400 | Loss: 0.204350 | LR: 4.38e-06
+Epoch 30 | Batch 370/400 | Loss: 0.342993 | LR: 4.38e-06
+Epoch 30 | Batch 380/400 | Loss: 0.057959 | LR: 4.38e-06
+Epoch 30 | Batch 390/400 | Loss: 0.025911 | LR: 4.38e-06
+✅ 第 30 轮训练完成，平均损失: 0.190040
+🧪 开始验证，共有 50 个批次
+验证批次 0/50 | Loss: 0.008698
+验证批次 5/50 | Loss: 0.038208
+验证批次 10/50 | Loss: 0.058392
+验证批次 15/50 | Loss: 0.264032
+验证批次 20/50 | Loss: 0.244205
+验证批次 25/50 | Loss: 0.095119
+验证批次 30/50 | Loss: 0.081928
+验证批次 35/50 | Loss: 0.109002
+验证批次 40/50 | Loss: 0.168982
+验证批次 45/50 | Loss: 0.020553
+✅ 验证完成，平均损失: 0.157913
+
+============================================================
+📊 Epoch 30/50 完成
+   Train Loss: 0.190040
+   Val Loss: 0.157913
+   LR: 4.38e-06 | Time: 78.2s
+============================================================
+⏳ 早停计数: 10/10
+💾 模型已保存: training_results_drop_object_fixed/controlnet_drop_object_epoch_30.pth
+🛑 早停触发！在 epoch 30 停止训练
+💾 模型已保存: training_results_drop_object_fixed/controlnet_drop_object_epoch_50.pth
+📈 Loss 图已保存: training_results_drop_object_fixed/training_val_loss_drop_object.png
+
+🏁 训练完成！最佳验证损失: 0.149530
+
+============================================================
+🚀 开始训练任务: 覆盖物体
+============================================================
+   筛选任务 'cover_object': 2017/6000 个样本
+✅ 加载数据集 (cover_object): 2017 个样本
+   帧设置: 输入前20帧 → 预测第25帧（跳过4帧）
+   cover_object: 2017 个样本
+   筛选任务 'cover_object': 243/750 个样本
+✅ 加载数据集 (cover_object): 243 个样本
+   帧设置: 输入前20帧 → 预测第25帧（跳过4帧）
+   cover_object: 243 个样本
+   筛选任务 'cover_object': 240/750 个样本
+✅ 加载数据集 (cover_object): 240 个样本
+   帧设置: 输入前20帧 → 预测第25帧（跳过4帧）
+   cover_object: 240 个样本
+✅ 创建任务 'cover_object' 数据加载器完成
+   训练集: 2017 个样本, 1009 个批次
+   验证集: 243 个样本, 122 个批次
+   测试集: 240 个样本, 120 个批次
+   批次大小: 2
+📊 从总样本 2500 中随机抽取 1000 个（按 8:1:1 划分）
+✅ 数据集分配: train=800 val=100 test=100
+🚀 使用设备: cuda
+🎯 任务: cover_object
+📦 初始化模型...
+🆕 从 UNet 复制权重初始化 ControlNet
+✅ 模型初始化完成，可训练参数: 361,279,120 / 总参数: 361,279,120
+🚀 开始修复版训练...
+
+🔍 进行初始验证...
+🧪 开始验证，共有 50 个批次
+验证批次 0/50 | Loss: 0.115925
+验证批次 5/50 | Loss: 0.071138
+验证批次 10/50 | Loss: 0.515450
+验证批次 15/50 | Loss: 0.049775
+验证批次 20/50 | Loss: 0.362599
+验证批次 25/50 | Loss: 0.422598
+验证批次 30/50 | Loss: 0.225122
+验证批次 35/50 | Loss: 0.136543
+验证批次 40/50 | Loss: 0.683116
+验证批次 45/50 | Loss: 0.581148
+✅ 验证完成，平均损失: 0.278388
+初始验证损失: 0.278388
+Epoch 1 | Batch 0/400 | Loss: 0.711597 | LR: 1.00e-05
+Epoch 1 | Batch 10/400 | Loss: 0.306944 | LR: 1.00e-05
+Epoch 1 | Batch 20/400 | Loss: 0.259938 | LR: 1.00e-05
+Epoch 1 | Batch 30/400 | Loss: 0.334089 | LR: 1.00e-05
+Epoch 1 | Batch 40/400 | Loss: 0.963055 | LR: 1.00e-05
+Epoch 1 | Batch 50/400 | Loss: 0.421305 | LR: 1.00e-05
+Epoch 1 | Batch 60/400 | Loss: 0.174920 | LR: 1.00e-05
+Epoch 1 | Batch 70/400 | Loss: 0.110316 | LR: 1.00e-05
+Epoch 1 | Batch 80/400 | Loss: 0.189266 | LR: 1.00e-05
+Epoch 1 | Batch 90/400 | Loss: 0.189822 | LR: 1.00e-05
+Epoch 1 | Batch 100/400 | Loss: 0.373588 | LR: 1.00e-05
+Epoch 1 | Batch 110/400 | Loss: 0.213668 | LR: 1.00e-05
+Epoch 1 | Batch 120/400 | Loss: 0.173737 | LR: 1.00e-05
+Epoch 1 | Batch 130/400 | Loss: 0.106828 | LR: 1.00e-05
+Epoch 1 | Batch 140/400 | Loss: 0.113410 | LR: 1.00e-05
+Epoch 1 | Batch 150/400 | Loss: 0.456987 | LR: 1.00e-05
+Epoch 1 | Batch 160/400 | Loss: 0.073967 | LR: 1.00e-05
+Epoch 1 | Batch 170/400 | Loss: 0.252444 | LR: 1.00e-05
+Epoch 1 | Batch 180/400 | Loss: 0.270116 | LR: 1.00e-05
+Epoch 1 | Batch 190/400 | Loss: 0.602116 | LR: 1.00e-05
+Epoch 1 | Batch 200/400 | Loss: 0.429172 | LR: 1.00e-05
+Epoch 1 | Batch 210/400 | Loss: 0.329761 | LR: 1.00e-05
+Epoch 1 | Batch 220/400 | Loss: 0.172524 | LR: 1.00e-05
+Epoch 1 | Batch 230/400 | Loss: 0.230413 | LR: 1.00e-05
+Epoch 1 | Batch 240/400 | Loss: 0.007680 | LR: 1.00e-05
+Epoch 1 | Batch 250/400 | Loss: 0.223869 | LR: 1.00e-05
+Epoch 1 | Batch 260/400 | Loss: 0.187975 | LR: 1.00e-05
+Epoch 1 | Batch 270/400 | Loss: 0.271583 | LR: 1.00e-05
+Epoch 1 | Batch 280/400 | Loss: 0.012157 | LR: 1.00e-05
+Epoch 1 | Batch 290/400 | Loss: 0.108379 | LR: 1.00e-05
+Epoch 1 | Batch 300/400 | Loss: 0.034338 | LR: 1.00e-05
+Epoch 1 | Batch 310/400 | Loss: 0.306687 | LR: 1.00e-05
+Epoch 1 | Batch 320/400 | Loss: 0.165037 | LR: 1.00e-05
+Epoch 1 | Batch 330/400 | Loss: 0.288487 | LR: 1.00e-05
+Epoch 1 | Batch 340/400 | Loss: 0.308262 | LR: 1.00e-05
+Epoch 1 | Batch 350/400 | Loss: 0.193560 | LR: 1.00e-05
+Epoch 1 | Batch 360/400 | Loss: 0.217112 | LR: 1.00e-05
+Epoch 1 | Batch 370/400 | Loss: 0.209954 | LR: 1.00e-05
+Epoch 1 | Batch 380/400 | Loss: 0.157738 | LR: 1.00e-05
+Epoch 1 | Batch 390/400 | Loss: 0.176719 | LR: 1.00e-05
+✅ 第 1 轮训练完成，平均损失: 0.230775
+🧪 开始验证，共有 50 个批次
+验证批次 0/50 | Loss: 0.183918
+验证批次 5/50 | Loss: 0.082026
+验证批次 10/50 | Loss: 0.292626
+验证批次 15/50 | Loss: 0.039160
+验证批次 20/50 | Loss: 0.173286
+验证批次 25/50 | Loss: 0.428670
+验证批次 30/50 | Loss: 0.286219
+验证批次 35/50 | Loss: 0.202250
+验证批次 40/50 | Loss: 0.041384
+验证批次 45/50 | Loss: 0.137622
+✅ 验证完成，平均损失: 0.208214
+
+============================================================
+📊 Epoch 1/50 完成
+   Train Loss: 0.230775
+   Val Loss: 0.208214
+   LR: 1.00e-05 | Time: 79.7s
+============================================================
+💾 模型已保存: training_results_cover_object_fixed/controlnet_cover_object_best.pth
+🎉 新的最佳验证损失: 0.208214
+Epoch 2 | Batch 0/400 | Loss: 0.280901 | LR: 9.99e-06
+Epoch 2 | Batch 10/400 | Loss: 0.076529 | LR: 9.99e-06
+Epoch 2 | Batch 20/400 | Loss: 0.191027 | LR: 9.99e-06
+Epoch 2 | Batch 30/400 | Loss: 0.064805 | LR: 9.99e-06
+Epoch 2 | Batch 40/400 | Loss: 0.231336 | LR: 9.99e-06
+Epoch 2 | Batch 50/400 | Loss: 0.345923 | LR: 9.99e-06
+Epoch 2 | Batch 60/400 | Loss: 0.193096 | LR: 9.99e-06
+Epoch 2 | Batch 70/400 | Loss: 0.267354 | LR: 9.99e-06
+Epoch 2 | Batch 80/400 | Loss: 0.121618 | LR: 9.99e-06
+Epoch 2 | Batch 90/400 | Loss: 0.342841 | LR: 9.99e-06
+Epoch 2 | Batch 100/400 | Loss: 0.011903 | LR: 9.99e-06
+Epoch 2 | Batch 110/400 | Loss: 0.083868 | LR: 9.99e-06
+Epoch 2 | Batch 120/400 | Loss: 0.085000 | LR: 9.99e-06
+Epoch 2 | Batch 130/400 | Loss: 0.433844 | LR: 9.99e-06
+Epoch 2 | Batch 140/400 | Loss: 0.162657 | LR: 9.99e-06
+Epoch 2 | Batch 150/400 | Loss: 0.020360 | LR: 9.99e-06
+Epoch 2 | Batch 160/400 | Loss: 0.277949 | LR: 9.99e-06
+Epoch 2 | Batch 170/400 | Loss: 0.110655 | LR: 9.99e-06
+Epoch 2 | Batch 180/400 | Loss: 0.029405 | LR: 9.99e-06
+Epoch 2 | Batch 190/400 | Loss: 0.077282 | LR: 9.99e-06
+Epoch 2 | Batch 200/400 | Loss: 0.254670 | LR: 9.99e-06
+Epoch 2 | Batch 210/400 | Loss: 0.274984 | LR: 9.99e-06
+Epoch 2 | Batch 220/400 | Loss: 0.403117 | LR: 9.99e-06
+Epoch 2 | Batch 230/400 | Loss: 0.091164 | LR: 9.99e-06
+Epoch 2 | Batch 240/400 | Loss: 0.279448 | LR: 9.99e-06
+Epoch 2 | Batch 250/400 | Loss: 0.169895 | LR: 9.99e-06
+Epoch 2 | Batch 260/400 | Loss: 0.235415 | LR: 9.99e-06
+Epoch 2 | Batch 270/400 | Loss: 0.129080 | LR: 9.99e-06
+Epoch 2 | Batch 280/400 | Loss: 0.003896 | LR: 9.99e-06
+Epoch 2 | Batch 290/400 | Loss: 0.098090 | LR: 9.99e-06
+Epoch 2 | Batch 300/400 | Loss: 0.058272 | LR: 9.99e-06
+Epoch 2 | Batch 310/400 | Loss: 0.130641 | LR: 9.99e-06
+Epoch 2 | Batch 320/400 | Loss: 0.632178 | LR: 9.99e-06
+Epoch 2 | Batch 330/400 | Loss: 0.345055 | LR: 9.99e-06
+Epoch 2 | Batch 340/400 | Loss: 0.537810 | LR: 9.99e-06
+Epoch 2 | Batch 350/400 | Loss: 0.262561 | LR: 9.99e-06
+Epoch 2 | Batch 360/400 | Loss: 0.038698 | LR: 9.99e-06
+Epoch 2 | Batch 370/400 | Loss: 0.026712 | LR: 9.99e-06
+Epoch 2 | Batch 380/400 | Loss: 0.155567 | LR: 9.99e-06
+Epoch 2 | Batch 390/400 | Loss: 0.185640 | LR: 9.99e-06
+✅ 第 2 轮训练完成，平均损失: 0.202744
+🧪 开始验证，共有 50 个批次
+验证批次 0/50 | Loss: 0.402290
+验证批次 5/50 | Loss: 0.127100
+验证批次 10/50 | Loss: 0.145333
+验证批次 15/50 | Loss: 0.270423
+验证批次 20/50 | Loss: 0.137456
+验证批次 25/50 | Loss: 0.268150
+验证批次 30/50 | Loss: 0.069927
+验证批次 35/50 | Loss: 0.008191
+验证批次 40/50 | Loss: 0.595410
+验证批次 45/50 | Loss: 0.249724
+✅ 验证完成，平均损失: 0.195478
+
+============================================================
+📊 Epoch 2/50 完成
+   Train Loss: 0.202744
+   Val Loss: 0.195478
+   LR: 9.99e-06 | Time: 76.3s
+============================================================
+💾 模型已保存: training_results_cover_object_fixed/controlnet_cover_object_best.pth
+🎉 新的最佳验证损失: 0.195478
+Epoch 3 | Batch 0/400 | Loss: 0.243200 | LR: 9.96e-06
+Epoch 3 | Batch 10/400 | Loss: 0.038643 | LR: 9.96e-06
+Epoch 3 | Batch 20/400 | Loss: 0.274173 | LR: 9.96e-06
+Epoch 3 | Batch 30/400 | Loss: 0.163749 | LR: 9.96e-06
+Epoch 3 | Batch 40/400 | Loss: 0.178467 | LR: 9.96e-06
+Epoch 3 | Batch 50/400 | Loss: 0.199100 | LR: 9.96e-06
+Epoch 3 | Batch 60/400 | Loss: 0.057732 | LR: 9.96e-06
+Epoch 3 | Batch 70/400 | Loss: 0.494892 | LR: 9.96e-06
+Epoch 3 | Batch 80/400 | Loss: 0.372424 | LR: 9.96e-06
+Epoch 3 | Batch 90/400 | Loss: 0.129427 | LR: 9.96e-06
+Epoch 3 | Batch 100/400 | Loss: 0.070326 | LR: 9.96e-06
+Epoch 3 | Batch 110/400 | Loss: 0.008116 | LR: 9.96e-06
+Epoch 3 | Batch 120/400 | Loss: 0.109742 | LR: 9.96e-06
+Epoch 3 | Batch 130/400 | Loss: 0.050300 | LR: 9.96e-06
+Epoch 3 | Batch 140/400 | Loss: 0.047297 | LR: 9.96e-06
+Epoch 3 | Batch 150/400 | Loss: 0.090784 | LR: 9.96e-06
+Epoch 3 | Batch 160/400 | Loss: 0.283371 | LR: 9.96e-06
+Epoch 3 | Batch 170/400 | Loss: 0.034209 | LR: 9.96e-06
+Epoch 3 | Batch 180/400 | Loss: 0.077517 | LR: 9.96e-06
+Epoch 3 | Batch 190/400 | Loss: 0.288826 | LR: 9.96e-06
+Epoch 3 | Batch 200/400 | Loss: 0.267145 | LR: 9.96e-06
+Epoch 3 | Batch 210/400 | Loss: 0.317816 | LR: 9.96e-06
+Epoch 3 | Batch 220/400 | Loss: 0.055373 | LR: 9.96e-06
+Epoch 3 | Batch 230/400 | Loss: 0.004765 | LR: 9.96e-06
+Epoch 3 | Batch 240/400 | Loss: 0.125583 | LR: 9.96e-06
+Epoch 3 | Batch 250/400 | Loss: 0.491446 | LR: 9.96e-06
+Epoch 3 | Batch 260/400 | Loss: 0.028695 | LR: 9.96e-06
+Epoch 3 | Batch 270/400 | Loss: 0.025209 | LR: 9.96e-06
+Epoch 3 | Batch 280/400 | Loss: 0.005671 | LR: 9.96e-06
+Epoch 3 | Batch 290/400 | Loss: 0.249194 | LR: 9.96e-06
+Epoch 3 | Batch 300/400 | Loss: 0.018197 | LR: 9.96e-06
+Epoch 3 | Batch 310/400 | Loss: 0.026660 | LR: 9.96e-06
+Epoch 3 | Batch 320/400 | Loss: 0.069916 | LR: 9.96e-06
+Epoch 3 | Batch 330/400 | Loss: 0.085303 | LR: 9.96e-06
+Epoch 3 | Batch 340/400 | Loss: 0.085162 | LR: 9.96e-06
+Epoch 3 | Batch 350/400 | Loss: 0.241654 | LR: 9.96e-06
+Epoch 3 | Batch 360/400 | Loss: 0.332139 | LR: 9.96e-06
+Epoch 3 | Batch 370/400 | Loss: 0.013998 | LR: 9.96e-06
+Epoch 3 | Batch 380/400 | Loss: 0.107597 | LR: 9.96e-06
+Epoch 3 | Batch 390/400 | Loss: 0.185150 | LR: 9.96e-06
+✅ 第 3 轮训练完成，平均损失: 0.191682
+🧪 开始验证，共有 50 个批次
+验证批次 0/50 | Loss: 0.220581
+验证批次 5/50 | Loss: 0.099056
+验证批次 10/50 | Loss: 0.159094
+验证批次 15/50 | Loss: 0.075938
+验证批次 20/50 | Loss: 0.127219
+验证批次 25/50 | Loss: 0.229113
+验证批次 30/50 | Loss: 0.447499
+验证批次 35/50 | Loss: 0.300270
+验证批次 40/50 | Loss: 0.233723
+验证批次 45/50 | Loss: 0.199667
+✅ 验证完成，平均损失: 0.170971
+
+============================================================
+📊 Epoch 3/50 完成
+   Train Loss: 0.191682
+   Val Loss: 0.170971
+   LR: 9.96e-06 | Time: 81.8s
+============================================================
+💾 模型已保存: training_results_cover_object_fixed/controlnet_cover_object_best.pth
+🎉 新的最佳验证损失: 0.170971
+Epoch 4 | Batch 0/400 | Loss: 0.224083 | LR: 9.92e-06
+Epoch 4 | Batch 10/400 | Loss: 0.235457 | LR: 9.92e-06
+Epoch 4 | Batch 20/400 | Loss: 0.361769 | LR: 9.92e-06
+Epoch 4 | Batch 30/400 | Loss: 0.087551 | LR: 9.92e-06
+Epoch 4 | Batch 40/400 | Loss: 0.472502 | LR: 9.92e-06
+Epoch 4 | Batch 50/400 | Loss: 0.047436 | LR: 9.92e-06
+Epoch 4 | Batch 60/400 | Loss: 0.556223 | LR: 9.92e-06
+Epoch 4 | Batch 70/400 | Loss: 0.661393 | LR: 9.92e-06
+Epoch 4 | Batch 80/400 | Loss: 0.279014 | LR: 9.92e-06
+Epoch 4 | Batch 90/400 | Loss: 0.209643 | LR: 9.92e-06
+Epoch 4 | Batch 100/400 | Loss: 0.179172 | LR: 9.92e-06
+Epoch 4 | Batch 110/400 | Loss: 0.130108 | LR: 9.92e-06
+Epoch 4 | Batch 120/400 | Loss: 0.131936 | LR: 9.92e-06
+Epoch 4 | Batch 130/400 | Loss: 0.194876 | LR: 9.92e-06
+Epoch 4 | Batch 140/400 | Loss: 0.194333 | LR: 9.92e-06
+Epoch 4 | Batch 150/400 | Loss: 0.215132 | LR: 9.92e-06
+Epoch 4 | Batch 160/400 | Loss: 0.197404 | LR: 9.92e-06
+Epoch 4 | Batch 170/400 | Loss: 0.230446 | LR: 9.92e-06
+Epoch 4 | Batch 180/400 | Loss: 0.157278 | LR: 9.92e-06
+Epoch 4 | Batch 190/400 | Loss: 0.254730 | LR: 9.92e-06
+Epoch 4 | Batch 200/400 | Loss: 0.133082 | LR: 9.92e-06
+Epoch 4 | Batch 210/400 | Loss: 0.110439 | LR: 9.92e-06
+Epoch 4 | Batch 220/400 | Loss: 0.619246 | LR: 9.92e-06
+Epoch 4 | Batch 230/400 | Loss: 0.097215 | LR: 9.92e-06
+Epoch 4 | Batch 240/400 | Loss: 0.170575 | LR: 9.92e-06
+Epoch 4 | Batch 250/400 | Loss: 0.127676 | LR: 9.92e-06
+Epoch 4 | Batch 260/400 | Loss: 0.406436 | LR: 9.92e-06
+Epoch 4 | Batch 270/400 | Loss: 0.439332 | LR: 9.92e-06
+Epoch 4 | Batch 280/400 | Loss: 0.061612 | LR: 9.92e-06
+Epoch 4 | Batch 290/400 | Loss: 0.114382 | LR: 9.92e-06
+Epoch 4 | Batch 300/400 | Loss: 0.105926 | LR: 9.92e-06
+Epoch 4 | Batch 310/400 | Loss: 0.549452 | LR: 9.92e-06
+Epoch 4 | Batch 320/400 | Loss: 0.015964 | LR: 9.92e-06
+Epoch 4 | Batch 330/400 | Loss: 0.569689 | LR: 9.92e-06
+Epoch 4 | Batch 340/400 | Loss: 0.213955 | LR: 9.92e-06
+Epoch 4 | Batch 350/400 | Loss: 0.125862 | LR: 9.92e-06
+Epoch 4 | Batch 360/400 | Loss: 0.176647 | LR: 9.92e-06
+Epoch 4 | Batch 370/400 | Loss: 0.134245 | LR: 9.92e-06
+Epoch 4 | Batch 380/400 | Loss: 0.107495 | LR: 9.92e-06
+Epoch 4 | Batch 390/400 | Loss: 0.319224 | LR: 9.92e-06
+✅ 第 4 轮训练完成，平均损失: 0.193666
+🧪 开始验证，共有 50 个批次
