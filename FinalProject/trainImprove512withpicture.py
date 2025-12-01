@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-ControlNet 1.1 256x256训练脚本 - 修复版本
-修复尺寸不匹配问题
+ControlNet 1.1 512x512训练脚本
+针对高分辨率数据的优化版本
 """
 
 import torch
@@ -17,8 +17,8 @@ import sys
 import os
 import gc
 import time
-import math  # 添加math导入
 from typing import Dict, List, Optional, Tuple
+from PIL import Image  # 添加PIL导入
 
 # 添加项目路径
 project_root = Path(__file__).parent
@@ -27,7 +27,7 @@ sys.path.append(str(project_root))
 try:
     from diffusers import DDPMScheduler, AutoencoderKL, UNet2DConditionModel
     from transformers import CLIPTokenizer, CLIPTextModel
-    from loaderData256 import create_task_specific_loaders  # 修改为256数据加载器
+    from loaderData512 import create_task_specific_loaders  # 修改为512数据加载器
     
     try:
         from cldm.model import create_model, load_state_dict
@@ -41,7 +41,103 @@ except ImportError as e:
     print(f"❌ 导入失败: {e}")
     sys.exit(1)
 
-class ControlNet256Trainer:
+class ControlNet512Trainer:
+
+    def log_validation(self, val_loader, epoch, save_dir):
+        """生成预览图 - 修复版本：包含内容参考"""
+        print(f"🖼️ 正在生成 Epoch {epoch} 的预览图...")
+        self.controlnet.eval()
+        self.unet.eval()
+
+        # 临时构建一个 pipeline 用于推理
+        from diffusers import StableDiffusionControlNetPipeline
+
+        pipeline = StableDiffusionControlNetPipeline(
+            vae=self.vae,
+            text_encoder=self.text_encoder,
+            tokenizer=self.tokenizer,
+            unet=self.unet,
+            controlnet=self.controlnet,
+            scheduler=self.noise_scheduler,
+            safety_checker=None,
+            feature_extractor=None,
+            requires_safety_checker=False
+        )
+        pipeline.set_progress_bar_config(disable=True)
+        pipeline = pipeline.to(self.device)
+
+        # 只取验证集的第一批数据来做演示
+        batch = next(iter(val_loader))
+
+        # 准备数据
+        # 第20帧：作为内容参考和条件输入
+        current_frame_20 = batch['input_frames'][:, -1].to(self.device)
+        # 第25帧：真实目标（用于对比）
+        target_frame_25 = batch['target_frame'].to(self.device)
+        prompts = batch.get('label_text', ['interaction'] * len(current_frame_20))
+
+        # 准备 Canny 条件图
+        control_cond = self.get_canny_edges(current_frame_20, training=False)
+
+        image_logs = []
+        num_images = min(len(current_frame_20), 4)
+
+        for i in range(num_images):
+            # 关键改进：使用第20帧作为初始潜变量，提供内容参考
+            with torch.no_grad():
+                # 将第20帧编码为潜变量，作为生成的起点
+                current_frame_prepared = self.prepare_images_for_vae(current_frame_20[i:i+1])
+                init_latents = self.vae.encode(current_frame_prepared).latent_dist.sample()
+                init_latents = init_latents * self.vae.config.scaling_factor
+
+            # 1. 模型生成 - 使用初始潜变量提供内容参考
+            with torch.autocast("cuda"):
+                # 修改：传入初始潜变量，让生成过程有内容基础
+                generated_image = pipeline(
+                    prompt=prompts[i],
+                    image=control_cond[i:i + 1],
+                    num_inference_steps=20,
+                    guidance_scale=7.5,
+                    controlnet_conditioning_scale=1.0,
+                    # 关键：添加初始潜变量，让生成基于第20帧的内容
+                    latents=init_latents,
+                    strength=0.5  # 控制初始潜变量的影响力
+                ).images[0]
+
+            # 2. 处理对比图像
+            # 第20帧原始图像（内容参考）
+            frame_20_np = current_frame_20[i].permute(1, 2, 0).cpu().numpy()
+            frame_20_img = ((frame_20_np + 1) / 2 * 255).astype(np.uint8)
+            
+            # Canny 条件图
+            canny_np = control_cond[i].permute(1, 2, 0).cpu().numpy()
+            if canny_np.shape[2] == 1: 
+                canny_np = np.concatenate([canny_np] * 3, axis=2)
+            canny_pil = Image.fromarray((canny_np * 255).astype(np.uint8))
+            
+            # 真实第25帧
+            gt_np = target_frame_25[i].permute(1, 2, 0).cpu().numpy()
+            gt_img = ((gt_np + 1) / 2 * 255).astype(np.uint8)
+
+            # 拼接：第20帧 | Canny条件 | 生成结果 | 真实第25帧
+            combined_img = Image.new('RGB', (512 * 4, 512))
+            combined_img.paste(Image.fromarray(frame_20_img), (0, 0))
+            combined_img.paste(canny_pil, (512, 0))
+            combined_img.paste(generated_image, (1024, 0))
+            combined_img.paste(Image.fromarray(gt_img), (1536, 0))
+
+            # 保存
+            save_path = Path(save_dir) / f"epoch_{epoch}_sample_{i}.jpg"
+            combined_img.save(save_path)
+
+        print(f"✨ 预览图已保存到 {save_dir}")
+
+        # 释放显存
+        del pipeline
+        torch.cuda.empty_cache()
+
+
+
     def __init__(self, config):
         self.config = config
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -49,12 +145,12 @@ class ControlNet256Trainer:
         
         print(f"🚀 使用设备: {self.device}")
         print(f"🎯 任务: {self.task_name}")
-        print(f"📏 分辨率: 256x256")
+        print(f"📏 分辨率: 512x512")
         
         # 训练状态
         self.best_val_loss = float('inf')
         self.patience_counter = 0
-        self.max_patience = config.get('patience', 12)
+        self.max_patience = config.get('patience', 10)
         
         # 梯度缩放器
         self.scaler = torch.amp.GradScaler('cuda')
@@ -91,8 +187,8 @@ class ControlNet256Trainer:
         # 检查VAE输入尺寸兼容性
         vae_sample_size = self.vae.config.sample_size
         print(f"🔍 VAE样本尺寸: {vae_sample_size}")
-        if vae_sample_size != 256 and vae_sample_size != 512:
-            print(f"⚠️  VAE预期输入尺寸为{vae_sample_size}x{vae_sample_size}，数据为256x256")
+        if vae_sample_size != 512:
+            print(f"⚠️  VAE预期输入尺寸为{vae_sample_size}x{vae_sample_size}，但数据为512x512")
 
     def load_controlnet(self):
         """加载ControlNet模型"""
@@ -121,105 +217,60 @@ class ControlNet256Trainer:
             raise
 
     def setup_optimizers(self):
-        """优化器配置 - 立即改进：添加warmup + 更大学习率"""
-        # 使用更大的学习率和更小的权重衰减
-        base_lr = self.config.get('learning_rate', 5e-5)  # 提高学习率
-        
+        """优化器配置"""
+        # 使用分层学习率
         no_decay = ["bias", "LayerNorm.weight"]
         optimizer_grouped_parameters = [
             {
                 "params": [p for n, p in self.controlnet.named_parameters() 
                           if not any(nd in n for nd in no_decay) and p.requires_grad],
-                "weight_decay": self.config.get('weight_decay', 1e-4),  # 减小权重衰减
-                "lr": base_lr,
+                "weight_decay": self.config.get('weight_decay', 1e-2),
+                "lr": self.config.get('learning_rate', 8e-6),  # 降低学习率适应高分辨率
             },
             {
                 "params": [p for n, p in self.controlnet.named_parameters() 
                           if any(nd in n for nd in no_decay) and p.requires_grad],
                 "weight_decay": 0.0,
-                "lr": base_lr,
+                "lr": self.config.get('learning_rate', 8e-6),
             },
         ]
         
         self.optimizer = optim.AdamW(
             optimizer_grouped_parameters,
-            lr=base_lr,
             betas=(0.9, 0.999),
-            weight_decay=1e-4,  # 统一的权重衰减
             eps=1e-8
         )
         
-        # 使用带warmup的余弦退火调度器
-        self.lr_scheduler = self.get_cosine_schedule_with_warmup(
-            self.optimizer,
-            num_warmup_steps=self.config.get('warmup_steps', 500),
-            num_training_steps=self.config.get('num_epochs', 40) * 100,  # 估计的步数
-            num_cycles=0.5
+        # 使用简单的余弦退火
+        self.lr_scheduler = optim.lr_scheduler.CosineAnnealingLR(
+            self.optimizer, 
+            T_max=self.config.get('num_epochs', 30),  # 减少训练轮数
+            eta_min=1e-7  # 更低的最小学习率
         )
 
-    def get_cosine_schedule_with_warmup(self, optimizer, num_warmup_steps, num_training_steps, num_cycles=0.5):
-        """创建带warmup的余弦退火调度器"""
-        def lr_lambda(current_step):
-            if current_step < num_warmup_steps:
-                return float(current_step) / float(max(1, num_warmup_steps))
-            progress = float(current_step - num_warmup_steps) / float(max(1, num_training_steps - num_warmup_steps))
-            return max(0.0, 0.5 * (1.0 + math.cos(math.pi * float(num_cycles) * 2.0 * progress)))
-        
-        return torch.optim.lr_scheduler.LambdaLR(optimizer, lr_lambda)
-
     def prepare_images_for_vae(self, images):
-        """准备图像以适应VAE输入 - 修复尺寸问题"""
+        """准备图像以适应VAE输入"""
         # 确保图像在[-1, 1]范围内
         if torch.max(images) <= 1.0 and torch.min(images) >= 0.0:
             images = images * 2.0 - 1.0
         
         # 如果VAE需要特定尺寸，进行调整
         vae_sample_size = self.vae.config.sample_size
-        current_size = images.shape[-1]
-        
-        if current_size != vae_sample_size:
-            # 只在必要时打印调整信息
-            if hasattr(self, '_vae_resize_warning_printed'):
-                pass
-            else:
-                print(f"🔧 调整图像尺寸从 {current_size}x{current_size} 到 {vae_sample_size}x{vae_sample_size}")
-                self._vae_resize_warning_printed = True
-            images = F.interpolate(images, size=(vae_sample_size, vae_sample_size), 
-                                 mode='bilinear', align_corners=False)
+        if images.shape[-1] != vae_sample_size or images.shape[-2] != vae_sample_size:
+            print(f"⚠️  调整图像尺寸从 {images.shape[-2:]} 到 {vae_sample_size}x{vae_sample_size}")
+            images = F.interpolate(images, size=(vae_sample_size, vae_sample_size), mode='bilinear', align_corners=False)
         
         return images
 
-    def prepare_controlnet_condition(self, control_cond):
-        """准备ControlNet条件输入 - 修复尺寸问题"""
-        # 确保控制条件与潜在空间尺寸匹配
-        vae_sample_size = self.vae.config.sample_size
-        current_size = control_cond.shape[-1]
-        
-        # ControlNet期望输入尺寸与VAE潜在空间下采样后的尺寸相关
-        # 对于512x512输入，潜在空间是64x64，所以ControlNet条件应该调整为512x512
-        if current_size != vae_sample_size:
-            control_cond = F.interpolate(control_cond, size=(vae_sample_size, vae_sample_size), 
-                                       mode='bilinear', align_corners=False)
-        
-        return control_cond
-
     def get_canny_edges(self, image_tensor, training=False):
         """
-        Canny边缘检测 - 立即改进：更好的参数和数据增强
+        Canny边缘检测 - 适配512x512
         """
         batch_size = image_tensor.shape[0]
         
         # 确保输入在 [0, 1] 范围内
         if torch.max(image_tensor) > 1.0:
             image_tensor = (image_tensor + 1.0) / 2.0
-        
-        # 训练时添加数据增强
-        if training:
-            # 随机调整亮度和对比度 - 修复：确保在正确设备上
-            brightness = 0.1 * torch.randn(batch_size, 1, 1, 1, device=image_tensor.device)
-            contrast = 1.0 + 0.2 * torch.randn(batch_size, 1, 1, 1, device=image_tensor.device)
-            image_tensor = image_tensor * contrast + brightness
-            image_tensor = torch.clamp(image_tensor, 0, 1)
         
         images_np = image_tensor.permute(0, 2, 3, 1).cpu().numpy()
         images_np = (images_np * 255).astype(np.uint8)
@@ -228,18 +279,20 @@ class ControlNet256Trainer:
         for i in range(batch_size):
             img_gray = cv2.cvtColor(images_np[i], cv2.COLOR_RGB2GRAY)
             
-            # 立即改进：更宽的阈值范围，更好的边缘检测
+            # 对于512x512高分辨率，使用更精细的Canny参数
             v = np.median(img_gray)
+            # 调整阈值以适应高分辨率
             sigma = 0.33
-            # 使用更宽的阈值范围，确保捕捉到足够多的边缘
-            lower = int(max(0, (1.0 - 2 * sigma) * v))  # 更低的阈值
-            upper = int(min(255, (1.0 + 2 * sigma) * v))  # 更高的阈值
+            lower = int(max(0, (1.0 - sigma) * v))
+            upper = int(min(255, (1.0 + sigma) * v))
             
+            # 使用自适应阈值
             edge = cv2.Canny(img_gray, lower, upper)
             
-            # 立即改进：更好的形态学操作，改善边缘连续性
-            kernel = np.ones((2, 2), np.uint8)  # 稍大的核
-            edge = cv2.morphologyEx(edge, cv2.MORPH_CLOSE, kernel)
+            # 可选：对边缘进行形态学操作以改善连续性
+            if training and np.random.random() > 0.7:
+                kernel = np.ones((2, 2), np.uint8)
+                edge = cv2.morphologyEx(edge, cv2.MORPH_CLOSE, kernel)
             
             # 扩展回3通道
             edge = np.stack([edge] * 3, axis=-1)
@@ -247,80 +300,69 @@ class ControlNet256Trainer:
             
         edges_np = np.stack(edges_list)
         edges_tensor = torch.from_numpy(edges_np).float() / 255.0
-        edges_tensor = edges_tensor.permute(0, 3, 1, 2).to(self.device)
-        
-        # 确保控制条件尺寸正确
-        edges_tensor = self.prepare_controlnet_condition(edges_tensor)
-        
-        return edges_tensor
+        return edges_tensor.permute(0, 3, 1, 2).to(self.device)
 
     def compute_loss(self, batch, training=True):
-        """统一的损失计算函数 - 修复尺寸问题"""
-        try:
-            # 1. 准备数据
-            current_frame_20 = batch['input_frames'][:, -1].to(self.device) 
-            target_frame_25 = batch['target_frame'].to(self.device)
-            text_descriptions = batch.get('label_text', ['interaction'] * len(current_frame_20))
-            
-            # 2. VAE编码目标图 - 适配尺寸
-            target_frame_prepared = self.prepare_images_for_vae(target_frame_25)
-            target_latents = self.vae.encode(target_frame_prepared).latent_dist.sample()
-            target_latents = target_latents * self.vae.config.scaling_factor
-            
-            # 3. CLIP编码文本
-            inputs = self.tokenizer(
-                text_descriptions, 
-                max_length=77, 
-                padding="max_length", 
-                truncation=True, 
-                return_tensors="pt"
-            ).to(self.device)
-            encoder_hidden_states = self.text_encoder(inputs.input_ids)[0]
-            
-            # 4. 准备ControlNet条件 - 确保尺寸正确
-            control_cond = self.get_canny_edges(current_frame_20, training=training)
-            
-            # 5. 采样timestep和噪声 - 使用固定的全范围
-            timesteps = torch.randint(
-                0, 
-                self.noise_scheduler.config.num_train_timesteps, 
-                (target_latents.shape[0],), 
-                device=self.device
-            ).long()
-            
-            noise = torch.randn_like(target_latents)
-            noisy_latents = self.noise_scheduler.add_noise(target_latents, noise, timesteps)
-            
-            # 6. ControlNet前向
-            down_block_res_samples, mid_block_res_sample = self.controlnet(
-                noisy_latents,
-                timesteps,
-                encoder_hidden_states=encoder_hidden_states,
-                controlnet_cond=control_cond,
-                return_dict=False,
-            )
-            
-            # 7. UNet预测
-            noise_pred = self.unet(
-                noisy_latents,
-                timesteps,
-                encoder_hidden_states=encoder_hidden_states,
-                down_block_additional_residuals=down_block_res_samples,
-                mid_block_additional_residual=mid_block_res_sample,
-            ).sample
-            
-            # 8. 计算损失
-            loss = F.mse_loss(noise_pred, noise)
-            
-            return loss
-            
-        except Exception as e:
-            print(f"❌ 损失计算出错: {e}")
-            # 返回一个虚拟损失，避免训练中断
-            return torch.tensor(0.0, requires_grad=True, device=self.device)
+        """统一的损失计算函数 - 适配512x512"""
+        # 1. 准备数据
+        current_frame_20 = batch['input_frames'][:, -1].to(self.device) 
+        target_frame_25 = batch['target_frame'].to(self.device)
+        text_descriptions = batch.get('label_text', ['interaction'] * len(current_frame_20))
+        
+        # 2. VAE编码目标图 - 适配尺寸
+        target_frame_prepared = self.prepare_images_for_vae(target_frame_25)
+        target_latents = self.vae.encode(target_frame_prepared).latent_dist.sample()
+        target_latents = target_latents * self.vae.config.scaling_factor
+        
+        # 3. CLIP编码文本
+        inputs = self.tokenizer(
+            text_descriptions, 
+            max_length=77, 
+            padding="max_length", 
+            truncation=True, 
+            return_tensors="pt"
+        ).to(self.device)
+        encoder_hidden_states = self.text_encoder(inputs.input_ids)[0]
+        
+        # 4. 准备ControlNet条件
+        control_cond = self.get_canny_edges(current_frame_20, training=training)
+        
+        # 5. 采样timestep和噪声 - 使用固定的全范围
+        timesteps = torch.randint(
+            0, 
+            self.noise_scheduler.config.num_train_timesteps, 
+            (target_latents.shape[0],), 
+            device=self.device
+        ).long()
+        
+        noise = torch.randn_like(target_latents)
+        noisy_latents = self.noise_scheduler.add_noise(target_latents, noise, timesteps)
+        
+        # 6. ControlNet前向
+        down_block_res_samples, mid_block_res_sample = self.controlnet(
+            noisy_latents,
+            timesteps,
+            encoder_hidden_states=encoder_hidden_states,
+            controlnet_cond=control_cond,
+            return_dict=False,
+        )
+        
+        # 7. UNet预测
+        noise_pred = self.unet(
+            noisy_latents,
+            timesteps,
+            encoder_hidden_states=encoder_hidden_states,
+            down_block_additional_residuals=down_block_res_samples,
+            mid_block_additional_residual=mid_block_res_sample,
+        ).sample
+        
+        # 8. 计算损失
+        loss = F.mse_loss(noise_pred, noise)
+        
+        return loss
 
     def train_epoch(self, train_loader, epoch):
-        """训练epoch - 修复错误处理"""
+        """训练epoch - 适配512x512"""
         self.controlnet.train()
         total_loss = 0
         num_batches = 0
@@ -328,9 +370,6 @@ class ControlNet256Trainer:
         accumulation_steps = self.config.get('accumulation_steps', 2)
         
         print(f"📚 开始第 {epoch} 轮训练，共有 {len(train_loader)} 个批次")
-        
-        # 跟踪批次损失用于动态调整
-        batch_losses = []
         
         for batch_idx, batch in enumerate(train_loader):
             if batch is None: 
@@ -344,11 +383,6 @@ class ControlNet256Trainer:
                 with torch.amp.autocast('cuda'):
                     loss = self.compute_loss(batch, training=True)
                 
-                # 如果损失是NaN，跳过这个batch
-                if torch.isnan(loss) or torch.isinf(loss):
-                    print(f"⚠️  批次 {batch_idx} 损失为NaN或Inf，跳过")
-                    continue
-                
                 # 梯度累积
                 loss = loss / accumulation_steps
                 
@@ -358,39 +392,28 @@ class ControlNet256Trainer:
                 if (batch_idx + 1) % accumulation_steps == 0:
                     # 梯度裁剪
                     self.scaler.unscale_(self.optimizer)
-                    torch.nn.utils.clip_grad_norm_(self.controlnet.parameters(), max_norm=1.0)
+                    torch.nn.utils.clip_grad_norm_(self.controlnet.parameters(), max_norm=0.5)  # 更严格的梯度裁剪
                     
                     # 优化器步进
                     self.scaler.step(self.optimizer)
                     self.scaler.update()
                     self.optimizer.zero_grad()
-                    
-                    # 更新学习率调度器
-                    if hasattr(self, 'lr_scheduler'):
-                        self.lr_scheduler.step()
                 
                 # 记录损失
                 loss_value = loss.item() * accumulation_steps
                 total_loss += loss_value
                 num_batches += 1
-                batch_losses.append(loss_value)
                 
-                # 立即改进：更频繁的日志输出（每5个batch）
-                if batch_idx % 5 == 0:  # 从10改为5，更频繁的监控
+                # 打印进度
+                if batch_idx % 5 == 0:  # 更频繁的日志
                     current_lr = self.optimizer.param_groups[0]['lr']
-                    current_step = (epoch - 1) * len(train_loader) + batch_idx
-                    
-                    # 计算最近几个batch的平均损失
-                    recent_avg = np.mean(batch_losses[-10:]) if len(batch_losses) >= 10 else loss_value
-                    
-                    print(f"Epoch {epoch} | Batch {batch_idx:3d}/{len(train_loader)} | "
-                          f"Loss: {loss_value:.6f} | Recent: {recent_avg:.6f} | "
-                          f"LR: {current_lr:.2e} | Step: {current_step}")
+                    print(f"Epoch {epoch} | Batch {batch_idx}/{len(train_loader)} | "
+                          f"Loss: {loss_value:.6f} | LR: {current_lr:.2e}")
                 
-                # 定期清理显存
-                if batch_idx % 20 == 0 and self.device.type == 'cuda':
+                # 更频繁的清理显存
+                if batch_idx % 10 == 0 and self.device.type == 'cuda':
                     torch.cuda.empty_cache()
-                    if batch_idx % 40 == 0:
+                    if batch_idx % 20 == 0:
                         self._log_gpu_memory(f"Epoch{epoch} Batch{batch_idx}")
                     
             except Exception as e:
@@ -413,7 +436,7 @@ class ControlNet256Trainer:
             pass
 
     def validate(self, val_loader):
-        """验证函数 - 修复错误处理"""
+        """验证函数 - 适配512x512"""
         self.controlnet.eval()
         total_loss = 0.0
         num_batches = 0
@@ -429,17 +452,11 @@ class ControlNet256Trainer:
                     with torch.amp.autocast('cuda'):
                         loss = self.compute_loss(batch, training=False)
                     
-                    # 如果损失是NaN，跳过这个batch
-                    if torch.isnan(loss) or torch.isinf(loss):
-                        print(f"⚠️  验证批次 {batch_idx} 损失为NaN或Inf，跳过")
-                        continue
-                    
                     loss_value = loss.item()
                     total_loss += loss_value
                     num_batches += 1
                     
-                    # 更频繁的验证日志
-                    if batch_idx % 3 == 0:  # 从5改为3，更频繁的验证监控
+                    if batch_idx % 3 == 0:  # 更频繁的验证日志
                         print(f"验证批次 {batch_idx}/{len(val_loader)} | Loss: {loss_value:.6f}")
                         
                 except Exception as e:
@@ -464,7 +481,7 @@ class ControlNet256Trainer:
             'epoch': epoch,
             'model_state_dict': self.controlnet.state_dict(),
             'optimizer_state_dict': self.optimizer.state_dict(),
-            'lr_scheduler_state_dict': self.lr_scheduler.state_dict() if hasattr(self, 'lr_scheduler') else None,
+            'lr_scheduler_state_dict': self.lr_scheduler.state_dict(),
             'best_val_loss': self.best_val_loss,
             'config': self.config
         }
@@ -487,11 +504,11 @@ class ControlNet256Trainer:
                 
             plt.xlabel('Epoch')
             plt.ylabel('Loss')
-            plt.title(f'Training / Validation Loss - {self.task_name} (256x256)')
+            plt.title(f'Training / Validation Loss - {self.task_name} (512x512)')
             plt.grid(alpha=0.3)
             plt.legend()
             
-            save_path = output_dir / f'training_val_loss_{self.task_name}_256.png'
+            save_path = output_dir / f'training_val_loss_{self.task_name}_512.png'
             plt.savefig(save_path, dpi=200, bbox_inches='tight')
             plt.close()
             print(f"📈 Loss 图已保存: {save_path}")
@@ -499,11 +516,10 @@ class ControlNet256Trainer:
             print(f"⚠️ 保存 Loss 图失败: {e}")
 
     def train(self, train_loader, val_loader):
-        """训练循环 - 修复错误处理"""
-        print("🚀 开始256x256训练...")
-        print(f"📏 输入分辨率: 256x256")
+        """训练循环 - 适配512x512"""
+        print("🚀 开始512x512训练...")
+        print(f"📏 输入分辨率: 512x512")
         print(f"🎯 任务: {self.task_name}")
-        print(f"💡 优势: 相比512x512，训练速度更快，内存需求更低")
         
         train_losses = []
         val_losses = []
@@ -523,7 +539,14 @@ class ControlNet256Trainer:
             # 验证
             val_loss = self.validate(val_loader)
             val_losses.append(val_loss)
+
+            # === 新增：生成图片 ===
+            # 每 5 个 Epoch 生成一次，或者在保存模型的时候生成
+            if epoch % self.config['save_interval'] == 0:
+                self.log_validation(val_loader, epoch, self.config['output_dir'])
+            # ===================
             
+
             epoch_time = time.time() - epoch_start_time
             current_lr = self.optimizer.param_groups[0]['lr']
             
@@ -533,6 +556,9 @@ class ControlNet256Trainer:
             print(f"   Val Loss: {val_loss:.6f}")
             print(f"   LR: {current_lr:.2e} | Time: {epoch_time:.1f}s")
             print(f"{'='*60}")
+            
+            # 更新学习率
+            self.lr_scheduler.step()
             
             # 早停和最佳模型保存
             if val_loss < self.best_val_loss:
@@ -556,8 +582,7 @@ class ControlNet256Trainer:
             # 清理显存
             if self.device.type == 'cuda':
                 torch.cuda.empty_cache()
-                if epoch % 5 == 0:  # 每5个epoch记录一次内存
-                    self._log_gpu_memory(f"End of Epoch {epoch}")
+                self._log_gpu_memory(f"End of Epoch {epoch}")
         
         # 保存最终模型和损失曲线
         self.save_checkpoint(self.config['num_epochs'], self.config['task_name'])
@@ -566,16 +591,15 @@ class ControlNet256Trainer:
         print(f"\n🏁 训练完成！最佳验证损失: {self.best_val_loss:.6f}")
 
 def main():
-    # 256x256配置 - 立即改进的参数
+    # 512x512配置 - 更保守的参数
     config = {
-        'learning_rate': 5e-5,      # 立即改进：提高学习率
-        'num_epochs': 40,
-        'batch_size': 4,
+        'learning_rate': 1e-5,      # 降低学习率
+        'num_epochs': 50,           # 减少训练轮数
+        'batch_size': 2,            # 减小批次大小
         'save_interval': 5,
         'accumulation_steps': 2,
-        'weight_decay': 1e-4,       # 立即改进：减小权重衰减
-        'patience': 12,
-        'warmup_steps': 500,        # 立即改进：添加warmup
+        'weight_decay': 1e-2,       # 通过优化器的weight_decay实现正则化
+        'patience': 10,
     }
 
     tasks = [
@@ -588,19 +612,19 @@ def main():
         task_name = task['name']
         print(f"\n{'='*60}")
         print(f"🚀 开始训练任务: {task['display']}")
-        print(f"📏 分辨率: 256x256")
+        print(f"📏 分辨率: 512x512")
         print(f"{'='*60}")
         
         task_config = config.copy()
         task_config['task_name'] = task_name
-        task_config['output_dir'] = f'training_results_{task_name}_256'
+        task_config['output_dir'] = f'training_results_{task_name}_512'
         
-        # 加载数据 - 使用256数据集
+        # 加载数据 - 使用512数据集
         try:
             train_loader, val_loader, test_loader = create_task_specific_loaders(
                 task_name=task_name,
                 batch_size=task_config['batch_size'],
-                data_path="processed_data_256"  # 修改为256数据集路径
+                data_path="processed_data_512"  # 修改为512数据集路径
             )
         except Exception as e:
             print(f"❌ 跳过任务 {task_name}: {e}")
@@ -638,9 +662,9 @@ def main():
             small_test_ds = Subset(combined, test_idx)
 
             train_loader = DataLoader(small_train_ds, batch_size=task_config['batch_size'], 
-                                    shuffle=True, num_workers=4, pin_memory=True)
+                                    shuffle=True, num_workers=2, pin_memory=True)
             val_loader = DataLoader(small_val_ds, batch_size=task_config['batch_size'], 
-                                  shuffle=False, num_workers=4, pin_memory=True)
+                                  shuffle=False, num_workers=2, pin_memory=True)
 
             print(f"✅ 数据集分配: train={len(small_train_ds)} val={len(small_val_ds)}")
 
@@ -650,7 +674,7 @@ def main():
 
         # 初始化并训练
         try:
-            trainer = ControlNet256Trainer(task_config)
+            trainer = ControlNet512Trainer(task_config)
             trainer.train(train_loader, val_loader)
         except Exception as e:
             print(f"❌ 训练任务 {task_name} 失败: {e}")

@@ -994,5 +994,5 @@ def main_single_task():
     trainer.train(train_loader, val_loader)
 
 if __name__ == "__main__":
-    #main()  # 使用多任务训练
-    main_single_task()  # 或者使用单任务训练
+    main()  # 使用多任务训练
+    #main_single_task()  # 或者使用单任务训练
