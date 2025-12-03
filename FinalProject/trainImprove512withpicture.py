@@ -149,8 +149,6 @@ class ControlNet512Trainer:
         
         # 训练状态
         self.best_val_loss = float('inf')
-        self.patience_counter = 0
-        self.max_patience = config.get('patience', 10)
         
         # 梯度缩放器
         self.scaler = torch.amp.GradScaler('cuda')
@@ -540,12 +538,9 @@ class ControlNet512Trainer:
             val_loss = self.validate(val_loader)
             val_losses.append(val_loss)
 
-            # === 新增：生成图片 ===
-            # 每 5 个 Epoch 生成一次，或者在保存模型的时候生成
+            # 生成图片
             if epoch % self.config['save_interval'] == 0:
                 self.log_validation(val_loader, epoch, self.config['output_dir'])
-            # ===================
-            
 
             epoch_time = time.time() - epoch_start_time
             current_lr = self.optimizer.param_groups[0]['lr']
@@ -560,24 +555,15 @@ class ControlNet512Trainer:
             # 更新学习率
             self.lr_scheduler.step()
             
-            # 早停和最佳模型保存
+            # 最佳模型保存（去掉早停机制，只保存最佳模型）
             if val_loss < self.best_val_loss:
                 self.best_val_loss = val_loss
-                self.patience_counter = 0
                 self.save_checkpoint(epoch, self.config['task_name'], is_best=True)
                 print(f"🎉 新的最佳验证损失: {val_loss:.6f}")
-            else:
-                self.patience_counter += 1
-                print(f"⏳ 早停计数: {self.patience_counter}/{self.max_patience}")
             
             # 定期保存
             if epoch % self.config['save_interval'] == 0:
                 self.save_checkpoint(epoch, self.config['task_name'])
-            
-            # 早停检查
-            if self.patience_counter >= self.max_patience:
-                print(f"🛑 早停触发！在 epoch {epoch} 停止训练")
-                break
             
             # 清理显存
             if self.device.type == 'cuda':
@@ -594,12 +580,11 @@ def main():
     # 512x512配置 - 更保守的参数
     config = {
         'learning_rate': 1e-5,      # 降低学习率
-        'num_epochs': 50,           # 减少训练轮数
+        'num_epochs': 500,           # 减少训练轮数
         'batch_size': 2,            # 减小批次大小
         'save_interval': 5,
         'accumulation_steps': 2,
         'weight_decay': 1e-2,       # 通过优化器的weight_decay实现正则化
-        'patience': 10,
     }
 
     tasks = [

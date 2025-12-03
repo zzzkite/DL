@@ -19,13 +19,14 @@ import gc
 import time
 import math  # 添加math导入
 from typing import Dict, List, Optional, Tuple
+from PIL import Image
 
 # 添加项目路径
 project_root = Path(__file__).parent
 sys.path.append(str(project_root))
 
 try:
-    from diffusers import DDPMScheduler, AutoencoderKL, UNet2DConditionModel
+    from diffusers import DDPMScheduler, AutoencoderKL, UNet2DConditionModel, StableDiffusionControlNetPipeline, ControlNetModel
     from transformers import CLIPTokenizer, CLIPTextModel
     from loaderData256 import create_task_specific_loaders  # 修改为256数据加载器
     
@@ -450,6 +451,160 @@ class ControlNet256Trainer:
         print(f"✅ 验证完成，平均损失: {avg_loss:.6f}")
         return avg_loss
 
+    def log_validation(self, val_loader, epoch, save_dir):
+        """生成预览图用于可视化评估 - 基于第20帧绘制第25帧"""
+        print(f"🖼️ 正在生成 Epoch {epoch} 的预览图...")
+        self.controlnet.eval()
+        self.unet.eval()
+        
+        # 临时构建一个 pipeline 用于推理
+        from diffusers import StableDiffusionControlNetPipeline
+        
+        pipeline = StableDiffusionControlNetPipeline(
+            vae=self.vae,
+            text_encoder=self.text_encoder,
+            tokenizer=self.tokenizer,
+            unet=self.unet,
+            controlnet=self.controlnet,
+            scheduler=self.noise_scheduler,
+            safety_checker=None,
+            feature_extractor=None,
+            requires_safety_checker=False
+        )
+        pipeline.set_progress_bar_config(disable=True)
+        pipeline = pipeline.to(self.device)
+
+        # 只取验证集的第一批数据来做演示
+        try:
+            batch = next(iter(val_loader))
+        except StopIteration:
+            print("⚠️  验证集为空，跳过预览图生成")
+            return
+        
+        # 准备数据 - 基于第20帧绘制第25帧
+        # input_frame (Condition): 第20帧
+        current_frame_20 = batch['input_frames'][:, -1].to(self.device)
+        # target_frame (GT): 第25帧 (用于对比)
+        target_frame_25 = batch['target_frame'].to(self.device)
+        prompts = batch.get('label_text', ['interaction'] * len(current_frame_20))
+        
+        # 准备 Canny 条件图 - 基于第20帧
+        control_cond = self.get_canny_edges(current_frame_20, training=False)
+        
+        # 确保保存目录存在
+        save_dir = Path(save_dir)
+        save_dir.mkdir(exist_ok=True, parents=True)
+        
+        image_logs = []
+        # 生成图像 (只生成前4张，避免太慢)
+        num_images = min(len(current_frame_20), 4)
+        
+        for i in range(num_images):
+            try:
+                # 1. 模型生成 - 基于第20帧的Canny边缘生成第25帧
+                with torch.autocast("cuda"):
+                    generated_image = pipeline(
+                        prompt=prompts[i],
+                        image=control_cond[i:i+1], # 输入是第20帧的Canny图
+                        num_inference_steps=20,    # 推理步数，20步够快了
+                        guidance_scale=7.5,
+                        controlnet_conditioning_scale=1.0, # 假设用 1.0 强度
+                        height=256,  # 设置高度为256
+                        width=256,   # 设置宽度为256
+                    ).images[0]
+                
+                # 2. 处理原图用于对比 (Tensor -> PIL)
+                # 原始第20帧 (用于显示输入)
+                input_np = current_frame_20[i].permute(1, 2, 0).cpu().numpy()
+                input_img = ((input_np + 1) / 2 * 255).astype(np.uint8)  # 假设之前 norm 到了 [-1, 1]
+                input_pil = Image.fromarray(input_img)
+                
+                # Canny 条件图
+                canny_np = control_cond[i].permute(1, 2, 0).cpu().numpy()  # (H, W, 3)
+                if canny_np.shape[2] == 1: 
+                    canny_np = np.concatenate([canny_np]*3, axis=2)
+                canny_img = (canny_np * 255).astype(np.uint8)
+                canny_pil = Image.fromarray(canny_img)
+                
+                # 模型生成的结果
+                gen_pil = generated_image
+                
+                # 真实第25帧 (GT)
+                gt_np = target_frame_25[i].permute(1, 2, 0).cpu().numpy()
+                gt_img = ((gt_np + 1) / 2 * 255).astype(np.uint8)  # 假设之前 norm 到了 [-1, 1]
+                gt_pil = Image.fromarray(gt_img)
+                
+                # 确保所有图像大小一致
+                target_size = (256, 256)
+                input_pil = input_pil.resize(target_size, Image.Resampling.LANCZOS)
+                canny_pil = canny_pil.resize(target_size, Image.Resampling.LANCZOS)
+                gen_pil = gen_pil.resize(target_size, Image.Resampling.LANCZOS)
+                gt_pil = gt_pil.resize(target_size, Image.Resampling.LANCZOS)
+                
+                # 创建标签图像
+                def create_label_image(text, height=30, width=256):
+                    """创建文本标签图像"""
+                    from PIL import ImageDraw, ImageFont
+                    img = Image.new('RGB', (width, height), color='white')
+                    draw = ImageDraw.Draw(img)
+                    try:
+                        font = ImageFont.truetype("arial.ttf", 14)
+                    except:
+                        font = ImageFont.load_default()
+                    # 计算文本位置
+                    text_bbox = draw.textbbox((0, 0), text, font=font)
+                    text_width = text_bbox[2] - text_bbox[0]
+                    text_height = text_bbox[3] - text_bbox[1]
+                    x = (width - text_width) // 2
+                    y = (height - text_height) // 2
+                    draw.text((x, y), text, fill='black', font=font)
+                    return img
+                
+                # 创建标签
+                input_label = create_label_image("第20帧 (输入)", width=256)
+                canny_label = create_label_image("Canny边缘", width=256)
+                gen_label = create_label_image(f"生成第25帧 (E{epoch})", width=256)
+                gt_label = create_label_image("真实第25帧", width=256)
+                
+                # 拼接: 第20帧输入 | Canny条件 | 生成结果 | 真实结果
+                total_height = 256 + 30  # 图像高度 + 标签高度
+                combined_img = Image.new('RGB', (256 * 4, total_height))
+                
+                # 第一列：第20帧输入
+                combined_img.paste(input_pil, (0, 0))
+                combined_img.paste(input_label, (0, 256))
+                
+                # 第二列：Canny条件
+                combined_img.paste(canny_pil, (256, 0))
+                combined_img.paste(canny_label, (256, 256))
+                
+                # 第三列：生成结果
+                combined_img.paste(gen_pil, (512, 0))
+                combined_img.paste(gen_label, (512, 256))
+                
+                # 第四列：真实结果
+                combined_img.paste(gt_pil, (768, 0))
+                combined_img.paste(gt_label, (768, 256))
+                
+                # 保存
+                save_path = save_dir / f"epoch_{epoch}_sample_{i}.jpg"
+                combined_img.save(save_path, quality=95)
+                print(f"💾 预览图已保存: {save_path}")
+                
+                image_logs.append(save_path)
+                
+            except Exception as e:
+                print(f"❌ 生成第 {i} 张预览图失败: {e}")
+                continue
+            
+        print(f"✨ 预览图已保存到 {save_dir}")
+        
+        # 释放显存
+        del pipeline
+        torch.cuda.empty_cache()
+        
+        return image_logs
+
     def save_checkpoint(self, epoch, task_name, is_best=False):
         """保存检查点"""
         output_dir = Path(self.config['output_dir'])
@@ -508,10 +663,18 @@ class ControlNet256Trainer:
         train_losses = []
         val_losses = []
         
+        # 创建预览图保存目录
+        preview_dir = Path(self.config['output_dir']) / "previews"
+        preview_dir.mkdir(exist_ok=True, parents=True)
+        
         # 初始验证
         print("\n🔍 进行初始验证...")
         initial_val_loss = self.validate(val_loader)
         print(f"初始验证损失: {initial_val_loss:.6f}")
+        
+        # 初始预览图（epoch 0）
+        print("\n🖼️ 生成初始预览图...")
+        self.log_validation(val_loader, 0, preview_dir)
         
         for epoch in range(1, self.config['num_epochs'] + 1):
             epoch_start_time = time.time()
@@ -533,6 +696,12 @@ class ControlNet256Trainer:
             print(f"   Val Loss: {val_loss:.6f}")
             print(f"   LR: {current_lr:.2e} | Time: {epoch_time:.1f}s")
             print(f"{'='*60}")
+            
+            # 生成预览图（每隔一定的epoch）
+            preview_interval = self.config.get('preview_interval', 5)
+            if epoch % preview_interval == 0 or epoch == self.config['num_epochs']:
+                print(f"\n🖼️ 生成 Epoch {epoch} 的预览图...")
+                self.log_validation(val_loader, epoch, preview_dir)
             
             # 早停和最佳模型保存
             if val_loss < self.best_val_loss:
@@ -563,6 +732,10 @@ class ControlNet256Trainer:
         self.save_checkpoint(self.config['num_epochs'], self.config['task_name'])
         self.plot_and_save_losses(train_losses, val_losses)
         
+        # 最终预览图
+        print(f"\n🖼️ 生成最终预览图...")
+        self.log_validation(val_loader, self.config['num_epochs'], preview_dir)
+        
         print(f"\n🏁 训练完成！最佳验证损失: {self.best_val_loss:.6f}")
 
 def main():
@@ -572,6 +745,7 @@ def main():
         'num_epochs': 40,
         'batch_size': 4,
         'save_interval': 5,
+        'preview_interval': 5,      # 新增：预览图生成间隔（每5个epoch）
         'accumulation_steps': 2,
         'weight_decay': 1e-4,       # 立即改进：减小权重衰减
         'patience': 12,

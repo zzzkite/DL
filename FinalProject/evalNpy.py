@@ -14,7 +14,7 @@ class Config:
     DATA_ROOT = "./processed_data_512"
     
     # 修改为你的训练好的ControlNet权重路径
-    CONTROLNET_PATH = "./training_results_move_object_512/controlnet_move_object_best.pth"
+    CONTROLNET_PATH = "./training_results_improved512/training_results_move_object_512/controlnet_move_object_best.pth"
     
     # 修改：明确指定本地模型路径
     SD_LOCAL_PATH = "./stable-diffusion-v1-5"
