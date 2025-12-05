@@ -36,3 +36,7 @@ FinalProject/training_results_drop_object
 
 *.pth
 *.npy
+*.pt
+*.bin
+*.safetensors
+*.pkl
