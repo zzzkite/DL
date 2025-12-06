@@ -103,15 +103,26 @@ class SimpleVideoDataset(torch.utils.data.Dataset):
         pixel_values = pv * 2.0 - 1.0
 
         # also keep original RGB frames for visualization (H,W,C) in [0,255] uint8
-        if last.dtype == np.float32 or last.max() <= 1.0:
-            last_rgb = (last * 255.0).astype(np.uint8)
-        else:
-            last_rgb = last.astype(np.uint8)
+        def _to_uint8_image(arr):
+            # arr: numpy array HWC, may be float in [0,1] or [0,255], or uint8
+            if isinstance(arr, np.ndarray):
+                if arr.dtype == np.uint8:
+                    return arr
+                # avoid division/multiplication mistakes: detect range
+                amin = float(np.min(arr))
+                amax = float(np.max(arr))
+                if amax <= 1.0 + 1e-6:
+                    img = (arr * 255.0).round().astype(np.uint8)
+                    return img
+                # if values already in 0..255 range but float, clip then convert
+                img = np.clip(arr, 0, 255).round().astype(np.uint8)
+                return img
+            else:
+                return np.array(arr).astype(np.uint8)
 
-        if tgt.dtype == np.float32 or tgt.max() <= 1.0:
-            tgt_rgb = (tgt_f * 255.0).astype(np.uint8)
-        else:
-            tgt_rgb = (tgt * 255.0).astype(np.uint8) if tgt.max() > 1.0 else tgt.astype(np.uint8)
+        last_rgb = _to_uint8_image(last)
+        # prefer original target array 'tgt' for visualization (not the normalized tgt_f)
+        tgt_rgb = _to_uint8_image(tgt)
 
         prompt = row.get('label', row.get('template', 'interaction'))
         # tokenize
@@ -136,7 +147,7 @@ MODEL_DIR = os.path.join(BASE_DIR, "stable-diffusion-v1-5")
 # ControlNet 本地目录（如果你已经转换为 diffusers 格式则可直接使用），否则会回退到 hub
 CONTROLNET_DIR = os.path.join(BASE_DIR, "ControlNet-v1-1")
 DATA_DIR = "./augmented_data_512"
-OUTPUT_DIR = "./final_model_output_viz_v3"  # 改个名字，防止覆盖之前的
+OUTPUT_DIR = "./final_model_output_viz_v4"  # 改个名字，防止覆盖之前的
 
 # 训练参数
 BATCH_SIZE = 4
@@ -212,6 +223,11 @@ def log_validation(vae, text_encoder, tokenizer, unet, controlnet, args, acceler
                 num_inference_steps=20,
                 generator=generator
             ).images[0]
+        # 标准化预测图：确保为 RGB uint8 numpy 并与其他图一致
+        if not isinstance(pred, Image.Image):
+            pred_pil = Image.fromarray(np.array(pred).astype(np.uint8)).convert('RGB')
+        else:
+            pred_pil = pred.convert('RGB')
 
         # 4. 真实第25帧
         tgt_rgb = sample.get('target_frame_rgb')
@@ -223,13 +239,23 @@ def log_validation(vae, text_encoder, tokenizer, unet, controlnet, args, acceler
         else:
             tgt_pil = Image.fromarray(tgt_rgb)
 
-        # 拼 4 图： [原第20帧 | 边缘图 | 预测第25帧 | 真实第25帧]
+        # 统一尺寸：以 last_pil 的尺寸为基准，调整其他图像
         w, h = last_pil.size
+        def _ensure_size(img, size):
+            if img.size != size:
+                return img.resize(size, resample=Image.BILINEAR)
+            return img
+
+        last_img = last_pil.convert('RGB')
+        cond_img_small = cond_pil.convert('RGB')
+        pred_img = _ensure_size(pred_pil, (w, h))
+        tgt_img = _ensure_size(tgt_pil.convert('RGB'), (w, h))
+
         combined = Image.new("RGB", (w * 4, h))
-        combined.paste(last_pil.convert('RGB'), (0, 0))
-        combined.paste(cond_pil.convert('RGB'), (w, 0))
-        combined.paste(pred.convert('RGB'), (w * 2, 0))
-        combined.paste(tgt_pil.convert('RGB'), (w * 3, 0))
+        combined.paste(last_img, (0, 0))
+        combined.paste(cond_img_small, (w, 0))
+        combined.paste(pred_img, (w * 2, 0))
+        combined.paste(tgt_img, (w * 3, 0))
 
         save_path = os.path.join(OUTPUT_DIR, f"val_epoch_{step}_sample_{idx}.jpg")
         combined.save(save_path)
@@ -239,17 +265,21 @@ def log_validation(vae, text_encoder, tokenizer, unet, controlnet, args, acceler
     print("✅ 优质预览图已保存")
 
 
-def compute_validation_loss(vae, text_encoder, unet, controlnet, noise_scheduler, validation_samples, device):
+def compute_validation_loss(vae, text_encoder, unet, controlnet, noise_scheduler, validation_samples, accelerator):
     """根据当前模型计算 validation samples 的平均 MSE loss。返回 float。"""
     if len(validation_samples) == 0:
         return 0.0
 
     # 合并成 batch
-    pixel_vals = torch.stack([s['pixel_values'] for s in validation_samples], dim=0).to(device)
-    conds = torch.stack([s['conditioning_pixel_values'] for s in validation_samples], dim=0).to(device)
+    # Use the device/dtype prepared by accelerator:
+    pixel_vals = torch.stack([s['pixel_values'] for s in validation_samples], dim=0)
+    conds = torch.stack([s['conditioning_pixel_values'] for s in validation_samples], dim=0)
+    # move to accelerator device
+    pixel_vals = pixel_vals.to(accelerator.device)
+    conds = conds.to(accelerator.device)
     # tokenization -> input_ids may be tensor or list
     if isinstance(validation_samples[0].get('input_ids', None), torch.Tensor):
-        input_ids = torch.stack([s['input_ids'] for s in validation_samples], dim=0).to(device)
+        input_ids = torch.stack([s['input_ids'] for s in validation_samples], dim=0).to(accelerator.device)
     else:
         input_ids = None
 
@@ -259,28 +289,33 @@ def compute_validation_loss(vae, text_encoder, unet, controlnet, noise_scheduler
     text_encoder = text_encoder
 
     with torch.no_grad():
-        # encode latents
-        latents = vae.encode(pixel_vals.to(dtype=torch.float16)).latent_dist.sample()
-        latents = latents * vae.config.scaling_factor
+        # Use accelerator.autocast to respect mixed-precision without manual casting
+        with accelerator.autocast():
+            # encode latents
+            latents = vae.encode(pixel_vals).latent_dist.sample()
+            latents = latents * vae.config.scaling_factor
 
-        noise = torch.randn_like(latents)
-        timesteps = torch.randint(0, noise_scheduler.config.num_train_timesteps, (latents.shape[0],), device=latents.device).long()
-        noisy_latents = noise_scheduler.add_noise(latents, noise, timesteps)
+            noise = torch.randn_like(latents)
+            timesteps = torch.randint(0, noise_scheduler.config.num_train_timesteps, (latents.shape[0],), device=latents.device).long()
+            noisy_latents = noise_scheduler.add_noise(latents, noise, timesteps)
 
-        encoder_hidden_states = text_encoder(input_ids)[0] if input_ids is not None else None
+            encoder_hidden_states = text_encoder(input_ids)[0] if input_ids is not None else None
 
-        down, mid = controlnet(
-            noisy_latents, timesteps, encoder_hidden_states=encoder_hidden_states, controlnet_cond=conds,
-            return_dict=False
-        )
+            down, mid = controlnet(
+                noisy_latents, timesteps, encoder_hidden_states=encoder_hidden_states, controlnet_cond=conds,
+                return_dict=False
+            )
 
-        noise_pred = unet(
-            noisy_latents, timesteps, encoder_hidden_states=encoder_hidden_states,
-            down_block_additional_residuals=down, mid_block_additional_residual=mid
-        ).sample
+            noise_pred = unet(
+                noisy_latents, timesteps, encoder_hidden_states=encoder_hidden_states,
+                down_block_additional_residuals=down, mid_block_additional_residual=mid
+            ).sample
 
-        loss = F.mse_loss(noise_pred, noise.float(), reduction='mean')
-        return float(loss.item())
+            # ensure noise dtype matches prediction dtype
+            noise = noise.to(dtype=noise_pred.dtype)
+
+            loss = F.mse_loss(noise_pred, noise, reduction='mean')
+            return float(loss.item())
 
 
 def main():
@@ -461,7 +496,7 @@ def main():
         print(f"🏁 Epoch {epoch + 1} Avg Loss: {avg_loss:.5f}")
         # 计算验证 loss（在每个 epoch 之后）
         try:
-            val_loss = compute_validation_loss(vae, text_encoder, unet, controlnet, noise_scheduler, validation_samples, accelerator.device)
+            val_loss = compute_validation_loss(vae, text_encoder, unet, controlnet, noise_scheduler, validation_samples, accelerator)
         except Exception as e:
             print(f"⚠️ 计算验证损失时出错: {e}")
             val_loss = None
