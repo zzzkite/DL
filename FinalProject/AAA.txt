@@ -1,6 +1,6 @@
 存储一下目前运行的PID
-trainImproved512：/
-eval：1111968
+trainImproved512：1358726
+eval：/
 Zeroshot：/
 
 trainNew的图像：原始第20帧、canny图、预测的第25帧、真实的第25帧

@@ -10,6 +10,7 @@ from tqdm.auto import tqdm
 from diffusers import StableDiffusionControlNetPipeline, ControlNetModel, UniPCMultistepScheduler, AutoencoderKL, UNet2DConditionModel
 from transformers import CLIPTextModel, CLIPTokenizer
 from torch.utils.data import Dataset
+from collections import defaultdict
 
 # ================= 配置区域 =================
 class Config:
@@ -25,7 +26,7 @@ class Config:
     
     # 微调后的 ControlNet 路径 (指向 checkpoint 目录下的 controlnet 文件夹)
     # 请根据实际情况修改 checkpoint 编号
-    FINETUNED_CONTROLNET_PATH = "./final_model_output_viz_v3/checkpoint-50/controlnet"
+    FINETUNED_CONTROLNET_PATH = "./final_model_output_viz_v4/checkpoint-50/controlnet"
     
     # Baseline ControlNet (原始 Canny)
     # 如果本地有 ControlNet-v1-1 且是 diffusers 格式，可指向它；否则使用 hub id
@@ -41,6 +42,8 @@ class Config:
     COLOR_MATCH_FOR_DISPLAY = True
     # 是否将匹配后的图用于指标计算（不推荐）
     APPLY_MATCH_TO_METRICS = False
+    # 需要单独评估与保存的任务类别
+    TASK_CATEGORIES = ["move_object", "drop_object", "cover_object"]
 
 # ================= 数据集定义 (复用 trainNew.py 逻辑) =================
 class SimpleVideoDataset(Dataset):
@@ -133,7 +136,8 @@ class SimpleVideoDataset(Dataset):
             'ground_truth_image': tgt_pil,
             'last_frame_image': last_pil,
             'prompt': prompt,
-            'video_id': row.get('video_id', str(idx))
+            'video_id': row.get('video_id', str(idx)),
+            'category': row.get('category', 'unknown')
         }
 
 # ================= 指标计算 =================
@@ -237,8 +241,20 @@ def main():
     )
     print(f"   评估 split: {Config.SPLIT} | 样本数: {len(dataset)}")
 
+    # 准备任务类别输出目录
+    task_categories = Config.TASK_CATEGORIES
+    if not task_categories:
+        task_categories = sorted({row.get('category', 'unknown') for row in getattr(dataset, 'rows', [])})
+    category_dirs = {}
+    for cat in task_categories:
+        cat_dir = os.path.join(Config.OUTPUT_DIR, cat)
+        os.makedirs(cat_dir, exist_ok=True)
+        category_dirs[cat] = cat_dir
+
     # 5. 评估循环
     results = []
+    category_results = defaultdict(list)
+    panel_counts = defaultdict(int)
     
     print("🚀 开始评估...")
     for i in tqdm(range(len(dataset))):
@@ -247,7 +263,13 @@ def main():
         cond_img = item['conditioning_image']
         gt_img = item['ground_truth_image']
         vid_id = item['video_id']
+        category = item.get('category', 'unknown')
         sample_seed = Config.SEED + i
+        if category not in category_dirs:
+            cat_dir = os.path.join(Config.OUTPUT_DIR, category)
+            os.makedirs(cat_dir, exist_ok=True)
+            category_dirs[category] = cat_dir
+        category_dir = category_dirs[category]
         
         # 生成 Baseline
         metrics_base = {"psnr": 0, "ssim": 0}
@@ -284,63 +306,42 @@ def main():
             finetuned_image = out_fine
 
         # 保存单张四联图（第20帧、GT(第25帧)、baseline预测、finetuned预测）
-        if i < Config.SAVE_FIRST_N:
+        if panel_counts[category] < Config.SAVE_FIRST_N:
             base_size = gt_img.size
-            # 准备占位图（如果某个预测缺失则用灰色占位）
             last_vis = item.get('last_frame_image')
             if last_vis is None:
                 last_vis = Image.new("RGB", base_size, (128, 128, 128))
             else:
-                last_vis = last_vis.resize(base_size)
-
-            gt_vis = gt_img.resize(base_size)
-
-            # 统一 resize 并 convert
+                last_vis = last_vis.convert("RGB")
             last_vis = last_vis.resize(base_size, resample=Image.LANCZOS)
-            gt_vis = gt_vis.resize(base_size, resample=Image.LANCZOS)
 
-            # 默认占位
+            gt_vis = gt_img.convert("RGB").resize(base_size, resample=Image.LANCZOS)
+
             gray_placeholder = Image.new("RGB", base_size, (128, 128, 128))
 
-            # 将生成的图先 normalize to RGB + resize，用于 metrics（如果需要）和 display
-            base_for_metrics = None
-            fine_for_metrics = None
-            base_disp = None
-            fine_disp = None
-
             if baseline_image is None:
-                base_for_metrics = None
                 base_disp = gray_placeholder
             else:
-                base_img = baseline_image.convert("RGB").resize(base_size, resample=Image.LANCZOS)
-                base_for_metrics = base_img
-                base_disp = base_img
+                base_disp = baseline_image.convert("RGB").resize(base_size, resample=Image.LANCZOS)
 
             if finetuned_image is None:
-                fine_for_metrics = None
                 fine_disp = gray_placeholder
             else:
-                fine_img = finetuned_image.convert("RGB").resize(base_size, resample=Image.LANCZOS)
-                fine_for_metrics = fine_img
-                fine_disp = fine_img
+                fine_disp = finetuned_image.convert("RGB").resize(base_size, resample=Image.LANCZOS)
 
-            # Display-only color matching (try skimage.match_histograms, fallback to mean-std)
             if Config.COLOR_MATCH_FOR_DISPLAY:
                 try:
                     from skimage.exposure import match_histograms
-                    import numpy as np
                     gt_arr = np.array(gt_vis)
-                    if base_disp is not None and base_disp != gray_placeholder:
+                    if base_disp is not None and base_disp is not gray_placeholder:
                         b_arr = np.array(base_disp)
                         b_mat = match_histograms(b_arr, gt_arr, channel_axis=2)
                         base_disp = Image.fromarray(b_mat.astype('uint8'))
-                    if fine_disp is not None and fine_disp != gray_placeholder:
+                    if fine_disp is not None and fine_disp is not gray_placeholder:
                         f_arr = np.array(fine_disp)
                         f_mat = match_histograms(f_arr, gt_arr, channel_axis=2)
                         fine_disp = Image.fromarray(f_mat.astype('uint8'))
                 except Exception:
-                    # fallback: simple mean-std matching per channel
-                    import numpy as np
                     def match_mean_std(src_img, ref_img):
                         s = np.array(src_img).astype(np.float32)
                         r = np.array(ref_img).astype(np.float32)
@@ -352,27 +353,30 @@ def main():
                         s = np.clip(s, 0, 255).astype('uint8')
                         return Image.fromarray(s)
 
-                    if base_disp is not None and base_disp != gray_placeholder:
+                    if base_disp is not None and base_disp is not gray_placeholder:
                         base_disp = match_mean_std(base_disp, gt_vis)
-                    if fine_disp is not None and fine_disp != gray_placeholder:
+                    if fine_disp is not None and fine_disp is not gray_placeholder:
                         fine_disp = match_mean_std(fine_disp, gt_vis)
 
-            # 生成 panel：last, gt, baseline(display), finetuned(display)
             panel = Image.new("RGB", (base_size[0] * 4, base_size[1]))
             panel.paste(last_vis, (0, 0))
             panel.paste(gt_vis, (base_size[0], 0))
             panel.paste(base_disp, (base_size[0] * 2, 0))
             panel.paste(fine_disp, (base_size[0] * 3, 0))
 
-            panel.save(os.path.join(Config.OUTPUT_DIR, f"{vid_id}_panel.jpg"))
+            panel.save(os.path.join(category_dir, f"{vid_id}_panel.jpg"))
+            panel_counts[category] += 1
 
-        results.append({
+        result_entry = {
             "video_id": vid_id,
+            "category": category,
             "baseline_psnr": metrics_base["psnr"],
             "baseline_ssim": metrics_base["ssim"],
             "finetuned_psnr": metrics_fine["psnr"],
             "finetuned_ssim": metrics_fine["ssim"]
-        })
+        }
+        results.append(result_entry)
+        category_results[category].append(result_entry)
 
     # 6. 统计与保存
     df = pd.DataFrame(results)
@@ -402,6 +406,41 @@ def main():
         json.dump(summary, f, indent=2, ensure_ascii=False)
     print(f"详细结果已保存至: {metrics_csv}")
     print(f"摘要保存至: {summary_path}")
+
+    # 逐任务统计与保存
+    if category_results:
+        print("\n📊 分任务评估:")
+    for category in sorted(category_results.keys()):
+        df_cat = df[df['category'] == category].copy()
+        if df_cat.empty:
+            continue
+        cat_dir = category_dirs.get(category, os.path.join(Config.OUTPUT_DIR, category))
+        os.makedirs(cat_dir, exist_ok=True)
+        cat_csv = os.path.join(cat_dir, "metrics_comparison.csv")
+        df_cat.to_csv(cat_csv, index=False)
+
+        summary_cat = {}
+        if pipe_baseline:
+            summary_cat["baseline_psnr"] = float(df_cat['baseline_psnr'].mean())
+            summary_cat["baseline_ssim"] = float(df_cat['baseline_ssim'].mean())
+        if pipe_finetuned:
+            summary_cat["finetuned_psnr"] = float(df_cat['finetuned_psnr'].mean())
+            summary_cat["finetuned_ssim"] = float(df_cat['finetuned_ssim'].mean())
+        if pipe_baseline and pipe_finetuned:
+            summary_cat["psnr_gain"] = float(df_cat['psnr_gain'].mean())
+            summary_cat["ssim_gain"] = float(df_cat['ssim_gain'].mean())
+
+        summary_cat_path = os.path.join(cat_dir, "metrics_summary.json")
+        with open(summary_cat_path, "w", encoding="utf-8") as f:
+            json.dump(summary_cat, f, indent=2, ensure_ascii=False)
+
+        print(f"[{category}] 样本数: {len(df_cat)}")
+        if pipe_baseline:
+            print(f"  Baseline  - PSNR: {summary_cat.get('baseline_psnr', 0):.4f}, SSIM: {summary_cat.get('baseline_ssim', 0):.4f}")
+        if pipe_finetuned:
+            print(f"  Finetuned - PSNR: {summary_cat.get('finetuned_psnr', 0):.4f}, SSIM: {summary_cat.get('finetuned_ssim', 0):.4f}")
+        if pipe_baseline and pipe_finetuned:
+            print(f"  提升      - ΔPSNR: {summary_cat.get('psnr_gain', 0):.4f}, ΔSSIM: {summary_cat.get('ssim_gain', 0):.4f}")
 
 if __name__ == "__main__":
     main()

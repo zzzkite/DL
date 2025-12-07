@@ -147,12 +147,12 @@ MODEL_DIR = os.path.join(BASE_DIR, "stable-diffusion-v1-5")
 # ControlNet 本地目录（如果你已经转换为 diffusers 格式则可直接使用），否则会回退到 hub
 CONTROLNET_DIR = os.path.join(BASE_DIR, "ControlNet-v1-1")
 DATA_DIR = "./augmented_data_512"
-OUTPUT_DIR = "./final_model_output_viz_v4"  # 改个名字，防止覆盖之前的
+OUTPUT_DIR = "./final_model_output_viz_v5"  # 改个名字，防止覆盖之前的
 
 # 训练参数
 BATCH_SIZE = 4
 GRAD_ACCUMULATION = 4
-LEARNING_RATE = 1e-5
+LEARNING_RATE = 3e-5
 NUM_EPOCHS = 50
 SAVE_INTERVAL = 10
 
@@ -365,13 +365,15 @@ def main():
     text_encoder.requires_grad_(False)
     controlnet.train()
 
-    controlnet.enable_gradient_checkpointing()
+    # controlnet.enable_gradient_checkpointing()
     unet.enable_gradient_checkpointing()
 
     optimizer = torch.optim.AdamW(
         controlnet.parameters(),
         lr=LEARNING_RATE,
-        weight_decay=1e-2
+        weight_decay=1e-3,
+        betas=(0.9, 0.999),  # 调整beta参数
+        eps=1e-8
     )
 
     # 2. 数据加载
