@@ -1,5 +1,5 @@
 存储一下目前运行的PID
-trainImproved512：1358726
+trainImproved512：1361929
 eval：/
 Zeroshot：/
 

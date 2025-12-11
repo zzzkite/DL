@@ -150,8 +150,8 @@ DATA_DIR = "./augmented_data_512"
 OUTPUT_DIR = "./final_model_output_viz_v5"  # 改个名字，防止覆盖之前的
 
 # 训练参数
-BATCH_SIZE = 4
-GRAD_ACCUMULATION = 4
+BATCH_SIZE = 2
+GRAD_ACCUMULATION = 1
 LEARNING_RATE = 3e-5
 NUM_EPOCHS = 50
 SAVE_INTERVAL = 10
@@ -365,7 +365,7 @@ def main():
     text_encoder.requires_grad_(False)
     controlnet.train()
 
-    # controlnet.enable_gradient_checkpointing()
+    controlnet.enable_gradient_checkpointing()
     unet.enable_gradient_checkpointing()
 
     optimizer = torch.optim.AdamW(
